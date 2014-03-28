@@ -120,6 +120,7 @@ INSTALLED_APPS = (
     'django.contrib.admin',
 
     'south',
+    'rest_framework',
 
     'app.core'
 )
@@ -153,4 +154,9 @@ LOGGING = {
             'propagate': True,
         },
     }
+}
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.IsAdminUser',),
+    'PAGINATE_BY': 10
 }
