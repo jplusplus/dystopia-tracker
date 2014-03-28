@@ -23,11 +23,11 @@ class Source(models.Model):
 
     more_info = models.URLField(blank=True)
 
-    series_season = models.PositiveIntegerField()
-    series_episode = models.PositiveIntegerField()
+    series_season = models.PositiveIntegerField(blank=True, null=True)
+    series_episode = models.PositiveIntegerField(blank=True, null=True)
 
-    description_E = models.TextField(max_length=300)
-    description_D = models.TextField(max_length=300)
+    description_E = models.TextField(max_length=300, blank=True)
+    description_D = models.TextField(max_length=300, blank=True)
 
     image = models.ImageField(upload_to='uploaded/sources', blank=True)
     image_credit = models.CharField(max_length=75, blank=True)
@@ -68,6 +68,8 @@ class Realisation(models.Model):
 
     image = models.ImageField(upload_to='uploaded/realisations', blank=True)
     image_credit = models.CharField(max_length=75, blank=True)
+
+    username = models.CharField(max_length=75)
 
     creation_date = models.DateTimeField(auto_now_add=True)
     edition_date = models.DateTimeField(auto_now=True)
