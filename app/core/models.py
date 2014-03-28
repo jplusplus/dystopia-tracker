@@ -4,6 +4,9 @@ from django.utils.translation import ugettext_lazy as _
 class Category(models.Model):
     title = models.CharField(max_length=75)
 
+    def __unicode__(self):
+        return self.title
+
 SOURCE_TYPES = (
     ('literature', _('Literature')),
     ('movies', _('Movies')),
@@ -32,20 +35,23 @@ class Source(models.Model):
     image = models.ImageField(upload_to='uploaded/sources', blank=True)
     image_credit = models.CharField(max_length=75, blank=True)
 
+    def __unicode__(self):
+        return '%s by %s' % (self.title, self.author)
+
 class Prediction(models.Model):
     source = models.ForeignKey(Source)
 
     category = models.ForeignKey(Category)
 
-    description_E = models.TextField(max_length=300)
-    description_D = models.TextField(max_length=300)
+    description_E = models.TextField(max_length=300, blank=True)
+    description_D = models.TextField(max_length=300, blank=True)
 
     year_predicted = models.PositiveIntegerField()
 
     more_info = models.URLField(blank=True)
 
-    headline_E = models.TextField(max_length=300)
-    headline_D = models.TextField(max_length=300)
+    headline_E = models.TextField(max_length=300, blank=True)
+    headline_D = models.TextField(max_length=300, blank=True)
 
     image = models.ImageField(upload_to='uploaded/predictions', blank=True)
     image_credit = models.CharField(max_length=75, blank=True)
