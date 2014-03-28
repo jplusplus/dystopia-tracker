@@ -1,3 +1,7 @@
 from django.contrib import admin
+from core.models import Category, Source, Prediction, Realisation
 
-# Register your models here.
+admin.site.register(Category)
+admin.site.register(Source)
+admin.site.register(Prediction)
+admin.site.register(Realisation)
