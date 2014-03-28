@@ -36,7 +36,7 @@ class Source(models.Model):
     image_credit = models.CharField(max_length=75, blank=True)
 
     def __unicode__(self):
-        return '%s by %s' % (self.title, self.author)
+        return '%s by %s (%d)' % (self.title, self.author, self.id)
 
 class Prediction(models.Model):
     source = models.ForeignKey(Source)
@@ -62,11 +62,16 @@ class Prediction(models.Model):
     edition_date = models.DateTimeField(auto_now=True)
     published = models.BooleanField(default=False)
 
+    def __unicode__(self):
+        if self.headline_E != None and self.headline_E != "":
+            return self.headline_E
+        return '%d : %s by %s (%d)' % (self.year_predicted, self.source.title, self.source.author, self.id)
+
 class Realisation(models.Model):
     prediction = models.ForeignKey(Prediction)
 
-    description_E = models.TextField(max_length=300)
-    description_D = models.TextField(max_length=300)
+    description_E = models.TextField(max_length=300, blank=True)
+    description_D = models.TextField(max_length=300, blank=True)
 
     year_introduced = models.PositiveIntegerField()
 
