@@ -70,7 +70,7 @@ class Prediction(models.Model):
         return '%d : %s by %s (%d)' % (self.year_predicted, self.source.title, self.source.author, self.id)
 
 class Realisation(models.Model):
-    prediction = models.ForeignKey(Prediction)
+    prediction = models.ForeignKey(Prediction, related_name='realisations')
 
     description_E = models.TextField(max_length=300, blank=True)
     description_D = models.TextField(max_length=300, blank=True)
