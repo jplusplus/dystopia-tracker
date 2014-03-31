@@ -1,5 +1,40 @@
-<h1>[[title()]]</h1>
+<div id="wrapper">
 
-<ul>
-    <li ng-repeat="prediction in predictions">[[prediction.description_E]]</li>
-</ul>
+
+<div class="page-header">
+    <h1>[[title()]]</h1>
+    <nav>Cards view | Timeline view</nav>
+    <div id="filters">
+    	
+    	<!- TODO: get options list from API ->
+        <select id="category">
+             <option value=''>All categories</option>
+             <option value=''>Artificial Intelligence</option>
+             <option value=''>Food</option>
+             <option value=''>Transportation</option>
+             <option value=''>Surveillance</option>
+        </select>
+        
+         <!- TODO: get options list from API ->
+        <select id="mediatype">
+            <option value=''>All sources</option>
+            <option value=''>Literature</option>
+            <option value=''>Movies</option>
+            <option value=''>TV Series</option>
+            <option value=''>Games</option>
+        </select>
+        <form id="searchform">
+            <input placeholder="Seach for a title"> 
+        </form>
+    </div> <!- filters ->
+</div> <!- page-header ->
+
+    <div id="content">
+
+
+        <ul>
+            <li ng-repeat="prediction in predictions">[[prediction.description_E]]</li>
+        </ul>
+
+    </div> <!- content ->
+</div> <!- wrapper ->
