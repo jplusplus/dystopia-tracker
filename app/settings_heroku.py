@@ -40,7 +40,6 @@ CACHES = {
 }
 
 COMPRESS_CSS_FILTERS = (
-    "app.utils.CustomCssAbsoluteFilter",
     "compressor.filters.cssmin.CSSMinFilter",
     "compressor.filters.template.TemplateFilter",
 )

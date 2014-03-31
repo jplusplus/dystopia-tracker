@@ -15,6 +15,10 @@ pip_install:
 	# Install pip dependencies
 	. $(VIRTUALENV)bin/activate; pip install -r requirements.txt
 
+npm_install:
+	# Install npm packages
+	if [ -s npm_requirements.txt ]; then xargs -a npm_requirements.txt npm install -g; else echo '\nNo NPM dependencies found in npm_requirements.txt'; fi
+
 setup_db:
 	# setup database
 	. $(VIRTUALENV)bin/activate; python manage.py syncdb --noinput; . $(VIRTUALENV)bin/activate; python manage.py migrate --all

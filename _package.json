@@ -1,0 +1,10 @@
+{
+  "name": "dystopia-tracker",
+  "version": "0.1.0",
+  "dependencies": {
+  },
+  "devDependencies": {
+    "coffee-script":"~1.7.1",
+    "less":"~1.4.1",
+  }
+}
