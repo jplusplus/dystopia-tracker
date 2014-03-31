@@ -46,7 +46,7 @@ class Prediction(models.Model):
     description_E = models.TextField(max_length=300, blank=True)
     description_D = models.TextField(max_length=300, blank=True)
 
-    year_predicted = models.PositiveIntegerField()
+    year_predicted = models.PositiveIntegerField(blank=True)
 
     more_info = models.URLField(blank=True)
 
@@ -56,7 +56,7 @@ class Prediction(models.Model):
     image = models.ImageField(upload_to='uploaded/predictions', blank=True)
     image_credit = models.CharField(max_length=75, blank=True)
 
-    username = models.CharField(max_length=75)
+    username = models.CharField(max_length=75, blank=True)
 
     creation_date = models.DateTimeField(auto_now_add=True)
     edition_date = models.DateTimeField(auto_now=True)
@@ -80,7 +80,7 @@ class Realisation(models.Model):
     image = models.ImageField(upload_to='uploaded/realisations', blank=True)
     image_credit = models.CharField(max_length=75, blank=True)
 
-    username = models.CharField(max_length=75)
+    username = models.CharField(max_length=75, blank=True)
 
     creation_date = models.DateTimeField(auto_now_add=True)
     edition_date = models.DateTimeField(auto_now=True)
