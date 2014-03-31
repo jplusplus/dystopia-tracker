@@ -1,5 +1,5 @@
 from django.contrib import admin
-from core.models import Category, Source, Prediction, Realisation
+from app.core.models import Category, Source, Prediction, Realisation
 
 admin.site.register(Category)
 

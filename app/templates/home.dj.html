@@ -1,3 +1,5 @@
+{% load staticfiles %}
+{% load compress %}
 <!DOCTYPE html>
 <html>
     <head>
@@ -6,6 +8,13 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
         <title>Dystopia Tracker</title>
         <meta name="description" content="">
+        {% compress css %}
+            <link rel="stylesheet" type="text/less" href="{{ STATIC_URL }}css/base.less">
+        {% endcompress %}
+
+        {% compress js %}
+            <script type="text/javascript" src="{{ STATIC_URL }}js/app.coffee"></script>
+        {% endcompress %}
     </head>
     <body>
         <h1>Dystopia Tracker</h1>

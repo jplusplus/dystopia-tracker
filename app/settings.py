@@ -28,7 +28,7 @@ ALLOWED_HOSTS = []
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
 # although not all choices may be available on all operating systems.
 # In a Windows environment this must be set to your system time zone.
-TIME_ZONE = 'America/Chicago'
+TIME_ZONE = 'Europe/Paris'
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
@@ -60,7 +60,7 @@ MEDIA_URL = ''
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/var/www/example.com/static/"
-STATIC_ROOT = ''
+STATIC_ROOT = here('staticfiles')
 
 # URL prefix for static files.
 # Example: "http://example.com/static/", "http://static.example.com/"
@@ -71,6 +71,7 @@ STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
+    here('static'),
 )
 
 # List of finder classes that know how to find static files in
@@ -78,7 +79,7 @@ STATICFILES_DIRS = (
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-#    'django.contrib.staticfiles.finders.DefaultStorageFinder',
+    'compressor.finders.CompressorFinder',
 )
 
 # Make this unique, and don't share it with anybody.
@@ -110,6 +111,29 @@ TEMPLATE_DIRS = (
     here('templates')
 )
 
+# JS/CSS COMPRESSOR SETTINGS
+COMPRESS_PRECOMPILERS = (
+    ('text/coffeescript', 'coffee --compile --stdio --bare'),
+    ('text/less', 'lessc --include-path="%s" {infile} {outfile}' % here('static') ),
+)
+
+COMPRESS_CSS_FILTERS = (
+    # Custom filter to avoid absolute URL issue: 
+    # http://stackoverflow.com/a/17033883/885541
+    "compressor.filters.template.TemplateFilter",
+)
+
+COMPRESS_JS_FILTERS = (
+    "compressor.filters.template.TemplateFilter",
+)
+
+COMPRESS_TEMPLATE_FILTER_CONTEXT = {
+    'STATIC_URL': STATIC_URL
+}
+
+COMPRESS_PARSER  = 'compressor.parser.HtmlParser'
+COMPRESS_ENABLED = False
+
 INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -121,6 +145,7 @@ INSTALLED_APPS = (
 
     'south',
     'rest_framework',
+    'compressor',
 
     'app.core'
 )
