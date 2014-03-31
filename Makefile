@@ -13,7 +13,7 @@ create_virtualenv:
 
 pip_install:
 	# Install pip dependencies
-	. $(VIRTUALENV)bin/activate; pip install -r requirements.txt
+	. $(VIRTUALENV)bin/activate; pip install -r requirements_core.txt
 
 npm_install:
 	# Install npm packages
