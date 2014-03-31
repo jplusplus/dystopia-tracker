@@ -58,6 +58,8 @@ class Prediction(models.Model):
 
     username = models.CharField(max_length=75, blank=True)
 
+    editors_pick = models.BooleanField(default=False)
+
     creation_date = models.DateTimeField(auto_now_add=True)
     edition_date = models.DateTimeField(auto_now=True)
     published = models.BooleanField(default=False)
