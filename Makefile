@@ -5,7 +5,7 @@ VIRTUALENV = venv/
 run:
 	. $(VIRTUALENV)bin/activate; export PYTHONPATH=`pwd`/app/:$(PYTHONPATH) ; python -W ignore::DeprecationWarning manage.py runserver 0.0.0.0:8000
 
-install: create_virtualenv pip_install setup_db
+install: create_virtualenv pip_install setup_db bower_install
 
 create_virtualenv:
 	# Check if venv folder is already created and create it
@@ -17,7 +17,10 @@ pip_install:
 
 npm_install:
 	# Install npm packages
-	if [ -s npm_requirements.txt ]; then xargs -a npm_requirements.txt npm install -g; else echo '\nNo NPM dependencies found in npm_requirements.txt'; fi
+	if [ -s npm_requirements.txt ]; then xargs -a npm_requirements.txt npm install -g; fi
+
+bower_install:
+	bower install
 
 setup_db:
 	# setup database
