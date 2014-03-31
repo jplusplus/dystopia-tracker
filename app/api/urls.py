@@ -2,10 +2,11 @@ from django.conf.urls import patterns, url, include
 from rest_framework import routers
 from app.api import views
 
-router = routers.DefaultRouter()
-router.register(r'sources', views.SourceViewSet)
-router.register(r'predictions', views.PredictionViewSet)
+prediction_urls = patterns('',
+    url(r'^(?P<pk>\d+)$', views.PredictionDetail.as_view(), name='prediction-detail'),
+    url(r'^$', views.PredictionList.as_view(), name='prediction-list')
+)
 
 urlpatterns = patterns('',
-    url(r'^', include(router.urls)),
+    url(r'^predictions/', include(prediction_urls))
 )
