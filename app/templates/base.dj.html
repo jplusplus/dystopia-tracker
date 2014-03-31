@@ -16,10 +16,10 @@
 
         <base href="{% url 'home' %}" />
 
-        {% compress js %}
             <script type="text/javascript" src="{{ STATIC_URL }}vendor/angularjs-bower/angular.js"></script>
             <script type="text/javascript" src="{{ STATIC_URL }}vendor/angularjs-bower/angular-route.js"></script>
 
+        {% compress js %}
             <script type="text/coffeescript" src="{{ STATIC_URL }}js/controllers/PageCtrl.coffee"></script>
         {% endcompress %}
     </head>
