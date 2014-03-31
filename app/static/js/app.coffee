@@ -1,15 +1,22 @@
-app = (angular.module 'dystopia-tracker', ['ngRoute']).config [
-    '$interpolateProvider'
-    '$locationProvider'
-    '$routeProvider'
-    ($interpolateProvider, $locationProvider, $routeProvider) =>
-        $interpolateProvider.startSymbol '[['
-        $interpolateProvider.endSymbol   ']]'
+angular.module 'dystopia-tracker.services', []
 
-        $locationProvider.html5Mode true
+app = angular
+    .module('dystopia-tracker', [
+        'ngRoute'
+        'dystopia-tracker.services'
+    ])
+    .config([
+        '$interpolateProvider'
+        '$locationProvider'
+        '$routeProvider'
+        ($interpolateProvider, $locationProvider, $routeProvider) =>
+            $interpolateProvider.startSymbol '[['
+            $interpolateProvider.endSymbol   ']]'
 
-        $routeProvider
-            .when '/',
-                controller: 'HomeCtrl'
-                templateUrl: '/partial/home.html'
-]
+            $locationProvider.html5Mode true
+
+            $routeProvider
+                .when '/',
+                    controller: 'HomeCtrl'
+                    templateUrl: '/partial/home.html'
+    ])
