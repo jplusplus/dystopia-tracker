@@ -9,6 +9,7 @@ dystopia-tracker
 * python (2.6+)
 * pip
 * virtualenv
+* bower
 
 ### Download
 

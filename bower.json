@@ -1,0 +1,7 @@
+{
+  "name": "dystopia-tracker",
+  "version": "0.0.0",
+  "dependencies": {
+    "angularjs-bower": "*"
+  }
+}
