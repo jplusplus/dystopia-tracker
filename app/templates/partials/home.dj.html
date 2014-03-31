@@ -1,40 +1,58 @@
 <div id="wrapper">
 
 
-<div class="page-header">
-    <h1>[[title()]]</h1>
-    <nav>Cards view | Timeline view</nav>
-    <div id="filters">
-    	
-    	<!- TODO: get options list from API ->
-        <select id="category">
-             <option value=''>All categories</option>
-             <option value=''>Artificial Intelligence</option>
-             <option value=''>Food</option>
-             <option value=''>Transportation</option>
-             <option value=''>Surveillance</option>
-        </select>
-        
-         <!- TODO: get options list from API ->
-        <select id="mediatype">
-            <option value=''>All sources</option>
-            <option value=''>Literature</option>
-            <option value=''>Movies</option>
-            <option value=''>TV Series</option>
-            <option value=''>Games</option>
-        </select>
-        <form id="searchform">
-            <input placeholder="Seach for a title"> 
-        </form>
-    </div> <!- filters ->
-</div> <!- page-header ->
-
+    <div class="page-header">
+        <h1>[[title()]]</h1>
+        <nav>Cards view | Timeline view</nav>
+        <div id="filters">
+        	
+        	<!- TODO: get options list from API ->
+            <select id="category">
+                 <option value=''>All categories</option>
+                 <option value=''>Artificial Intelligence</option>
+                 <option value=''>Food</option>
+                 <option value=''>Transportation</option>
+                 <option value=''>Surveillance</option>
+            </select>
+            
+             <!- TODO: get options list from API ->
+            <select id="mediatype">
+                <option value=''>All sources</option>
+                <option value=''>Literature</option>
+                <option value=''>Movies</option>
+                <option value=''>TV Series</option>
+                <option value=''>Games</option>
+            </select>
+            <form id="searchform">
+                <input placeholder="Seach for a title"> 
+            </form>
+        </div> <!- filters ->
+    </div> <!- page-header ->
+	
+	<div id="intro"></div> <!-- This will be an intro text only shown once to the user -->
+	
     <div id="content">
+        <div class="cardview editorspicks">
+	        <p class="line"><span>Editor's picks</span></p>
+            <li class="card imagecard fuchsia" ng-repeat="prediction in predictions"> <!-- TODO: add filter for editor's picks &  color class must be based on category id -->
+	            <img class="cover" src="http://labs.davidbauer.ch/1984dummy/img/equi.jpg"> <!- TODO: access actual img_url from source id ->
+	             <p class="prediction">[[prediction.description_E]]</p>
+           </li>
 
+        </div><!- editorspicks ->
+    
+        <div class="cardview latest">
+            <p class="line"><span>Latest</span></p>
+			<button>Add new prediction</button>
+            <li class="card teal" ng-repeat="prediction in predictions"> <!-- TODO: color class must be based on category id-->
+	            <p class="prediction">[[prediction.description_E]]</p>
+	            <p class="source">&mdash; Source name</p> <!- TODO: access actual data from source id ->
+            </li>
 
-        <ul>
-            <li ng-repeat="prediction in predictions">[[prediction.description_E]]</li>
-        </ul>
-
+        </div> <!- latest ->
     </div> <!- content ->
+    
+    <div id="footer">
+		<p>I'm in the footer!</p>
+    </div>
 </div> <!- wrapper ->
