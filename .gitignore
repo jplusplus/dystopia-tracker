@@ -38,3 +38,6 @@ app/static/vendor
 
 # Sublime files
 *.sublime-*
+
+# Uploaded images
+uploaded
