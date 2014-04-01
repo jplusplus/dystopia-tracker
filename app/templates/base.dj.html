@@ -12,6 +12,7 @@
 
         {% compress css %}
             <link rel="stylesheet" type="text/less" href="{{ STATIC_URL }}css/base.css">
+            <link rel="stylesheet" type="text/less" href="{{ STATIC_URL }}vendor/bootstrap/css/bootstrap.css">
         {% endcompress %}
         {% block extracss %}{% endblock %}
 		<link href='http://fonts.googleapis.com/css?family=Raleway:300' rel='stylesheet' type='text/css'>
@@ -20,6 +21,7 @@
         <script type="text/javascript" src="{{ STATIC_URL }}vendor/jquery/dist/jquery.js"></script>
         <script type="text/javascript" src="{{ STATIC_URL }}vendor/typeahead.js/dist/bloodhound.js"></script>
         <script type="text/javascript" src="{{ STATIC_URL }}vendor/typeahead.js/dist/typeahead.jquery.js"></script>
+        <link rel="stylesheet" type="text/less" href="{{ STATIC_URL }}vendor/bootstrap/js/bootstrap.js">
 
         <script type="text/javascript" src="{{ STATIC_URL }}vendor/angularjs-bower/angular.js"></script>
         <script type="text/javascript" src="{{ STATIC_URL }}vendor/angularjs-bower/angular-route.js"></script>

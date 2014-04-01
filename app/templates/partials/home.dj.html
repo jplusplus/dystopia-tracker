@@ -8,22 +8,18 @@
         	
             <select id="category">
                  <option value=''>All categories</option>
-                 <option ng-repeat="category in categories" value="[[category.id]]">[[category.title]]</option> <!- TODO: trigger filtered view on click ->
+                 <option ng-repeat="category in categories" value="[[category.id]]">[[category.title]]</option> <!- TODO: trigger filtered view on submit ->
             </select>
             
              <!- TODO: get options list from API ->
             <select id="mediatype">
                  <option value=''>All sources</option>
-                 <option ng-repeat="source in sources" value="[[source.type]]">[[source.type]]</option> <!- TODO: trigger filtered view on click ->
+                 <option ng-repeat="source in sources" value="[[source.type]]">[[source.type]]</option> <!- TODO: trigger filtered view on submit ->
             </select>
-            
-            <select id="titles">
-                 <option value=''>All titles</option>
-                 <option ng-repeat="source in sources" value="[[source.title]]">[[source.title]]</option> <!- TODO: trigger filtered view on click ->
-            </select>
-            
-            <form id="searchform"> <!- TODO: add typeahead functionality ->
-                <input class="typeahead" placeholder="Search for a title"> 
+                        
+            <form id="searchform">
+                <!- TODO: trigger filtered view on submit ->
+                <input type="text" class="sfTypeahead" options="exampleOptions" datasets="exampleData" placeholder="Search for a title" ng-model="titlesearch"> 
             </form>
             
         </div> <!- filters ->

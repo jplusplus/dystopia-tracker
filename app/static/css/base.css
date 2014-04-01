@@ -1,6 +1,6 @@
 /* General styles */
 html, body {
-    font-family: 'Raleway', sans-serif;
+
 }
 
 body {
@@ -196,7 +196,7 @@ display: inline;
   text-align: left;
 }
 
-.typeahead,
+.sfTypeahead,
 .tt-query,
 .tt-hint {
   box-sizing: border-box;
@@ -209,11 +209,11 @@ display: inline;
   outline: none;
 }
 
-.typeahead {
+.sfTypeahead {
   background-color: #fff;
 }
 
-.typeahead:focus {
+.sfTypeahead:focus {
   border: 2px solid #0097cf;
 }
 
