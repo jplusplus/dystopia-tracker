@@ -10,23 +10,23 @@
                  <option value=''>All categories</option>
                  <option ng-repeat="category in categories" value="[[category.id]]">[[category.title]]</option> <!- TODO: trigger filtered view on submit ->
             </select>
-            
+
              <!- TODO: get options list from API ->
             <select id="mediatype">
                  <option value=''>All sources</option>
                  <option ng-repeat="source in sources" value="[[source.type]]">[[source.type]]</option> <!- TODO: trigger filtered view on submit ->
             </select>
-                        
+
             <form id="searchform">
                 <!- TODO: trigger filtered view on submit ->
-                <input type="text" class="sfTypeahead" options="exampleOptions" datasets="exampleData" placeholder="Search for a title" ng-model="titlesearch"> 
+                <input type="text" class="sfTypeahead" options="typeahedOptions" datasets="typeaheadData" placeholder="Search for a title" ng-model="titlesearch"> 
             </form>
-            
+
         </div> <!- filters ->
     </div> <!- page-header ->
-	
+
 	<div id="intro"></div> <!-- TODO: This will be an intro text only shown once to the user -->
-	
+
     <div id="content">
         <div class="cardview editorspicks" ng-hide=""> <!- TODO: only show this part if at least one editors pick for the selected filter is available ->
 	        <p class="line"><span>Editor's picks</span></p>
@@ -41,7 +41,7 @@
            </li>
 
         </div><!- editorspicks ->
-    
+
         <div class="cardview latest">
             <p class="line"><span>Latest</span></p>
 			<button>Add new prediction</button>
@@ -53,7 +53,7 @@
 		<button>Load more...</button>
         </div> <!- latest ->
     </div> <!- content ->
-    
+
     <div id="footer">
 		<p>I'm in the footer!</p>
     </div>
