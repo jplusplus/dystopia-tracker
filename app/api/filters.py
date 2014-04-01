@@ -17,12 +17,19 @@ class PredictionFilter(django_filters.FilterSet):
     def _exclude_id(queryset, id):
         return queryset.filter(~Q(id = id))
 
+    def _img_defined(queryset, value):
+        if value:
+            return queryset.filter(~Q(image = ""))
+        else:
+            return queryset
+
     # Define custom filters
     lang = django_filters.CharFilter(action=_lang)
     title = django_filters.CharFilter(name='source__title')
     author = django_filters.CharFilter(name='source__author')
     exclude = django_filters.NumberFilter(action=_exclude_id)
+    img = django_filters.BooleanFilter(action=_img_defined)
 
     class Meta:
         model = Prediction
-        fields = ['lang', 'editors_pick', 'category', 'title', 'author', 'exclude']
+        fields = ['lang', 'editors_pick', 'source__type', 'category', 'title', 'author', 'exclude']

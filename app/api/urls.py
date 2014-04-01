@@ -8,11 +8,12 @@ prediction_urls = patterns('',
 )
 
 sources_urls = patterns('',
-    url(r'^$', views.SourceList.as_view(), name='sources-list')
+    url(r'^(?P<pk>\d+)$', views.SourceDetail.as_view(), name='source-detail'),
+    url(r'^$', views.SourceList.as_view(), name='source-list')
 )
 
 categories_urls = patterns('',
-    url(r'^$', views.CategoryList.as_view(), name='categories-list')
+    url(r'^$', views.CategoryList.as_view(), name='category-list')
 )
 
 urlpatterns = patterns('',

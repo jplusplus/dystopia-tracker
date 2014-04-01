@@ -26,6 +26,13 @@ class SourceList(generics.ListAPIView):
         permissions.AllowAny
     ]
 
+class SourceDetail(generics.RetrieveUpdateDestroyAPIView):
+    model = Source
+    serializer_class = SourceSerializer
+    permission_classes = [
+        permissions.AllowAny
+    ]
+
 class CategoryList(generics.ListAPIView):
     model = Category
     serializer_class = CategorySerializer
