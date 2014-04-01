@@ -8,11 +8,8 @@
         	
         	<!- TODO: get options list from API ->
             <select id="category">
-                 <option value=''>All categories</option> 
-                 <option value=''>Artificial Intelligence</option> <!- TODO: trigger filtered view on click ->
-                 <option value=''>Food</option>
-                 <option value=''>Transportation</option>
-                 <option value=''>Surveillance</option>
+                 <option value=''>All categories</option>
+                 <option ng-repeat="category in categories" value="[[category.id]]">[[category.title]]</option> <!- TODO: trigger filtered view on click ->
             </select>
             
              <!- TODO: get options list from API ->
