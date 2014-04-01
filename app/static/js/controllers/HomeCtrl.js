@@ -2,6 +2,7 @@ angular.module('dystopia-tracker').controller('HomeCtrl', ['$scope', 'Prediction
     $scope.categories = [];
     $scope.predictions = [];
     $scope.sources = [];
+    $scope.filters = {category:null};
 
     var titles = new Bloodhound({
         datumTokenizer: Bloodhound.tokenizers.obj.whitespace('title'),
@@ -12,7 +13,6 @@ angular.module('dystopia-tracker').controller('HomeCtrl', ['$scope', 'Prediction
 
     Prediction.get({}, function(data) {
         $scope.predictions = data.results;
-        $scope.change = function() {alert("hello")};
     });
 
     Categories.get({}, function(data) {
