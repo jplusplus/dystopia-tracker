@@ -1,6 +1,7 @@
 from app.core.models import Source, Prediction, Realisation, Category
 from rest_framework import generics, permissions, filters
 from app.api.serializers import SourceSerializer, PredictionSerializer, RealisationSerializer, CategorySerializer
+from app.api.serializers import PredictionCreationSerializer
 import app.api.filters
 
 class PredictionList(generics.ListCreateAPIView):
@@ -10,6 +11,12 @@ class PredictionList(generics.ListCreateAPIView):
         permissions.AllowAny
     ]
     filter_class = app.api.filters.PredictionFilter
+
+    def get_serializer_class(self):
+        if self.request.method == 'GET':
+            return PredictionSerializer
+        else:
+            return PredictionCreationSerializer
 
 class PredictionDetail(generics.RetrieveUpdateDestroyAPIView):
     model = Prediction

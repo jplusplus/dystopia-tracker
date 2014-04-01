@@ -19,3 +19,7 @@ class PredictionSerializer(serializers.ModelSerializer):
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
+
+class PredictionCreationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Prediction
