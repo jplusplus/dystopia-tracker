@@ -37,6 +37,11 @@
             <li class="card imagecard color-[[prediction.category]]" ng-repeat="prediction in predictions" ng-show="[[prediction.editors_pick | editorspick]]">
 	            <img class="cover" ng-src="/uploaded/[[prediction.source.image]]" > <!- TODO: get correct url  ->
 	             <p class="prediction">[[prediction.description_E]]</p>
+	             <p class"realisations" ng-switch on="prediction.realisations.length">
+	                 <span ng-switch-when="0">This real? Add realisation.</span>
+	                 <span ng-switch-when="1">1 realisation</span>
+	                 <span ng-switch-default>[[prediction.realisations.length]] realisations</span>
+	             </p>
            </li>
 
         </div><!- editorspicks ->
