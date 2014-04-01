@@ -5,7 +5,6 @@ angular.module('dystopia-tracker').controller('PageCtrl', function($scope) {
         if (newTitle != null) {
             _title = newTitle;
         }
-        console.debug(_title);
         return _title;
     }
 });
