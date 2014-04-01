@@ -16,8 +16,13 @@ categories_urls = patterns('',
     url(r'^$', views.CategoryList.as_view(), name='category-list')
 )
 
+realisations_urls = patterns('',
+    url(r'^$', views.RealisationCreate.as_view(), name='realisation-create')
+)
+
 urlpatterns = patterns('',
     url(r'^categories/', include(categories_urls)),
     url(r'^predictions/', include(prediction_urls)),
-    url(r'^sources/', include(sources_urls))
+    url(r'^sources/', include(sources_urls)),
+    url(r'^realisations/', include(realisations_urls))
 )

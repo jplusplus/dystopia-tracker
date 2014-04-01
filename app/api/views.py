@@ -46,3 +46,10 @@ class CategoryList(generics.ListAPIView):
     permission_classes = [
         permissions.AllowAny
     ]
+
+class RealisationCreate(generics.CreateAPIView):
+    model = Realisation
+    serializer_class = RealisationSerializer
+    permission_classes = [
+        permissions.AllowAny
+    ]
