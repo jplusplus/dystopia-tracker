@@ -12,6 +12,7 @@ angular.module('dystopia-tracker').controller('HomeCtrl', ['$scope', 'Prediction
 
     Prediction.get({}, function(data) {
         $scope.predictions = data.results;
+        $scope.change = function() {alert("hello")};
     });
 
     Categories.get({}, function(data) {
