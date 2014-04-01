@@ -24,18 +24,18 @@
                 <option value=''>Games</option>
             </select>
             <form id="searchform"> <!- TODO: add typeahead functionality ->
-                <input placeholder="Seach for a title"> 
+                <input placeholder="Search for a title"> 
             </form>
         </div> <!- filters ->
     </div> <!- page-header ->
 	
-	<div id="intro"></div> <!-- This will be an intro text only shown once to the user -->
+	<div id="intro"></div> <!-- TODO: This will be an intro text only shown once to the user -->
 	
     <div id="content">
-        <div class="cardview editorspicks"> <!- TODO: only show this part if at least one editors pick for the selected filter is available ->
+        <div class="cardview editorspicks" ng-hide=""> <!- TODO: only show this part if at least one editors pick for the selected filter is available ->
 	        <p class="line"><span>Editor's picks</span></p>
-            <li class="card imagecard color-[[prediction.id]]" ng-repeat="prediction in predictions"> <!-- TODO: add filter for editor's picks &  color class must be based on category id -->
-	            <img class="cover" ng-src="[[prediction.source.image]]"> <!- TODO: access actual img_url from source id ->
+            <li class="card imagecard color-[[prediction.category]]" ng-repeat="prediction in predictions" ng-show="[[prediction.editors_pick | editorspick]]">
+	            <img class="cover" ng-src="[[prediction.source.image]]" > <!- TODO: get correct url  ->
 	             <p class="prediction">[[prediction.description_E]]</p>
            </li>
 
@@ -44,7 +44,7 @@
         <div class="cardview latest">
             <p class="line"><span>Latest</span></p>
 			<button>Add new prediction</button>
-            <li class="card teal" ng-repeat="prediction in predictions"> <!-- TODO: color class must be based on category id-->
+            <li class="card color-[[prediction.category]]" ng-repeat="prediction in predictions"> 
 	            <p class="prediction">[[prediction.description_E]]</p>
 	            <p class="source">&mdash; [[prediction.source.title]] by [[prediction.source.author]] ([[prediction.source.year_published]]) </p> <!- TODO: change author order from lastname, firstname to firstname lastname ->
             </li>
