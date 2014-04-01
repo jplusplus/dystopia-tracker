@@ -13,11 +13,8 @@
             
              <!- TODO: get options list from API ->
             <select id="mediatype">
-                <option value=''>All sources</option>
-                <option value=''>Literature</option> <!- TODO: trigger filtered view on click ->
-                <option value=''>Movies</option>
-                <option value=''>TV Series</option>
-                <option value=''>Games</option>
+                 <option value=''>All sources</option>
+                 <option ng-repeat="source in sources" value="[[source.type]]">[[source.type]]</option> <!- TODO: trigger filtered view on click ->
             </select>
             
             <select id="titles">
