@@ -32,7 +32,7 @@
         <div class="cardview editorspicks" ng-hide=""> <!- TODO: only show this part if at least one editors pick for the selected filter is available ->
 	        <p class="line"><span>Editor's picks</span></p>
             <li class="card imagecard color-[[prediction.category]]" ng-repeat="prediction in predictions" ng-show="[[prediction.editors_pick | editorspick]]">
-	            <img class="cover" ng-src="/uploaded/[[prediction.source.image]]" > <!- TODO: get correct url  ->
+	            <img class="cover" ng-src="/uploaded/[[prediction.source.image]]" alt="[[prediction.source.title]]">
 	             <p class="prediction">[[prediction.description_E]]</p>
 	             <p class"realisations" ng-switch on="prediction.realisations.length">
 	                 <span ng-switch-when="0">This real? Add realisation.</span>
@@ -49,7 +49,7 @@
 			<!- Get all predictions in reverse chronological order, latest first (reverse==true) ->
             <li class="card color-[[prediction.category]]" ng-repeat="prediction in predictions | orderBy: 'creation_date':true"> 
 	            <p class="prediction">[[prediction.description_E]]</p>
-	            <p class="source">&mdash; [[prediction.source.title]] by [[prediction.source.author]] ([[prediction.source.year_published]]) </p> <!- TODO: change author order from lastname, firstname to firstname lastname ->
+	            <p class="source">&mdash; [[prediction.source.title]] by [[prediction.source.author.split(',').reverse().join(' ')]] ([[prediction.source.year_published]]) </p>
             </li>
 
         </div> <!- latest ->
