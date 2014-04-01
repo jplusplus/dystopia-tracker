@@ -1,4 +1,4 @@
-from app.core.models import Source, Prediction, Realisation
+from app.core.models import Source, Prediction, Realisation, Category
 from rest_framework import serializers
 
 class SourceSerializer(serializers.ModelSerializer):
@@ -15,3 +15,7 @@ class PredictionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Prediction
+
+class CategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Category

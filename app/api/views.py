@@ -1,6 +1,6 @@
-from app.core.models import Source, Prediction, Realisation
+from app.core.models import Source, Prediction, Realisation, Category
 from rest_framework import generics, permissions, filters
-from app.api.serializers import SourceSerializer, PredictionSerializer, RealisationSerializer
+from app.api.serializers import SourceSerializer, PredictionSerializer, RealisationSerializer, CategorySerializer
 import app.api.filters
 
 class PredictionList(generics.ListAPIView):
@@ -22,6 +22,13 @@ class PredictionDetail(generics.RetrieveUpdateDestroyAPIView):
 class SourceList(generics.ListAPIView):
     model = Source
     serializer_class = SourceSerializer
+    permission_classes = [
+        permissions.AllowAny
+    ]
+
+class CategoryList(generics.ListAPIView):
+    model = Category
+    serializer_class = CategorySerializer
     permission_classes = [
         permissions.AllowAny
     ]

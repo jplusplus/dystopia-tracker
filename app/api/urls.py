@@ -11,7 +11,12 @@ sources_urls = patterns('',
     url(r'^$', views.SourceList.as_view(), name='sources-list')
 )
 
+categories_urls = patterns('',
+    url(r'^$', views.CategoryList.as_view(), name='categories-list')
+)
+
 urlpatterns = patterns('',
+    url(r'^categories/', include(categories_urls)),
     url(r'^predictions/', include(prediction_urls)),
     url(r'^sources/', include(sources_urls))
 )
