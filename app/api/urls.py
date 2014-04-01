@@ -7,6 +7,11 @@ prediction_urls = patterns('',
     url(r'^$', views.PredictionList.as_view(), name='prediction-list')
 )
 
+sources_urls = patterns('',
+    url(r'^$', views.SourceList.as_view(), name='sources-list')
+)
+
 urlpatterns = patterns('',
-    url(r'^predictions/', include(prediction_urls))
+    url(r'^predictions/', include(prediction_urls)),
+    url(r'^sources/', include(sources_urls))
 )
