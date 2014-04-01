@@ -3,13 +3,14 @@
 
 {% block extrajs %}
     {% compress js %}
-        <script type="text/coffeescript" src="{{ STATIC_URL }}js/app.coffee"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}js/app.js"></script>
 
         <!-- Controllers -->
+        <script type="text/javascript" src="{{ STATIC_URL }}js/controllers/PageCtrl.js"></script>
         <script type="text/javascript" src="{{ STATIC_URL }}js/controllers/HomeCtrl.js"></script>
 
         <!-- Services -->
-        <script type="text/coffeescript" src="{{ STATIC_URL }}js/services/Prediction.coffee"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}js/services/Prediction.js"></script>
     {% endcompress %}
 {% endblock %}
 
