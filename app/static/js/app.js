@@ -2,6 +2,7 @@ angular.module('dystopia-tracker.services', ['ngResource','dystopiaFilters']);
 
 var app = angular.module('dystopia-tracker', [
         'ngRoute',
+        'siyfion.sfTypeahead',
         'dystopia-tracker.services']).config([
             '$interpolateProvider',
             '$locationProvider',

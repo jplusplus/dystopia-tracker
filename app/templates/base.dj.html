@@ -17,12 +17,14 @@
 		<link href='http://fonts.googleapis.com/css?family=Raleway:300' rel='stylesheet' type='text/css'>
         <base href="{% url 'home' %}" />
 
-            <script type="text/javascript" src="{{ STATIC_URL }}vendor/angularjs-bower/angular.js"></script>
-            <script type="text/javascript" src="{{ STATIC_URL }}vendor/angularjs-bower/angular-route.js"></script>
-            <script type="text/javascript" src="{{ STATIC_URL }}vendor/angularjs-bower/angular-resource.js"></script>
-            <script type="text/javascript" src="http://twitter.github.io/typeahead.js/releases/latest/typeahead.bundle.js"></script>
-            <script type="text/javascript" src="{{ STATIC_URL }}js/script.js"></script>
-            
+        <script type="text/javascript" src="{{ STATIC_URL }}vendor/jquery/dist/jquery.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}vendor/typeahead.js/dist/bloodhound.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}vendor/typeahead.js/dist/typeahead.jquery.js"></script>
+
+        <script type="text/javascript" src="{{ STATIC_URL }}vendor/angularjs-bower/angular.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}vendor/angularjs-bower/angular-route.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}vendor/angularjs-bower/angular-resource.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}vendor/angular-typeahead/angular-typeahead.js"></script>
     </head>
     <body ng-cloak>
         {% block extrajs %}{% endblock %}
