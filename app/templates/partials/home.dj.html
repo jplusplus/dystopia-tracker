@@ -6,7 +6,6 @@
         <nav>Cards view | Timeline view</nav>
         <div id="filters">
         	
-        	<!- TODO: get options list from API ->
             <select id="category">
                  <option value=''>All categories</option>
                  <option ng-repeat="category in categories" value="[[category.id]]">[[category.title]]</option> <!- TODO: trigger filtered view on click ->
@@ -20,6 +19,12 @@
                 <option value=''>TV Series</option>
                 <option value=''>Games</option>
             </select>
+            
+            <select id="titles">
+                 <option value=''>All titles</option>
+                 <option ng-repeat="source in sources" value="[[source.title]]">[[source.title]]</option> <!- TODO: trigger filtered view on click ->
+            </select>
+            
             <form id="searchform"> <!- TODO: add typeahead functionality ->
                 <input placeholder="Search for a title"> 
             </form>
@@ -51,7 +56,7 @@
 	            <p class="prediction">[[prediction.description_E]]</p>
 	            <p class="source">&mdash; [[prediction.source.title]] by [[prediction.source.author.split(',').reverse().join(' ')]] ([[prediction.source.year_published]]) </p>
             </li>
-
+		<button>Load more...</button>
         </div> <!- latest ->
     </div> <!- content ->
     
