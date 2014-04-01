@@ -199,10 +199,11 @@ display: inline;
 .typeahead,
 .tt-query,
 .tt-hint {
-  width: 400px;
+  box-sizing: border-box;
+  width: 300px;
   height: 40px;
-  padding: 8px 12px;
-  font-size: 150%;
+  padding: 6px 8px;
+  font-size: 120%;
   line-height: 30px;
   border: 0;
   outline: none;

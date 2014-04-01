@@ -8,6 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
         <title ng-bind="title()"></title>
         <meta name="description" content="">
+        <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
 
         {% compress css %}
             <link rel="stylesheet" type="text/less" href="{{ STATIC_URL }}css/base.css">
@@ -19,6 +20,9 @@
             <script type="text/javascript" src="{{ STATIC_URL }}vendor/angularjs-bower/angular.js"></script>
             <script type="text/javascript" src="{{ STATIC_URL }}vendor/angularjs-bower/angular-route.js"></script>
             <script type="text/javascript" src="{{ STATIC_URL }}vendor/angularjs-bower/angular-resource.js"></script>
+            <script type="text/javascript" src="http://twitter.github.io/typeahead.js/releases/latest/typeahead.bundle.js"></script>
+            <script type="text/javascript" src="{{ STATIC_URL }}js/script.js"></script>
+            
     </head>
     <body ng-cloak>
         {% block extrajs %}{% endblock %}
