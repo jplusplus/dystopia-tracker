@@ -3,7 +3,7 @@ from rest_framework import generics, permissions, filters
 from app.api.serializers import SourceSerializer, PredictionSerializer, RealisationSerializer, CategorySerializer
 import app.api.filters
 
-class PredictionList(generics.ListAPIView):
+class PredictionList(generics.ListCreateAPIView):
     model = Prediction
     serializer_class = PredictionSerializer
     permission_classes = [
@@ -19,7 +19,7 @@ class PredictionDetail(generics.RetrieveUpdateDestroyAPIView):
     ]
     filter_class = app.api.filters.PredictionFilter
 
-class SourceList(generics.ListAPIView):
+class SourceList(generics.ListCreateAPIView):
     model = Source
     serializer_class = SourceSerializer
     permission_classes = [
