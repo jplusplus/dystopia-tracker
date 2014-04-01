@@ -23,13 +23,21 @@ class PredictionFilter(django_filters.FilterSet):
         else:
             return queryset
 
+    def _published(queryset, value):
+        if value or value == None:
+            return queryset.filter(published=True)
+        else:
+            return queryset.filter(published=False)
+
     # Define custom filters
     lang = django_filters.CharFilter(action=_lang)
     title = django_filters.CharFilter(name='source__title')
     author = django_filters.CharFilter(name='source__author')
     exclude = django_filters.NumberFilter(action=_exclude_id)
     img = django_filters.BooleanFilter(action=_img_defined)
+    published = django_filters.BooleanFilter(action=_published)
 
     class Meta:
         model = Prediction
-        fields = ['lang', 'editors_pick', 'source__type', 'category', 'title', 'author', 'exclude']
+        fields = ['lang', 'editors_pick', 'source__type', 'category', 'title',
+                  'author', 'exclude', 'published']
