@@ -35,7 +35,7 @@
         <div class="cardview editorspicks" ng-hide=""> <!- TODO: only show this part if at least one editors pick for the selected filter is available ->
 	        <p class="line"><span>Editor's picks</span></p>
             <li class="card imagecard color-[[prediction.category]]" ng-repeat="prediction in predictions" ng-show="[[prediction.editors_pick | editorspick]]">
-	            <img class="cover" ng-src="[[prediction.source.image]]" > <!- TODO: get correct url  ->
+	            <img class="cover" ng-src="/uploaded/[[prediction.source.image]]" > <!- TODO: get correct url  ->
 	             <p class="prediction">[[prediction.description_E]]</p>
            </li>
 

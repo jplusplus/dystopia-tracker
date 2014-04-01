@@ -32,7 +32,7 @@ class Source(models.Model):
     description_E = models.TextField(max_length=300, blank=True)
     description_D = models.TextField(max_length=300, blank=True)
 
-    image = models.ImageField(upload_to='uploaded/sources', blank=True)
+    image = models.ImageField(upload_to='sources', blank=True)
     image_credit = models.CharField(max_length=75, blank=True)
 
     def __unicode__(self):
@@ -53,7 +53,7 @@ class Prediction(models.Model):
     headline_E = models.TextField(max_length=300, blank=True)
     headline_D = models.TextField(max_length=300, blank=True)
 
-    image = models.ImageField(upload_to='uploaded/predictions', blank=True)
+    image = models.ImageField(upload_to='predictions', blank=True)
     image_credit = models.CharField(max_length=75, blank=True)
 
     username = models.CharField(max_length=75, blank=True)
@@ -79,7 +79,7 @@ class Realisation(models.Model):
 
     more_info = models.URLField(blank=True)
 
-    image = models.ImageField(upload_to='uploaded/realisations', blank=True)
+    image = models.ImageField(upload_to='realisations', blank=True)
     image_credit = models.CharField(max_length=75, blank=True)
 
     username = models.CharField(max_length=75, blank=True)
