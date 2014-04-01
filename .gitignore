@@ -40,4 +40,4 @@ app/static/vendor
 *.sublime-*
 
 # Uploaded images
-uploaded
+uploaded/
