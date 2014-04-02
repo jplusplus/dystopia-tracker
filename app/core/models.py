@@ -2,10 +2,11 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
 class Category(models.Model):
-    title = models.CharField(max_length=75)
+    title_E = models.CharField(max_length=75)
+    title_D = models.CharField(max_length=75)
 
     def __unicode__(self):
-        return self.title
+        return self.title_E
 
 SOURCE_TYPES = (
     ('literature', _('Literature')),
