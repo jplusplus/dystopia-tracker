@@ -30,7 +30,7 @@ angular.module('dystopia-tracker').controller('HomeCtrl', ['$scope', 'Prediction
         titles.add(data.results);
     });
     
-    function update() {
+    $scope.update = function() {
     	
     	editorspick_filters = angular.copy($scope.filters);
     	editorspick_filters.editorspick = 'True'; 
