@@ -1,6 +1,7 @@
 angular.module('dystopia-tracker').controller('HomeCtrl', ['$scope', 'Prediction', 'Categories', 'Sources', function($scope, Prediction, Categories, Sources) {
     $scope.categories = [];
     $scope.predictions = [];
+    $scope.editorspicks = [];
     $scope.sources = [];
     $scope.filters = {category:null};
     
@@ -14,6 +15,10 @@ angular.module('dystopia-tracker').controller('HomeCtrl', ['$scope', 'Prediction
 
     Prediction.get().success(function(data) {
         $scope.predictions = data.results;
+    });
+    
+    Prediction.get({editors_pick:true}, function(data) {
+        $scope.editorspicks = data.results;
     });
 
     Categories.get({}, function(data) {
