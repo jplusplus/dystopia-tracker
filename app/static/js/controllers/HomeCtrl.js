@@ -32,29 +32,31 @@ angular.module('dystopia-tracker').controller('HomeCtrl', ['$scope', 'Prediction
         if (typeof($scope.filters.title) === 'object') {
             $scope.filters.title = $scope.filters.title.title;
         }
-    	editorspick_filters = angular.copy($scope.filters);
-    	editorspick_filters.editors_pick = 'True'; 
 		
 		if(reset==true) {
 			$scope.filters.page = 1;
 			$scope.predictions = [];
             $scope.editorspicks = [];
-        }
+            
+            // get all editor's picks with selected filter applied 
+		    editorspick_filters = angular.copy($scope.filters);
+    	    editorspick_filters.editors_pick = 'True';
+    	    // define number of editors picks to show -- set to 2 to test, will be higher for launch
+    	    editorspick_filters.page-size = 2;
+		    Prediction.get(editorspick_filters).success(function(data) {
+		    $scope.editorspicks = $scope.editorspicks.concat(data.results);
+			});
+		}
         
         // get all predictions with selected filter applied
 		Prediction.get($scope.filters).success(function(data) {
 		    $scope.predictions = $scope.predictions.concat(data.results);
-		});
 		
-		// get all editor's pick with selected filter applied 
-		Prediction.get(editorspick_filters).success(function(data) {
-		    $scope.editorspicks = $scope.editorspicks.concat(data.results);
-		});
 		
-		if (data.next==null) {
+		    if (data.next==null) {
 		    $scope.hideMoreButton = true;
-		}
-         
+		    }
+        }); 
     };
 
     $scope.update();
@@ -69,4 +71,20 @@ angular.module('dystopia-tracker').controller('HomeCtrl', ['$scope', 'Prediction
         displayKey: 'title',
         source: titles.ttAdapter()
     };
+    
+    // currently unused
+    function loadEditorsPicks(pageNo){
+	    editorspick_filters = angular.copy($scope.filters);
+    	editorspick_filters.editors_pick = 'True';
+    	editorspick_filters.page = pageNo;
+    	Prediction.get(editorspick_filters).success(function(data) {
+		    $scope.editorspicks = $scope.editorspicks.concat(data.results);
+		    if(data!=null) {
+			pageNo++;
+			loadEditorsPicks(pageNo);
+		    } 
+		});  
+    }
+    
+    
 }]);
