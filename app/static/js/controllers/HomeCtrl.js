@@ -16,7 +16,7 @@ angular.module('dystopia-tracker').controller('HomeCtrl', ['$scope', 'Prediction
     Prediction.get().success(function(data) {
         $scope.predictions = data.results;
     });
-    
+
     Prediction.get({editors_pick:'True'}).success(function(data) {
         $scope.editorspicks = data.results;
     });
@@ -29,6 +29,20 @@ angular.module('dystopia-tracker').controller('HomeCtrl', ['$scope', 'Prediction
         $scope.sources = data.results;
         titles.add(data.results);
     });
+
+    $scope.update = function() {
+
+    	editorspick_filters = angular.copy($scope.filters);
+    	editorspick_filters.editorspick = 'True'; 
+
+	    Prediction.get($scope.filters).success(function(data) {
+        $scope.predictions = data.results;
+      });
+
+        Prediction.get(editorspick_filters).success(function(data) {
+        $scope.editorspicks = data.results;
+      });
+    };
 
     // Typeahead options object
     $scope.typeahedOptions = {
