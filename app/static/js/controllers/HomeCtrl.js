@@ -34,11 +34,13 @@ angular.module('dystopia-tracker').controller('HomeCtrl', ['$scope', 'Prediction
 
     	editorspick_filters = angular.copy($scope.filters);
     	editorspick_filters.editorspick = 'True'; 
-
+		
+		// get all predictions with selected filter applied
 	    Prediction.get($scope.filters).success(function(data) {
         $scope.predictions = data.results;
       });
 
+        // get all editor's pick with selected filter applied 
         Prediction.get(editorspick_filters).success(function(data) {
         $scope.editorspicks = data.results;
       });

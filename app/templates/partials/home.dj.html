@@ -8,21 +8,21 @@
         	
             <select id="category" ng-model="filters.category" ng-change="update()">
                  <option value=''>All categories</option>
-                 <option ng-repeat="category in categories" value="[[category.id]]">[[category.title]]</option> <!- TODO: trigger filtered view on submit ->
+                 <option ng-repeat="category in categories" value="[[category.id]]">[[category.title]]</option>
             </select>
 
-            <select id="mediatype">
+            <select id="sourcetype" ng-model="filters.source__type" ng-change="update()">
                  <option value=''>All sources</option><!- TODO: trigger filtered view on submit ->
-                 <option value=''>Literature</option>
-                 <option value=''>Movies</option>
-                 <option value=''>TV Series</option>
-                 <option value=''>Games</option>
-                 <option value=''>Others</option>
+                 <option value='literature'>Literature</option>
+                 <option value='movies'>Movies</option>
+                 <option value='tv_series'>TV Series</option>
+                 <option value='games'>Games</option>
+                 <option value='others'>Others</option>
             </select>
 
             <form id="searchform">
                 <!- TODO: trigger filtered view on submit ->
-                <input type="text" class="sfTypeahead" options="typeahedOptions" datasets="typeaheadData" placeholder="Search for a title" ng-model="titlesearch"> 
+                <input type="text" class="sfTypeahead" options="typeahedOptions" datasets="typeaheadData" placeholder="Search for a title" ng-model="filters.title" ng-submit="update()"> 
             </form>
             
         </div> <!- filters ->
