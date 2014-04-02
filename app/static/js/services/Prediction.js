@@ -11,7 +11,7 @@ var a = angular.module('dystopia-tracker.services').service('Prediction', ['$htt
             delete params.id;
         }
         for (var key in params) if (params.hasOwnProperty(key)) {
-            if (params[key] != null) {
+            if (params[key] != null && params[key] != '') {
                 var sep = (paramString === '') ? '?' : '&';
                 paramString += sep + key + '=' + params[key];
             }
