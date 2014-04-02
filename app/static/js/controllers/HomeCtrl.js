@@ -4,7 +4,7 @@ angular.module('dystopia-tracker').controller('HomeCtrl', ['$scope', 'Prediction
     $scope.editorspicks = [];
     $scope.sources = [];
     $scope.filters = {category:null};
-    
+
     // TODO use multiple datasets so different source types appear grouped in typeahead: http://twitter.github.io/typeahead.js/examples/#multiple-datasets
     var titles = new Bloodhound({
         datumTokenizer: Bloodhound.tokenizers.obj.whitespace('title'),
@@ -25,11 +25,11 @@ angular.module('dystopia-tracker').controller('HomeCtrl', ['$scope', 'Prediction
         $scope.categories = data.results;
     });
 
-    Sources.get({}, function(data) {
+    Sources.get().success(function(data) {
         $scope.sources = data.results;
         titles.add(data.results);
     });
-   
+
     // Typeahead options object
     $scope.typeahedOptions = {
         highlight: true
@@ -40,5 +40,4 @@ angular.module('dystopia-tracker').controller('HomeCtrl', ['$scope', 'Prediction
         displayKey: 'title',
         source: titles.ttAdapter()
     };
-    
 }]);
