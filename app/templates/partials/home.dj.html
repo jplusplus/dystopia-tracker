@@ -6,6 +6,11 @@
         <nav>Cards view | Timeline view</nav>
         <div id="filters">
         	
+            <select id="language" ng-model="language" ng-change="changeLanguage()">
+                <option value="E">EN</option>
+                <option value="D">DE</option>
+            </select>
+            
             <select id="category" ng-model="filters.category" ng-change="update(true)">
                  <option value=''>[[ 'All categories' | translate ]]</option>
                  <option ng-repeat="category in categories" value="[[category.id]]">[[category.title_E]]</option>
