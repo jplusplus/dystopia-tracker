@@ -133,13 +133,15 @@ body {
 }
 
 /* category colors TODO: find good scheme once number of categories is known */
-.color-1 {border-color: rgba(0,128,128,0.7);}
-.color-2 {border-color: fuchsia;}
-.color-3 {border-color: blue;}
+.color-5 {border-color: rgba(0,128,128,0.7);}
+.color-6 {border-color: fuchsia;}
+.color-7 {border-color: blue;}
+.color-8 {border-color: rgba(9,88,15,1);}
 
-.color-1:hover {background: rgba(0,128,128,0.2);border-left-color:teal;}
-.color-2:hover {background: rgba(255,0,255,0.2);}
-.color-3:hover {background: rgba(0,0,255,0.2);}
+.color-5:hover {background: rgba(0,128,128,0.2);border-left-color:teal;}
+.color-6:hover {background: rgba(255,0,255,0.2);}
+.color-7:hover {background: rgba(0,0,255,0.2);}
+.color-8:hover {background: rgba(9,88,15,0.2);}
 
 
 /* Single page styles */
