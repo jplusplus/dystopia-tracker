@@ -24,6 +24,16 @@ body {
 #filter {display: inline;
 }
 
+#filters input[type='submit'] {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+
+
 /* Card view styles */
 
 .cardview {width: 100%;clear: both;padding:10px;}

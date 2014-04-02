@@ -23,7 +23,7 @@
             <form id="searchform" ng-submit="update()">
                 <!- TODO: trigger filtered view on submit ->
                 <input type="text" class="sfTypeahead" options="typeahedOptions" datasets="typeaheadData" placeholder="Search for a title" ng-model="filters.title">
-                <input type='submit' ng-show='0'>
+                <input type='submit' tabindex='-1' hidefocus='true'>
             </form>
             
         </div> <!- filters ->
