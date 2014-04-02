@@ -42,7 +42,7 @@ angular.module('dystopia-tracker').controller('HomeCtrl', ['$scope', 'Prediction
 		    editorspick_filters = angular.copy($scope.filters);
     	    editorspick_filters.editors_pick = 'True';
     	    // define number of editors picks to show -- set to 2 to test, will be higher for launch
-    	    editorspick_filters.page-size = 2;
+    	    editorspick_filters.page_size = 2;
 		    Prediction.get(editorspick_filters).success(function(data) {
 		    $scope.editorspicks = $scope.editorspicks.concat(data.results);
 			});
@@ -59,7 +59,7 @@ angular.module('dystopia-tracker').controller('HomeCtrl', ['$scope', 'Prediction
         }); 
     };
 
-    $scope.update();
+    $scope.update(true);
 
     // Typeahead options object
     $scope.typeahedOptions = {
