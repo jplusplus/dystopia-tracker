@@ -1,6 +1,7 @@
 var a = angular.module('dystopia-tracker.services').service('Prediction', ['$http', function($http) {
     var service = function() { };
     service.baseUrl = '/api/predictions/';
+
     service.get = function(params) {
         params = params || {};
         var url = this.baseUrl;
@@ -17,5 +18,10 @@ var a = angular.module('dystopia-tracker.services').service('Prediction', ['$htt
         }
         return $http.get(url + paramString);
     }
+
+    service.post = function(data) {
+        return $http.post(this.baseUrl, data);
+    }
+
     return service;
 }]);
