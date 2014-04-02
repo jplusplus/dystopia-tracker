@@ -12,15 +12,21 @@ body {
 
 .page-header {
     text-align: center;
+    border-bottom: 0 !important;
 }
 
 #push, #footer {
     height: 60px;
 }
 
+/* Header styles */
+
+#filter {display: inline;
+}
+
 /* Card view styles */
 
-.cardview {width: 100%;clear: both;}
+.cardview {width: 100%;clear: both;padding:10px;}
 .editorspicks {clear: both;}
 
 .line {
@@ -55,11 +61,11 @@ body {
   width:300px;
   float:left;
   margin: 0 20px 20px 0;
-  background: rgba(255,255,255,0.8);
+  background: rgba(255,255,255,0.1);
   -moz-box-shadow:    0px 2px 3px 0px #ccc;
   -webkit-box-shadow: 0px 2px 3px 0px #ccc;
   box-shadow:         0px 2px 3px 0px #ccc;
-  border-left:10px solid yellow;
+  border-left:8px solid yellow;
   /* smooth hover effects */
   -webkit-transition: all 0.3s ease-in-out;
   -moz-transition: all 0.3s ease-in-out;
@@ -75,7 +81,7 @@ body {
   width:380px;
   float:left;
   margin-bottom: 20px;
-  background: rgba(255,255,255,0.8);
+  background: rgba(255,255,255,0.1);
   -moz-box-shadow:    0px 2px 3px 0px #ccc;
   -webkit-box-shadow: 0px 2px 3px 0px #ccc;
   box-shadow:         0px 2px 3px 0px #ccc;
@@ -88,7 +94,7 @@ body {
 .imagecard img {float:left;width:150px;margin-right: 10px;}
 
 .latest > .card {padding:15px;font-size: 1.2em;}
-.latest > button {float: left;height:40px;width: 300px;margin-right: 20px;}
+.latest > button {float: left;width: 300px;margin-right: 20px;}
 
 
 
@@ -110,7 +116,6 @@ body {
     font-size: 0.8em;
     color:grey;
     margin-top: 15px;
-    text-transform: uppercase;
 }
 
 .source a {

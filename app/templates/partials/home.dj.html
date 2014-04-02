@@ -11,21 +11,27 @@
                  <option ng-repeat="category in categories" value="[[category.id]]">[[category.title]]</option> <!- TODO: trigger filtered view on submit ->
             </select>
 
-             <!- TODO: get options list from API ->
             <select id="mediatype">
-                 <option value=''>All sources</option>
-                 <option ng-repeat="source in sources" value="[[source.type]]">[[source.type]]</option> <!- TODO: trigger filtered view on submit ->
+                 <option value=''>All sources</option><!- TODO: trigger filtered view on submit ->
+                 <option value=''>Literature</option>
+                 <option value=''>Movies</option>
+                 <option value=''>TV Series</option>
+                 <option value=''>Games</option>
+                 <option value=''>Others</option>
             </select>
 
             <form id="searchform">
                 <!- TODO: trigger filtered view on submit ->
                 <input type="text" class="sfTypeahead" options="typeahedOptions" datasets="typeaheadData" placeholder="Search for a title" ng-model="titlesearch"> 
             </form>
-
+            
         </div> <!- filters ->
     </div> <!- page-header ->
 
-	<div id="intro"></div> <!-- TODO: This will be an intro text only shown once to the user -->
+	<div class="alert alert-info alert-dismissable fade in">
+		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+		<strong>Welcome to the Dystopia Tracker</strong> This is a little info we'll show to the user only on his first visit.
+		</div> <!-- TODO: cookie behaviour -->
 
     <div id="content">
         <div class="cardview editorspicks" ng-hide=""> <!- TODO: only show this part if at least one editors pick for the selected filter is available ->
@@ -44,13 +50,13 @@
 
         <div class="cardview latest">
             <p class="line"><span>Latest</span></p>
-			<button>Add new prediction</button>
+			<button type="button" class="btn btn-primary btn-lg btn-block">Add new prediction</button>
 			<!- Get all predictions in reverse chronological order, latest first (reverse==true) ->
             <li class="card color-[[prediction.category]]" ng-repeat="prediction in predictions | orderBy: 'creation_date':true"> 
 	            <p class="prediction">[[prediction.description_E]]</p>
 	            <p class="source">&mdash; [[prediction.source.title]] by [[prediction.source.author.split(',').reverse().join(' ')]] ([[prediction.source.year_published]]) </p>
             </li>
-		<button>Load more...</button>
+		<button type="button" class="btn btn-default btn-lg btn-block">Load more...</button>
         </div> <!- latest ->
     </div> <!- content ->
 

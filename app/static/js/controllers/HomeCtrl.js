@@ -34,4 +34,5 @@ angular.module('dystopia-tracker').controller('HomeCtrl', ['$scope', 'Prediction
         displayKey: 'title',
         source: titles.ttAdapter()
     };
+    
 }]);
