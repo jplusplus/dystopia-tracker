@@ -42,7 +42,7 @@ class Source(models.Model):
 class Prediction(models.Model):
     source = models.ForeignKey(Source)
 
-    category = models.ForeignKey(Category)
+    category = models.ForeignKey(Category, null=True, on_delete=models.SET_NULL)
 
     description_E = models.TextField(max_length=300, blank=True)
     description_D = models.TextField(max_length=300, blank=True)
