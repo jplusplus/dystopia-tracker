@@ -17,7 +17,7 @@ angular.module('dystopia-tracker').controller('HomeCtrl', ['$scope', 'Prediction
         $scope.predictions = data.results;
     });
     
-    Prediction.get({editors_pick:true}, function(data) {
+    Prediction.get({editors_pick:'True'}).success(function(data) {
         $scope.editorspicks = data.results;
     });
 
