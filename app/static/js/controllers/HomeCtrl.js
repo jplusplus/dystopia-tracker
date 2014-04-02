@@ -12,7 +12,7 @@ angular.module('dystopia-tracker').controller('HomeCtrl', ['$scope', 'Prediction
     });
     titles.initialize();
 
-    Prediction.get({}, function(data) {
+    Prediction.get().success(function(data) {
         $scope.predictions = data.results;
     });
 

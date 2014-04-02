@@ -3,12 +3,12 @@ from rest_framework import routers
 from app.api import views
 
 prediction_urls = patterns('',
-    url(r'^(?P<pk>\d+)$', views.PredictionDetail.as_view(), name='prediction-detail'),
+    url(r'^(?P<pk>\d+)/?$', views.PredictionDetail.as_view(), name='prediction-detail'),
     url(r'^$', views.PredictionList.as_view(), name='prediction-list')
 )
 
 sources_urls = patterns('',
-    url(r'^(?P<pk>\d+)$', views.SourceDetail.as_view(), name='source-detail'),
+    url(r'^(?P<pk>\d+)/?$', views.SourceDetail.as_view(), name='source-detail'),
     url(r'^$', views.SourceList.as_view(), name='source-list')
 )
 
