@@ -1,4 +1,5 @@
-angular.module('dystopia-tracker').controller('HomeCtrl', ['$scope', 'Prediction', 'Categories', 'Sources', function($scope, Prediction, Categories, Sources) {
+angular.module('dystopia-tracker').controller('HomeCtrl', ['$scope', 'Prediction', 'Categories', 'Sources', '$rootScope',
+                                                           function($scope, Prediction, Categories, Sources, $rootScope) {
     $scope.categories = [];
     $scope.predictions = [];
     $scope.editorspicks = [];
