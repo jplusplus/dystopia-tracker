@@ -21,10 +21,7 @@ angular.module('dystopia-tracker').controller('HomeCtrl', ['$scope', 'Prediction
         $scope.categories = data.results;
     });
 
-    Sources.get().success(function(data) {
-        $scope.sources = data.results;
-        loadTitles(1);
-    });
+    loadTitles(1);
 
     $scope.update = function(reset) {
         
@@ -76,13 +73,13 @@ angular.module('dystopia-tracker').controller('HomeCtrl', ['$scope', 'Prediction
     
     // get list of all titles for search field
     function loadTitles(pageNo){
-    	Sources.get({page: pageNo}).success(function(data) {
-		    titles = titles.add(data.results);
-		    if(data!=null) {
-			pageNo++;
-			loadTitles(pageNo);
-		    } 
-		});  
+        Sources.get({page: pageNo}).success(function(data) {
+            titles = titles.add(data.results);
+            if(data.next!=null) {
+                pageNo++;
+                loadTitles(pageNo);
+            }
+        });
     }
     
     
