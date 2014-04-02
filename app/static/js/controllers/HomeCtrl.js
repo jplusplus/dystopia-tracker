@@ -3,7 +3,7 @@ angular.module('dystopia-tracker').controller('HomeCtrl', ['$scope', 'Prediction
     $scope.predictions = [];
     $scope.editorspicks = [];
     $scope.sources = [];
-    $scope.filters = {category:'', source__type:''};
+    $scope.filters = {category:'', source__type:'', title:''};
 
     // TODO use multiple datasets so different source types appear grouped in typeahead: http://twitter.github.io/typeahead.js/examples/#multiple-datasets
     var titles = new Bloodhound({
@@ -23,9 +23,11 @@ angular.module('dystopia-tracker').controller('HomeCtrl', ['$scope', 'Prediction
     });
 
     $scope.update = function() {
-
+        if (typeof($scope.filters.title) === 'object') {
+            $scope.filters.title = $scope.filters.title.title;
+        }
     	editorspick_filters = angular.copy($scope.filters);
-    	editorspick_filters.editorspick = 'True'; 
+    	editorspick_filters.editors_pick = 'True'; 
 
 		// get all predictions with selected filter applied
 	    Prediction.get($scope.filters).success(function(data) {

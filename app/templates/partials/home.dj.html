@@ -20,9 +20,10 @@
                  <option value='others'>Others</option>
             </select>
 
-            <form id="searchform">
+            <form id="searchform" ng-submit="update()">
                 <!- TODO: trigger filtered view on submit ->
-                <input type="text" class="sfTypeahead" options="typeahedOptions" datasets="typeaheadData" placeholder="Search for a title" ng-model="filters.title" ng-submit="update()"> 
+                <input type="text" class="sfTypeahead" options="typeahedOptions" datasets="typeaheadData" placeholder="Search for a title" ng-model="filters.title">
+                <input type='submit' ng-show='0'>
             </form>
             
         </div> <!- filters ->
