@@ -7,7 +7,7 @@
         <div id="filters">
         	
             <select id="category" ng-model="filters.category" ng-change="update()">
-                 <option value=''>All categories</option>
+                 <option value=''>[[ 'All categories' | translate ]]</option>
                  <option ng-repeat="category in categories" value="[[category.id]]">[[category.title]]</option>
             </select>
 
