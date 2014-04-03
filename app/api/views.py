@@ -5,7 +5,7 @@ from app.api.serializers import PredictionCreationSerializer
 import app.api.filters
 
 class PredictionList(generics.ListCreateAPIView):
-    model = Prediction
+    queryset = Prediction.objects.all().order_by('-creation_date')
     serializer_class = PredictionSerializer
     permission_classes = [
         permissions.AllowAny
