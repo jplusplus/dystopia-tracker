@@ -27,6 +27,10 @@ var app = angular.module('dystopia-tracker', [
                     controller: 'HomeCtrl',
                     templateUrl: '/partial/home.html',
                     reloadOnSearch: false
+                }).when('/:lang/p/:author/:title/:id', {
+                    controller: 'DetailsCtrl',
+                    templateUrl: '/partial/details.html',
+                    reloadOnSearch: false
                 }).otherwise({
                     redirectTo: '/E'
                 });
