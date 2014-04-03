@@ -28,7 +28,11 @@ angular.module('dystopia-tracker').controller('HomeCtrl', ['$scope', 'Prediction
 
     $scope.update = function(reset) {
         
+        updateUrl($scope.filters);
+        
         $scope.filters.lang = $scope._lang;
+        
+        readUrlParams();
         
         // increment to the next page of the API
         $scope.filters.page++;
@@ -60,7 +64,9 @@ angular.module('dystopia-tracker').controller('HomeCtrl', ['$scope', 'Prediction
 		    if (data.next==null) {
 		    $scope.hideMoreButton = true;
 		    }
-        }); 
+        });
+        
+         
     };
 
     $scope.update(true);
@@ -92,7 +98,34 @@ angular.module('dystopia-tracker').controller('HomeCtrl', ['$scope', 'Prediction
 	    $location.path('/' + $scope.language);
 	    $scope.translateTo($scope.language);
 	    update(false);
-
     };
+    
+    function updateUrl(filter) {
+	    if (filter.category) {
+		    $location.search('c', filter.category);
+	    }
+	    if (filter.source__type && filter.source__type !== "") {
+		    $location.search('s', filter.source__type);
+	    }
+	    if (filter.title && filter.title !== "") {
+		    $location.search('t', filter.title);
+	    }
+	 };
+	 
+	 function readUrlParams() {
+		urlparams = $location.search();
+        if (urlparams.c) {
+	        $scope.filters.category = urlparams.c;
+        }
+        if (urlparams.s) {
+	        $scope.filters.source__type = urlparams.s;
+        }
+        if (urlparams.s) {
+	        $scope.filters.title = urlparams.t;
+        } 
+	 };
+        
+    
+    
      
 }]); // it's the end of the code as we know it
