@@ -13,6 +13,7 @@ sources_urls = patterns('',
 )
 
 categories_urls = patterns('',
+    url(r'^(?P<pk>\d+)/?$', views.CategoryDetail.as_view(), name='category-detail'),
     url(r'^$', views.CategoryList.as_view(), name='category-list')
 )
 
