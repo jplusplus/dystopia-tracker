@@ -3,43 +3,48 @@
 
     <div class="page-header">
         <h1>[[title()]]</h1>
-        <nav>Cards view | Timeline view</nav>
+        <nav>Cards | Timeline</nav>
         <div id="filters">
         	
+            <select id="language" ng-model="language" ng-change="changeLanguage()">
+                <option value="E">EN</option>
+                <option value="D">DE</option>
+            </select>
+            
             <select id="category" ng-model="filters.category" ng-change="update(true)">
                  <option value=''>[[ 'All categories' | translate ]]</option>
                  <option ng-repeat="category in categories" value="[[category.id]]">[[category.title_E]]</option>
             </select>
 
             <select id="sourcetype" ng-model="filters.source__type" ng-change="update(true)">
-                 <option value=''>All sources</option>
-                 <option value='literature'>Literature</option>
-                 <option value='movies'>Movies</option>
-                 <option value='tv_series'>TV Series</option>
-                 <option value='games'>Games</option>
-                 <option value='others'>Others</option>
+                 <option value=''>[['All Sources' | translate ]]</option>
+                 <option value='literature'>[['Literature' | translate ]]</option>
+                 <option value='movies'>[['Movies' | translate ]]</option>
+                 <option value='tv_series'>[['TV Series' | translate ]]</option>
+                 <option value='games'>[['Games' | translate ]]</option>
+                 <option value='others'>[['Others' | translate ]]</option>
             </select>
 
             <form id="searchform" ng-submit="update(true)">
                 <!- TODO: trigger filtered view on submit ->
-                <input type="text" class="sfTypeahead" options="typeahedOptions" datasets="typeaheadData" placeholder="Search for a title" ng-model="filters.title">
+                <input type="text" class="sfTypeahead" options="typeahedOptions" datasets="typeaheadData" placeholder="[['Search for a title' | translate ]]" ng-model="filters.title">
                 <input type='submit' tabindex='-1' hidefocus='true'>
             </form>
             
         </div> <!- filters ->
+        Filters applied: [[filters]]
     </div> <!- page-header ->
 
 	<div class="alert alert-info alert-dismissable fade in">
 		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-		<strong>Welcome to the Dystopia Tracker</strong> This is a little info we'll show to the user only on his first visit.
-		</div> <!-- TODO: cookie behaviour -->
+		<strong>[['welcome.bold' | translate ]]</strong> [['welcome.text' | translate ]]</div> <!-- TODO: cookie behaviour -->
 
     <div id="content">
         <div class="cardview editorspicks" ng-hide="editorspicks.length==0">
-	        <p class="line"><span>Editor's picks</span></p>
+	        <p class="line"><span>[['Editors picks' | translate]]</span></p>
             <li class="card imagecard color-[[editorspick.category]]" ng-repeat="editorspick in editorspicks">
 	            <img class="cover" ng-src="/uploaded/[[editorspick.source.image]]" alt="[[editorspick.source.title]]">
-	             <p class="prediction">[[editorspick.description_E]]</p>
+	             <p class="prediction">[[editorspick|getTranslated:'description']]</p>
 	             <p class"realisations" ng-switch on="editorspick.realisations.length">
 	                 <span ng-switch-when="0">This real? Add realisation.</span>
 	                 <span ng-switch-when="1">1 realisation</span>
@@ -50,14 +55,14 @@
         </div><!- editorspicks ->
 
         <div class="cardview latest">
-            <p class="line"><span>Latest</span></p>
-			<button type="button" class="btn btn-primary btn-lg btn-block">Add new prediction</button>
+            <p class="line"><span>[['Latest' | translate]]</span></p>
+			<button type="button" class="btn btn-primary btn-lg btn-block">[['Add new prediction' | translate]]</button>
 			<!- Get all predictions in reverse chronological order, latest first (reverse==true) ->
             <li class="card color-[[prediction.category]]" ng-repeat="prediction in predictions | orderBy: 'creation_date':true"> 
-	            <p class="prediction">[[prediction.description_E]]</p>
-	            <p class="source">&mdash; [[prediction.source.title]] by [[prediction.source.author.split(',').reverse().join(' ')]] ([[prediction.source.year_published]]) </p>
+	            <p class="prediction">[[prediction|getTranslated:'description']]</p>
+	            <p class="source">&mdash; [[prediction.source.title]] [['by' | translate ]] [[prediction.source.author.split(',').reverse().join(' ')]] ([[prediction.source.year_published]]) </p>
             </li>
-		<button type="button" class="btn btn-default btn-lg btn-block" ng-hide="hideMoreButton" ng-click="update(false)">Load more...</button>
+		<button type="button" class="btn btn-default btn-lg btn-block" ng-hide="hideMoreButton" ng-click="update(false)">[['Load more' | translate]]...</button>
         </div> <!- latest ->
     </div> <!- content ->
 

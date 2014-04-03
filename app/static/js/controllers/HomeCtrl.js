@@ -1,5 +1,5 @@
-angular.module('dystopia-tracker').controller('HomeCtrl', ['$scope', 'Prediction', 'Categories', 'Sources', '$rootScope',
-                                                           function($scope, Prediction, Categories, Sources, $rootScope) {
+angular.module('dystopia-tracker').controller('HomeCtrl', ['$scope', 'Prediction', 'Categories', 'Sources', '$rootScope', '$location',
+                                                           function($scope, Prediction, Categories, Sources, $rootScope, $location) {
     $scope.categories = [];
     $scope.predictions = [];
     $scope.editorspicks = [];
@@ -9,6 +9,8 @@ angular.module('dystopia-tracker').controller('HomeCtrl', ['$scope', 'Prediction
     $scope.hideMoreButton = false;
     // define number of predictions to load, set to 4 to test, will be higher for launch
     $scope.filters.page_size = 4;
+    $scope.language = $rootScope._lang;
+    
 
     // TODO use multiple datasets so different source types appear grouped in typeahead: http://twitter.github.io/typeahead.js/examples/#multiple-datasets
     var titles = new Bloodhound({
@@ -26,8 +28,10 @@ angular.module('dystopia-tracker').controller('HomeCtrl', ['$scope', 'Prediction
 
     $scope.update = function(reset) {
         
+        $scope.filters.lang = $scope._lang;
+        
         // increment to the next page of the API
-        $scope.filters.page++; 
+        $scope.filters.page++;
         
         if (typeof($scope.filters.title) === 'object') {
             $scope.filters.title = $scope.filters.title.title;
@@ -83,5 +87,12 @@ angular.module('dystopia-tracker').controller('HomeCtrl', ['$scope', 'Prediction
         });
     }
     
-    
-}]);
+    $scope.changeLanguage = function() {
+	    $scope._lang = $scope.language;
+	    $location.path('/' + $scope.language);
+	    $scope.translateTo($scope.language);
+	    update(false);
+
+    };
+     
+}]); // it's the end of the code as we know it
