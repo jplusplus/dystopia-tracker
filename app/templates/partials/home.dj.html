@@ -44,7 +44,7 @@
 	        <p class="line"><span>[['Editors picks' | translate]]</span></p>
             <li class="card imagecard color-[[editorspick.category]]" ng-repeat="editorspick in editorspicks">
 	            <img class="cover" ng-src="/uploaded/[[editorspick.source.image]]" alt="[[editorspick.source.title]]">
-	             <p class="prediction">[[prediction|getTranslated:description]]</p>
+	             <p class="prediction">[[editorspick|getTranslated:'description']]</p>
 	             <p class"realisations" ng-switch on="editorspick.realisations.length">
 	                 <span ng-switch-when="0">This real? Add realisation.</span>
 	                 <span ng-switch-when="1">1 realisation</span>
@@ -59,7 +59,7 @@
 			<button type="button" class="btn btn-primary btn-lg btn-block">[['Add new prediction' | translate]]</button>
 			<!- Get all predictions in reverse chronological order, latest first (reverse==true) ->
             <li class="card color-[[prediction.category]]" ng-repeat="prediction in predictions | orderBy: 'creation_date':true"> 
-	            <p class="prediction">[[prediction.description_E]]</p>
+	            <p class="prediction">[[prediction|getTranslated:'description']]</p>
 	            <p class="source">&mdash; [[prediction.source.title]] [['by' | translate ]] [[prediction.source.author.split(',').reverse().join(' ')]] ([[prediction.source.year_published]]) </p>
             </li>
 		<button type="button" class="btn btn-default btn-lg btn-block" ng-hide="hideMoreButton" ng-click="update(false)">[['Load more' | translate]]...</button>
