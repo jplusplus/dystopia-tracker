@@ -1,3 +1,17 @@
 {
-    "All categories" : "All categories"
+    "All categories" : "All categories",
+    "All sources" : "All sources",
+    "Literature" : "Literature",
+    "Movies" : "Movies",
+    "TV Series" : "TV Series",
+    "Games" : "Games",
+    "Others" : "Others",
+    "Search for a title" : "Search for a title",
+    "welcome.bold" : "Welcome to the Dystopia Tracker",
+    "welcome.text" : "This is a little info we'll show to the user only on his first visit.",
+    "Latest" : "Latest",
+    "by" : "by",
+    "Editors picks" : "Editors' Picks",
+    "Load more" : "Load more",
+    "Add new prediction" : "Add new prediction"
 }
