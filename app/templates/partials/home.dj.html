@@ -44,7 +44,7 @@
 	        <p class="line"><span>[['Editors picks' | translate]]</span></p>
             <li class="card imagecard color-[[editorspick.category]]" ng-repeat="editorspick in editorspicks">
 	            <img class="cover" ng-src="/uploaded/[[editorspick.source.image]]" alt="[[editorspick.source.title]]">
-	             <p class="prediction">[[editorspick.description_E]]</p>
+	             <p class="prediction">[[prediction|getTranslated:description]]</p>
 	             <p class"realisations" ng-switch on="editorspick.realisations.length">
 	                 <span ng-switch-when="0">This real? Add realisation.</span>
 	                 <span ng-switch-when="1">1 realisation</span>

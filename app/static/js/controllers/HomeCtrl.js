@@ -28,8 +28,10 @@ angular.module('dystopia-tracker').controller('HomeCtrl', ['$scope', 'Prediction
 
     $scope.update = function(reset) {
         
+        $scope.filters.lang = $scope._lang;
+        
         // increment to the next page of the API
-        $scope.filters.page++; 
+        $scope.filters.page++;
         
         if (typeof($scope.filters.title) === 'object') {
             $scope.filters.title = $scope.filters.title.title;
@@ -88,6 +90,9 @@ angular.module('dystopia-tracker').controller('HomeCtrl', ['$scope', 'Prediction
     $scope.changeLanguage = function() {
 	    $scope._lang = $scope.language;
 	    $location.path('/' + $scope.language);
+	    $scope.translateTo($scope.language);
+	    update(false);
+
     };
      
 }]); // it's the end of the code as we know it
