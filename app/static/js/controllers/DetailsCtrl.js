@@ -4,6 +4,7 @@ angular.module('dystopia-tracker').controller('DetailsCtrl', ['$scope', 'Predict
     $scope.prediction = [];
     $scope.realisations = [];
     $scope.category = [];
+    $scope.shareurls = [];
     
     Prediction.get({id:$routeParams.id}).success(function(data) {
 		$scope.prediction = data;
@@ -23,5 +24,7 @@ angular.module('dystopia-tracker').controller('DetailsCtrl', ['$scope', 'Predict
     
     // TODO load "more" cards (same title, same author, same category)
     
+    // create specific sharer urls for social media
+    $scope.shareurls.fb = "http://www.facebook.com/sharer.php?u=" + $location.absUrl();
     
 }]); // it's the end of the code as we know it

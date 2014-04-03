@@ -141,7 +141,7 @@ body {
 
 /* Single page styles */
 
-.singlepage {width: 600px;margin: 10px auto;}
+.singlepage {width: 600px;height:600px;margin: 10px auto;clear: both;}
 
 
 .singleline {text-align: center;}
@@ -175,8 +175,8 @@ body {
 }
 
 #share-buttons img {
-width: 30px;
-padding: 5px;
+width: 50px;
+padding: 10px;
 border: 0;
 box-shadow: 0;
 display: inline;
