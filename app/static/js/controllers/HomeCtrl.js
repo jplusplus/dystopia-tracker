@@ -1,4 +1,4 @@
-angular.module('dystopia-tracker').controller('HomeCtrl', ['$scope', 'Prediction', 'Categories', 'Sources', '$location', function($scope, Prediction, Categories, Sources,$location) {
+angular.module('dystopia-tracker').controller('HomeCtrl', ['$scope', 'Prediction', 'Categories', 'Sources', '$location', '$rootScope', function($scope, Prediction, Categories, Sources,$location,$rootScope) {
 
     $scope.categories = [];
     $scope.predictions = [];
@@ -9,6 +9,8 @@ angular.module('dystopia-tracker').controller('HomeCtrl', ['$scope', 'Prediction
     $scope.hideMoreButton = false;
     // define number of predictions to load, set to 4 to test, will be higher for launch
     $scope.filters.page_size = 4;
+    $scope.language = $rootScope._lang;
+    
 
     // TODO use multiple datasets so different source types appear grouped in typeahead: http://twitter.github.io/typeahead.js/examples/#multiple-datasets
     var titles = new Bloodhound({
