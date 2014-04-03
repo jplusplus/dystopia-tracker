@@ -19,6 +19,9 @@ angular.module('dystopia-tracker').controller('DetailsCtrl', ['$scope', 'Predict
         });
     };
    
+    // TODO function to find correct vertical position of various realisations
+    
+    // TODO load "more" cards (same title, same author, same category)
     
     
 }]); // it's the end of the code as we know it

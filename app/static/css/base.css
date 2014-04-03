@@ -104,7 +104,9 @@ body {
 
 .imagecard .prediction {padding-top: 10px;margin-top: 0;}
 
-.imagecard img {float:left;width:150px;margin-right: 10px;}
+.cover {float:left;width:150px;margin-right: 10px;}
+
+.singlepage .cover {float: right;}
 
 .latest > .card {padding:15px;font-size: 1.2em;}
 .latest > button {float: left;width: 300px;margin-right: 20px;}

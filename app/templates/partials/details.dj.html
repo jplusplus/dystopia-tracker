@@ -12,7 +12,10 @@
                 <p class="prediction">[[prediction|getTranslated:'description']]</p>
                 <p class="source">&mdash; [[prediction.source.title]] [['by' | translate ]] [[prediction.source.author.split(',').reverse().join(' ')]] ([[prediction.source.year_published]])</p>
                 
+                <img class="cover" ng-src="/uploaded/[[prediction.source.image]]" alt="[[prediction.source.title]]">
+                
                 <div class="timeaxis">
+                <!- TODO assign top-value by a function so that the dots are distributed correctly -->
                 <div class="timedot" style="top:50px;"></div><div class="timetext" style="top:50px;">Published in [[prediction.source.year_published]]</div>
                 <div class="timedot" style="top:150px;"></div><div class="timetext" style="top:150px;">Predicted for [[prediction.year_predicted]]</div>
                 
