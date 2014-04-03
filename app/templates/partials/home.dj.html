@@ -56,7 +56,7 @@
 
         <div class="cardview latest">
             <p class="line"><span>[['Latest' | translate]]</span></p>
-			<button type="button" class="btn btn-primary btn-lg btn-block">[['Add new prediction' | translate]]</button>
+			<button type="button" class="btn btn-primary btn-lg btn-block"><span class="glyphicon glyphicon-plus"></span> [['Add new prediction' | translate]]</button>
 			<!- Get all predictions in reverse chronological order, latest first (reverse==true) ->
             <li class="card color-[[prediction.category]]" ng-repeat="prediction in predictions | orderBy: 'creation_date':true"> 
 	            <p class="prediction">[[prediction|getTranslated:'description']]</p>

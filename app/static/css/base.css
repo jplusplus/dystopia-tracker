@@ -106,17 +106,7 @@ body {
 .latest > .card {padding:15px;font-size: 1.2em;}
 .latest > button {float: left;width: 300px;margin-right: 20px;}
 
-
-
-
-.rightie {float: right;}
-.leftie {margin-left: 0px; margin-right: 10px;width: 190px !important;}
-.small {width:300px;}
-.small img {width: 100px;margin-top: 10px;margin-left: 10px;}
-.small div {width: 160px;margin-top: 10px;}
-.small p {margin-top: 0px;font-size: 14px;}
 .description:before {content: "— ";}
-
 
 
 
@@ -197,6 +187,9 @@ display: inline;
 }
 
 @media (max-width: 767px) {
+.card {width:300px;}
+.card img {width: 100px;margin-top: 10px;margin-left: 10px;}
+.imagecard description {width: 160px;margin-top: 10px;}
 
 }
 
