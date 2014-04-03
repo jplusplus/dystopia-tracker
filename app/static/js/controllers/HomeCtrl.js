@@ -10,7 +10,8 @@ angular.module('dystopia-tracker').controller('HomeCtrl', ['$scope', 'Prediction
     // define number of predictions to load, set to 4 to test, will be higher for launch
     $scope.filters.page_size = 4;
     $scope.language = $rootScope._lang;
-    
+
+    readUrlParams();
 
     // TODO use multiple datasets so different source types appear grouped in typeahead: http://twitter.github.io/typeahead.js/examples/#multiple-datasets
     var titles = new Bloodhound({
@@ -28,11 +29,7 @@ angular.module('dystopia-tracker').controller('HomeCtrl', ['$scope', 'Prediction
 
     $scope.update = function(reset) {
         
-        updateUrl($scope.filters);
-        
         $scope.filters.lang = $scope._lang;
-        
-        readUrlParams();
         
         // increment to the next page of the API
         $scope.filters.page++;
@@ -40,6 +37,8 @@ angular.module('dystopia-tracker').controller('HomeCtrl', ['$scope', 'Prediction
         if (typeof($scope.filters.title) === 'object') {
             $scope.filters.title = $scope.filters.title.title;
         }
+        
+        updateUrl($scope.filters);
 		
 		if(reset==true) {
 			$scope.filters.page = 1;
@@ -101,31 +100,34 @@ angular.module('dystopia-tracker').controller('HomeCtrl', ['$scope', 'Prediction
     };
     
     function updateUrl(filter) {
-	    if (filter.category) {
+	    if (filter.category && filter.category !== "") {
 		    $location.search('c', filter.category);
-	    }
+	    } else {
+            $location.search('c', null);
+        }
 	    if (filter.source__type && filter.source__type !== "") {
 		    $location.search('s', filter.source__type);
+        } else {
+            $location.search('s', null);
 	    }
 	    if (filter.title && filter.title !== "") {
 		    $location.search('t', filter.title);
+        } else {
+            $location.search('t', null);
 	    }
 	 };
 	 
 	 function readUrlParams() {
 		urlparams = $location.search();
         if (urlparams.c) {
-	        $scope.filters.category = urlparams.c;
+	        $scope.filters.category = parseInt(urlparams.c);
+            console.debug($scope.filters.category);
         }
         if (urlparams.s) {
 	        $scope.filters.source__type = urlparams.s;
         }
         if (urlparams.s) {
 	        $scope.filters.title = urlparams.t;
-        } 
+        }
 	 };
-        
-    
-    
-     
 }]); // it's the end of the code as we know it
