@@ -1,9 +1,4 @@
-<div id="wrapper">
 
-
-    <div class="page-header">
-        <h1>[[title()]]</h1>
-        <nav>Cards | Timeline</nav>
         <div id="filters">
         	
             <select id="language" ng-model="language" ng-change="changeLanguage()">
@@ -11,8 +6,9 @@
                 <option value="D">DE</option>
             </select>
             
-            <select id="category" ng-model="filters.category" ng-change="update(true)" ng-options="category.id as category.title_E for category in categories">
+            <select id="category" ng-model="filters.category" ng-change="update(true)">
                  <option value=''>[[ 'All categories' | translate ]]</option>
+                 <option ng-repeat="category in categories" value="[[category.id]]">[[category.title_E]]</option>
             </select>
 
             <select id="sourcetype" ng-model="filters.source__type" ng-change="update(true)">
@@ -59,13 +55,8 @@
 			<!- Get all predictions in reverse chronological order, latest first (reverse==true) ->
             <li class="card color-[[prediction.category]]" ng-repeat="prediction in predictions | orderBy: 'creation_date':true"> 
 	            <p class="prediction">[[prediction|getTranslated:'description']]</p>
-	            <p class="source">&mdash; [[prediction.source.title]] [['by' | translate ]] [[prediction.source.author.split(',').reverse().join(' ')]] ([[prediction.source.year_published]]) </p>
+	            <p class="source">&mdash; [[prediction.source.title]] [['by' | translate ]] [[prediction.source.author.split(',').reverse().join(' ')]] ([[prediction.source.year_published]])</p>
             </li>
 		<button type="button" class="btn btn-default btn-lg btn-block" ng-hide="hideMoreButton" ng-click="update(false)">[['Load more' | translate]]...</button>
         </div> <!- latest ->
     </div> <!- content ->
-
-    <div id="footer">
-		<p>I'm in the footer!</p>
-    </div>
-</div> <!- wrapper ->

@@ -156,8 +156,7 @@ body {
   width: 300px !important;
 }
 
-.realisation {width: 400px;float: left;display: block;position: relative;left:50px;}
-.realisation .prediction {width: 300px;}
+.realisation > p {width: 400px;float: left;display: block;position: relative;left:50px;}
 .timeaxis {border-left: 4px solid black;padding-left:20px;position: relative;min-height: 400px;width:50px;float: left;margin-right: 10px;width: 0;overflow: visible;}
 .timedot {width: 20px;height:20px;position:absolute;left:-12px;background: fuchsia;border-radius: 50%;}
 .timetext {width:50px;position:absolute;left:10px;}
@@ -192,7 +191,7 @@ display: inline;
 @media (max-width: 767px) {
 .card {width:300px;}
 .card img {width: 100px;margin-top: 10px;margin-left: 10px;}
-.imagecard description {width: 160px;margin-top: 10px;}
+.imagecard .description {width: 160px;margin-top: 10px;}
 
 }
 

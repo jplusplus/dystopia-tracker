@@ -8,6 +8,7 @@
         <!-- Controllers -->
         <script type="text/javascript" src="{{ STATIC_URL }}js/controllers/PageCtrl.js"></script>
         <script type="text/javascript" src="{{ STATIC_URL }}js/controllers/HomeCtrl.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}js/controllers/DetailsCtrl.js"></script>
 
         <!-- Filters -->
         <script type="text/javascript" src="{{ STATIC_URL }}js/filters.js"></script>
@@ -20,5 +21,20 @@
 {% endblock %}
 
 {% block content %}
-    <div id="content" ng-view></div>
+<div id="wrapper">
+
+
+    <div class="page-header">
+        <h1>[[title()]]</h1>
+        <nav>Cards | Timeline</nav>
+    
+<!-- get content from partials -->
+    
+<div id="content" ng-view></div>
+
+<div id="footer">
+		<p>I'm in the footer!</p>
+    </div>
+</div> <!- wrapper ->    
+    
 {% endblock %}

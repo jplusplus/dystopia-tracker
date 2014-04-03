@@ -1,0 +1,29 @@
+<div class="alert alert-info alert-dismissable fade in">
+		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+		<strong>[['welcome.bold' | translate ]]</strong> [['welcome.text' | translate ]]
+</div> <!-- TODO: cookie behaviour -->
+
+<div id="content">
+        <div class="singlepage">
+                <p class="line singleline"><span>[[category|getTranslated:'title']]</span></p>
+                
+                <img src="">
+                
+                <p class="prediction">[[prediction|getTranslated:'description']]</p>
+                <p class="source">&mdash; [[prediction.source.title]] [['by' | translate ]] [[prediction.source.author.split(',').reverse().join(' ')]] ([[prediction.source.year_published]])</p>
+                
+                <div class="timeaxis">
+                <div class="timedot" style="top:50px;"></div><div class="timetext" style="top:50px;">Published in [[prediction.source.year_published]]</div>
+                <div class="timedot" style="top:150px;"></div><div class="timetext" style="top:150px;">Predicted for [[prediction.year_predicted]]</div>
+                
+                <div class="realisation" ng-repeat="realisation in realisations">
+                	<div class="timedot" style="top:350px;"></div><div class="timetext" style="top:350px;">[[realisations[0].year_introduced]]</div>
+                	<p style="top:350px;">[[realisation|getTranslated:'description']]</p>
+                </div>
+
+	            <button class="btn btn-primary btn-lg addRealisation">Add realisation</button>
+	            
+	            </div> <!- timeaxis -->                        
+                
+                </div> <!- singlepage -->
+</div> <!- content ->
