@@ -1,4 +1,5 @@
-angular.module('dystopia-tracker.services', ['ngResource','dystopiaFilters']);
+angular.module('dystopia-tracker.services', ['ngResource','dystopia-tracker.filters']);
+angular.module('dystopia-tracker.filters', []);
 
 var app = angular.module('dystopia-tracker', [
         'ngRoute',
