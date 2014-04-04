@@ -2,7 +2,27 @@ angular.module('dystopia-tracker').controller('SubmitPredictionCtrl', ['$scope',
                                                            function($scope, Prediction, Categories, Sources, $rootScope, $location, $routeParams) {
     
     $scope.sources = [];
+    $scope.categories = [];
     $scope.language = $rootScope._lang;
+    $scope.prediction = {
+         "source": {}, 
+         "category": "", 
+         "description_E": "", 
+         "description_D": "", 
+         "year_predicted": "", 
+         "more_info": "", 
+         "username": "", 
+     }
+    
+    
+    Categories.get({}, function(data) {
+        $scope.categories = data.results;
+    });
+    
+    
+    
+    
+    
 
     // TODO use multiple datasets so different source types appear grouped in typeahead: http://twitter.github.io/typeahead.js/examples/#multiple-datasets
     var titles = new Bloodhound({

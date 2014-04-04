@@ -23,7 +23,7 @@
        
        <div class="form-group">
          <label for="sourcetitle">Title</label>
-         <input type="text" class="form-control sfTypeahead" options="typeahedOptions" datasets="typeaheadData" id="sourcetitle" placeholder="" required>
+         <input type="text" class="form-control sfTypeahead" options="typeahedOptions" datasets="typeaheadData" id="sourcetitle" placeholder="" ng-model="filters.title" required>
        </div>
        
        <div class="form-group"> <!-- TODO: only show this group when sourcetitle is not selected from options -->
@@ -36,7 +36,7 @@
          
        <div class="form-group">
          <label for="prediction">Enter the prediction. Try to be specific.</label>
-         <textarea class="form-control" id="prediction" rows="5"></textarea>
+         <textarea class="form-control" id="prediction" rows="5" maxlength="300"></textarea>
        </div>
        
        <div class="form-group">
@@ -47,6 +47,13 @@
        <div class="form-group">
          <label for="url">Where can we find more info on the prediction?</p>
          <input type="url" class="form-control" id="url" placeholder="http://">
+       </div>
+       
+       <div class="form-group">
+         <label for="category">Pick a category for your prediction</p>
+         <select id="category" ng-model="categories" class="form-control">
+                 <option ng-repeat="category in categories" value="[[category.id]]">[[category.title_E]]</option>
+            </select>
        </div>
        
        <div class="form-group">
