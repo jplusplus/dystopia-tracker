@@ -1,5 +1,5 @@
-angular.module('dystopia-tracker').controller('SubmitPredictionCtrl', ['$scope', 'Prediction', 'Categories', 'Sources', '$rootScope', '$location', '$routeParams',
-                                                           function($scope, Prediction, Categories, Sources, $rootScope, $location, $routeParams) {
+angular.module('dystopia-tracker').controller('SubmitPredictionCtrl', ['$scope', 'Prediction', 'Categories', 'Sources', '$rootScope', '$location', '$routeParams', '$filter',
+                                                           function($scope, Prediction, Categories, Sources, $rootScope, $location, $routeParams, $filter) {
     
     $scope.sources = [];
     $scope.categories = [];
@@ -18,6 +18,9 @@ angular.module('dystopia-tracker').controller('SubmitPredictionCtrl', ['$scope',
         $scope.categories = data.results;
     });
     
+    $scope.getCategoryTitle = function(category) {
+        return $filter('getTranslated')(category, "title");
+     }
     
     
     

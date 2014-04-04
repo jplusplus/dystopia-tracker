@@ -53,7 +53,7 @@
        
        <div class="form-group">
          <label for="category">Pick a category for your prediction</p>
-         <select id="category" ng-model="categories" class="form-control" ng-options="category.id as category.title_E for category in categories">
+         <select id="category" ng-model="prediction.category" class="form-control" ng-options="category.id as getCategoryTitle(category) for category in categories">
                  <option ng-repeat="category in categories" value="[[category.id]]">[[category.title_E]]</option>
             </select>
        </div>
