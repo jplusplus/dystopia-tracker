@@ -23,6 +23,7 @@
             <div class="realisation" ng-repeat="realisation in realisations">
             	<div class="timedot" style="top:350px;"></div><div class="timetext" style="top:350px;">[[realisations[0].year_introduced]]</div>
             	<p style="top:350px;">[[realisation|getTranslated:'description']]</p>
+            	<!-- <img ng-src="/uploaded/[[realisation.image]]" width="200px"/> -->
             </div>
 		    
 	        <button class="btn btn-primary btn-lg addRealisation">Add realisation</button>
