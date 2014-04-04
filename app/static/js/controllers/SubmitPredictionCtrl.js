@@ -37,7 +37,7 @@ angular.module('dystopia-tracker').controller('SubmitPredictionCtrl', ['$scope',
     };
     
     function postPrediction(prediction) {
-	    Predictions.post($scope.prediction).success(function(data) {
+	    Prediction.post($scope.prediction).success(function(data) {
 			    alert("posted!");
 		    });    
     }

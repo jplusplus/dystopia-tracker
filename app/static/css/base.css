@@ -110,7 +110,7 @@ a {color: black;}
 .detail .cover {float: right;}
 
 .latest > .card {padding:15px;font-size: 1.2em;}
-.latest > button {float: left;width: 300px;margin-right: 20px;}
+.latest > .btn {float: left;width: 300px;margin-right: 20px;}
 
 .description:before {content: "— ";}
 
