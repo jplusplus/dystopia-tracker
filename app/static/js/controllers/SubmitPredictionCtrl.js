@@ -26,12 +26,12 @@ angular.module('dystopia-tracker').controller('SubmitPredictionCtrl', ['$scope',
 	    if (typeof $scope.prediction.source.title === "string") {
 		    // create the source retrieve the newly created `id` and set it in the object
 		    Sources.post($scope.prediction.source).success(function(data) {
-			    $scope.prediction.source.id = data.id;
+			    $scope.prediction.source = data.id;
 			    postPrediction($scope.prediction);
 		    });
 	    }
 	    else if (typeof $scope.prediction.source.title === "object") {
-		    $scope.prediction.source.id = $scope.prediction.source.title.id;
+		    $scope.prediction.source = $scope.prediction.source.title.id;
 		    postPrediction($scope.prediction);    
 	    }   
     };
