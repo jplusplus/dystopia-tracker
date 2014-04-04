@@ -41,14 +41,14 @@
 	</div>                       
     <div id="morecontent" class="row">
         <div class="morefrom col-lg-4">
-	        <p>More from [[prediction.source.author.split(',').reverse().join(' ')]]</p>
-	        <li class="card color-[[item.category]]" ng-repeat="item in more.title">
+        	<p>More from [[prediction.source.title]]</p>
+	        <li class="card color-[[item.category]]" ng-repeat="item in more.author">
 	            <p>[[item|getTranslated:'description']]</p>
 	        </li>
         </div>
         <div class="morefrom col-lg-4">
-        	<p>More from [[prediction.source.title]]</p>
-	        <li class="card color-[[item.category]]" ng-repeat="item in more.author">
+	        <p>More from [[prediction.source.author.split(',').reverse().join(' ')]]</p>
+	        <li class="card color-[[item.category]]" ng-repeat="item in more.title">
 	            <p>[[item|getTranslated:'description']]</p>
 	        </li>
         </div>
