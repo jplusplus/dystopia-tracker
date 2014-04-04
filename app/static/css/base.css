@@ -7,6 +7,10 @@ body {
     background-color: #fbfbfb;
 }
 
+a {color: black;}
+
+.addnew {position: fixed;bottom:15px;right:15px;}
+
 /* smooth hover effects */
 * {
   -webkit-transition: all 0.3s ease-in-out;
