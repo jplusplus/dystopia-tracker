@@ -1,0 +1,61 @@
+<div id="content" class="row">
+
+   
+   
+   <form role="form" class="col-md-4 col-md-offset-4">
+       <h2>[['Submit prediction' | translate ]]</h2>
+       
+       <!-- TODO: cookie behaviour -->
+       <div class="alert alert-info alert-dismissable fade in">
+		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+		<p>Here we put a short info text that helps the user understand what exactly we're looking for. Shown only on his first visit of the form.</p>
+       </div>
+       
+       <div class="form-group">
+         <select id="sourcetype" class="form-control" required>
+                 <option value='literature'>[['Literature' | translate ]]</option>
+                 <option value='movies'>[['Movies' | translate ]]</option>
+                 <option value='tv_series'>[['TV Series' | translate ]]</option>
+                 <option value='games'>[['Games' | translate ]]</option>
+                 <option value='others'>[['Others' | translate ]]</option>
+         </select>
+       </div>
+       
+       <div class="form-group">
+         <label for="sourcetitle">Title</label>
+         <input type="text" class="form-control" id="sourcetitle" placeholder="" required>
+       </div>
+       
+       <div class="form-group"> <!-- TODO: only show this group when sourcetitle is not selected from options -->
+         <p class="help-block">We don't have this title in our database yet. Care to help us with some more info on it?</p>        
+         <label for="author">Author</label> <!-- TODO: change label based on source type -->
+         <input type="text" class="form-control" id="author" placeholder="">
+         <label for="year_published">When was it first published?</label>
+         <input type="number" class="form-control" id="year_published" placeholder="">
+       </div>
+         
+       <div class="form-group">
+         <label for="prediction">Enter the prediction. Try to be specific.</label>
+         <textarea class="form-control" id="prediction" rows="5"></textarea>
+       </div>
+       
+       <div class="form-group">
+         <label for="year_predicted">What year is the prediction made for? Enter only if exact year is given.</label>
+         <input type="number" class="form-control" id="year_predicted" placeholder="">
+       </div>
+       
+       <div class="form-group">
+         <label for="url">Where can we find more info on the prediction?</p>
+         <input type="url" class="form-control" id="url" placeholder="http://">
+       </div>
+       
+       <div class="form-group">
+         <label for="username">Your name or initials</label>
+         <input type="text" class="form-control" id="username" placeholder="">
+       </div>
+ 
+       <button type="submit" class="btn btn-default">Submit</button>
+    </form>
+
+
+</div> <!-- content -->
