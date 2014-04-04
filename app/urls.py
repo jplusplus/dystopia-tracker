@@ -10,6 +10,8 @@ urlpatterns = patterns('',
 
     url(r'^[A-Z]{1}/p/(?P<author>([a-z0-9_\-/\.]+))/(?P<title>([a-z0-9_\-/\.]+))/(?P<id>([0-9]+))$', 'app.views.home', name='details'),
 
+    url(r'^[A-Z]{1}/submit', 'app.views.home', name='submit'),
+
     url(r'^partial/(?P<partial_name>([a-zA-Z0-9_\-/\.]+))\.html$', 'app.views.partial', name='partial'),
 
     url(r'^api/',       include('app.api.urls')),
