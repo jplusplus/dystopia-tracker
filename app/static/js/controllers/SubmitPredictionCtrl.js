@@ -14,7 +14,6 @@ angular.module('dystopia-tracker').controller('SubmitPredictionCtrl', ['$scope',
          "username": "", 
      }
     
-    
     Categories.get({}, function(data) {
         $scope.categories = data.results;
     });
@@ -24,7 +23,7 @@ angular.module('dystopia-tracker').controller('SubmitPredictionCtrl', ['$scope',
     
     
 
-    // TODO use multiple datasets so different source types appear grouped in typeahead: http://twitter.github.io/typeahead.js/examples/#multiple-datasets
+    // TODO only titles with matching source_type based on users selection before
     var titles = new Bloodhound({
         datumTokenizer: Bloodhound.tokenizers.obj.whitespace('title'),
         queryTokenizer: Bloodhound.tokenizers.whitespace,
