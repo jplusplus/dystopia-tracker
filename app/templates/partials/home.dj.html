@@ -6,9 +6,8 @@
                 <option value="D">DE</option>
             </select>
             
-            <select id="category" ng-model="filters.category" ng-change="update(true)">
+            <select id="category" ng-model="filters.category" ng-change="update(true)" ng-options="category.id as getCategoryTitle(category) for category in categories">
                  <option value=''>[[ 'All categories' | translate ]]</option>
-                 <option ng-repeat="category in categories" value="[[category.id]]">[[category.title_E]]</option>
             </select>
 
             <select id="sourcetype" ng-model="filters.source__type" ng-change="update(true)">

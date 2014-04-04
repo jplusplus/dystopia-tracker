@@ -1,5 +1,5 @@
-angular.module('dystopia-tracker').controller('HomeCtrl', ['$scope', 'Prediction', 'Categories', 'Sources', '$rootScope', '$location',
-                                                           function($scope, Prediction, Categories, Sources, $rootScope, $location) {
+angular.module('dystopia-tracker').controller('HomeCtrl', ['$scope', 'Prediction', 'Categories', 'Sources', '$rootScope', '$location', '$filter',
+                                                           function($scope, Prediction, Categories, Sources, $rootScope, $location, $filter) {
     $scope.categories = [];
     $scope.predictions = [];
     $scope.editorspicks = [];
@@ -130,5 +130,8 @@ angular.module('dystopia-tracker').controller('HomeCtrl', ['$scope', 'Prediction
 	        $scope.filters.title = urlparams.t;
         }
 	 };
-	 
+
+     $scope.getCategoryTitle = function(category) {
+        return $filter('getTranslated')(category, "title");
+     }
 }]); // it's the end of the code as we know it
