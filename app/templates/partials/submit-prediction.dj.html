@@ -54,6 +54,7 @@
        <div class="form-group">
          <label for="category">Pick a category for your prediction</p>
          <select id="category" ng-model="prediction.category" class="form-control" ng-options="category.id as getCategoryTitle(category) for category in categories">
+                 <option value="" disabled selected>Select your option</option>
                  <option ng-repeat="category in categories" value="[[category.id]]">[[category.title_E]]</option>
             </select>
        </div>
@@ -63,7 +64,7 @@
          <input type="text" class="form-control" id="username" ng-model="prediction.username" placeholder="">
        </div>
  
-       <button type="submit" class="btn btn-default btn-block">Submit</button>
+       <button type="submit" class="btn btn-default btn-block" ng-submit="submit()">Submit</button>
     </form>
 
 

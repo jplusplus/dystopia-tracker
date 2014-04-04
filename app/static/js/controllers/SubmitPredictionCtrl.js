@@ -22,9 +22,25 @@ angular.module('dystopia-tracker').controller('SubmitPredictionCtrl', ['$scope',
         return $filter('getTranslated')(category, "title");
      }
     
+    $scope.submit = function () {
+	    if (typeof $scope.prediction.source.title === "string") {
+		    // create the source retrieve the newly created `id` and set it in the object
+		    Sources.post($scope.prediction.source).success(function(data) {
+			    $scope.prediction.source.id = data.id;
+			    postPrediction($scope.prediction);
+		    });
+	    }
+	    else if (typeof $scope.prediction.source.title === "object") {
+		    $scope.prediction.source.id = $scope.prediction.source.title.id;
+		    postPrediction($scope.prediction);    
+	    }   
+    };
     
-    
-    
+    function postPrediction(prediction) {
+	    Predictions.post($scope.prediction).success(function(data) {
+			    alert("posted!");
+		    });    
+    }
 
     // TODO only titles with matching source_type based on users selection before
     var titles = new Bloodhound({
