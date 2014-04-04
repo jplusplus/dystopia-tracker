@@ -15,7 +15,6 @@ angular.module('dystopia-tracker').controller('DetailsCtrl', ['$scope', 'Predict
 		getMore("title",$scope.prediction.source.title);
         getMore("author",$scope.prediction.source.author);
         getMore("category",$scope.prediction.category);
-        reverseAuthor($scope.prediction.source.author);
     });	
     
     function getCategoryTitle(id) {
@@ -34,10 +33,6 @@ angular.module('dystopia-tracker').controller('DetailsCtrl', ['$scope', 'Predict
 		    $scope.more[param] = data.results;
 		    console.log(data.results);
 	    });    
-    }
-    
-    function reverseAuthor(author) {
-	    $scope.prediction.source.author_rev = author.split(',').reverse().join(' ');
     }
     
     // TODO: add text and images to optimise sharing: http://ar.zu.my/how-to-really-customize-the-deprecated-facebook-sharer-dot-php/

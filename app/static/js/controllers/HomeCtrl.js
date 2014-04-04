@@ -130,4 +130,5 @@ angular.module('dystopia-tracker').controller('HomeCtrl', ['$scope', 'Prediction
 	        $scope.filters.title = urlparams.t;
         }
 	 };
+	 
 }]); // it's the end of the code as we know it

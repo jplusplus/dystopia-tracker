@@ -5,6 +5,7 @@ var app = angular.module('dystopia-tracker', [
         'ngRoute',
         'siyfion.sfTypeahead',
         'pascalprecht.translate',
+        'slugifier',
         'dystopia-tracker.services']).config([
             '$interpolateProvider',
             '$locationProvider',

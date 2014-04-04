@@ -11,7 +11,7 @@
         <img src="">
         
         <p class="prediction">[[prediction|getTranslated:'description']]</p>
-        <p class="source">&mdash; [[prediction.source.title]] [['by' | translate ]] [[prediction.source.author.split(',').reverse().join(' ')]] ([[prediction.source.year_published]])</p>
+        <p class="source">&mdash; [[prediction.source.title]] [['by' | translate ]] [[prediction.source.author | reverse]] ([[prediction.source.year_published]])</p>
         
         <img class="cover" ng-src="/uploaded/[[prediction.source.image]]" alt="[[prediction.source.title]]">
         
@@ -59,7 +59,7 @@
 	                <p>[[item|getTranslated:'description']]</p>
 	            </li>
 	            </div>
-	            <p ng-switch-when="0">No more predictions from [[prediction.source.author_rev]] yet. Know one? Add it.</p>
+	            <p ng-switch-when="0">No more predictions from [[prediction.source.author | reverse]] yet. Know one? Add it.</p>
 	        </div>
         </div>
         <div class="morefrom col-lg-4">
