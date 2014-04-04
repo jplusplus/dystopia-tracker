@@ -42,21 +42,36 @@
     <div id="morecontent" class="row">
         <div class="morefrom col-lg-4">
         	<p>More from [[prediction.source.title]]</p>
-	        <li class="card color-[[item.category]]" ng-repeat="item in more.author">
-	            <p>[[item|getTranslated:'description']]</p>
-	        </li>
+	        <div ng-switch on="more.title.length">
+	            <div ng-switch-default>
+	            <li class="card color-[[item.category]]" ng-repeat="item in more.title" >
+	                <p>[[item|getTranslated:'description']]</p>
+	            </li>
+	            </div>
+	            <p ng-switch-when="0">No more predictions from [[prediction.source.title]] yet. Know one? Add it.</p>
+	        </div>
         </div>
         <div class="morefrom col-lg-4">
-	        <p>More from [[prediction.source.author.split(',').reverse().join(' ')]]</p>
-	        <li class="card color-[[item.category]]" ng-repeat="item in more.title">
-	            <p>[[item|getTranslated:'description']]</p>
-	        </li>
+	        <p>More from [[prediction.source.author_rev]]</p>
+	        <div ng-switch on="more.author.length">
+	            <div ng-switch-default>
+	            <li class="card color-[[item.category]]" ng-repeat="item in more.author">
+	                <p>[[item|getTranslated:'description']]</p>
+	            </li>
+	            </div>
+	            <p ng-switch-when="0">No more predictions from [[prediction.source.author_rev]] yet. Know one? Add it.</p>
+	        </div>
         </div>
         <div class="morefrom col-lg-4">
 	        <p>More in [[category|getTranslated:'title']]</p>
-	        <li class="card color-[[item.category]]" ng-repeat="item in more.category">
-	            <p>[[item|getTranslated:'description']]</p>
-	        </li>
+	        <div ng-switch on="more.category.length">
+	            <div ng-switch-default>
+	            <li  class="card color-[[item.category]]" ng-repeat="item in more.category">
+	                <p>[[item|getTranslated:'description']]</p>
+	            </li>
+	            </div>
+	            <p ng-switch-when="0">No more predictions from [[category|getTranslated:'title']] yet. Know one? Add it.</p>
+	        </div>
         </div>
     </div>            
         

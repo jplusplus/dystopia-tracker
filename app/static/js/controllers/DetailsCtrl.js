@@ -15,6 +15,7 @@ angular.module('dystopia-tracker').controller('DetailsCtrl', ['$scope', 'Predict
 		getMore("title",$scope.prediction.source.title);
         getMore("author",$scope.prediction.source.author);
         getMore("category",$scope.prediction.category);
+        reverseAuthor($scope.prediction.source.author);
     });	
     
     function getCategoryTitle(id) {
@@ -39,7 +40,9 @@ angular.module('dystopia-tracker').controller('DetailsCtrl', ['$scope', 'Predict
 	    });    
     }
     
-    
+    function reverseAuthor(author) {
+	    $scope.prediction.source.author_rev = author.split(',').reverse().join(' ');
+    }
     
     
     // create specific sharer urls for social media
