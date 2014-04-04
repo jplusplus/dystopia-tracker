@@ -24,11 +24,7 @@ angular.module('dystopia-tracker').controller('DetailsCtrl', ['$scope', 'Predict
         });
     };
    
-    // TODO function to find correct vertical position of various realisations
-    
-    // TODO load "more" cards (same title, same author, same category)
-    
-    
+    // TODO function to find correct vertical position of various realisations (wait for design)
     
     function getMore(param,value) {
         filters = {exclude : $routeParams.id} 
@@ -44,8 +40,9 @@ angular.module('dystopia-tracker').controller('DetailsCtrl', ['$scope', 'Predict
 	    $scope.prediction.source.author_rev = author.split(',').reverse().join(' ');
     }
     
-    
-    // create specific sharer urls for social media
+    // TODO: add text and images to optimise sharing: http://ar.zu.my/how-to-really-customize-the-deprecated-facebook-sharer-dot-php/
     $scope.shareurls.fb = "http://www.facebook.com/sharer.php?u=" + $location.absUrl();
+    $scope.shareurls.twi = "http://twitter.com/share?url=" + $location.absUrl();
+    $scope.shareurls.mail = "mailto:?Subject=Dystopia Tracker&Body=" + $location.absUrl();
     
 }]); // it's the end of the code as we know it
