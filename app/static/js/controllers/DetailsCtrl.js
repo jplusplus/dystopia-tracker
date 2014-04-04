@@ -1,5 +1,5 @@
 angular.module('dystopia-tracker').controller('DetailsCtrl', ['$scope', 'Prediction', 'Categories', 'Sources', '$rootScope', '$location', '$routeParams',
-                                                           function($scope, Prediction, Categories, Sources, $rootScope, $location,$routeParams) {
+                                                           function($scope, Prediction, Categories, Sources, $rootScope, $location, $routeParams) {
     
     $scope.prediction = [];
     $scope.realisations = [];
@@ -7,6 +7,7 @@ angular.module('dystopia-tracker').controller('DetailsCtrl', ['$scope', 'Predict
     $scope.shareurls = [];
     $scope.more = [];
     $scope.filters = {exclude : $routeParams.id, title : '', author : '', category : ''};
+    $scope.language = $rootScope._lang;
     
     Prediction.get({id:$routeParams.id}).success(function(data) {
 		$scope.prediction = data;
