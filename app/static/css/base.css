@@ -7,9 +7,6 @@ body {
     background-color: #fbfbfb;
 }
 
-.wrapper {
-}
-
 /* smooth hover effects */
 * {
   -webkit-transition: all 0.3s ease-in-out;
@@ -106,7 +103,7 @@ body {
 
 .cover {float:left;width:150px;margin-right: 10px;}
 
-.singlepage .cover {float: right;}
+.detail .cover {float: right;}
 
 .latest > .card {padding:15px;font-size: 1.2em;}
 .latest > button {float: left;width: 300px;margin-right: 20px;}
@@ -141,7 +138,7 @@ body {
 
 /* Single page styles */
 
-.singlepage {width: 600px;height:600px;margin: 10px auto;clear: both;}
+.detail {width: 600px;height:600px;margin: 10px auto;clear: both;}
 
 
 .singleline {text-align: center;}
@@ -173,6 +170,7 @@ body {
     clear:both;
     text-align: center;
 }
+
 
 #share-buttons img {
 width: 50px;

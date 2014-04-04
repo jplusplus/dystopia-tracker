@@ -4,41 +4,60 @@
 </div> <!-- TODO: cookie behaviour -->
 
 <div id="content">
-        <div class="singlepage">
+    <div class="detail">
         
-                <p class="line singleline"><span>[[category|getTranslated:'title']]</span></p>
-                
-                <img src="">
-                
-                <p class="prediction">[[prediction|getTranslated:'description']]</p>
-                <p class="source">&mdash; [[prediction.source.title]] [['by' | translate ]] [[prediction.source.author.split(',').reverse().join(' ')]] ([[prediction.source.year_published]])</p>
-                
-                <img class="cover" ng-src="/uploaded/[[prediction.source.image]]" alt="[[prediction.source.title]]">
-                
-                <div class="timeaxis">
-                <!- TODO assign top-value by a function so that the dots are distributed correctly -->
-                <div class="timedot" style="top:50px;"></div><div class="timetext" style="top:50px;">Published in [[prediction.source.year_published]]</div>
-                <div class="timedot" style="top:150px;"></div><div class="timetext" style="top:150px;">Predicted for [[prediction.year_predicted]]</div>
-                
-                <div class="realisation" ng-repeat="realisation in realisations">
-                	<div class="timedot" style="top:350px;"></div><div class="timetext" style="top:350px;">[[realisations[0].year_introduced]]</div>
-                	<p style="top:350px;">[[realisation|getTranslated:'description']]</p>
-                </div>
-
-	            <button class="btn btn-primary btn-lg addRealisation">Add realisation</button>
-	            
-	            </div> <!- timeaxis --> 
-	      </div> <!- singlepage -->      
-	            <div id="sharing">
-		            <div id="share-buttons"> <!-- TODO add correct hrefs -->
-                        <a href="http://www.facebook.com/sharer.php?u=http://www.simplesharebuttons.com" target="_blank"><img src="{{ STATIC_URL }}img/facebook.png" alt="Facebook" /></a>
-                        <a href="http://twitter.com/share?url=http://www.simplesharebuttons.com&text=Simple Share Buttons" target="_blank"><img src="{{ STATIC_URL }}img/twitter.png" alt="Twitter" /></a>
-                        <a href="mailto:?Subject=Simple Share Buttons&Body=I%20saw%20this%20and%20thought%20of%20you!%20 http://www.simplesharebuttons.com"><img src="http://www.simplesharebuttons.com/images/somacro/email.png" alt="Email" /></a>
-                	</div>
-                	<div id="embed">
-	                	<input placeholder="here will be the embed code">
-                	</div>
-	            </div>                       
-                
+        <p class="line singleline"><span>[[category|getTranslated:'title']]</span></p>
+        
+        <img src="">
+        
+        <p class="prediction">[[prediction|getTranslated:'description']]</p>
+        <p class="source">&mdash; [[prediction.source.title]] [['by' | translate ]] [[prediction.source.author.split(',').reverse().join(' ')]] ([[prediction.source.year_published]])</p>
+        
+        <img class="cover" ng-src="/uploaded/[[prediction.source.image]]" alt="[[prediction.source.title]]">
+        
+        <div class="timeaxis">
+            <!- TODO assign top-value by a function so that the dots are distributed correctly -->
+            <div class="timedot" style="top:50px;"></div><div class="timetext" style="top:50px;">Published in [[prediction.source.year_published]]</div>
+            <div class="timedot" style="top:150px;"></div><div class="timetext" style="top:150px;">Predicted for [[prediction.year_predicted]]</div>
+            
+            <div class="realisation" ng-repeat="realisation in realisations">
+            	<div class="timedot" style="top:350px;"></div><div class="timetext" style="top:350px;">[[realisations[0].year_introduced]]</div>
+            	<p style="top:350px;">[[realisation|getTranslated:'description']]</p>
+            </div>
+		    
+	        <button class="btn btn-primary btn-lg addRealisation">Add realisation</button>
+	    
+	    </div> <!- timeaxis -->
+    </div> <!- detail -->      
+	<div id="sharing">
+	    <div id="share-buttons"> <!-- TODO add correct hrefs -->
+            <a href="http://www.facebook.com/sharer.php?u=http://www.simplesharebuttons.com" target="_blank"><img src="{{ STATIC_URL }}img/facebook.png" alt="Facebook" /></a>
+            <a href="http://twitter.com/share?url=http://www.simplesharebuttons.com&text=Simple Share Buttons" target="_blank"><img src="{{ STATIC_URL }}img/twitter.png" alt="Twitter" /></a>
+            <a href="mailto:?Subject=Simple Share Buttons&Body=I%20saw%20this%20and%20thought%20of%20you!%20 http://www.simplesharebuttons.com"><img src="http://www.simplesharebuttons.com/images/somacro/email.png" alt="Email" /></a>
+    	</div>
+    	<div id="embed">
+	    	<input placeholder="here will be the embed code">
+    	</div>
+	</div>                       
+    <div id="morecontent" class="row">
+        <div class="morefrom col-lg-4">
+	        <p>More from [[prediction.source.author.split(',').reverse().join(' ')]]</p>
+	        <li class="card color-[[item.category]]" ng-repeat="item in more.title">
+	            <p>[[item|getTranslated:'description']]</p>
+	        </li>
+        </div>
+        <div class="morefrom col-lg-4">
+        	<p>More from [[prediction.source.title]]</p>
+	        <li class="card color-[[item.category]]" ng-repeat="item in more.author">
+	            <p>[[item|getTranslated:'description']]</p>
+	        </li>
+        </div>
+        <div class="morefrom col-lg-4">
+	        <p>More in [[category|getTranslated:'title']]</p>
+	        <li class="card color-[[item.category]]" ng-repeat="item in more.category">
+	            <p>[[item|getTranslated:'description']]</p>
+	        </li>
+        </div>
+    </div>            
         
 </div> <!- content ->
