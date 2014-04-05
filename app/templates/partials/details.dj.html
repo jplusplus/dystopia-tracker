@@ -4,20 +4,28 @@
 </div> <!-- TODO: cookie behaviour -->
 
 <div id="content">
-    <div class="detail">
-        
+    <div class="detail" class="row">
         <p class="line singleline"><span>[[category|getTranslated:'title']]</span></p>
         
-        <img src="">
+        <div class="col col-lg-6 col-lg-offset-3">
         
-        <p class="prediction">[[prediction|getTranslated:'description']]</p>
-        <p class="source">&mdash; [[prediction.source.title]] [['by' | translate ]] [[prediction.source.author | reverse]] ([[prediction.source.year_published]])</p>
         
-        <img class="cover" ng-src="/uploaded/[[prediction.source.image]]" alt="[[prediction.source.title]]">
+        <div class="prediction">
+            <img ng-show="prediction.image" ng-src="/uploaded/[[prediction.image]]" width="100%"/>
+            <div class="predictiontext">
+            <h2>[[prediction|getTranslated:'headline']]</h2>       
+            <p>[[prediction|getTranslated:'description']]</p>
+            <p class="source">&mdash; [[prediction.source.title]] [['by' | translate ]] [[prediction.source.author | reverse]] ([[prediction.source.year_published]])</p>
+            </div>
+        </div>
+    
+        </div>
         
-        <div class="timeaxis">
+        
+        <div class="timeaxis col col-lg-6 col-lg-offset-3">
             <!- TODO assign top-value by a function so that the dots are distributed correctly -->
             <div class="timedot" style="top:50px;"></div><div class="timetext" style="top:50px;">Published in [[prediction.source.year_published]]</div>
+            <img class="cover" ng-src="/uploaded/[[prediction.source.image]]" alt="[[prediction.source.title]]">
             <div class="timedot" style="top:150px;"></div><div class="timetext" style="top:150px;">Predicted for [[prediction.year_predicted]]</div>
             
             <div class="realisation" ng-repeat="realisation in realisations">
@@ -29,8 +37,10 @@
 	        <button class="btn btn-primary btn-lg addRealisation">Add realisation</button>
 	    
 	    </div> <!- timeaxis -->
+    
     </div> <!- detail -->      
-	<div id="sharing">
+	
+	<div id="sharing" class="clearfix">
 	    <div id="share-buttons"> <!-- TODO add correct hrefs -->
             <a ng-href="[[shareurls.fb]]" target="_blank"><img src="{{ STATIC_URL }}img/facebook.png" alt="Facebook" /></a>
             <a ng-href="[[shareurls.twi]]" target="_blank"><img src="{{ STATIC_URL }}img/twitter.png" alt="Twitter" /></a>
@@ -40,6 +50,8 @@
 	    	<input placeholder="here will be the embed code">
     	</div>
 	</div>                       
+    
+    
     <div id="morecontent" class="row">
         <div class="morefrom col-lg-4">
         	<p>More from [[prediction.source.title]]</p>

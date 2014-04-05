@@ -20,19 +20,15 @@ a {color: black;}
   transition: all 0.3s ease-in-out;
 }
 
-.page-header {
-    text-align: center;
-    border-bottom: 0 !important;
-}
-
 #push, #footer {
     height: 60px;
 }
 
 /* Header styles */
 
-#filter {display: inline;
-}
+#header {text-align: center;}
+
+#filters {text-align: center;}
 
 #filters input[type='submit'] {
   position: absolute;
@@ -142,8 +138,8 @@ a {color: black;}
 
 /* Single page styles */
 
-.detail {width: 600px;height:600px;margin: 10px auto;clear: both;}
-
+.detail {height:600px;clear: both;}
+.prediction {clear: both;}
 
 .singleline {text-align: center;}
 .line span {
@@ -159,6 +155,10 @@ a {color: black;}
   width: 300px !important;
 }
 
+.prediction {position: relative;}
+.prediction img {position: absolute;top:0;left:0;}
+.predictiontext {position: absolute;margin:30% 5% 0 5%;width: 90%;padding:0 10px;background-color: rgba(255,255,255,0.79);}
+
 .realisation > p {width: 400px;float: left;display: block;position: relative;left:50px;}
 .timeaxis {border-left: 4px solid black;padding-left:20px;position: relative;min-height: 400px;width:50px;float: left;margin-right: 10px;width: 0;overflow: visible;}
 .timedot {width: 20px;height:20px;position:absolute;left:-12px;background: fuchsia;border-radius: 50%;}
@@ -166,14 +166,6 @@ a {color: black;}
 .addRealisation {float: left;position: absolute;left:-10px;top:390px;}
 
 /* footer styles */
-
-
-#footer {
-    font-size:12px;
-    color:grey;
-    clear:both;
-    text-align: center;
-}
 
 
 #share-buttons img {
@@ -216,13 +208,14 @@ display: inline;
 .tt-query,
 .tt-hint {
   box-sizing: border-box;
-  width: 300px;
+  width: 280px;
   height: 40px;
   padding: 6px 8px;
   font-size: 120%;
   line-height: 30px;
   border: 0;
   outline: none;
+  background-color: #f0f0f0 !important;
 }
 
 .sfTypeahead {
@@ -230,7 +223,7 @@ display: inline;
 }
 
 .sfTypeahead:focus {
-  border: 2px solid #0097cf;
+  
 }
 
 .tt-query {
@@ -244,7 +237,7 @@ display: inline;
 }
 
 .tt-dropdown-menu {
-  width: 424px;
+  width: 280px;
   margin-top: 0px;
   padding: 4px 0;
   background-color: #fff;
@@ -260,7 +253,7 @@ display: inline;
 }
 
 .tt-suggestion.tt-is-under-cursor {
-    background-color: rgba(0,130,72,0.4);
+    background-color: rgba(0,130,72,0.4) !important;
 
 }
 
