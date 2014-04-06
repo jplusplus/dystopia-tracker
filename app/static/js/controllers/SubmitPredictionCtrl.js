@@ -17,7 +17,7 @@ angular.module('dystopia-tracker').controller('SubmitPredictionCtrl', ['$scope',
     if (typeof $scope.prediction.source.title === "string") {
 	    $scope.showSourceDetails = true;    
     };
-     
+    
     Categories.get({}, function(data) {
         $scope.categories = data.results;
     });
@@ -42,7 +42,7 @@ angular.module('dystopia-tracker').controller('SubmitPredictionCtrl', ['$scope',
     
     function postPrediction(prediction) {
 	    Prediction.post($scope.prediction).success(function(data) {
-			    alert("posted!");
+			    alert("posted!"); // TODO redirect to thankyou page
 		    });    
     }
 
