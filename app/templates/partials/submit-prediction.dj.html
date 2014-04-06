@@ -28,7 +28,7 @@
          <input type="text" class="form-control sfTypeahead" options="typeahedOptions" datasets="typeaheadData" id="sourcetitle" placeholder="" ng-model="prediction.source.title" required>
        </div>
        
-       <div class="form-group"> <!-- TODO: only show this group when sourcetitle is not selected from options -->
+       <div class="form-group animate-show" ng-show="showSourceDetails"> <!-- TODO: only show this group when sourcetitle is not selected from options -->
          <p class="help-block">We don't have this title in our database yet. Care to help us with some more info on it?</p>        
          <label for="author">Author</label> <!-- TODO: change label based on source type -->
          <input type="text" class="form-control" id="author" ng-model="prediction.source.author" placeholder="">
