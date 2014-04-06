@@ -4,7 +4,7 @@ angular.module('dystopia-tracker').controller('SubmitRealisationCtrl', ['$scope'
     $scope.language = $rootScope._lang;
     // TODO: realisation.prediction value must be saved when button "add realisation" is pressed
     $scope.realisation = {
-	    "prediction" : $location.search()['p'],
+	    "prediction" : "",
 	    "description_E": "", 
         "description_D": "", 
         "year_introduced": "",
