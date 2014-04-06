@@ -1,10 +1,11 @@
-angular.module('dystopia-tracker').controller('SubmitRealisationCtrl', ['$scope', 'Prediction', 'Categories', 'Sources', '$rootScope', '$location', '$routeParams', '$filter',
-                                                           function($scope, Prediction, Categories, Sources, $rootScope, $location, $routeParams, $filter) {
+angular.module('dystopia-tracker').controller('SubmitRealisationCtrl', ['$scope', 'Prediction', 'Realisation', '$rootScope', '$location', '$routeParams',
+                                                           function($scope, Prediction, Realisation, $rootScope, $location, $routeParams) {
     
     $scope.language = $rootScope._lang;
-    // TODO: realisation.prediction value must be saved when button "add realisation" is pressed
+    $scope.prediction = {},
+    $scope.prediction.id = parseInt($location.search().p); 
     $scope.realisation = {
-	    "prediction" : "",
+	    "prediction" : $scope.prediction.id,
 	    "description_E": "", 
         "description_D": "", 
         "year_introduced": "",
@@ -16,6 +17,10 @@ angular.module('dystopia-tracker').controller('SubmitRealisationCtrl', ['$scope'
 	    Realisation.post($scope.realisation).success(function(data) {
 		alert("posted!"); // TODO redirect to detail page of realisation.prediction, with submitted realisation visible
 		});     
-	};  
+	};
+	
+	Prediction.get({id:$scope.prediction.id}).success(function(data) {
+		$scope.prediction = data;
+    });  
 	 
 }]); // it's the end of the code as we know it
