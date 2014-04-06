@@ -11,6 +11,8 @@ a {color: black !important;text-decoration: none !important;}
 
 .addnew {position: fixed;bottom:15px;right:15px;}
 
+.buffer { margin-top:50px; }
+
 /* smooth hover effects */
 * {
   -webkit-transition: all 0.3s ease-in-out;
@@ -103,8 +105,6 @@ a {color: black !important;text-decoration: none !important;}
 
 .cover {float:left;width:150px;margin-right: 10px;}
 
-.detail .cover {float: right;}
-
 .latest > .card {padding:15px;font-size: 1.2em;}
 .latest > .btn {float: left;width: 300px;margin-right: 20px;}
 
@@ -138,15 +138,14 @@ a {color: black !important;text-decoration: none !important;}
 
 /* Single page styles */
 
-.detail {height:600px;clear: both;}
-.prediction {clear: both;}
+.detail {height:500px;clear: both;}
+.detail .cover {float: right;}
 
 .singleline {text-align: center;}
 .line span {
   display: inline-block;
   position: relative;  
 }
-
 .singleline span:before,
 .singleline span:after {
   height: 4px;
@@ -157,14 +156,14 @@ a {color: black !important;text-decoration: none !important;}
 
 
 .prediction {position: relative;}
-.prediction img {position: absolute;top:0;left:0;}
+.prediction img {position: absolute;top:0;left:0;background-color: grey;}
 .predictiontext {position: absolute;margin:30% 5% 0 5%;width: 90%;padding:0 10px;background-color: rgba(255,255,255,0.79);}
 
 .realisation > p {width: 400px;float: left;display: block;position: relative;left:50px;}
-.timeaxis {border-left: 4px solid black;padding-left:20px;position: relative;min-height: 400px;width:50px;float: left;margin-right: 10px;width: 0;overflow: visible;}
-.timedot {width: 20px;height:20px;position:absolute;left:-12px;background: fuchsia;border-radius: 50%;}
-.timetext {width:50px;position:absolute;left:10px;}
-.addRealisation {float: left;position: absolute;left:-10px;top:390px;}
+.verticalline {border-left: 4px solid black;padding-left:20px;min-height: 400px;width:50px;margin-right: 10px;width: 0;overflow: visible;}
+.timedot {width: 20px;height:20px;left:-12px;background: fuchsia;border-radius: 50%;border:3px solid black;}
+.timetext {width:50px;left:10px;}
+.addRealisation {float: left;}
 
 /* footer styles */
 

@@ -4,42 +4,44 @@
 </div> <!-- TODO: cookie behaviour -->
 
 <div id="content">
-    <div class="detail" class="row">
+    <div class="detail row">
         <p class="line singleline"><span>[[category|getTranslated:'title']]</span></p>
         
         <div class="col col-lg-6 col-lg-offset-3">
         
-        
-        <div class="prediction">
-            <img ng-show="prediction.image" ng-src="/uploaded/[[prediction.image]]" width="100%"/>
-            <div class="predictiontext">
-            <h2>[[prediction|getTranslated:'headline']]</h2>       
-            <p>[[prediction|getTranslated:'description']]</p>
-            <p class="source">&mdash; [[prediction.source.title]] [['by' | translate ]] [[prediction.source.author | reverse]] ([[prediction.source.year_published]])</p>
+            <div class="prediction">
+                <img ng-show="prediction.image" ng-src="/uploaded/[[prediction.image]]" width="100%"/>
+                <div class="predictiontext">
+                <h2>[[prediction|getTranslated:'headline']]</h2>       
+                <p>[[prediction|getTranslated:'description']]</p>
+                <p class="source">&mdash; [[prediction.source.title]] [['by' | translate ]] [[prediction.source.author | reverse]] ([[prediction.source.year_published]])</p>
+                </div>
             </div>
-        </div>
     
         </div>
+    </div>
         
         
-        <div class="timeaxis col col-lg-6 col-lg-offset-3">
+    <div class="timeaxis row col-lg-6 col-lg-offset-3">
             <!- TODO assign top-value by a function so that the dots are distributed correctly -->
-            <div class="timedot" style="top:50px;"></div><div class="timetext" style="top:50px;">Published in [[prediction.source.year_published]]</div>
+            <div class="verticalline"> 
+            
+            <div class="timedot"></div><div class="timetext">Published in [[prediction.source.year_published]]</div>
             <img class="cover" ng-src="/uploaded/[[prediction.source.image]]" alt="[[prediction.source.title]]">
-            <div class="timedot" style="top:150px;"></div><div class="timetext" style="top:150px;">Predicted for [[prediction.year_predicted]]</div>
+            <div class="timedot"></div><div class="timetext">Predicted for [[prediction.year_predicted]]</div>
             
             <div class="realisation" ng-repeat="realisation in realisations">
-            	<div class="timedot" style="top:350px;"></div><div class="timetext" style="top:350px;">[[realisations[0].year_introduced]]</div>
-            	<p style="top:350px;">[[realisation|getTranslated:'description']]</p>
+            	<div class="timedot"></div><div class="timetext">[[realisations[0].year_introduced]]</div>
+            	<p>[[realisation|getTranslated:'description']]</p>
             	<!-- <img ng-src="/uploaded/[[realisation.image]]" width="200px"/> -->
             </div>
 		    
 	        <button class="btn btn-primary btn-lg addRealisation">Add realisation</button>
-	    
+            </div>
 	    </div> <!- timeaxis -->
     
     </div> <!- detail -->      
-	
+	<div class="buffer"></div>
 	<div id="sharing" class="row">
 	    <div id="share-buttons" class="col col-lg-2 col-lg-offset-4">
             <a ng-href="[[shareurls.fb]]" target="_blank"><img src="{{ STATIC_URL }}img/facebook.png" alt="Facebook" /></a>
@@ -51,6 +53,7 @@
     	</div>
 	</div>                       
     
+    <div class="buffer"></div>
     
     <div id="morecontent" class="row">
         <div class="morefrom col-lg-3 col-lg-offset-1">

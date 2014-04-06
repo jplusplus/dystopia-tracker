@@ -33,8 +33,9 @@
     </div> <!-- TODO: cookie behaviour -->
 
     <div id="content">
-        <div class="cardview editorspicks" ng-hide="editorspicks.length==0">
+        <div class="cardview editorspicks row" ng-hide="editorspicks.length==0">
 	        <p class="line"><span>[['Editors picks' | translate]]</span></p>
+            <div class="col-lg-4">
             <li class="card imagecard color-[[editorspick.category]]" ng-repeat="editorspick in editorspicks">
 	            <a ng-href="[[language]]/p/[[editorspick.source.author | reverse | slugify]]/[[editorspick.source.title | slugify]]/[[editorspick.id]]">
 	            <img class="cover" ng-src="/uploaded/[[editorspick.source.image]]" alt="[[editorspick.source.title]]">
@@ -45,21 +46,32 @@
 	                 <span ng-switch-default>[[editorspick.realisations.length]] realisations</span>
 	             </p>
 	            </a>
-           </li>
+            </li>
+            </div>
+            <div class="col-lg-4"></div>
+            <div class="col-lg-4"></div>
 
         </div><!- editorspicks ->
 
-        <div class="cardview latest clearfix">
+        <div class="cardview latest row clearfix">
             <p class="line"><span>[['Latest' | translate]]</span></p>
+            <div class="col-lg-3">
 			<a ng-href="[[language]]/submit/prediction" type="button" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-plus"></span> [['Add new prediction' | translate]]</a>
+            </div>
 			<!- Get all predictions in reverse chronological order, latest first (reverse==true) ->
+            <div class="col-lg-3">
             <li class="card color-[[prediction.category]]" ng-repeat="prediction in predictions | orderBy: 'creation_date':true"> 
 	            <a ng-href="[[language]]/p/[[prediction.source.author | reverse | slugify]]/[[prediction.source.title | slugify]]/[[prediction.id]]">
 	            <p class="cardtext">[[prediction|getTranslated:'description']]</p>
 	            <p class="source">&mdash; [[prediction.source.title]] [['by' | translate ]] [[prediction.source.author | reverse]] ([[prediction.source.year_published]])</p>
 	            </a>
             </li>
-		<button type="button" class="btn btn-default btn-lg btn-block" ng-hide="hideMoreButton" ng-click="update(false)">[['Load more' | translate]]...</button>
+            </div>
+            <div class="col-lg-3"></div>
+            <div class="col-lg-3">
+		        <button type="button" class="btn btn-default btn-lg btn-block" ng-hide="hideMoreButton" ng-click="update(false)">[['Load more' | translate]]...</button>
+            </div>
+		
         </div> <!- latest ->
         <a  ng-href="[[language]]/submit/prediction" class="btn btn-primary btn-xs visible-xs addnew"><span class="glyphicon glyphicon-plus"></span></button>
     </div> <!- content ->
