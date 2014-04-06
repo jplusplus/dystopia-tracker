@@ -38,7 +38,7 @@
             <li class="card imagecard color-[[editorspick.category]]" ng-repeat="editorspick in editorspicks">
 	            <a ng-href="[[language]]/p/[[editorspick.source.author | reverse | slugify]]/[[editorspick.source.title | slugify]]/[[editorspick.id]]">
 	            <img class="cover" ng-src="/uploaded/[[editorspick.source.image]]" alt="[[editorspick.source.title]]">
-	             <p class="prediction">[[editorspick|getTranslated:'description']]</p>
+	             <p class="cardtext">[[editorspick|getTranslated:'description']]</p>
 	             <p class"realisations" ng-switch on="editorspick.realisations.length">
 	                 <span ng-switch-when="0">This real? Add realisation.</span>
 	                 <span ng-switch-when="1">1 realisation</span>
@@ -55,7 +55,7 @@
 			<!- Get all predictions in reverse chronological order, latest first (reverse==true) ->
             <li class="card color-[[prediction.category]]" ng-repeat="prediction in predictions | orderBy: 'creation_date':true"> 
 	            <a ng-href="[[language]]/p/[[prediction.source.author | reverse | slugify]]/[[prediction.source.title | slugify]]/[[prediction.id]]">
-	            <p class="prediction">[[prediction|getTranslated:'description']]</p>
+	            <p class="cardtext">[[prediction|getTranslated:'description']]</p>
 	            <p class="source">&mdash; [[prediction.source.title]] [['by' | translate ]] [[prediction.source.author | reverse]] ([[prediction.source.year_published]])</p>
 	            </a>
             </li>

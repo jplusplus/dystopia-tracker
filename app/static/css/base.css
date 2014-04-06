@@ -7,7 +7,7 @@ body {
     background-color: #fbfbfb;
 }
 
-a {color: black;}
+a {color: black !important;text-decoration: none !important;}
 
 .addnew {position: fixed;bottom:15px;right:15px;}
 
@@ -99,7 +99,7 @@ a {color: black;}
   position: relative;
 }
 
-.imagecard .prediction {padding-top: 10px;margin-top: 0;}
+.imagecard .cardtext {padding-top: 10px;margin-top: 0;}
 
 .cover {float:left;width:150px;margin-right: 10px;}
 
@@ -154,6 +154,7 @@ a {color: black;}
   top: 0.2em;
   width: 300px !important;
 }
+
 
 .prediction {position: relative;}
 .prediction img {position: absolute;top:0;left:0;}
