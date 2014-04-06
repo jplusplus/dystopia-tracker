@@ -126,7 +126,7 @@ angular.module('dystopia-tracker').controller('HomeCtrl', ['$scope', 'Prediction
         if (urlparams.s) {
 	        $scope.filters.source__type = urlparams.s;
         }
-        if (urlparams.s) {
+        if (urlparams.t) {
 	        $scope.filters.title = urlparams.t;
         }
 	 };
