@@ -1,4 +1,4 @@
-angular.module('dystopia-tracker.services', ['ngResource','dystopia-tracker.filters']);
+angular.module('dystopia-tracker.services', ['ngResource','dystopia-tracker.filters', 'ngCookies']);
 angular.module('dystopia-tracker.filters', []);
 
 var app = angular.module('dystopia-tracker', [
@@ -11,8 +11,10 @@ var app = angular.module('dystopia-tracker', [
             '$locationProvider',
             '$routeProvider',
             '$translateProvider',
+            '$httpProvider',
             function ($interpolateProvider, $locationProvider, $routeProvider,
-                      $translateProvider) {
+                      $translateProvider, $httpProvider) {
+                $httpProvider.interceptors.push('AuthHttpInterceptor');
                 $interpolateProvider.startSymbol('[[');
                 $interpolateProvider.endSymbol(']]');
 
