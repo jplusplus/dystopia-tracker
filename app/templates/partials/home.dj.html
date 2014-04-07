@@ -54,15 +54,22 @@
 
         <div class="cardview latest row clearfix">
             <p class="line"><span>[['Latest' | translate]]</span></p>
-            <div class="col-lg-3" ng-repeat="predictionsslist in predictions">
-                <a ng-if="$first" ng-href="[[language]]/submit/prediction" type="button" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-plus"></span> [['Add new prediction' | translate]]</a>
-    			<li class="card color-[[prediction.category]]" ng-repeat="prediction in predictionsslist | orderBy: 'creation_date':true"> 
-    	            <a ng-href="[[language]]/p/[[prediction.source.author | reverse | slugify]]/[[prediction.source.title | slugify]]/[[prediction.id]]">
-    	            <p class="cardtext">[[prediction|getTranslated:'description']]</p>
-    	            <p class="source">&mdash; [[prediction.source.title]] [['by' | translate ]] [[prediction.source.author | reverse]] ([[prediction.source.year_published]])</p>
-    	            </a>
-                </li>
-                <button ng-if="$last" type="button" class="btn btn-default btn-lg btn-block" ng-hide="hideMoreButton" ng-click="update(false)">[['Load more' | translate]]...</button>
+            <div ng-switch on="predictions.length">
+                <div ng-switch-default>
+                    <div class="col-lg-3" ng-repeat="predictionsslist in predictions">
+                        <a ng-if="$first" ng-href="[[language]]/submit/prediction" type="button" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-plus"></span> [['Add new prediction' | translate]]</a>
+    		        	<li class="card color-[[prediction.category]]" ng-repeat="prediction in predictionsslist | orderBy: 'creation_date':true"> 
+    	                    <a ng-href="[[language]]/p/[[prediction.source.author | reverse | slugify]]/[[prediction.source.title | slugify]]/[[prediction.id]]">
+    	                    <p class="cardtext">[[prediction|getTranslated:'description']]</p>
+    	                    <p class="source">&mdash; [[prediction.source.title]] [['by' | translate ]] [[prediction.source.author | reverse]] ([[prediction.source.year_published]])</p>
+    	                    </a>
+                        </li>
+                        <button ng-if="$last" type="button" class="btn btn-default btn-lg btn-block" ng-hide="hideMoreButton" ng-click="update(false)">[['Load more' | translate]]...</button>
+                    </div>
+                </div>
+            <div ng-switch-when="0">
+            <p ng-bind-template="[['Bummer, no content' | translate ]]"></p>
+            <a ng-href="[[language]]/submit/prediction" type="button" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-plus"></span> [['Add new prediction' | translate]]</a></div>
             </div>
 			<!- Get all predictions in reverse chronological order, latest first (reverse==true) ->
 		

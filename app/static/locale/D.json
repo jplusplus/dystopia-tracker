@@ -9,7 +9,7 @@
     "Search for a title" : "Titelsuche",
     "welcome.bold" : "Welcome to the Dystopia Tracker",
     "welcome.text" : "This is a little info we'll show to the user only on his first visit.",
-    "Latest" : "Aktuellste",
+    "Latest" : "Neueste",
     "by" : "von",
     "Editors picks" : "Ausgewählte Vorhersagen",
     "Load more" : "Weitere laden",
@@ -20,7 +20,7 @@
     "Add new prediction" : "Neue Vorhersage hinzufügen",
     "Add another prediction" : "Eine weitere Vorhersage hinzufügen",
     "The Dystopia Tracker" : "The Dystopia Tracker",
-    "infotext" : "is a collaborative effort to document predictions about the future and their realisations. Everyone is invited to contribute content and correct errors. The Dystopia Tracker was build by David Bauer in collaboration with Journalism++, with support of the Augstein Stiftung."
+    "infotext" : "hellohello effort to document predictions about the future and their realisations. Everyone is invited to contribute content and correct errors. The Dystopia Tracker was build by David Bauer in collaboration with Journalism++, with support of the Augstein Stiftung.",
     "license.bold" : "All content from this site can be reused free of charge",
     "license.rest" : "(please do so!). It's licenced under a BY-SA Creative Commons Licence. You can embed filtered views (e.g. everything by George Orwell) or any single prediction with its realisations. All content is available via a read API (see documentation). Whatever you build, please encourage your users to contribute content themselves, and let us know about what you created.",
     "More.title" : "Mehr aus",
@@ -42,5 +42,6 @@
     "Pick a category for your prediction" : "Ordnen Sie die Vorhersage einer Kategorie zu.",
     "Select a category" : "Kategorie auswählen",
     "Your name or initials (so we can send all the fame your way)" : "Ihr Name oder Initialen (Ehre, wem Ehre gebührt",
-    "Submit" : "Veröffentlichen"
+    "Submit" : "Veröffentlichen",
+    "Bummer, no content" : "Leider gibt es noch keine Vorhersagen für diese Auswahl. Das muss aber nicht so bleiben, der Ball ist bei Ihnen:"
 }
