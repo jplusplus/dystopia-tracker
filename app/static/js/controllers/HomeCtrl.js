@@ -113,7 +113,7 @@ angular.module('dystopia-tracker').controller('HomeCtrl', ['$scope', 'Prediction
 	    $scope._lang = $scope.language;
 	    $location.path('/' + $scope.language);
 	    $scope.translateTo($scope.language);
-	    update(false);
+	    $scope.update(false);
     };
     
     function updateUrl(filter) {
