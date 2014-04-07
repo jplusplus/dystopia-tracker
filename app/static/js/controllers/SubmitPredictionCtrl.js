@@ -11,7 +11,8 @@ angular.module('dystopia-tracker').controller('SubmitPredictionCtrl', ['$scope',
          "description_D": "", 
          "year_predicted": "", 
          "more_info": "", 
-         "username": "", 
+         "username": "",
+         "published": true 
      }
 
     $scope.foo = function() { alert('here'); }

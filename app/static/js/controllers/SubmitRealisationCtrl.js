@@ -10,7 +10,8 @@ angular.module('dystopia-tracker').controller('SubmitRealisationCtrl', ['$scope'
         "description_D": "", 
         "year_introduced": "",
         "more_info": "", 
-        "username": "", 
+        "username": "",
+        "published": true 
     } 
          
     $scope.submit = function () {
