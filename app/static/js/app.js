@@ -46,7 +46,7 @@ var app = angular.module('dystopia-tracker', [
                     controller: 'ThankyouCtrl',
                     templateUrl: '/partial/thankyou.html',
                     reloadOnSearch: false
-                }).when('/:lang/:author/:title/:id/embed', {
+                }).when('/:lang/p/:author/:title/:id/embed', {
                     controller: 'EmbedCtrl',
                     templateUrl: '/partial/embed.html',
                     reloadOnSearch: false

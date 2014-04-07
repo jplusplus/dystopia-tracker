@@ -1,4 +1,4 @@
-angular.module('dystopia-tracker').controller('DetailsCtrl', ['$scope', 'Prediction', 'Categories', 'Sources', '$rootScope', '$location', '$routeParams',
+angular.module('dystopia-tracker').controller('EmbedCtrl', ['$scope', 'Prediction', 'Categories', 'Sources', '$rootScope', '$location', '$routeParams',
                                                            function($scope, Prediction, Categories, Sources, $rootScope, $location, $routeParams) {
     
     $scope.prediction = [];

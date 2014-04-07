@@ -1,7 +1,11 @@
 angular.module('dystopia-tracker').controller('HomeCtrl', ['$scope', 'Prediction', 'Categories', 'Sources', '$rootScope', '$location', '$filter', '$cookies',
                                                            function($scope, Prediction, Categories, Sources, $rootScope, $location, $filter, $cookies) {
 
-    // bind a scope value to $cookies.alreadyvisited
+    // check if user has visited the site before
+    if ($cookies.alreadyVisited) {
+        $scope.returningVisitor = true;
+    };
+    // set cookie
     $cookies.alreadyVisited = 'true';
     $scope.categories = [];
     $scope.predictions;
