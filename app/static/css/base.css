@@ -1,10 +1,10 @@
 /* General styles */
 html, body {
-
+font-family: 'Raleway', sans-serif !important;
 }
 
 body {
-    background-color: #fbfbfb;
+    background-color: rgba(255,255,255,0.79) !important;
 }
 
 a {color: black !important;text-decoration: none !important;}
@@ -22,13 +22,16 @@ a {color: black !important;text-decoration: none !important;}
   transition: all 0.3s ease-in-out;
 }
 
-#push, #footer {
+#footer {
+    margin-top: 50px;
     height: 60px;
 }
 
 /* Header styles */
 
-#header {text-align: center;}
+#header {text-align: center;background-image:linear-gradient(to bottom,#563d7c 0,#6f5499 100%);margin:-30px -30px 0 -30px;padding:30px 30px 0 30px;}
+
+#viewswitch {margin: 0 auto;text-align: center !important;}
 
 #filters {text-align: center;}
 
@@ -43,9 +46,6 @@ a {color: black !important;text-decoration: none !important;}
 
 
 /* Card view styles */
-
-.cardview {width: 100%;clear: both;padding:10px;}
-.editorspicks {clear: both;}
 
 .line {
   line-height: 0.5;
@@ -70,43 +70,41 @@ a {color: black !important;text-decoration: none !important;}
   margin-left: 15px;
 }
 
-
 .card {
   list-style: none;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box; 
-  width:300px;
-  float:left;
-  margin: 0 20px 20px 0;
-  background: rgba(255,255,255,0.1);
-  -moz-box-shadow:    0px 2px 3px 0px #ccc;
-  -webkit-box-shadow: 0px 2px 3px 0px #ccc;
-  box-shadow:         0px 2px 3px 0px #ccc;
-  border-left:8px solid yellow;
+  width:100%;
+  margin-bottom: 15px;
+}
+
+.textcard {
+	padding:5%;
+	border-left: 6px solid;
+	border: 1px solid rgba(225,225,225,0.2);
+	font-size: 120%;
 }
 
 .imagecard {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
-  box-sizing:             border-box; 
-  width:380px;
-  float:left;
-  margin-bottom: 20px;
-  background: rgba(255,255,255,0.1);
-  -moz-box-shadow:    0px 2px 3px 0px #ccc;
-  -webkit-box-shadow: 0px 2px 3px 0px #ccc;
-  box-shadow:         0px 2px 3px 0px #ccc;
+  box-sizing: border-box; 
+  width:100%;
   margin-right: 20px;
   position: relative;
+  min-height: 220px;
+  background: white !important;
+  border: 1px solid #efefef !important;
 }
 
-.imagecard .cardtext {padding-top: 10px;margin-top: 0;}
+.imagecard img {float:left;width:150px;margin-right: 15px;}
 
-.cover {float:left;width:150px;margin-right: 10px;}
+.imagecard .cardtext {padding: 15px 10px 0 0;}
 
-.latest > .card {padding:15px;font-size: 1.2em;}
-.latest > .btn {float: left;width: 300px;margin-right: 20px;}
+
+latest .btn {width: 100%;margin-bottom: 20px;}
+.morefrom .btn {width: 100%;margin-top: 10px;}
 
 .description:before {content: "— ";}
 
@@ -125,12 +123,12 @@ a {color: black !important;text-decoration: none !important;}
 }
 
 /* category colors TODO: find good scheme once number of categories is known */
-.color-5 {border-color: rgba(0,128,128,0.7);}
-.color-6 {border-color: fuchsia;}
-.color-7 {border-color: blue;}
-.color-8 {border-color: rgba(9,88,15,1);}
+.color-5 {background-color: rgba(0,128,128,0.05);}
+.color-6 {background-color: rgba(255,0,255,0.05);}
+.color-7 {background-color: rgba(0,0,255,0.05);}
+.color-8 {background-color: rgba(9,88,15,0.05);}
 
-.color-5:hover {background: rgba(0,128,128,0.2);border-left-color:teal;}
+.color-5:hover {background: rgba(0,128,128,0.2);}
 .color-6:hover {background: rgba(255,0,255,0.2);}
 .color-7:hover {background: rgba(0,0,255,0.2);}
 .color-8:hover {background: rgba(9,88,15,0.2);}
@@ -163,8 +161,8 @@ a {color: black !important;text-decoration: none !important;}
 .verticalline {border-left: 4px solid black;padding-left:20px;min-height: 400px;width:50px;margin-right: 10px;width: 0;overflow: visible;}
 .timedot {width: 20px;height:20px;left:-12px;background: fuchsia;border-radius: 50%;border:3px solid black;}
 .timetext {width:50px;left:10px;}
-.addRealisation {background-color: rgba(113,0,113,0.7) !important;}
-.addRealisation:hover {background-color: #6f006f !important;}
+.addRealisation {}
+.addRealisation:hover {}
 
 /* embed styles */
 

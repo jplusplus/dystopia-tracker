@@ -1,4 +1,3 @@
-
         <div id="filters">
         	
             <select id="language" ng-model="language" ng-change="changeLanguage()">
@@ -42,8 +41,8 @@
     	             <p class="cardtext">[[editorspick|getTranslated:'description']]</p>
     	             <p class"realisations" ng-switch on="editorspick.realisations.length">
     	                 <span ng-switch-when="0">[['This real? Add realisation.' | translate ]]</span>
-    	                 <span ng-switch-when="1">1 [['realisation' | translate ]]</span>
-    	                 <span ng-switch-default>[[editorspick.realisations.length]] [['realisations' | translate ]]</span>
+    	                 <span class="badge" ng-switch-when="1">1 [['realisation' | translate ]]</span>
+    	                 <span class="badge" ng-switch-default>[[editorspick.realisations.length]] [['realisations' | translate ]]</span>
     	             </p>
     	            </a>
                 </li>
@@ -58,7 +57,7 @@
                 <div ng-switch-default>
                     <div class="col-lg-3" ng-repeat="predictionsslist in predictions">
                         <a ng-if="$first" ng-href="[[language]]/submit/prediction" type="button" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-plus"></span> [['Add new prediction' | translate]]</a>
-    		        	<li class="card color-[[prediction.category]]" ng-repeat="prediction in predictionsslist | orderBy: 'creation_date':true"> 
+    		        	<li class="card textcard color-[[prediction.category]]" ng-repeat="prediction in predictionsslist | orderBy: 'creation_date':true"> 
     	                    <a ng-href="[[language]]/p/[[prediction.source.author | reverse | slugify]]/[[prediction.source.title | slugify]]/[[prediction.id]]">
     	                    <p class="cardtext">[[prediction|getTranslated:'description']]</p>
     	                    <p class="source">&mdash; [[prediction.source.title]] [['by' | translate ]] [[prediction.source.author | reverse]] ([[prediction.source.year_published]])</p>
@@ -71,9 +70,8 @@
             <p ng-bind-template="[['Bummer, no content' | translate ]]"></p>
             <a ng-href="[[language]]/submit/prediction" type="button" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-plus"></span> [['Add new prediction' | translate]]</a></div>
             </div>
-			<!- Get all predictions in reverse chronological order, latest first (reverse==true) ->
-		
+					
         </div> <!- latest ->
         
-        <a  ng-href="[[language]]/submit/prediction" class="btn btn-primary btn-xs visible-xs addnew"><span class="glyphicon glyphicon-plus"></span></button>
+        <a ng-href="[[language]]/submit/prediction" class="btn btn-primary btn-xs visible-xs addnew"><span class="glyphicon glyphicon-plus"></span></button>
     </div> <!- content ->
