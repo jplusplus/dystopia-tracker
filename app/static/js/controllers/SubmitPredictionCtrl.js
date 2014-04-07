@@ -13,10 +13,14 @@ angular.module('dystopia-tracker').controller('SubmitPredictionCtrl', ['$scope',
          "more_info": "", 
          "username": "", 
      }
+
+    $scope.foo = function() { alert('here'); }
+
     $scope.showSourceDetails = false;
-    if (typeof $scope.prediction.source.title === "string") {
-	    $scope.showSourceDetails = true;    
-    };
+
+    $scope.updateSourceDetailsShow = function() {
+        $scope.showSourceDetails = (typeof $scope.prediction.source.title === "string");
+    }
     
     Categories.get({}, function(data) {
         $scope.categories = data.results;

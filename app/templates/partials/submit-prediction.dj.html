@@ -25,7 +25,7 @@
        
        <div class="form-group">
          <label for="sourcetitle">Title</label>
-         <input type="text" class="form-control sfTypeahead" options="typeahedOptions" datasets="typeaheadData" id="sourcetitle" placeholder="" ng-model="prediction.source.title" required>
+         <input type="text" ng-blur="updateSourceDetailsShow()" class="form-control sfTypeahead" options="typeahedOptions" datasets="typeaheadData" id="sourcetitle" placeholder="" ng-model="prediction.source.title" required>
        </div>
        
        <div class="form-group animate-show" ng-show="showSourceDetails"> <!-- TODO: only show this group when sourcetitle is not selected from options -->
