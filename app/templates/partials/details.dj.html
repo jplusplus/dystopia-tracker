@@ -22,25 +22,25 @@
     </div>
         
         
-    <div class="timeaxis row col-lg-6 col-lg-offset-3">
+    <div class="timeaxis row">
             <!- TODO assign top-value by a function so that the dots are distributed correctly -->
-            <div class="verticalline"> 
             
-            <div class="timedot"></div><div class="timetext">Published in [[prediction.source.year_published]]</div>
-            <img class="cover" ng-src="/uploaded/[[prediction.source.image]]" alt="[[prediction.source.title]]">
-            <div class="timedot"></div><div class="timetext">Predicted for [[prediction.year_predicted]]</div>
-            
-            <div class="realisation" ng-repeat="realisation in realisations">
-            	<div class="timedot"></div><div class="timetext">[[realisations[0].year_introduced]]</div>
-            	<p>[[realisation|getTranslated:'description']]</p>
-            	<!-- <img ng-src="/uploaded/[[realisation.image]]" width="200px"/> -->
+            <div class="col-lg-1 col-lg-offset-3">
+	            <p>Published in [[prediction.source.year_published]]</p>
+	            <p>Predicted for [[prediction.year_predicted]]</p>
+	            <p>[[realisations[0].year_introduced]]</p>
             </div>
-		    
+            <div class="col-lg-5">
+	            <img class="cover" ng-src="/uploaded/[[prediction.source.image]]" alt="[[prediction.source.title]]">
+	            <a type=amzn search="[[prediction.source.title]]">Buy on Amazon</a>
+	            <p>[[realisation[0]|getTranslated:'description']]</p>
+            </div>
+          
+            
 	        <a ng-href="[[language]]/submit/realisation?p=[[prediction.id]]" class="btn btn-primary btn-lg addRealisation">Add realisation</a>
-            </div>
-	    </div> <!- timeaxis -->
-    
-    </div> <!- detail -->      
+            
+	</div> <!- timeaxis -->
+       
 	<div class="buffer"></div>
 	<div id="sharing" class="row">
 	    <div id="share-buttons" class="col col-lg-2 col-lg-offset-4">
