@@ -13,6 +13,8 @@ urlpatterns = patterns('',
     url(r'^[A-Z]{1}/submit/prediction', 'app.views.home', name='submit-prediction'),
     url(r'^[A-Z]{1}/submit/realisation', 'app.views.home', name='submit-realisation'),
 
+    url(r'^[A-Z]{1}/thankyou', 'app.views.home', name='thankyou'),
+
     url(r'^partial/(?P<partial_name>([a-zA-Z0-9_\-/\.]+))\.html$', 'app.views.partial', name='partial'),
 
     url(r'^api/',       include('app.api.urls')),

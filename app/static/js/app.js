@@ -42,6 +42,10 @@ var app = angular.module('dystopia-tracker', [
                     controller: 'SubmitRealisationCtrl',
                     templateUrl: '/partial/submit-realisation.html',
                     reloadOnSearch: false
+                }).when('/:lang/thankyou', {
+                    controller: 'ThankyouCtrl',
+                    templateUrl: '/partial/thankyou.html',
+                    reloadOnSearch: false
                 }).otherwise({
                     redirectTo: '/E'
                 });
