@@ -13,7 +13,7 @@
        </div>
        
        <div class="form-group">
-         <select id="sourcetype" class="form-control" ng-model="prediction.source.type" required>
+         <select id="sourcetype" class="form-control" ng-change="updateTitles()" ng-model="prediction.source.type" required>
                  <option value='literature'>[['Literature' | translate ]]</option>
                  <option value='movies'>[['Movies' | translate ]]</option>
                  <option value='tv_series'>[['TV Series' | translate ]]</option>

@@ -60,12 +60,12 @@ angular.module('dystopia-tracker').controller('SubmitPredictionCtrl', ['$scope',
     }
 
     // TODO only titles with matching source_type based on users selection before
-    var titles = new Bloodhound({
+    $scope.titles = new Bloodhound({
         datumTokenizer: Bloodhound.tokenizers.obj.whitespace('title'),
         queryTokenizer: Bloodhound.tokenizers.whitespace,
         local: []
     });
-    titles.initialize();
+    $scope.titles.initialize();
     
     loadTitles(1);
 
@@ -77,18 +77,23 @@ angular.module('dystopia-tracker').controller('SubmitPredictionCtrl', ['$scope',
     // Typeahead data object
     $scope.typeaheadData = {
         displayKey: 'title',
-        source: titles.ttAdapter()
+        source: $scope.titles.ttAdapter()
     };
     
     // get list of all titles for search field
     function loadTitles(pageNo){
-        Sources.get({page: pageNo}).success(function(data) {
-            titles = titles.add(data.results);
+        Sources.get({page: pageNo,source__type: $scope.prediction.source.type}).success(function(data) {
+            $scope.titles.add(data.results);
             if(data.next!=null) {
                 pageNo++;
                 loadTitles(pageNo);
             }
         });
     }
+    
+    $scope.updateTitles = function() {
+	    $scope.titles.clear();
+	    loadTitles(1);
+    };
     
 }]); // it's the end of the code as we know it
