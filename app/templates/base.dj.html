@@ -11,9 +11,9 @@
         <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
 
         {% compress css %}
-            <link rel="stylesheet" type="text/less" href="{{ STATIC_URL }}css/base.css">
-            <link rel="stylesheet" type="text/less" href="{{ STATIC_URL }}vendor/bootswatch/yeti/bootstrap.css">
+            <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/base.css">
         {% endcompress %}
+        <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}vendor/bootswatch/yeti/bootstrap.css">
         {% block extracss %}{% endblock %}
 		<link href='http://fonts.googleapis.com/css?family=Raleway:300' rel='stylesheet' type='text/css'>
         <base href="{% url 'home' %}" />
