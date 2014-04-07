@@ -166,8 +166,13 @@ a {color: black !important;text-decoration: none !important;}
 .addRealisation {background-color: rgba(113,0,113,0.7) !important;}
 .addRealisation:hover {background-color: #6f006f !important;}
 
-/* footer styles */
+/* embed styles */
 
+.embed p {font-size: 20px !important;}
+#signature {padding:5px;background-color: #000040;color:white;height:30px;}
+
+
+/* footer styles */
 
 #share-buttons img {
 width: 50px;

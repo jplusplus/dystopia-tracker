@@ -1,6 +1,7 @@
 angular.module('dystopia-tracker').controller('EmbedCtrl', ['$scope', 'Prediction', 'Categories', 'Sources', '$rootScope', '$location', '$routeParams',
                                                            function($scope, Prediction, Categories, Sources, $rootScope, $location, $routeParams) {
     
+    $rootScope.isEmbed = true;
     $scope.prediction = [];
     $scope.realisations = [];
     $scope.category = [];
