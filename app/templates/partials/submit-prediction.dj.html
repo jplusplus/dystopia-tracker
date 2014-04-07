@@ -19,7 +19,7 @@
                  <option value='movies'>[['Movies' | translate ]]</option>
                  <option value='tv_series'>[['TV Series' | translate ]]</option>
                  <option value='games'>[['Games' | translate ]]</option>
-                 <option value='others'>[['Others' | translate ]]</option>
+                 <option value='other'>[['Others' | translate ]]</option>
          </select>
        </div>
        
@@ -31,7 +31,7 @@
        <div class="form-group animate-show" ng-show="showSourceDetails"> <!-- TODO: only show this group when sourcetitle is not selected from options -->
          <p class="help-block">We don't have this title in our database yet. Care to help us with some more info on it?</p>        
          <label for="author">Author</label> <!-- TODO: change label based on source type -->
-         <input type="text" class="form-control" id="author" ng-model="prediction.source.author" placeholder="">
+         <input type="text" class="form-control" id="author" ng-model="prediction.source.author" placeholder="Last name, first name">
          <label for="year_published">When was it first published?</label>
          <input type="number" class="form-control" id="year_published" ng-model="prediction.source.year_published" placeholder="">
        </div>
@@ -54,7 +54,7 @@
        <div class="form-group">
          <label for="category">Pick a category for your prediction</p>
          <select id="category" ng-model="prediction.category" class="form-control" ng-options="category.id as getCategoryTitle(category) for category in categories">
-                 <option value="" disabled selected>Select your option</option>
+                 <option value="" disabled selected>Select a category</option>
                  <option ng-repeat="category in categories" value="[[category.id]]">[[category.title_E]]</option>
             </select>
        </div>
