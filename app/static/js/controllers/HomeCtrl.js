@@ -1,8 +1,13 @@
 angular.module('dystopia-tracker').controller('HomeCtrl', ['$scope', 'Prediction', 'Categories', 'Sources', '$rootScope', '$location', '$filter',
                                                            function($scope, Prediction, Categories, Sources, $rootScope, $location, $filter) {
     $scope.categories = [];
-    $scope.predictions = [];
-    $scope.editorspicks = [];
+    $scope.predictions_1 = [];
+    $scope.predictions_2 = [];
+    $scope.predictions_3 = [];
+    $scope.predictions_4 = [];
+    $scope.editorspicks_1 = [];
+    $scope.editorspicks_2 = [];
+    $scope.editorspicks_3 = [];
     $scope.sources = [];
     $scope.filters = {category:'', source__type:'', title:''};
     $scope.filters.page = 0;
@@ -42,8 +47,13 @@ angular.module('dystopia-tracker').controller('HomeCtrl', ['$scope', 'Prediction
 		
 		if(reset==true) {
 			$scope.filters.page = 1;
-			$scope.predictions = [];
-            $scope.editorspicks = [];
+			$scope.predictions_1 = [];
+			$scope.predictions_2 = [];
+			$scope.predictions_3 = [];
+			$scope.predictions_4 = [];
+            $scope.editorspicks_1 = [];
+            $scope.editorspicks_2 = [];
+            $scope.editorspicks_3 = [];
             
             // get all editor's picks with selected filter applied 
 		    editorspick_filters = angular.copy($scope.filters);
@@ -51,13 +61,39 @@ angular.module('dystopia-tracker').controller('HomeCtrl', ['$scope', 'Prediction
     	    // define number of editors picks to show -- set to 2 to test, will be higher for launch
     	    editorspick_filters.page_size = 2;
 		    Prediction.get(editorspick_filters).success(function(data) {
-		    $scope.editorspicks = $scope.editorspicks.concat(data.results);
+		    
+		        for (i==0;i<data.results.length;i++) {
+			        if (i % 3 == 0) {
+				        $scope.editorspicks_1 = $scope.editorspicks_1.concat(data.results);
+			        }
+			        else if (i % 3 == 1) {
+				        $scope.editorspicks_1 = $scope.editorspicks_1.concat(data.results);
+			        }
+			        else if (i % 3 == 2) {
+				        $scope.editorspicks_1 = $scope.editorspicks_1.concat(data.results);
+			        }    
+		        }
+		    
 			});
 		}
         
         // get all predictions with selected filter applied
 		Prediction.get($scope.filters).success(function(data) {
-		    $scope.predictions = $scope.predictions.concat(data.results);
+		    
+		    for (i==0;i<data.results.length;i++) {
+			        if (i % 4 == 0) {
+				        $scope.predictions_1 = $scope.predictions_1.concat(data.results);
+			        }
+			        else if (i % 4 == 1) {
+				        $scope.predictions_2 = $scope.predictions_2.concat(data.results);
+			        }
+			        else if (i % 4 == 2) {
+				        $scope.predictions_3 = $scope.predictions_3.concat(data.results);
+			        }
+			        else if (i % 4 == 3) {
+				        $scope.predictions_4 = $scope.predictions_4.concat(data.results);
+			        }    
+		        }
 		
 		
 		    if (data.next==null) {
