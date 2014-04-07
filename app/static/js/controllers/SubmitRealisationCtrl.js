@@ -13,15 +13,15 @@ angular.module('dystopia-tracker').controller('SubmitRealisationCtrl', ['$scope'
         "username": "",
         "published": true 
     } 
+    
+    	Prediction.get({id:$scope.prediction.id}).success(function(data) {
+		$scope.prediction = data;
+    });  
          
     $scope.submit = function () {
 	    Realisation.post($scope.realisation).success(function(data) {
-		alert("posted!"); // TODO redirect to detail page of realisation.prediction, with submitted realisation visible
+		    $location.path($scope.language + "/p/" + $filter('slugify')($filter('reverse')($scope.prediction.source.author)) + "/" + $filter('slugify')($scope.prediction.source.title) + "/" + $scope.prediction.id);
 		});     
 	};
-	
-	Prediction.get({id:$scope.prediction.id}).success(function(data) {
-		$scope.prediction = data;
-    });  
-	 
+		 
 }]); // it's the end of the code as we know it
