@@ -12,8 +12,9 @@ angular.module('dystopia-tracker').controller('ThankyouCtrl', ['$scope', 'Predic
     });  
 
     function createSharingUrls(prediction) {
+        var slugifyfilter = $filter('slugify');
         // TODO: add text and images to optimise sharing: http://ar.zu.my/how-to-really-customize-the-deprecated-facebook-sharer-dot-php/
-        var url = "http://www.dystopiatracker.com/" + $scope.language + "/p/" + [[prediction.source.author | reverse | slugify]] + "/" + [[prediction.source.title | slugify]] + "/" + [[prediction.id]];
+        var url = "http://www.dystopiatracker.com/" + $scope.language + "/p/" + $filter('slugify')($filter('reverse')(prediction.source.author)) + "/" + $filter('slugify')(prediction.source.title) + "/" + prediction.id;
         $scope.shareurls.fb = "http://www.facebook.com/sharer.php?u=" + url;
         $scope.shareurls.twi = "http://twitter.com/share?url=" + url;
         $scope.shareurls.mail = "mailto:?Subject=Dystopia Tracker&Body=" + url;
