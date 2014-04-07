@@ -163,7 +163,7 @@ a {color: black !important;text-decoration: none !important;}
 .verticalline {border-left: 4px solid black;padding-left:20px;min-height: 400px;width:50px;margin-right: 10px;width: 0;overflow: visible;}
 .timedot {width: 20px;height:20px;left:-12px;background: fuchsia;border-radius: 50%;border:3px solid black;}
 .timetext {width:50px;left:10px;}
-.addRealisation {float: left;}
+.addRealisation {background-color: #6f006f !important;}
 
 /* footer styles */
 
