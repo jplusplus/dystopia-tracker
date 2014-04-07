@@ -1,0 +1,100 @@
+<div class="alert alert-info alert-dismissable fade in">
+		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+		<strong>[['welcome.bold' | translate ]]</strong> [['welcome.text' | translate ]]
+</div> <!-- TODO: cookie behaviour -->
+
+<div id="content">
+    <div class="detail row">
+        <p class="line singleline"><span>[[category|getTranslated:'title']]</span></p>
+        
+        <div class="col col-lg-6 col-lg-offset-3">
+        
+            <div class="prediction">
+                <img ng-show="prediction.image" ng-src="/uploaded/[[prediction.image]]" width="100%"/>
+                <div class="predictiontext">
+                <h2>[[prediction|getTranslated:'headline']]</h2>       
+                <p>[[prediction|getTranslated:'description']]</p>
+                <p class="source">&mdash; [[prediction.source.title]] [['by' | translate ]] [[prediction.source.author | reverse]] ([[prediction.source.year_published]])</p>
+                </div>
+            </div>
+    
+        </div>
+    </div>
+        
+        
+    <div class="timeaxis row col-lg-6 col-lg-offset-3">
+            <!- TODO assign top-value by a function so that the dots are distributed correctly -->
+            <div class="verticalline"> 
+            
+            <div class="timedot"></div><div class="timetext">Published in [[prediction.source.year_published]]</div>
+            <img class="cover" ng-src="/uploaded/[[prediction.source.image]]" alt="[[prediction.source.title]]">
+            <div class="timedot"></div><div class="timetext">Predicted for [[prediction.year_predicted]]</div>
+            
+            <div class="realisation" ng-repeat="realisation in realisations">
+            	<div class="timedot"></div><div class="timetext">[[realisations[0].year_introduced]]</div>
+            	<p>[[realisation|getTranslated:'description']]</p>
+            	<!-- <img ng-src="/uploaded/[[realisation.image]]" width="200px"/> -->
+            </div>
+		    
+	        <a ng-href="[[language]]/submit/realisation?p=[[prediction.id]]" class="btn btn-primary btn-lg addRealisation">Add realisation</a>
+            </div>
+	    </div> <!- timeaxis -->
+    
+    </div> <!- detail -->      
+	<div class="buffer"></div>
+	<div id="sharing" class="row">
+	    <div id="share-buttons" class="col col-lg-2 col-lg-offset-4">
+            <a ng-href="[[shareurls.fb]]" target="_blank"><img src="{{ STATIC_URL }}img/facebook.png" alt="Facebook" /></a>
+            <a ng-href="[[shareurls.twi]]" target="_blank"><img src="{{ STATIC_URL }}img/twitter.png" alt="Twitter" /></a>
+            <a ng-href="[[shareurls.mail]]"><img src="http://www.simplesharebuttons.com/images/somacro/email.png" alt="Email" /></a>
+    	</div>
+    	<div id="embed" class="col col-lg-4">
+	    	<input placeholder="here will be the embed code">
+    	</div>
+	</div>                       
+    
+    <div class="buffer"></div>
+    
+    <div id="morecontent" class="row">
+        <div class="morefrom col-lg-3 col-lg-offset-1">
+        	<p>More from [[prediction.source.title]]</p>
+	        <div ng-switch on="more.title.length">
+	            <div ng-switch-default>
+	            <li class="card color-[[item.category]]" ng-repeat="item in more.title | limitTo:2" >
+	                <a ng-href="[[language]]/p/[[item.source.author | reverse | slugify]]/[[item.source.title | slugify]]/[[item.id]]">
+	                <p>[[item|getTranslated:'description']]</p>
+	                </a>
+	            </li>
+	            </div>
+	            <p ng-switch-when="0">No more predictions from [[prediction.source.title]] yet. Know one? Add it.</p>
+	        </div>
+        </div>
+        <div class="morefrom col-lg-3">
+	        <p>More from [[prediction.source.author | reverse]]</p>
+	        <div ng-switch on="more.author.length">
+	            <div ng-switch-default>
+	            <li class="card color-[[item.category]]" ng-repeat="item in more.author | limitTo:2">
+	                <a ng-href="[[language]]/p/[[item.source.author | reverse | slugify]]/[[item.source.title | slugify]]/[[item.id]]">
+	                <p>[[item|getTranslated:'description']]</p>
+	                </a>
+	            </li>
+	            </div>
+	            <p ng-switch-when="0">No more predictions from [[prediction.source.author | reverse]] yet. Know one? Add it.</p>
+	        </div>
+        </div>
+        <div class="morefrom col-lg-3">
+	        <p>More in [[category|getTranslated:'title']]</p>
+	        <div ng-switch on="more.category.length">
+	            <div ng-switch-default>
+	            <li  class="card color-[[item.category]]" ng-repeat="item in more.category | limitTo:2">
+	                <a ng-href="[[language]]/p/[[item.source.author | reverse | slugify]]/[[item.source.title | slugify]]/[[item.id]]">
+	                <p>[[item|getTranslated:'description']]</p>
+	                </a>
+	            </li>
+	            </div>
+	            <p ng-switch-when="0">No more predictions from [[category|getTranslated:'title']] yet. Know one? Add it.</p>
+	        </div>
+        </div>
+    </div>            
+        
+</div> <!- content ->
