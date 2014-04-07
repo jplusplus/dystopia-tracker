@@ -32,6 +32,7 @@ class SourceList(generics.ListCreateAPIView):
     permission_classes = [
         permissions.AllowAny
     ]
+    filter_class = app.api.filters.SourceFilter
 
 class SourceDetail(generics.RetrieveUpdateDestroyAPIView):
     model = Source

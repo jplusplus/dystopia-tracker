@@ -1,4 +1,4 @@
-from app.core.models import Prediction
+from app.core.models import Prediction, Source
 import django_filters
 from django.db.models import Q
 
@@ -41,3 +41,8 @@ class PredictionFilter(django_filters.FilterSet):
         model = Prediction
         fields = ['lang', 'editors_pick', 'source__type', 'category', 'title',
                   'author', 'exclude', 'published']
+
+class SourceFilter(django_filters.FilterSet):
+    class Meta:
+        model = Source
+        fields = ['type']
