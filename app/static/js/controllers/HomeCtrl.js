@@ -48,13 +48,8 @@ angular.module('dystopia-tracker').controller('HomeCtrl', ['$scope', 'Prediction
 		
 		if(reset==true) {
 			$scope.filters.page = 1;
-			$scope.predictions_1 = [];
-			$scope.predictions_2 = [];
-			$scope.predictions_3 = [];
-			$scope.predictions_4 = [];
-            $scope.editorspicks_1 = [];
-            $scope.editorspicks_2 = [];
-            $scope.editorspicks_3 = [];
+			$scope.predictions = [];
+            $scope.editorspicks = [];
             
             // get all editor's picks with selected filter applied 
 		    editorspick_filters = angular.copy($scope.filters);
@@ -63,38 +58,21 @@ angular.module('dystopia-tracker').controller('HomeCtrl', ['$scope', 'Prediction
     	    editorspick_filters.page_size = 2;
 		    Prediction.get(editorspick_filters).success(function(data) {
 		    
-		        for (i==0;i<data.results.length;i++) {
-			        if (i % 3 == 0) {
-				        $scope.editorspicks_1 = $scope.editorspicks_1.concat(data.results);
-			        }
-			        else if (i % 3 == 1) {
-				        $scope.editorspicks_1 = $scope.editorspicks_1.concat(data.results);
-			        }
-			        else if (i % 3 == 2) {
-				        $scope.editorspicks_1 = $scope.editorspicks_1.concat(data.results);
-			        }    
+		        for (var i=0;i<data.results.length;i++) {
+                    var index = i % 3;
+                    if ($scope.editorspicks[index] == null) { $scope.editorspicks[index] = []; }
+                    $scope.editorspicks[index].push(data.results[i]);
 		        }
-		    
 			});
 		}
         
         // get all predictions with selected filter applied
 		Prediction.get($scope.filters).success(function(data) {
-		    
-		    for (i==0;i<data.results.length;i++) {
-			        if (i % 4 == 0) {
-				        $scope.predictions_1 = $scope.predictions_1.concat(data.results);
-			        }
-			        else if (i % 4 == 1) {
-				        $scope.predictions_2 = $scope.predictions_2.concat(data.results);
-			        }
-			        else if (i % 4 == 2) {
-				        $scope.predictions_3 = $scope.predictions_3.concat(data.results);
-			        }
-			        else if (i % 4 == 3) {
-				        $scope.predictions_4 = $scope.predictions_4.concat(data.results);
-			        }    
-		        }
+		    for (var i=0;i<data.results.length;i++) {
+                var index = i % 4;
+                if ($scope.predictions[index] == null) { $scope.predictions[index] = []; }
+                $scope.predictions[index].push(data.results[i]);
+		    }
 		
 		
 		    if (data.next==null) {
@@ -158,7 +136,6 @@ angular.module('dystopia-tracker').controller('HomeCtrl', ['$scope', 'Prediction
 		urlparams = $location.search();
         if (urlparams.c) {
 	        $scope.filters.category = parseInt(urlparams.c);
-            console.debug($scope.filters.category);
         }
         if (urlparams.s) {
 	        $scope.filters.source__type = urlparams.s;
