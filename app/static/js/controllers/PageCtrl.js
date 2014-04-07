@@ -1,6 +1,8 @@
 angular.module('dystopia-tracker').controller('PageCtrl', ['$scope', '$location', '$rootScope', '$translate', function($scope, $location, $rootScope, $translate) {
     var _title = 'Dystopia Tracker';
 
+    $rootScope._lang = 'E';
+
     $scope.translateTo = function(lang) {
         $rootScope._lang = lang;
         $translate.use($rootScope._lang);
