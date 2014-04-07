@@ -65,6 +65,11 @@ class Prediction(models.Model):
     edition_date = models.DateTimeField(auto_now=True)
     published = models.BooleanField(default=False)
 
+    def save(self, *args, **kwargs):
+        if not self.year_predicted:
+            self.year_predicted = 0
+        super(Prediction, self).save(*args, **kwargs)
+
     def __unicode__(self):
         if self.headline_E != None and self.headline_E != "":
             return self.headline_E
