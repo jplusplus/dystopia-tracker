@@ -71,7 +71,8 @@ angular.module('dystopia-tracker').controller('HomeCtrl', ['$scope', 'Prediction
         // get all predictions with selected filter applied
 		Prediction.get($scope.filters).success(function(data) {
 		    for (var i=0;i<data.results.length;i++) {
-                var index = i % 4;
+                // 4 columns, +1 to add first element to second column
+                var index = (i+1) % 4;
                 if ($scope.predictions[index] == null) { $scope.predictions[index] = []; }
                 $scope.predictions[index].push(data.results[i]);
 		    }
