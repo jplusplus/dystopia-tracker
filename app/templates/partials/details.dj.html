@@ -60,7 +60,7 @@
         	<p>More from [[prediction.source.title]]</p>
 	        <div ng-switch on="more.title.length">
 	            <div ng-switch-default>
-	            <li class="card color-[[item.category]]" ng-repeat="item in more.title" >
+	            <li class="card color-[[item.category]]" ng-repeat="item in more.title | limitTo:2" >
 	                <a ng-href="[[language]]/p/[[item.source.author | reverse | slugify]]/[[item.source.title | slugify]]/[[item.id]]">
 	                <p>[[item|getTranslated:'description']]</p>
 	                </a>
@@ -73,7 +73,7 @@
 	        <p>More from [[prediction.source.author | reverse]]</p>
 	        <div ng-switch on="more.author.length">
 	            <div ng-switch-default>
-	            <li class="card color-[[item.category]]" ng-repeat="item in more.author">
+	            <li class="card color-[[item.category]]" ng-repeat="item in more.author | limitTo:2">
 	                <a ng-href="[[language]]/p/[[item.source.author | reverse | slugify]]/[[item.source.title | slugify]]/[[item.id]]">
 	                <p>[[item|getTranslated:'description']]</p>
 	                </a>
@@ -86,7 +86,7 @@
 	        <p>More in [[category|getTranslated:'title']]</p>
 	        <div ng-switch on="more.category.length">
 	            <div ng-switch-default>
-	            <li  class="card color-[[item.category]]" ng-repeat="item in more.category">
+	            <li  class="card color-[[item.category]]" ng-repeat="item in more.category | limitTo:2">
 	                <a ng-href="[[language]]/p/[[item.source.author | reverse | slugify]]/[[item.source.title | slugify]]/[[item.id]]">
 	                <p>[[item|getTranslated:'description']]</p>
 	                </a>
