@@ -36,6 +36,8 @@ class Source(models.Model):
     image = models.ImageField(upload_to='sources', blank=True)
     image_credit = models.CharField(max_length=75, blank=True)
 
+    featured = models.BooleanField(default=False)
+
     def __unicode__(self):
         return '%s by %s (%d)' % (self.title, self.author, self.id)
 
