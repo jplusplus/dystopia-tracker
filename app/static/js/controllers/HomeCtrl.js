@@ -1,5 +1,8 @@
-angular.module('dystopia-tracker').controller('HomeCtrl', ['$scope', 'Prediction', 'Categories', 'Sources', '$rootScope', '$location', '$filter',
-                                                           function($scope, Prediction, Categories, Sources, $rootScope, $location, $filter) {
+angular.module('dystopia-tracker').controller('HomeCtrl', ['$scope', 'Prediction', 'Categories', 'Sources', '$rootScope', '$location', '$filter', '$cookies',
+                                                           function($scope, Prediction, Categories, Sources, $rootScope, $location, $filter, $cookies) {
+
+    // bind a scope value to $cookies.alreadyvisited
+    $cookies.alreadyVisited = 'true';
     $scope.categories = [];
     $scope.predictions;
     $scope.editorspicks;
