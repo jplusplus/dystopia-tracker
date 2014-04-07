@@ -1,6 +1,13 @@
-angular.module('dystopia-tracker').controller('SubmitPredictionCtrl', ['$scope', 'Prediction', 'Categories', 'Sources', '$rootScope', '$location', '$routeParams', '$filter',
-                                                           function($scope, Prediction, Categories, Sources, $rootScope, $location, $routeParams, $filter) {
+angular.module('dystopia-tracker').controller('SubmitPredictionCtrl', ['$scope', 'Prediction', 'Categories', 'Sources', '$rootScope', '$location', '$routeParams','$cookies', '$filter',
+                                                           function($scope, Prediction, Categories, Sources, $rootScope, $location, $routeParams, $cookies, $filter) {
     
+    
+    // check if user has visited the site before
+    if ($cookies.alreadyVisited) {
+        $scope.returningVisitor = true;
+    };
+    // set cookie
+    $cookies.alreadyVisited = 'true';
     $scope.sources = [];
     $scope.categories = [];
     $scope.language = $rootScope._lang;

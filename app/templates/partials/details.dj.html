@@ -37,7 +37,7 @@
             </div>
           
             
-	        <a ng-href="[[language]]/submit/realisation?p=[[prediction.id]]" class="btn btn-primary btn-lg addRealisation">Add realisation</a>
+	        <a ng-href="[[language]]/submit/realisation?p=[[prediction.id]]" class="btn btn-primary btn-lg addRealisation">[['Add a realisation' | translate]]</a>
             
 	</div> <!- timeaxis -->
        
@@ -57,7 +57,7 @@
     
     <div id="morecontent" class="row">
         <div class="morefrom col-lg-3 col-lg-offset-1">
-        	<p>More from [[prediction.source.title]]</p>
+        	<p>[['More.title' | translate]] [[prediction.source.title]]</p>
 	        <div ng-switch on="more.title.length">
 	            <div ng-switch-default>
 	            <li class="card color-[[item.category]]" ng-repeat="item in more.title | limitTo:2" >
@@ -66,11 +66,11 @@
 	                </a>
 	            </li>
 	            </div>
-	            <p ng-switch-when="0">No more predictions from [[prediction.source.title]] yet. Know one? Add it.</p>
+	            <p ng-switch-when="0">[['No more predictions from (title)' | translate]] [[prediction.source.title]] [['yet. Know one?' | translate]] <a ng-href="[[language]]/submit/prediction">[['Add it' | translate]]!</a></p>
 	        </div>
         </div>
         <div class="morefrom col-lg-3">
-	        <p>More from [[prediction.source.author | reverse]]</p>
+	        <p>[['More.author' | translate]] [[prediction.source.author | reverse]]</p>
 	        <div ng-switch on="more.author.length">
 	            <div ng-switch-default>
 	            <li class="card color-[[item.category]]" ng-repeat="item in more.author | limitTo:2">
@@ -79,11 +79,11 @@
 	                </a>
 	            </li>
 	            </div>
-	            <p ng-switch-when="0">No more predictions from [[prediction.source.author | reverse]] yet. Know one? Add it.</p>
+	            <p ng-switch-when="0">[['No more predictions from (author)' | translate]] [[prediction.source.author | reverse]] yet. [['yet. Know one?' | translate]] <a ng-href="[[language]]/submit/prediction">[['Add it' | translate]]!</a></p>
 	        </div>
         </div>
         <div class="morefrom col-lg-3">
-	        <p>More in [[category|getTranslated:'title']]</p>
+	        <p>[['More.category' | translate]] [[category|getTranslated:'title']]</p>
 	        <div ng-switch on="more.category.length">
 	            <div ng-switch-default>
 	            <li  class="card color-[[item.category]]" ng-repeat="item in more.category | limitTo:2">
@@ -92,7 +92,7 @@
 	                </a>
 	            </li>
 	            </div>
-	            <p ng-switch-when="0">No more predictions from [[category|getTranslated:'title']] yet. Know one? Add it.</p>
+	            <p ng-switch-when="0">[['No more predictions from (category)' | translate]] [[category|getTranslated:'title']] [['yet. Know one?' | translate]] <a ng-href="[[language]]/submit/prediction">[['Add it' | translate]]!</a></p>
 	        </div>
         </div>
     </div>            

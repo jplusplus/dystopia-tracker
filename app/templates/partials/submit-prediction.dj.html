@@ -7,10 +7,9 @@
    <form role="form" class="col-md-4 col-md-offset-1" ng-submit="submit()">
        <h2>[['Submit prediction' | translate ]]</h2>
        
-       <!-- TODO: cookie behaviour -->
-       <div class="alert alert-info alert-dismissable fade in">
+       <div class="alert alert-info alert-dismissable fade in" ng-hide="returningVisitor">
 		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-		<p>Here we put a short info text that helps the user understand what exactly we're looking for. Shown only on his first visit of the form.</p>
+		<p>[['form.infotext' | translate ]]</p>
        </div>
        
        <div class="form-group">
@@ -24,47 +23,47 @@
        </div>
        
        <div class="form-group">
-         <label for="sourcetitle">Title</label>
+         <label for="sourcetitle">[['Title' | translate ]]</label>
          <input type="text" ng-blur="updateSourceDetailsShow()" class="form-control sfTypeahead" options="typeahedOptions" datasets="typeaheadData" id="sourcetitle" placeholder="" ng-model="prediction.source.title" required>
        </div>
        
-       <div class="form-group animate-show" ng-show="showSourceDetails"> <!-- TODO: only show this group when sourcetitle is not selected from options -->
-         <p class="help-block">We don't have this title in our database yet. Care to help us with some more info on it?</p>        
-         <label for="author">Author</label> <!-- TODO: change label based on source type -->
+       <div class="form-group animate-show" ng-show="showSourceDetails">
+         <p class="help-block">[['form.source-infotext' | translate ]]</p>        
+         <label for="author">[['Author' | translate]]</label> <!-- TODO: change label based on source type -->
          <input type="text" class="form-control" id="author" ng-model="prediction.source.author" placeholder="Last name, first name">
-         <label for="year_published">When was it first published?</label>
+         <label for="year_published">[['When was it first published?' | translate]]</label>
          <input type="number" class="form-control" id="year_published" ng-model="prediction.source.year_published" placeholder="">
        </div>
          
        <div class="form-group">
-         <label for="prediction">Enter the prediction. Try to be specific.</label>
+         <label for="prediction">[['Enter the prediction. Try to be specific.' | translate]]</label>
          <textarea class="form-control" id="prediction" rows="5" maxlength="300" ng-model="prediction['description_' + language]"></textarea>
        </div>
        
        <div class="form-group">
-         <label for="year_predicted">What year is the prediction made for? Enter only if exact year is given.</label>
+         <label for="year_predicted">[['What year' | translate]]</label>
          <input type="number" class="form-control" id="year_predicted" placeholder="" ng-model="prediction.year_predicted">
        </div>
        
        <div class="form-group">
-         <label for="url">Where can we find more info on the prediction?</p>
+         <label for="url">[['more info where' | translate ]]</p>
          <input type="url" class="form-control" id="url"  ng-model="prediction.more_info" placeholder="http://">
        </div>
        
        <div class="form-group">
-         <label for="category">Pick a category for your prediction</p>
+         <label for="category">[['Pick a category for your prediction' | translate ]]</p>
          <select id="category" ng-model="prediction.category" class="form-control" ng-options="category.id as getCategoryTitle(category) for category in categories">
-                 <option value="" disabled selected>Select a category</option>
+                 <option value="" disabled selected>[['Select a category' | translate ]]</option>
                  <option ng-repeat="category in categories" value="[[category.id]]">[[category.title_E]]</option>
             </select>
        </div>
        
        <div class="form-group">
-         <label for="username">Your name or initials (so we can send all the fame your way)</label>
+         <label for="username">[['Your name or initials (so we can send all the fame your way)' | translate]]</label>
          <input type="text" class="form-control" id="username" ng-model="prediction.username" placeholder="">
        </div>
  
-       <button type="submit" class="btn btn-default btn-block">Submit</button>
+       <button type="submit" class="btn btn-default btn-block">[['Submit' | translate]]</button>
     </form>
 
 

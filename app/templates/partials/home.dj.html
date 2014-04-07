@@ -29,21 +29,21 @@
 
 	<div class="alert alert-info alert-dismissable fade in" ng-hide="returningVisitor">
 		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-		<strong>[['welcome.bold' | translate ]]</strong> [['welcome.text' | translate ]]
+		<p><strong>[['welcome.bold' | translate ]]</strong> [['welcome.text' | translate ]]</p>
     </div>
     
     <div id="content">
         <div class="cardview editorspicks row" ng-hide="editorspicks.length==0">
-	        <p class="line"><span>[['Editors picks' | translate]]</span></p>
+	        <p class="line"><span>[['Editors picks' | translate ]]</span></p>
             <div class="col-lg-4" ng-repeat="editorspickslist in editorspicks">
                 <li class="card imagecard color-[[editorspick.category]]" ng-repeat="editorspick in editorspickslist">
     	            <a ng-href="[[language]]/p/[[editorspick.source.author | reverse | slugify]]/[[editorspick.source.title | slugify]]/[[editorspick.id]]">
     	            <img class="cover" ng-src="/uploaded/[[editorspick.source.image]]" alt="[[editorspick.source.title]]">
     	             <p class="cardtext">[[editorspick|getTranslated:'description']]</p>
     	             <p class"realisations" ng-switch on="editorspick.realisations.length">
-    	                 <span ng-switch-when="0">This real? Add realisation.</span>
-    	                 <span ng-switch-when="1">1 realisation</span>
-    	                 <span ng-switch-default>[[editorspick.realisations.length]] realisations</span>
+    	                 <span ng-switch-when="0">[['This real? Add realisation.' | translate ]]</span>
+    	                 <span ng-switch-when="1">1 [['realisation' | translate ]]</span>
+    	                 <span ng-switch-default>[[editorspick.realisations.length]] [['realisations' | translate ]]</span>
     	             </p>
     	            </a>
                 </li>
