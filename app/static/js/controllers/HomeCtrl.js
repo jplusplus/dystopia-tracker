@@ -1,13 +1,8 @@
 angular.module('dystopia-tracker').controller('HomeCtrl', ['$scope', 'Prediction', 'Categories', 'Sources', '$rootScope', '$location', '$filter',
                                                            function($scope, Prediction, Categories, Sources, $rootScope, $location, $filter) {
     $scope.categories = [];
-    $scope.predictions_1 = [];
-    $scope.predictions_2 = [];
-    $scope.predictions_3 = [];
-    $scope.predictions_4 = [];
-    $scope.editorspicks_1 = [];
-    $scope.editorspicks_2 = [];
-    $scope.editorspicks_3 = [];
+    $scope.predictions;
+    $scope.editorspicks;
     $scope.sources = [];
     $scope.filters = {category:'', source__type:'', title:''};
     $scope.filters.page = 0;
