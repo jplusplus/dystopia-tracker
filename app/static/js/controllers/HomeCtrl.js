@@ -15,6 +15,7 @@ angular.module('dystopia-tracker').controller('HomeCtrl', ['$scope', 'Prediction
     // define number of predictions to load, set to 4 to test, will be higher for launch
     $scope.filters.page_size = 4;
     $scope.language = $rootScope._lang;
+    var i = 0;
 
     readUrlParams();
 
