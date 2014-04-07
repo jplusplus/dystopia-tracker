@@ -7,3 +7,4 @@ Pillow==2.3.0
 dj-database-url==0.2.1
 django-storages==1.1.8
 boto==2.9.6
+django-import-export=0.2.1

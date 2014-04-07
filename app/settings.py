@@ -143,6 +143,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.admin',
 
+    'import_export',
     'south',
     'rest_framework',
     'compressor',
