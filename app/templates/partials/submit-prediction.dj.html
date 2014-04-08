@@ -24,11 +24,12 @@
        </div>
        
        <div class="form-group animate-show" ng-show="showSourceDetails">
-         <p class="help-block">[['form.source-infotext' | translate ]]</p>        
+         <div class="help-block alert alert-warning alert-dismissable fade in">[['form.source-infotext' | translate ]]</p>        
          <label for="author">[['Author' | translate]]</label> <!-- TODO: change label based on source type -->
          <input type="text" class="form-control" id="author" ng-model="prediction.source.author" placeholder="Last name, first name">
          <label for="year_published">[['When was it first published?' | translate]]</label>
          <input type="number" class="form-control" id="year_published" ng-model="prediction.source.year_published" placeholder="">
+         </div>
        </div>
          
        <div class="form-group">
