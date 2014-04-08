@@ -39,7 +39,7 @@ class Source(models.Model):
     featured = models.BooleanField(default=False)
 
     def __unicode__(self):
-        return '%s by %s (%d)' % (self.title, self.author, self.id)
+        return '%s (%s, %d)' % (self.title, self.author, self.year_published)
 
 class Prediction(models.Model):
     source = models.ForeignKey(Source)
@@ -75,7 +75,7 @@ class Prediction(models.Model):
     def __unicode__(self):
         if self.headline_E != None and self.headline_E != "":
             return self.headline_E
-        return '%d : %s by %s (%d)' % (self.year_predicted, self.source.title, self.source.author, self.id)
+        return '%s : %s' % (self.source.title, self.description_E)
 
 class Realisation(models.Model):
     prediction = models.ForeignKey(Prediction, related_name='realisations')
@@ -95,3 +95,6 @@ class Realisation(models.Model):
     creation_date = models.DateTimeField(auto_now_add=True)
     edition_date = models.DateTimeField(auto_now=True)
     published = models.BooleanField(default=False)
+    
+    def __unicode__(self):
+        return '%d: %s' % (self.year_introduced, self.description_E)
