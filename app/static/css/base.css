@@ -114,7 +114,7 @@ a {color: black !important;text-decoration: none !important;}
 
 
 
-.source {
+.source, .credit {
     font-size: 0.8em;
     color:grey;
     margin-top: 15px;
@@ -157,9 +157,11 @@ a {color: black !important;text-decoration: none !important;}
 
 .prediction {position: relative;}
 .prediction img {position: absolute;top:0;left:0;background-color: grey;}
-.predictiontext {position: absolute;margin:30% 5% 0 5%;width: 90%;padding:0 10px;background-color: rgba(255,255,255,0.79);}
+.predictiontext {position: absolute;margin:30% 5% 0 5%;width: 90%;padding:0 10px;background-color: rgba(255,255,255,0.79);font-size: 140%;}
 
-.realisation > p {width: 400px;float: left;display: block;position: relative;left:50px;}
+.realisation {background-color: #ededed;}
+
+
 .verticalline {border-left: 4px solid black;padding-left:20px;min-height: 400px;width:50px;margin-right: 10px;width: 0;overflow: visible;}
 .timedot {width: 20px;height:20px;left:-12px;background: fuchsia;border-radius: 50%;border:3px solid black;}
 .timetext {width:50px;left:10px;}
