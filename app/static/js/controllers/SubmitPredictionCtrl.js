@@ -62,7 +62,6 @@ angular.module('dystopia-tracker').controller('SubmitPredictionCtrl', ['$scope',
     
     function postPrediction(prediction) {
 	    Prediction.post($scope.prediction).success(function(data) {
-			    alert("posted!"); // TODO redirect to thankyou paged);
 			    $location.url($scope.language + "/" + "thankyou" + "?p=" + data.id);
 		    });    
     }

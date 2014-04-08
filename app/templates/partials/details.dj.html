@@ -38,6 +38,14 @@
 		                   <p>[[alldates.text]]</p>
 		                   <p class="credit" ng-show="alldates.credit">&mdash; contributed by [[alldates.credit]]</p>
 		                   <li ng-show="[[alldates.link]]" target="_blank"><a ng-href="[[alldates.link]]">Read more about this</a></li>
+		                   <a href="" ng-click="isTranslating = true">Translate</a>
+		                   <form role="form" ng-show="isTranslating" ng-submit="translate()">
+		                       <div class="form-group">
+                                   <label for="prediction">[['Enter translation' | translate]]</label>
+                                   <textarea class="form-control" id="realisation" rows="5" maxlength="300" ng-model="['description_' + language]" required></textarea>
+                               </div>
+                               <button type="submit" class="btn btn-default btn-block">[['Submit' | translate]]</button>
+		                   </form>
 		               </div>
 	               </div>
 	               <div class="col col-sm-3">

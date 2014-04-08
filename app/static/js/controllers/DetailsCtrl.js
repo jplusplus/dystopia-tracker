@@ -19,6 +19,7 @@ angular.module('dystopia-tracker').controller('DetailsCtrl', ['$scope', 'Predict
     including the corresponding descriptions */
     $scope.alldates = [];
     $scope.sorting = 'year';
+    $scope.isTranslating = false;
     
     Prediction.get({id:$routeParams.id}).success(function(data) {
 		$scope.prediction = data;
@@ -67,5 +68,17 @@ angular.module('dystopia-tracker').controller('DetailsCtrl', ['$scope', 'Predict
     $scope.shareurls.fb = "http://www.facebook.com/sharer.php?u=" + $location.absUrl();
     $scope.shareurls.twi = "http://twitter.com/share?url=" + $location.absUrl();
     $scope.shareurls.mail = "mailto:?Subject=Dystopia Tracker&Body=" + $location.absUrl();
+    
+    // translation
+    $scope.translate = function() {
+	   
+	    
+	    Prediction.post($scope.prediction).success(function(data) {
+
+
+
+		    });
+    };
+    
     
 }]); // it's the end of the code as we know it
