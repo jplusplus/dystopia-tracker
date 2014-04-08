@@ -82,7 +82,7 @@ angular.module('dystopia-tracker').controller('SubmitPredictionCtrl', ['$scope',
     
     // get list of all titles for search field
     function loadTitles(pageNo){
-        Sources.get({page: pageNo,source__type: $scope.prediction.source.type}).success(function(data) {
+        Sources.get({page: pageNo,type: $scope.prediction.source.type}).success(function(data) {
             $scope.titles.add(data.results);
             if(data.next!=null) {
                 pageNo++;
