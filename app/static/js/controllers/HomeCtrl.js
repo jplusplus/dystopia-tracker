@@ -52,6 +52,8 @@ angular.module('dystopia-tracker').controller('HomeCtrl', ['$scope', 'Prediction
 			$scope.filters.page = 1;
 			$scope.predictions = [];
             $scope.editorspicks = [];
+            $scope.hideMoreButton = false;
+            
             
             // get all editor's picks with selected filter applied 
 		    editorspick_filters = angular.copy($scope.filters);
