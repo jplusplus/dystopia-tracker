@@ -12,7 +12,7 @@ angular.module('dystopia-tracker').controller('SubmitPredictionCtrl', ['$scope',
     $scope.categories = [];
     $scope.language = $rootScope._lang;
     $scope.prediction = {
-         "source": {}, 
+         "source": {type: "literature"}, 
          "category": "", 
          "description_E": "", 
          "description_D": "", 
@@ -39,6 +39,14 @@ angular.module('dystopia-tracker').controller('SubmitPredictionCtrl', ['$scope',
      }
     
     $scope.submit = function () {
+	    
+	    $scope.fieldsMissing = false;
+	    
+	    if ($scope.prediction.source.title == "" || ($scope.prediction.description_E == "" && $scope.prediction.description_D == "")) {
+		    $scope.fieldsMissing = true;
+		    return;
+	    }
+	    
 	    if (typeof $scope.prediction.source.title === "string") {
 		    // create the source retrieve the newly created `id` and set it in the object
 		    Sources.post($scope.prediction.source).success(function(data) {

@@ -24,7 +24,7 @@
        </div>
        
        <div class="form-group animate-show" ng-show="showSourceDetails">
-         <div class="help-block alert alert-warning alert-dismissable fade in">[['form.source-infotext' | translate ]]</p>        
+         <div class="help-block alert alert-warning alert-dismissable fade in"><p>[['form.source-infotext' | translate ]]</p>        
          <label for="author">[['Author' | translate]]</label> <!-- TODO: change label based on source type -->
          <input type="text" class="form-control" id="author" ng-model="prediction.source.author" placeholder="Last name, first name">
          <label for="year_published">[['When was it first published?' | translate]]</label>
@@ -34,7 +34,7 @@
          
        <div class="form-group">
          <label for="prediction">[['Enter the prediction. Try to be specific.' | translate]]</label>
-         <textarea class="form-control" id="prediction" rows="5" maxlength="300" ng-model="prediction['description_' + language]"></textarea>
+         <textarea class="form-control" id="prediction" rows="5" maxlength="300" ng-model="prediction['description_' + language]" required></textarea>
        </div>
        
        <div class="form-group">
@@ -60,6 +60,10 @@
          <input type="text" class="form-control" id="username" ng-model="prediction.username" placeholder="">
        </div>
  
+       <div class="help-block alert alert-warning alert-dismissable fade in" ng-show="fieldsMissing">
+	       <p>Please fill in all required fields.</p>
+       </div>
+       
        <button type="submit" class="btn btn-default btn-block">[['Submit' | translate]]</button>
     </form>
 
