@@ -13,6 +13,9 @@ angular.module('dystopia-tracker').controller('DetailsCtrl', ['$scope', 'Predict
     $scope.category = [];
     $scope.shareurls = [];
     $scope.more = [];
+
+    $scope.translationArray = [];
+
     $scope.filters = {exclude : $routeParams.id, title : '', author : '', category : ''};
     $scope.language = $rootScope._lang;
     /* create array to story year_published of source, year_predicted of prediction, and year_introduced of all realisations
@@ -49,7 +52,7 @@ angular.module('dystopia-tracker').controller('DetailsCtrl', ['$scope', 'Predict
         }
         
         for (var i=0;i<realisations.length;i++) {
-    	    $scope.alldates.push({"year":realisations[i].year_introduced, "text": realisations[i].description_E, "img":realisations[i].image, "credit": realisations[i].username, "type":"introduced", "link": realisations[i].more_info});    
+    	    $scope.alldates.push({"id": realisations[i].id, "year":realisations[i].year_introduced, "text": realisations[i].description_E, "img":realisations[i].image, "credit": realisations[i].username, "type":"introduced", "link": realisations[i].more_info});    
         };
     };
     
@@ -70,10 +73,17 @@ angular.module('dystopia-tracker').controller('DetailsCtrl', ['$scope', 'Predict
     $scope.shareurls.mail = "mailto:?Subject=Dystopia Tracker&Body=" + $location.absUrl();
     
     // translation
-    $scope.translate = function() {
-	   
-	    
-	    Prediction.post($scope.prediction).success(function(data) {
+    $scope.translate = function(realisation_id) {
+        var realisation = null;
+        var fieldToUpdate = "";
+        if (realisation.description_E === '') {
+            fieldToUpdate = 'description_E';
+        } else {
+            fieldToUpdate = 'description_D';
+        }
+        var data = { id : realisation_id, fieldToUpdate : $scope.translationArray[realisation_id] };
+
+	    Realisations.patch($scope.prediction).success(function(data) {
 
 
 
