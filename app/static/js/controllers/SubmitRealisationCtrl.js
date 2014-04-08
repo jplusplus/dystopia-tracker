@@ -1,5 +1,5 @@
-angular.module('dystopia-tracker').controller('SubmitRealisationCtrl', ['$scope', 'Prediction', 'Realisation', '$rootScope', '$location', '$routeParams',
-                                                           function($scope, Prediction, Realisation, $rootScope, $location, $routeParams) {
+angular.module('dystopia-tracker').controller('SubmitRealisationCtrl', ['$scope', 'Prediction', 'Realisation', '$rootScope', '$location', '$routeParams', '$filter',
+                                                           function($scope, Prediction, Realisation, $rootScope, $location, $routeParams, $filter) {
     
     $scope.language = $rootScope._lang;
     $scope.prediction = {},
