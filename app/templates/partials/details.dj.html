@@ -74,7 +74,7 @@
     <div id="morecontent" class="row">
         <div class="col col-lg-10 col-lg-offset-1">
         <div class="morefrom col col-sm-4">
-        	<h4>[['More.title' | translate]] [[prediction.source.title]]</h4>
+        	<h4>[['More_title' | translate]] «[[prediction.source.title]]»</h4>
 	        <div ng-switch on="more.title.length">
 	            <div ng-switch-default>
 	            <li class="card textcard color-[[item.category]]" ng-repeat="item in more.title | limitTo:2" >
@@ -87,7 +87,7 @@
 	        </div>
         </div>
         <div class="morefrom col col-sm-4">
-	        <h4>[['More.author' | translate]] [[prediction.source.author | reverse]]</h4>
+	        <h4>[['More_author' | translate]] [[prediction.source.author | reverse]]</h4>
 	        <div ng-switch on="more.author.length">
 	            <div ng-switch-default>
 	            <li class="card textcard color-[[item.category]]" ng-repeat="item in more.author | limitTo:2">
@@ -100,7 +100,7 @@
 	        </div>
         </div>
         <div class="morefrom col col-sm-4">
-	        <h4>[['More.category' | translate]] [[category|getTranslated:'title']]</h4>
+	        <h4>[['More_category' | translate]] [[category|getTranslated:'title']]</h4>
 	        <div ng-switch on="more.category.length">
 	            <div ng-switch-default>
 	            <li class="card textcard color-[[item.category]]" ng-repeat="item in more.category | limitTo:2">
