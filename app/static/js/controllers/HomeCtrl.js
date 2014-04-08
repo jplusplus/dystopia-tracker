@@ -14,7 +14,7 @@ angular.module('dystopia-tracker').controller('HomeCtrl', ['$scope', 'Prediction
     $scope.filters = {category:'', source__type:'', title:''};
     $scope.filters.page = 0;
     $scope.hideMoreButton = false;
-    // define number of predictions to load, set to 4 to test, will be higher for launch
+    // define number of predictions to load, set to 10 to test, will be higher for launch
     $scope.filters.page_size = 10;
     $scope.language = $rootScope._lang;
     var i = 0;
@@ -59,7 +59,7 @@ angular.module('dystopia-tracker').controller('HomeCtrl', ['$scope', 'Prediction
 		    editorspick_filters = angular.copy($scope.filters);
     	    editorspick_filters.editors_pick = 'True';
     	    // define number of editors picks to show -- set to 2 to test, will be higher for launch
-    	    editorspick_filters.page_size = 2;
+    	    editorspick_filters.page_size = 6;
 		    Prediction.get(editorspick_filters).success(function(data) {
 		    
 		        for (var i=0;i<data.results.length;i++) {

@@ -98,7 +98,7 @@ body {
   border: 1px solid #efefef !important;
 }
 
-.imagecard img {float:left;width:150px;margin-right: 15px;}
+.imagecard img {float:left;width:150px;height:220px;margin-right: 15px;}
 
 .imagecard .cardtext {padding: 15px 10px 0 0;}
 

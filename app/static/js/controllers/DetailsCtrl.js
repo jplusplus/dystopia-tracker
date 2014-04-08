@@ -86,7 +86,7 @@ angular.module('dystopia-tracker').controller('DetailsCtrl', ['$scope', 'Predict
 	    Realisations.patch($scope.prediction).success(function(data) {
 
 
-
+            // TODO close form and show success message instead (ng-show="translated")
 		    });
     };
     
