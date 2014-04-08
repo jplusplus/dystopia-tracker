@@ -7,7 +7,7 @@ body {
     background-color: rgba(255,255,255,0.79) !important;
 }
 
-a {color: black !important;text-decoration: none !important;}
+.card a, #header a {color: black !important;text-decoration: none !important;}
 
 .addnew {position: fixed;bottom:15px;right:15px;}
 
@@ -139,7 +139,6 @@ a {color: black !important;text-decoration: none !important;}
 /* Single page styles */
 
 .detail {height:500px;clear: both;}
-.detail .cover {float: right;}
 
 .singleline {text-align: center;}
 .line span {
@@ -159,7 +158,7 @@ a {color: black !important;text-decoration: none !important;}
 .prediction img {position: absolute;top:0;left:0;background-color: grey;}
 .predictiontext {position: absolute;margin:30% 5% 0 5%;width: 90%;padding:0 10px;background-color: rgba(255,255,255,0.79);font-size: 140%;}
 
-.realisation {background-color: #ededed;}
+.realisation {margin-bottom: 20px;}
 
 
 .verticalline {border-left: 4px solid black;padding-left:20px;min-height: 400px;width:50px;margin-right: 10px;width: 0;overflow: visible;}

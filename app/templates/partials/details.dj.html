@@ -14,7 +14,7 @@
                 <div class="predictiontext">
                 <h2>[[prediction|getTranslated:'headline']]</h2>       
                 <p>[[prediction|getTranslated:'description']]</p>
-                <p class="source">&mdash; [[prediction.source.title]] [['by' | translate ]] [[prediction.source.author | reverse]] ([[prediction.source.year_published]])</p>
+                <p class="credit" ng-show="prediction.username">&mdash; contributed by [[prediction.username]]</p>
                 </div>
             </div>
     
@@ -22,27 +22,34 @@
     </div>
         
         
-    <div class="timeaxis row">
-            <!- TODO assign top-value by a function so that the dots are distributed correctly -->
-            
-            <div class="col-lg-6 col-lg-offset-3">
-	            <div>Published in [[prediction.source.year_published]]</div>
-	            <div ng-hide="prediction.year_predicted==0">Predicted for [[prediction.year_predicted]]</div>
-	            <div class="realisation" ng-repeat="realisation in realisations">
-	               <p>[[realisation.year_introduced]]</p>
-	               <p>[[realisation|getTranslated:'description']]</p>
-	               <p class="credit">contributed by [[realisation.username]]</p>
-	            </div>
+    <div class="timeline col-lg-6 col-lg-offset-3">
+           
+	        <div class="row realisation [[alldates.type]]" ng-repeat="alldates in alldates | orderBy:sorting">
+	               <div class="col col-sm-1"><strong>[[alldates.year]]</strong></div>
+	               <div class="col col-sm-8" ng-switch on="alldates.type">
+	                   <div ng-switch-when="published">
+	                      <p>Prediction is published in [[prediction.source.title]] by [[prediction.source.author | reverse]].
+	                      <p class="source" ng-show="[[prediction.source.description_E]]">[[prediction.source.description_E]]</p>
+	                      <ul>
+	                      <li ng-show="[[alldates.link]]"><a ng-href="[[alldates.link]]">Read more about [[prediction.source.title]]</a></li>
+		                  <li><a ng-href="[[alldates.amzn]]">Buy [[prediction.source.title]] on Amazon</a></li>
+	                      </ul>
+		               </div>
+		               <div ng-switch-when="predicted">Story in [[prediction.source.title]] is set in [[alldates.year]].</div>
+		               <div ng-switch-when="introduced">
+		                   <p>[[alldates.text]]</p>
+		                   <p class="credit" ng-show="alldates.credit">contributed by [[alldates.credit]]</p>
+		               </div>
+	               </div>
+	               <div class="col col-sm-3">
+	                   <a ng-href="[[alldates.amzn]]"><img width="100%" ng-src="/uploaded/[[alldates.img]]" alt="[[prediction.source.title]]" ng-show="[[alldates.img]]" title="Buy on Amazon"/></a>
+	               </div>
+	               
             </div>
-            <div class="col-lg-1">
-	            <img class="cover" ng-src="/uploaded/[[prediction.source.image]]" alt="[[prediction.source.title]]">
-	            <a type=amzn search="[[prediction.source.title]]">Buy on Amazon</a>
-            </div>
-          
             
-	        <a ng-href="[[language]]/submit/realisation?p=[[prediction.id]]" class="btn btn-primary btn-lg addRealisation">[['Add a realisation' | translate]]</a>
+	        <a ng-href="[[language]]/submit/realisation?p=[[prediction.id]]" class="btn btn-primary btn-lg btn-block addRealisation">[['Add a realisation' | translate]]</a>
             
-	</div> <!- timeaxis -->
+	</div> <!- timeline -->
        
 	<div class="buffer"></div>
 	<div id="sharing" class="row">
@@ -59,7 +66,8 @@
     <div class="buffer"></div>
     
     <div id="morecontent" class="row">
-        <div class="morefrom col col-sm-4 col-lg-3 col-lg-offset-1">
+        <div class="col col-lg-10 col-lg-offset-1">
+        <div class="morefrom col col-sm-4">
         	<h4>[['More.title' | translate]] [[prediction.source.title]]</h4>
 	        <div ng-switch on="more.title.length">
 	            <div ng-switch-default>
@@ -72,7 +80,7 @@
 	            <p ng-switch-when="0">[['No more predictions from (title)' | translate]] [[prediction.source.title]] [['yet. Know one?' | translate]] <a ng-href="[[language]]/submit/prediction" type="button" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-plus"></span>[['Add it' | translate]]!</a></p>
 	        </div>
         </div>
-        <div class="morefrom col col-sm-4 col-lg-3">
+        <div class="morefrom col col-sm-4">
 	        <h4>[['More.author' | translate]] [[prediction.source.author | reverse]]</h4>
 	        <div ng-switch on="more.author.length">
 	            <div ng-switch-default>
@@ -85,7 +93,7 @@
 	            <p ng-switch-when="0">[['No more predictions from (author)' | translate]] [[prediction.source.author | reverse]] yet. [['yet. Know one?' | translate]] <a ng-href="[[language]]/submit/prediction" type="button" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-plus"></span>[['Add it' | translate]]!</a></p>
 	        </div>
         </div>
-        <div class="morefrom col col-sm-4 col-lg-3">
+        <div class="morefrom col col-sm-4">
 	        <h4>[['More.category' | translate]] [[category|getTranslated:'title']]</h4>
 	        <div ng-switch on="more.category.length">
 	            <div ng-switch-default>
@@ -97,6 +105,7 @@
 	            </div>
 	            <p ng-switch-when="0">[['No more predictions from (category)' | translate]] [[category|getTranslated:'title']] [['yet. Know one?' | translate]] <a ng-href="[[language]]/submit/prediction" type="button" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-plus"></span>[['Add new prediction' | translate]]!</a></p>
 	        </div>
+        </div>
         </div>
     </div>            
         

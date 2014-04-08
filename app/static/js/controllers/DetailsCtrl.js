@@ -18,9 +18,11 @@ angular.module('dystopia-tracker').controller('DetailsCtrl', ['$scope', 'Predict
     /* create array to story year_published of source, year_predicted of prediction, and year_introduced of all realisations
     including the corresponding descriptions */
     $scope.alldates = [];
+    $scope.sorting = 'year';
     
     Prediction.get({id:$routeParams.id}).success(function(data) {
 		$scope.prediction = data;
+		$scope.prediction.amzn = "http://www.amazon.de/s/?url=search-alias=aps&field-keywords=" + data.source.title + "&tag=davidbauerch-21&link_code=wql&_encoding=UTF-8";
 		$scope.realisations = $scope.prediction.realisations;
 		createYearsArray($scope.prediction,$scope.realisations);
 	    getCategoryTitle($scope.prediction.category);
@@ -37,11 +39,14 @@ angular.module('dystopia-tracker').controller('DetailsCtrl', ['$scope', 'Predict
    
     function createYearsArray(prediction,realisations) {
         // push all year values into the array
-        $scope.alldates.push({"year":prediction.source.year_published, "text": "", "img":prediction.source.image, "credit": ""});
-        $scope.alldates.push({"year":prediction.year_predicted, "text": "", "img":"", "credit": ""});
+        $scope.alldates.push({"year":prediction.source.year_published, "text": "", "img":prediction.source.image, "credit": "", "type": "published", "link": prediction.source.more_info, "amzn": prediction.amzn});
         
-        for (i=0;i<realisations.length;i++) {
-    	    $scope.alldates.push({"year":realisations[i].year_introduced, "text": realisations[i].description_E, "img":realisations[i].image, "credit": realisations[i].username});    
+        if (prediction.year_predicted != 0) {
+            $scope.alldates.push({"year":prediction.year_predicted, "text": "", "img":"", "credit": "", "type":"predicted","link": prediction.more_info});
+        }
+        
+        for (var i=0;i<realisations.length;i++) {
+    	    $scope.alldates.push({"year":realisations[i].year_introduced, "text": realisations[i].description_E, "img":realisations[i].image, "credit": realisations[i].username, "type":"introduced", "link": realisations[i].more_info});    
         };
     };
     
