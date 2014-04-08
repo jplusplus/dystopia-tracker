@@ -6,26 +6,26 @@
        <p>For: [[prediction | getTranslated:'description']]</p>
                
        <div class="form-group">
-         <label for="prediction">Describe the realisation. What exactly has been realised?</label>
+         <label for="prediction">[['Describe the realisation.' | translate]]</label>
          <textarea class="form-control" id="prediction" rows="5" maxlength="300" ng-model="realisation['description_' + language]" autofocus required></textarea>
        </div>
        
        <div class="form-group">
-         <label for="year_introduced">What year was that?</label>
+         <label for="year_introduced">[['What year was that?' | translate ]]</label>
          <input type="number" class="form-control" id="year_predicted" placeholder="" ng-model="realisation.year_introduced" required>
        </div>
        
        <div class="form-group">
-         <label for="url">Where can we find more info on the realisation?</p>
+         <label for="url">[['Where can we find more info on the realisation?' | translate ]]</p>
          <input type="url" class="form-control" id="url"  ng-model="realisation.more_info" placeholder="http://">
        </div>
        
        <div class="form-group">
-         <label for="username">Your name or initials (so we can send all the fame your way)</label>
+         <label for="username">[['Your name or initials (so we can send all the fame your way)' | translate]]</label>
          <input type="text" class="form-control" id="username" ng-model="realisation.username" placeholder="">
        </div>
  
-       <button type="submit" class="btn btn-default btn-block">Submit</button>
+       <button type="submit" class="btn btn-default btn-block">[['Submit' | translate]]</button>
     </form>
 
 

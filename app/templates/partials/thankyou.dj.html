@@ -1,24 +1,24 @@
 <div id="content" class="row">
    
    <div id="thankyou" class="col-sm-6 col-md-4 col-sm-offset-3 col-md-offset-4">
-       <h2>Thank you,<span ng-show="prediction.username"> [[prediction.username]],</span></h2>
+       <h2>[['Thank you' | translate]],<span ng-show="prediction.username"> [[prediction.username]],</span></h2>
        
-       <p>for adding this prediction. Want to share it?</p>
+       <p>[['for adding this prediction. Want to share it?' | translate]]</p>
        
        <div id="share-buttons">
             <a ng-href="[[shareurls.fb]]" target="_blank"><img src="{{ STATIC_URL }}img/facebook.png" alt="Facebook" /></a>
             <a ng-href="[[shareurls.twi]]" target="_blank"><img src="{{ STATIC_URL }}img/twitter.png" alt="Twitter" /></a>
-            <a ng-href="[[shareurls.mail]]"><img src="http://www.simplesharebuttons.com/images/somacro/email.png" alt="Email" /></a>
+            <a ng-href="[[shareurls.mail]]"><img src="{{ STATIC_URL }}img/email.png" alt="Email" /></a>
     	</div>
 
-       <p>It doesn't need to stop just now. Here's what you can do next. Has your prediction already become reality in some way?</p>
+       <p>[['It doesn't need to stop just now.' | translate ]]</p>
        
-       <a ng-href="[[language]]/submit/realisation?p=[[prediction.id]]" class="btn btn-primary btn-lg btn-block addRealisation">Add realisation</a>
+       <a ng-href="[[language]]/submit/realisation?p=[[prediction.id]]" class="btn btn-primary btn-lg btn-block addRealisation">[['Add a realisation' | translate]]</a>
        
-       Or do you know of some more predictions you'd like to share? 
+       <p>[['Or do you know of some more predictions you'd like to share?' | translate ]] </p>
        <a ng-href="[[language]]/submit/prediction" type="button" class="btn btn-primary btn-lg btn-block"><span class="glyphicon glyphicon-plus"></span> [['Add another prediction' | translate]]</a>
        
-       Nah, just <a href="/">take me back home</a> so I can see what others have submitted.
+       [['Nah, just' | translate]] <a href="/">[['take me back home' | translate]]</a> [['so I can see what others have submitted' | translate]].
                
     </div>
 
