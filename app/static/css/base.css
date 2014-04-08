@@ -158,7 +158,15 @@ body {
 .prediction img {position: absolute;top:0;left:0;background-color: grey;}
 .predictiontext {position: absolute;margin:30% 5% 0 5%;width: 90%;padding:0 10px;background-color: rgba(255,255,255,0.79);font-size: 140%;}
 
-.realisation {margin-bottom: 20px;}
+.moments {margin-bottom: 20px;}
+.moments p.credit {margin-top: 0;float: right;}
+.moments li     	     {
+		list-style: none;
+	     }
+
+.moments li:before {
+		content: "\2023 \0020";
+	     }
 
 
 .verticalline {border-left: 4px solid black;padding-left:20px;min-height: 400px;width:50px;margin-right: 10px;width: 0;overflow: visible;}
