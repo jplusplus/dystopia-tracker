@@ -1,10 +1,6 @@
 <div id="content" class="row">
-
-   <div class="col-md-3">
-	   testing: [[prediction | json]]
-   </div>
    
-   <form role="form" class="col-md-4 col-md-offset-1" ng-submit="submit()">
+   <form role="form" class="col-sm-6 col-md-4 col-sm-offset-3 col-md-offset-4" ng-submit="submit()">
        <h2>[['Submit prediction' | translate ]]</h2>
        
        <div class="alert alert-info alert-dismissable fade in" ng-hide="returningVisitor">
@@ -14,7 +10,7 @@
        
        <div class="form-group">
          <select id="sourcetype" class="form-control" ng-change="updateTitles()" ng-model="prediction.source.type" required>
-                 <option value='literature'>[['Literature' | translate ]]</option>
+                 <option value='literature' selected>[['Literature' | translate ]]</option>
                  <option value='movies'>[['Movies' | translate ]]</option>
                  <option value='tv_series'>[['TV Series' | translate ]]</option>
                  <option value='games'>[['Games' | translate ]]</option>

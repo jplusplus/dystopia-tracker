@@ -43,12 +43,12 @@
        
 	<div class="buffer"></div>
 	<div id="sharing" class="row">
-	    <div id="share-buttons" class="col col-lg-2 col-lg-offset-4">
+	    <div id="share-buttons" class="col col-sm-3 col-sm-offset-3">
             <a ng-href="[[shareurls.fb]]" target="_blank"><img src="{{ STATIC_URL }}img/facebook.png" alt="Facebook" /></a>
             <a ng-href="[[shareurls.twi]]" target="_blank"><img src="{{ STATIC_URL }}img/twitter.png" alt="Twitter" /></a>
             <a ng-href="[[shareurls.mail]]"><img src="http://www.simplesharebuttons.com/images/somacro/email.png" alt="Email" /></a>
     	</div>
-    	<div id="embed" class="col col-lg-4">
+    	<div id="embed" class="col col-sm-3">
 	    	<input placeholder="here will be the embed code">
     	</div>
 	</div>                       
@@ -56,7 +56,7 @@
     <div class="buffer"></div>
     
     <div id="morecontent" class="row">
-        <div class="morefrom col-lg-3 col-lg-offset-1">
+        <div class="morefrom col col-sm-4 col-lg-3 col-lg-offset-1">
         	<h4>[['More.title' | translate]] [[prediction.source.title]]</h4>
 	        <div ng-switch on="more.title.length">
 	            <div ng-switch-default>
@@ -69,7 +69,7 @@
 	            <p ng-switch-when="0">[['No more predictions from (title)' | translate]] [[prediction.source.title]] [['yet. Know one?' | translate]] <a ng-href="[[language]]/submit/prediction" type="button" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-plus"></span>[['Add it' | translate]]!</a></p>
 	        </div>
         </div>
-        <div class="morefrom col-lg-3">
+        <div class="morefrom col col-sm-4 col-lg-3">
 	        <h4>[['More.author' | translate]] [[prediction.source.author | reverse]]</h4>
 	        <div ng-switch on="more.author.length">
 	            <div ng-switch-default>
@@ -82,7 +82,7 @@
 	            <p ng-switch-when="0">[['No more predictions from (author)' | translate]] [[prediction.source.author | reverse]] yet. [['yet. Know one?' | translate]] <a ng-href="[[language]]/submit/prediction" type="button" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-plus"></span>[['Add it' | translate]]!</a></p>
 	        </div>
         </div>
-        <div class="morefrom col-lg-3">
+        <div class="morefrom col col-sm-4 col-lg-3">
 	        <h4>[['More.category' | translate]] [[category|getTranslated:'title']]</h4>
 	        <div ng-switch on="more.category.length">
 	            <div ng-switch-default>
