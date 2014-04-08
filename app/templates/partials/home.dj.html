@@ -39,7 +39,7 @@
     	            <a ng-href="[[language]]/p/[[editorspick.source.author | reverse | slugify]]/[[editorspick.source.title | slugify]]/[[editorspick.id]]">
     	            <img class="cover" ng-src="/uploaded/[[editorspick.source.image]]" alt="[[editorspick.source.title]]">
     	             <p class="cardtext">[[editorspick|getTranslated:'description']]</p>
-    	             <p class"realisations" ng-switch on="editorspick.realisations.length">
+    	             <p class"realisation-no" ng-switch on="editorspick.realisations.length">
     	                 <span ng-switch-when="0">[['This real? Add realisation.' | translate ]]</span>
     	                 <span class="badge" ng-switch-when="1">1 [['realisation' | translate ]]</span>
     	                 <span class="badge" ng-switch-default>[[editorspick.realisations.length]] [['realisations' | translate ]]</span>

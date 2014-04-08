@@ -10,7 +10,7 @@
         <div class="col col-lg-6 col-lg-offset-3">
         
             <div class="prediction">
-                <img ng-show="prediction.image" ng-src="/uploaded/[[prediction.image]]" width="100%"/>
+                <img ng-show="prediction.image" ng-src="/uploaded/[[prediction.image]]" width="100%" ng-show="prediction.image"/>
                 <div class="predictiontext">
                 <h2>[[prediction|getTranslated:'headline']]</h2>       
                 <p>[[prediction|getTranslated:'description']]</p>
@@ -25,15 +25,18 @@
     <div class="timeaxis row">
             <!- TODO assign top-value by a function so that the dots are distributed correctly -->
             
-            <div class="col-lg-1 col-lg-offset-3">
-	            <p>Published in [[prediction.source.year_published]]</p>
-	            <p>Predicted for [[prediction.year_predicted]]</p>
-	            <p>[[realisations[0].year_introduced]]</p>
+            <div class="col-lg-6 col-lg-offset-3">
+	            <div>Published in [[prediction.source.year_published]]</div>
+	            <div ng-hide="prediction.year_predicted==0">Predicted for [[prediction.year_predicted]]</div>
+	            <div class="realisation" ng-repeat="realisation in realisations">
+	               <p>[[realisation.year_introduced]]</p>
+	               <p>[[realisation|getTranslated:'description']]</p>
+	               <p class="credit">contributed by [[realisation.username]]</p>
+	            </div>
             </div>
-            <div class="col-lg-5">
+            <div class="col-lg-1">
 	            <img class="cover" ng-src="/uploaded/[[prediction.source.image]]" alt="[[prediction.source.title]]">
 	            <a type=amzn search="[[prediction.source.title]]">Buy on Amazon</a>
-	            <p>[[realisation[0]|getTranslated:'description']]</p>
             </div>
           
             
