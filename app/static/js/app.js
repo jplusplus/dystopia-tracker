@@ -20,8 +20,9 @@ var app = angular.module('dystopia-tracker', [
 
                 $locationProvider.html5Mode(true);
 
+                var STATIC_URL = window.STATIC_URL || "/";
                 $translateProvider.useStaticFilesLoader({
-                    prefix: '/static/locale/',
+                    prefix: STATIC_URL + 'locale/',
                     suffix: '.json'
                 });
                 $translateProvider.preferredLanguage('E');

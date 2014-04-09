@@ -19,6 +19,10 @@
 		<link href='http://fonts.googleapis.com/css?family=Raleway:300' rel='stylesheet' type='text/css'>
         <base href="{% url 'home' %}" />
 
+        <script type="text/javascript">
+            var STATIC_URL = window.STATIC_URL = window.STATIC_URL || "{{STATIC_URL}}";
+        </script>
+
         <script type="text/javascript" src="{{ STATIC_URL }}vendor/jquery/dist/jquery.js"></script>
         <script type="text/javascript" src="{{ STATIC_URL }}vendor/typeahead.js/dist/bloodhound.js"></script>
         <script type="text/javascript" src="{{ STATIC_URL }}vendor/typeahead.js/dist/typeahead.jquery.js"></script>
