@@ -9,7 +9,7 @@ angular.module('dystopia-tracker').controller('PageCtrl', ['$scope', '$location'
     };
 
     // Handle languages
-    var re = /^\/([A-Z]{1})\/?/
+    var re = /^\/([A-Z]{1})\/?/;
     var matches = re.exec($location.path());
     if (matches != null) {
         $scope.translateTo(matches[1]);
