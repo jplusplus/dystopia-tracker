@@ -180,6 +180,10 @@ body {
 .addRealisation {}
 .addRealisation:hover {}
 
+/* form styles */
+
+.back {text-align: center;margin-top: 20px;font-size:85%;}
+
 /* embed styles */
 
 .embed p {font-size: 20px !important;}
