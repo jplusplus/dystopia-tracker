@@ -36,7 +36,7 @@
 		               </div>
 		               <div ng-switch-when="predicted">[['Story in' | translate]] [[prediction.source.title]] [['is set in' | translate]] [[alldates.year]].</div>
 		               <div ng-switch-when="introduced">
-		                   <p>[[alldates|getTranslated:'text']]</p>
+		                   <p class="translated-[[alldates.isTranslated]]">[[alldates|getTranslated:'text']]</p>
 		                   <p class="credit" ng-show="alldates.credit">&mdash; [['contributed by' | translate]] [[alldates.credit]]</p>
 		                   <li ng-show="[[alldates.link]]" target="_blank"><a ng-href="[[alldates.link]]">[['Read more about this' | translate]]</a></li>
 		                   <a href="" ng-if="!alldates.isTranslated" ng-click="alldates.isTranslating = !alldates.isTranslating">[['Translate' | translate]]</a>

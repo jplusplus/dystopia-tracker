@@ -53,6 +53,9 @@ angular.module('dystopia-tracker').controller('DetailsCtrl', ['$scope', 'Predict
             if (realisations[i].description_E && realisations[i].description_D) {
                 realisations[i].isTranslated = true;
             }
+            else {
+	            realisations[i].isTranslated = false;
+            }
     	    $scope.alldates.push({"id": realisations[i].id, "year":realisations[i].year_introduced, "text_E": realisations[i].description_E, "text_D": realisations[i].description_D, "img":realisations[i].image, "credit": realisations[i].username, "type":"introduced", "link": realisations[i].more_info, "isTranslated" : realisations[i].isTranslated});    
         };
     };
@@ -76,7 +79,7 @@ angular.module('dystopia-tracker').controller('DetailsCtrl', ['$scope', 'Predict
     
     // translation
     $scope.translate = function(realisation_id) {
-        var realisation = null;
+        var realisation = null; // <-- How do I get the realisation object?
         var fieldToUpdate = "";
         if (realisation.description_E === '') {
             fieldToUpdate = 'description_E';
