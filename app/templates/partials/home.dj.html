@@ -1,10 +1,9 @@
         <div id="filters">
-        	
-            <select id="language" ng-model="language" ng-change="changeLanguage()">
-                <option value="E">EN</option>
-                <option value="D">DE</option>
-            </select>
             
+            <div class="btn-group">
+              <button type="button" ng-click="changeLanguage('E')" class="btn btn-default">EN</button>
+              <button type="button" ng-click="changeLanguage('D')" class="btn btn-default">DE</button>
+            </div>
             <select id="category" ng-model="filters.category" ng-change="update(true)" ng-options="category.id as getCategoryTitle(category) for category in categories">
                  <option value=''>[[ 'All categories' | translate ]]</option>
             </select>

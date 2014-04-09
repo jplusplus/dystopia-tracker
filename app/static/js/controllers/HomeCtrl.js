@@ -112,8 +112,8 @@ angular.module('dystopia-tracker').controller('HomeCtrl', ['$scope', 'Prediction
         });
     }
     
-    $scope.changeLanguage = function() {
-	    $scope._lang = $scope.language;
+    $scope.changeLanguage = function(lang) {
+	    $scope._lang = $scope.language = lang;
 	    $location.path('/' + $scope.language);
 	    $scope.translateTo($scope.language);
 	    $scope.update(false);
