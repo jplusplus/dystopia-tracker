@@ -1,15 +1,21 @@
+var oppositeLang = {'E':'D', 'D':'E'};
+
 angular.module('dystopia-tracker.filters')
-    .filter('getTranslated', ['$rootScope', function($rootScope) {
-        return function(prediction, fieldname) {
-            if (prediction[fieldname + '_' + $rootScope._lang] != "") {
-                return prediction[fieldname + '_' + $rootScope._lang];
-            }
-            else if (false) {
-                 // if field is empty, use other language
+    .filter('getTranslated', ['$rootScope', function($rootScope, oppositeLang) {
+        return function(item, fieldname) {
+            // check if translation is available
+            if (item[fieldname + '_' + $rootScope._lang] != "") {
+                return item[fieldname + '_' + $rootScope._lang];
             }
             else {
-	            // if both fields are empty, return ""
-	            return "";
+                 // check if text is available in the other language
+                 if (item[fieldname + '_' + opppositeLang.$rootScope._lang] != "") {
+                 return item[fieldname + '_' + opppositeLang.$rootScope._lang];
+                 }
+                 // if all fails, leave empty
+                 else {
+                     return "";
+                 }
             }
         }
 }])
