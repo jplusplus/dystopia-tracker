@@ -23,9 +23,9 @@
     "infotext" : "is a collaborative effort to document predictions about the future and their realisations. Everyone is invited to contribute content and correct errors. The Dystopia Tracker was build by David Bauer in collaboration with Journalism++, with support of the Augstein Stiftung.",
     "license_bold" : "All content from this site can be reused free of charge",
     "license_rest" : "(please do so!). It's licenced under a BY-SA Creative Commons Licence. You can embed filtered views (e.g. everything by George Orwell) or any single prediction with its realisations. All content is available via a read API (see documentation). Whatever you build, please encourage your users to contribute content themselves, and let us know about what you created.",
-    "More_title" : "More from",
-    "More_author" : "More from",
-    "More_category" : "More in",
+    "More title" : "More from",
+    "More author" : "More from",
+    "More category" : "More in",
     "No more predictions from (title)" : "No more predictions from",
     "No more predictions from (author)" : "No more predictions from",
     "No more predictions from (category)" : "No more predictions in",
@@ -64,5 +64,4 @@
     "Read more about this": "Read more about this",
     "Translate": "Translate",
     "Thank you for your translation. The internet thanks you.": "Thank you for your translation. The internet thanks you."
-
 }
