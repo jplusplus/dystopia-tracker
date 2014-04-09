@@ -50,7 +50,10 @@ angular.module('dystopia-tracker').controller('DetailsCtrl', ['$scope', 'Predict
         }
         
         for (var i=0;i<realisations.length;i++) {
-    	    $scope.alldates.push({"id": realisations[i].id, "year":realisations[i].year_introduced, "text_E": realisations[i].description_E, "text_D": realisations[i].description_D, "img":realisations[i].image, "credit": realisations[i].username, "type":"introduced", "link": realisations[i].more_info});    
+            if (realisations[i].description_E && realisations[i].description_D) {
+                realisations[i].isTranslated = true;
+            }
+    	    $scope.alldates.push({"id": realisations[i].id, "year":realisations[i].year_introduced, "text_E": realisations[i].description_E, "text_D": realisations[i].description_D, "img":realisations[i].image, "credit": realisations[i].username, "type":"introduced", "link": realisations[i].more_info, "isTranslated" : realisations[i].isTranslated});    
         };
     };
     
@@ -80,12 +83,13 @@ angular.module('dystopia-tracker').controller('DetailsCtrl', ['$scope', 'Predict
         } else {
             fieldToUpdate = 'description_D';
         }
-        var data = { id : realisation_id, fieldToUpdate : $scope.translationArray[realisation_id] };
+        var updatedata = { id : realisation_id, fieldToUpdate : $scope.translationArray[realisation_id] };
 
-	    Realisations.patch($scope.prediction).success(function(data) {
-
-
+	    Realisations.patch(updatedata).success(function(data) {
+	        // take return data and update scope
+	        console.log("DATA: " + data);
             // TODO close form and show success message instead (ng-show="translated")
+            isTranslating = false;
 		    });
     };
     

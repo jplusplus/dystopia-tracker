@@ -39,7 +39,7 @@
 		                   <p>[[alldates|getTranslated:'text']]</p>
 		                   <p class="credit" ng-show="alldates.credit">&mdash; [['contributed by' | translate]] [[alldates.credit]]</p>
 		                   <li ng-show="[[alldates.link]]" target="_blank"><a ng-href="[[alldates.link]]">[['Read more about this' | translate]]</a></li>
-		                   <a href="" ng-click="alldates.isTranslating = !alldates.isTranslating">[['Translate' | translate]]</a>
+		                   <a href="" ng-if="!alldates.isTranslated" ng-click="alldates.isTranslating = !alldates.isTranslating">[['Translate' | translate]]</a>
 		                   <form role="form" ng-show="alldates.isTranslating" ng-submit="translate(alldates.id)">
 		                       <div class="form-group">
                                    <label for="prediction">[['Enter translation' | translate]]</label>
