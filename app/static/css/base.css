@@ -154,6 +154,7 @@ body {
 }
 
 .translated-false {color: grey;}
+.translated-false span {font-size: 80%;}
 
 .prediction {position: relative;}
 .prediction img {position: absolute;top:0;left:0;background-color: grey;}
