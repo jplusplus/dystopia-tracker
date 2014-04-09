@@ -40,14 +40,14 @@
 		                   <p class="credit" ng-show="alldates.credit">&mdash; [['contributed by' | translate]] [[alldates.credit]]</p>
 		                   <li ng-show="[[alldates.link]]" target="_blank"><a ng-href="[[alldates.link]]">[['Read more about this' | translate]]</a></li>
 		                   <a href="" ng-if="!alldates.isTranslated" ng-click="alldates.isTranslating = !alldates.isTranslating">[['Translate' | translate]]</a>
-		                   <form role="form" ng-show="alldates.isTranslating" ng-submit="translate(alldates.id)">
+		                   <form role="form" ng-show="alldates.isTranslating" ng-submit="translate(alldates)">
 		                       <div class="form-group">
                                    <label for="prediction">[['Enter translation' | translate]]</label>
                                    <textarea class="form-control" id="realisation" rows="5" maxlength="300" ng-model="translationArray[alldates.id]" required></textarea>
                                </div>
                                <button type="submit" class="btn btn-default btn-block">[['Submit translation' | translate]]</button>
 		                   </form>
-		                   <div class="help-block alert alert-success alert-dismissable fade in" ng-show="alldates.translated">
+		                   <div class="help-block alert alert-success alert-dismissable fade in" ng-show="alldates.thanks">
 							       <p>[['Thank you for your translation. The internet thanks you.' | translate]]</p>
                            </div>
 		               </div>

@@ -78,10 +78,10 @@ angular.module('dystopia-tracker').controller('DetailsCtrl', ['$scope', 'Predict
     $scope.shareurls.mail = "mailto:?Subject=Dystopia Tracker&Body=" + $location.absUrl();
     
     // save translation
-    $scope.translate = function(realisation_id) {
+    $scope.translate = function(real) {
         // find the realisation object with the given id
         for (i=0;i<$scope.realisations.length;i++) {
-	        if ($scope.realisations[i].id == realisation_id) {
+	        if ($scope.realisations[i].id == real.id) {
 		        var realisation = $scope.realisations[i];
 	        }
         };
@@ -91,17 +91,22 @@ angular.module('dystopia-tracker').controller('DetailsCtrl', ['$scope', 'Predict
         } else {
             fieldToUpdate = 'description_D';
         }
-        var updatedata = { id : realisation_id, fieldToUpdate : $scope.translationArray[realisation_id] };
+        var updatedata = { id : real.id };
+        updatedata[fieldToUpdate] = $scope.translationArray[real.id];
 
 	    Realisation.patch(updatedata).success(function(data) {
 	        // take return data and update scope
 	        for (i=0;i<$scope.realisations.length;i++) {
 	            if ($scope.realisations[i].id == data.id) {
 		        $scope.realisations[i] = data;
+				real['text_' + $scope.language] = data[fieldToUpdate];
 	            }
             };
             // TODO close form and show success message instead (ng-show="translated")
-            isTranslating = false; // <- HOW do I do this correctly?
+            real.isTranslating = false;
+            real.isTranslated = true;
+            real.thanks = true;
+            setTimeout(function(){real.thanks=false}, 3000);
 		    });
     };
     
