@@ -18,6 +18,7 @@ categories_urls = patterns('',
 )
 
 realisations_urls = patterns('',
+    url(r'^(?P<pk>\d+)/?$', views.RealisationDetail.as_view(), name='realisation-detail'),
     url(r'^$', views.RealisationCreate.as_view(), name='realisation-create')
 )
 

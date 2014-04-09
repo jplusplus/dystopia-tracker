@@ -61,3 +61,10 @@ class RealisationCreate(generics.CreateAPIView):
     permission_classes = [
         permissions.AllowAny
     ]
+
+class RealisationDetail(generics.RetrieveUpdateAPIView):
+    model = Realisation
+    serializer_class = RealisationSerializer
+    permission_classes = [
+        permissions.AllowAny
+    ]
