@@ -30,14 +30,14 @@
 	               <div class="col col-sm-8" ng-switch on="alldates.type">
 	                   <div ng-switch-when="published">
 	                      <p>[['Prediction is published in' | translate]] [[prediction.source.title]] [['by' | translate]] [[prediction.source.author | reverse]].
-	                      <p class="source" ng-show="[[prediction.source.description_E]]">[[prediction.source.description_E]]</p>
+	                      <p class="source" ng-show="[[prediction.source.description_E]]">[[prediction.source | getTranslated:'description']]</p>
 	                      <li ng-show="[[alldates.link]]" target="_blank"><a ng-href="[[alldates.link]]">[['Read more about' | translate]] [[prediction.source.title]]</a></li>
 		                  <li><a ng-href="[[alldates.amzn]]" target="_blank">[['Buy ' | translate]][[prediction.source.title]] [['on Amazon' | translate]]</a></li>
 		               </div>
 		               <div ng-switch-when="predicted">[['Story in' | translate]] [[prediction.source.title]] [['is set in' | translate]] [[alldates.year]].</div>
 		               <div ng-switch-when="introduced">
-		                   <p>[[alldates.text]]</p>
-		                   <p class="credit" ng-show="alldates.credit">&mdash; contributed by [[alldates.credit]]</p>
+		                   <p>[[alldates|getTranslated:'text']]</p>
+		                   <p class="credit" ng-show="alldates.credit">&mdash; [['contributed by' | translate]] [[alldates.credit]]</p>
 		                   <li ng-show="[[alldates.link]]" target="_blank"><a ng-href="[[alldates.link]]">[['Read more about this' | translate]]</a></li>
 		                   <a href="" ng-click="alldates.isTranslating = !alldates.isTranslating">[['Translate' | translate]]</a>
 		                   <form role="form" ng-show="alldates.isTranslating" ng-submit="translate(alldates.id)">

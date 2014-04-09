@@ -43,14 +43,14 @@ angular.module('dystopia-tracker').controller('DetailsCtrl', ['$scope', 'Predict
    
     function createYearsArray(prediction,realisations) {
         // push all year values into the array
-        $scope.alldates.push({"year":prediction.source.year_published, "text": "", "img":prediction.source.image, "credit": "", "type": "published", "link": prediction.source.more_info, "amzn": prediction.amzn});
+        $scope.alldates.push({"year":prediction.source.year_published, "img":prediction.source.image, "credit": "", "type": "published", "link": prediction.source.more_info, "amzn": prediction.amzn});
         
         if (prediction.year_predicted != 0) {
-            $scope.alldates.push({"year":prediction.year_predicted, "text": "", "img":"", "credit": "", "type":"predicted","link": prediction.more_info});
+            $scope.alldates.push({"year":prediction.year_predicted, "type":"predicted","link": prediction.more_info});
         }
         
         for (var i=0;i<realisations.length;i++) {
-    	    $scope.alldates.push({"id": realisations[i].id, "year":realisations[i].year_introduced, "text": realisations[i].description_E, "img":realisations[i].image, "credit": realisations[i].username, "type":"introduced", "link": realisations[i].more_info});    
+    	    $scope.alldates.push({"id": realisations[i].id, "year":realisations[i].year_introduced, "text_E": realisations[i].description_E, "text_D": realisations[i].description_D, "img":realisations[i].image, "credit": realisations[i].username, "type":"introduced", "link": realisations[i].more_info});    
         };
     };
     
