@@ -97,10 +97,16 @@ angular.module('dystopia-tracker').controller('DetailsCtrl', ['$scope', 'Predict
 	    });    
     }
     
-    // TODO: add text and images to optimise sharing: http://ar.zu.my/how-to-really-customize-the-deprecated-facebook-sharer-dot-php/
-    $scope.shareurls.fb = "http://www.facebook.com/sharer.php?u=" + $location.absUrl();
-    $scope.shareurls.twi = "http://twitter.com/share?url=" + $location.absUrl();
-    $scope.shareurls.mail = "mailto:?Subject=Dystopia Tracker&Body=" + $location.absUrl();
+    // add metadata to sharing urls
+    // TODO: add image to optimise sharing, register domain in facebook app
+    if ($rootScope._lang == "D") {
+	    $scope.shareurls.description = "Deutsche Beschreibung"
+    }
+    else {$scope.shareurls.description = "English description"};
+    $scope.shareurls.picture = "";
+    
+    $scope.shareurls.fb = "https://www.facebook.com/dialog/feed?app_id=624040751022885&redirect_uri=" + $location.absUrl() + "&display=page&link=" + $location.absUrl() + "&name=Dystopia%20Tracker&description=" + $scope.shareurls.description + "&picture=" + $scope.shareurls.picture;
+    $scope.shareurls.twi = "https://twitter.com/intent/tweet?text=" + $scope.shareurls.description + "&url=" + $location.absUrl() + "&via=dystopiatracker";    $scope.shareurls.mail = "mailto:?Subject=Dystopia Tracker&Body=" + $scope.shareurls.description + " --> " + $location.absUrl();
     
     // save translation
     $scope.translate = function(real) {
