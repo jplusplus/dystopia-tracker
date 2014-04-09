@@ -1,8 +1,7 @@
-var oppositeLang = {'E':'D', 'D':'E'};
-
 angular.module('dystopia-tracker.filters')
-    .filter('getTranslated', ['$rootScope', function($rootScope, oppositeLang) {
+    .filter('getTranslated', ['$rootScope', function($rootScope) {
         return function(item, fieldname) {
+            var oppositeLang = {'E':'D', 'D':'E'};
             // check if translation is available
             if (item[fieldname + '_' + $rootScope._lang] != "") {
                 return item[fieldname + '_' + $rootScope._lang];
@@ -10,7 +9,7 @@ angular.module('dystopia-tracker.filters')
             else {
                  // check if text is available in the other language
                  if (item[fieldname + '_' + opppositeLang.$rootScope._lang] != "") {
-                 return item[fieldname + '_' + opppositeLang.$rootScope._lang];
+                     return item[fieldname + '_' + opppositeLang.$rootScope._lang];
                  }
                  // if all fails, leave empty
                  else {
