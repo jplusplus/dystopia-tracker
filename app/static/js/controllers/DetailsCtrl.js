@@ -77,9 +77,17 @@ angular.module('dystopia-tracker').controller('DetailsCtrl', ['$scope', 'Predict
     $scope.shareurls.twi = "http://twitter.com/share?url=" + $location.absUrl();
     $scope.shareurls.mail = "mailto:?Subject=Dystopia Tracker&Body=" + $location.absUrl();
     
-    // translation
+    // save translation
     $scope.translate = function(realisation_id) {
-        var realisation = null; // <-- How do I get the realisation object?
+        // find the realisation object with the given id
+        console.log("realisation id:" + realisation_id);
+        console.log($scope.realisations);
+        for (i=0;i<$scope.realisations.length;i++) {
+	        if ($scope.realisations[i].id = realisation_id) {
+		        var realisation = $scope.realisations[i];
+	        }
+        };
+        console.log("realisation description: " + realisation.description_E);
         var fieldToUpdate = "";
         if (realisation.description_E === '') {
             fieldToUpdate = 'description_E';
@@ -88,7 +96,7 @@ angular.module('dystopia-tracker').controller('DetailsCtrl', ['$scope', 'Predict
         }
         var updatedata = { id : realisation_id, fieldToUpdate : $scope.translationArray[realisation_id] };
 
-	    Realisations.patch(updatedata).success(function(data) {
+	    Realisation.patch(updatedata).success(function(data) {
 	        // take return data and update scope
 	        console.log("DATA: " + data);
             // TODO close form and show success message instead (ng-show="translated")
