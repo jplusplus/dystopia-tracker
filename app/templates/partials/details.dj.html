@@ -32,7 +32,7 @@
 	                      <p>[['Prediction is published in' | translate]] [[prediction.source.title]] [['by' | translate]] [[prediction.source.author | reverse]].
 	                      <p class="source" ng-show="[[prediction.source.description_E]]">[[prediction.source | getTranslated:'description']]</p>
 	                      <li ng-show="[[alldates.link]]" target="_blank"><a ng-href="[[alldates.link]]">[['Read more about' | translate]] [[prediction.source.title]]</a></li>
-		                  <li><a ng-href="[[alldates.amzn]]" target="_blank">[['Buy ' | translate]][[prediction.source.title]] [['on Amazon' | translate]]</a></li>
+		                  <li><a ng-href="[[alldates.amzn]]" target="_blank">[['Buy ' | translate]] [[prediction.source.title]] [['on Amazon' | translate]]</a></li>
 		               </div>
 		               <div ng-switch-when="predicted">[['Story in' | translate]] [[prediction.source.title]] [['is set in' | translate]] [[alldates.year]].</div>
 		               <div ng-switch-when="introduced">
