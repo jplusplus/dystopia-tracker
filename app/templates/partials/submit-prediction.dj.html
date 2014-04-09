@@ -54,7 +54,7 @@
        
        <div class="form-group">
          <label for="category">[['Pick a category for your prediction' | translate ]]</p>
-         <select id="category" ng-model="prediction.category" class="form-control" ng-options="category.id as getCategoryTitle(category) for category in categories">
+         <select required id="category" ng-model="prediction.category" class="form-control" ng-options="category.id as getCategoryTitle(category) for category in categories">
                  <option value="" disabled selected>[['Select a category' | translate ]]</option>
                  <option ng-repeat="category in categories" value="[[category.id]]">[[category.title_E]]</option>
             </select>

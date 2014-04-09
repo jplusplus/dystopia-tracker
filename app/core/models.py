@@ -21,9 +21,9 @@ class Source(models.Model):
 
     title = models.CharField(max_length=75)
 
-    author = models.CharField(max_length=75)
+    author = models.CharField(max_length=75, blank=True)
 
-    year_published = models.PositiveIntegerField()
+    year_published = models.PositiveIntegerField(blank=True)
 
     more_info = models.URLField(blank=True)
 
@@ -37,6 +37,11 @@ class Source(models.Model):
     image_credit = models.CharField(max_length=75, blank=True)
 
     featured = models.BooleanField(default=False)
+
+    def save(self, *args, **kwargs):
+        if not self.year_published:
+            self.year_published = 0
+        super(Source, self).save(*args, **kwargs)
 
     def __unicode__(self):
         return '%s (%s, %d)' % (self.title, self.author, self.year_published)
