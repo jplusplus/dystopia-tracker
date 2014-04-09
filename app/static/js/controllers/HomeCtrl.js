@@ -119,6 +119,13 @@ angular.module('dystopia-tracker').controller('HomeCtrl', ['$scope', 'Prediction
 	    $scope.update(false);
     };
     
+    // add active class to button of active language 
+    $scope.isActive = function(lang) {
+        if (lang == $scope._lang) {
+        return 'active';
+        } 
+    };
+    
     function updateUrl(filter) {
 	    if (filter.category && filter.category !== "") {
 		    $location.search('c', filter.category);

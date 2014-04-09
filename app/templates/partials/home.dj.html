@@ -1,8 +1,8 @@
         <div id="filters">
             
-            <div class="btn-group">
-              <button type="button" ng-click="changeLanguage('E')" class="btn btn-default">EN</button>
-              <button type="button" ng-click="changeLanguage('D')" class="btn btn-default">DE</button>
+            <div class="btn-group langswitch">
+              <button type="button" ng-click="changeLanguage('E')" class="btn btn-default btn-xs" ng-class="isActive('E')">English</button>
+              <button type="button" ng-click="changeLanguage('D')" class="btn btn-default btn-xs" ng-class="isActive('D')">Deutsch</button>
             </div>
             <select id="category" ng-model="filters.category" ng-change="update(true)" ng-options="category.id as getCategoryTitle(category) for category in categories">
                  <option value=''>[[ 'All categories' | translate ]]</option>
@@ -23,7 +23,6 @@
             </form>
             
         </div> <!- filters ->
-    </div> <!- header ->
 
 	<div class="alert alert-info alert-dismissable fade in" ng-hide="returningVisitor">
 		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>

@@ -1,5 +1,5 @@
-angular.module('dystopia-tracker').controller('DetailsCtrl', ['$scope', 'Prediction', 'Categories', 'Sources', 'Realisation', '$rootScope', '$location', '$routeParams', '$cookies',
-                                                           function($scope, Prediction, Categories, Sources, Realisation, $rootScope, $location, $routeParams, $cookies) {
+angular.module('dystopia-tracker').controller('DetailsCtrl', ['$scope', 'Prediction', 'Categories', 'Sources', 'Realisation', '$rootScope', '$location', '$routeParams', '$cookies', '$filter',
+                                                           function($scope, Prediction, Categories, Sources, Realisation, $rootScope, $location, $routeParams, $cookies, $filter) {
     
     
     // check if user has visited the site before
@@ -8,17 +8,32 @@ angular.module('dystopia-tracker').controller('DetailsCtrl', ['$scope', 'Predict
     };
     // set cookie
     $cookies.alreadyVisited = 'true';
+    
+    // define variables for later
     $scope.prediction = [];
     $scope.realisations = [];
     $scope.category = [];
     $scope.shareurls = [];
     $scope.more = [];
-
     $scope.translationArray = [];
-
     $scope.filters = {exclude : $routeParams.id, title : '', author : '', category : ''};
     $scope.language = $rootScope._lang;
-    /* create array to story year_published of source, year_predicted of prediction, and year_introduced of all realisations
+    
+    $scope.changeLanguage = function(lang) {
+	    $scope._lang = $scope.language = lang;
+	    $location.path('/' + $scope.language + "/p/" + $filter('slugify')($filter('reverse')($scope.prediction.source.author)) + "/" + $filter('slugify')($scope.prediction.source.title) + "/" + $scope.prediction.id);
+	    $scope.translateTo($scope.language);
+	    $scope.update(false);
+    };
+    
+    // add active class to button of active language 
+    $scope.isActive = function(lang) {
+        if (lang == $scope._lang) {
+        return 'active';
+        } 
+    };
+    
+    /* create array to store year_published of source, year_predicted of prediction, and year_introduced of all realisations
     including the corresponding descriptions */
     $scope.alldates = [];
     $scope.sorting = 'year';
