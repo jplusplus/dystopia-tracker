@@ -9,7 +9,6 @@ class PredictionFilter(django_filters.FilterSet):
             return queryset
         if value in ['E', 'D']:
             _filter = { 'description_{0}'.format(value) : "" }
-            print _filter
             return queryset.filter(~Q(**_filter))
         else:
             return queryset.none()
