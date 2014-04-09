@@ -4,6 +4,16 @@ var a = angular.module('dystopia-tracker.services').service('Realisation', ['$ht
 
     service.post = function(data) {
         return $http.post(this.baseUrl, data);
+    };
+
+    service.patch = function(data) {
+        var id = data.id;
+        delete data.id;
+        return $http({
+            url : service.baseUrl + id,
+            method : 'PATCH',
+            data : data
+        });
     }
 
     return service;

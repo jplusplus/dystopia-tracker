@@ -1,5 +1,5 @@
-angular.module('dystopia-tracker').controller('DetailsCtrl', ['$scope', 'Prediction', 'Categories', 'Sources', '$rootScope', '$location', '$routeParams', '$cookies',
-                                                           function($scope, Prediction, Categories, Sources, $rootScope, $location, $routeParams, $cookies) {
+angular.module('dystopia-tracker').controller('DetailsCtrl', ['$scope', 'Prediction', 'Categories', 'Sources', 'Realisation', '$rootScope', '$location', '$routeParams', '$cookies',
+                                                           function($scope, Prediction, Categories, Sources, Realisation, $rootScope, $location, $routeParams, $cookies) {
     
     
     // check if user has visited the site before
