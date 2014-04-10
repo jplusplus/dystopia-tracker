@@ -117,11 +117,12 @@ angular.module('dystopia-tracker').controller('DetailsCtrl', ['$scope', 'Predict
 	        }
         };
         var fieldToUpdate = "";
-        if (item.description_E === '') {
+        if (realisation.description_E === '') {
             fieldToUpdate = 'description_E';
         } else {
             fieldToUpdate = 'description_D';
         }
+        console.log(fieldToUpdate);
         var updatedata = { id : item.id };
         updatedata[fieldToUpdate] = $scope.translationArray[item.id];
         

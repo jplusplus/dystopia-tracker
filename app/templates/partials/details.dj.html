@@ -46,8 +46,8 @@
 		                   <li ng-show="[[alldates.link]]" target="_blank"><a ng-href="[[alldates.link]]">[['Read more about this' | translate]]</a></li>
 		                   <form role="form" ng-show="alldates.isTranslating" ng-submit="translate(alldates,'realisation')">
 		                       <div class="form-group">
-                                   <label for="prediction" ng-if="alldates.translateToE">[['Translate to English' | translate]]</label>
-                                   <label for="prediction" ng-if="!alldates.translateToE">[['Translate to German' | translate]]</label>
+                                   <label for="realisation" ng-if="alldates.translateToE">[['Translate to English' | translate]]</label>
+                                   <label for="realisation" ng-if="!alldates.translateToE">[['Translate to German' | translate]]</label>
                                    <textarea class="form-control" id="realisation" rows="5" maxlength="300" ng-model="translationArray[alldates.id]" required></textarea>
                                </div>
                                <button type="submit" class="btn btn-default btn-block">[['Submit translation' | translate]]</button>
