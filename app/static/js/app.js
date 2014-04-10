@@ -25,7 +25,14 @@ var app = angular.module('dystopia-tracker', [
                     prefix: STATIC_URL + 'locale/',
                     suffix: '.json'
                 });
-                $translateProvider.preferredLanguage('E');
+                var defaultLang;
+                if (navigator.language.indexOf("de") == 0) {
+                    defaultLang = "D";
+                }
+                else {
+                    defaultLang = "E";
+                }; 
+                $translateProvider.preferredLanguage(defaultLang);
 
                 $routeProvider.when('/:lang', {
                     controller: 'HomeCtrl',
@@ -52,6 +59,6 @@ var app = angular.module('dystopia-tracker', [
                     templateUrl: '/partial/embed.html',
                     reloadOnSearch: false
                 }).otherwise({
-                    redirectTo: '/E'
+                    redirectTo: '/' + defaultLang
                 });
             }]);
