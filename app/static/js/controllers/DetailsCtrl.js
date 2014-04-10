@@ -37,7 +37,6 @@ angular.module('dystopia-tracker').controller('DetailsCtrl', ['$scope', 'Predict
     including the corresponding descriptions */
     $scope.alldates = [];
     $scope.sorting = 'year';
-    $scope.isTranslating = false;
     
     Prediction.get({id:$routeParams.id}).success(function(data) {
 		$scope.prediction = data;
@@ -48,7 +47,23 @@ angular.module('dystopia-tracker').controller('DetailsCtrl', ['$scope', 'Predict
 		getMore("title",$scope.prediction.source.title);
         getMore("author",$scope.prediction.source.author);
         getMore("category",$scope.prediction.category);
+        findTranslationStatus($scope.prediction);
     });	
+    
+    function findTranslationStatus(object) {
+	    if (object.description_E && object.description_D) {
+                object.isTranslated = true;
+            }
+            else {
+	            object.isTranslated = false;
+	            if (object.description_D) {
+                    object.translateToE = true;
+                }
+                else {
+	                object.translateToE = false;
+                }
+            }
+    };
     
     function getCategoryTitle(id) {
         Categories.get({id:id}, function(data) {
@@ -111,18 +126,32 @@ angular.module('dystopia-tracker').controller('DetailsCtrl', ['$scope', 'Predict
     // save translation
     $scope.translate = function(item, type) {
         // find the realisation object with the given id
-        for (i=0;i<$scope.realisations.length;i++) {
-	        if ($scope.realisations[i].id == item.id) {
-		        var realisation = $scope.realisations[i];
-	        }
+        if (type === "realisation") {
+            for (i=0;i<$scope.realisations.length;i++) {
+    	        if ($scope.realisations[i].id == item.id) {
+    		        var realisation = $scope.realisations[i];
+    	        }
+            }
         };
+        
         var fieldToUpdate = "";
-        if (realisation.description_E === '') {
-            fieldToUpdate = 'description_E';
-        } else {
-            fieldToUpdate = 'description_D';
+        
+        if (type === "realisation") {  
+            if (realisation.description_E === '') {
+                fieldToUpdate = 'description_E';
+            } else {
+                fieldToUpdate = 'description_D';
+            }
         }
-        console.log(fieldToUpdate);
+        
+        else if (type === "prediction") {  
+            if ($scope.prediction.description_E === '') {
+                fieldToUpdate = 'description_E';
+            } else {
+                fieldToUpdate = 'description_D';
+            }
+        }
+        
         var updatedata = { id : item.id };
         updatedata[fieldToUpdate] = $scope.translationArray[item.id];
         
@@ -133,20 +162,39 @@ angular.module('dystopia-tracker').controller('DetailsCtrl', ['$scope', 'Predict
 	        for (i=0;i<$scope.realisations.length;i++) {
     	            if ($scope.realisations[i].id == data.id) {
     		        $scope.realisations[i] = data;
-    		        console.log(item['text_' + $scope.language]);
-    				if (item['text_' + $scope.language] == "") {
+       				if (item['text_' + $scope.language] == "") {
     				    item['text_' + $scope.language] = data[fieldToUpdate];
     				}
 	                }
             };
             // close form and show thankyou message
+            wrapupTranslation(item);
+		})
+		}
+		
+		else if (type === "prediction") {
+	    Prediction.patch(updatedata).success(function(data) {
+	       
+	       // update scope with the translation
+           $scope.prediction = data;
+    		if (item['text_' + $scope.language] == "") {
+    		    item['text_' + $scope.language] = data[fieldToUpdate];
+    			}
+            
+            // close form and show thankyou message
+            wrapupTranslation(item);
+		})
+
+        };
+    
+    };
+    
+    function wrapupTranslation(item) {
             item.isTranslating = false;
             item.isTranslated = true;
             item.thanks = true;
             setTimeout(function(){item.thanks=false}, 3000);
-		    });
-		}
-    };
+		    };
     
     
 }]); // it's the end of the code as we know it
