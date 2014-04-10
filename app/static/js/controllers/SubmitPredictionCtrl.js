@@ -103,4 +103,8 @@ angular.module('dystopia-tracker').controller('SubmitPredictionCtrl', ['$scope',
 	    loadTitles(1);
     };
     
+    $scope.back = function() {
+	    window.history.back();
+    };
+    
 }]); // it's the end of the code as we know it

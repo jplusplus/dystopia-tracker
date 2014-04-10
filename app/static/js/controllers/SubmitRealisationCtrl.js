@@ -23,5 +23,9 @@ angular.module('dystopia-tracker').controller('SubmitRealisationCtrl', ['$scope'
 		    $location.path($scope.language + "/p/" + $filter('slugify')($filter('reverse')($scope.prediction.source.author)) + "/" + $filter('slugify')($scope.prediction.source.title) + "/" + $scope.prediction.id);
 		});     
 	};
+	
+	$scope.back = function() {
+	    window.history.back();
+    };
 		 
 }]); // it's the end of the code as we know it
