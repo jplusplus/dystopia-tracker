@@ -18,7 +18,7 @@
                 <img ng-show="prediction.image" ng-src="/uploaded/[[prediction.image]]" width="100%" ng-show="prediction.image"/>
                 <div class="predictiontext">
                 <h2>[[prediction|getTranslated:'headline']]</h2>    
-                <p>[[prediction|getTranslated:'description']] <span><a href="" ng-if="!prediction.isTranslated" ng-click="prediction.isTranslating = !prediction.isTranslating">([['Translate' | translate]])</a></span></p>
+                <p class="translated-[[prediction.isTranslated]]">[[prediction|getTranslated:'description']] <span><a href="" ng-if="!prediction.isTranslated" ng-click="prediction.isTranslating = !prediction.isTranslating">([['Translate' | translate]])</a></span></p>
                 
                  <form role="form" ng-show="prediction.isTranslating" ng-submit="translate(prediction,'prediction')">
 		             <div class="form-group">
