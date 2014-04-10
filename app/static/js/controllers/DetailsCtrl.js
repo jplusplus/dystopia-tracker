@@ -109,38 +109,42 @@ angular.module('dystopia-tracker').controller('DetailsCtrl', ['$scope', 'Predict
     $scope.shareurls.twi = "https://twitter.com/intent/tweet?text=" + $scope.shareurls.description + "&url=" + $location.absUrl() + "&via=dystopiatracker";    $scope.shareurls.mail = "mailto:?Subject=Dystopia Tracker&Body=" + $scope.shareurls.description + " --> " + $location.absUrl();
     
     // save translation
-    $scope.translate = function(real) {
+    $scope.translate = function(item, type) {
         // find the realisation object with the given id
         for (i=0;i<$scope.realisations.length;i++) {
-	        if ($scope.realisations[i].id == real.id) {
+	        if ($scope.realisations[i].id == item.id) {
 		        var realisation = $scope.realisations[i];
 	        }
         };
         var fieldToUpdate = "";
-        if (realisation.description_E === '') {
+        if (item.description_E === '') {
             fieldToUpdate = 'description_E';
         } else {
             fieldToUpdate = 'description_D';
         }
-        var updatedata = { id : real.id };
-        updatedata[fieldToUpdate] = $scope.translationArray[real.id];
-
+        var updatedata = { id : item.id };
+        updatedata[fieldToUpdate] = $scope.translationArray[item.id];
+        
+	    if (type == "realisation") {
+	    
 	    Realisation.patch(updatedata).success(function(data) {
 	        // update scope with the translation
 	        for (i=0;i<$scope.realisations.length;i++) {
     	            if ($scope.realisations[i].id == data.id) {
     		        $scope.realisations[i] = data;
-    				if (real['text_' + $scope.language] == "") {
-    				    real['text_' + $scope.language] = data[fieldToUpdate];
+    		        console.log(item['text_' + $scope.language]);
+    				if (item['text_' + $scope.language] == "") {
+    				    item['text_' + $scope.language] = data[fieldToUpdate];
     				}
-	            }
+	                }
             };
             // close form and show thankyou message
-            real.isTranslating = false;
-            real.isTranslated = true;
-            real.thanks = true;
-            setTimeout(function(){real.thanks=false}, 3000);
+            item.isTranslating = false;
+            item.isTranslated = true;
+            item.thanks = true;
+            setTimeout(function(){item.thanks=false}, 3000);
 		    });
+		}
     };
     
     
