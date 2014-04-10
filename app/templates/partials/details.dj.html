@@ -64,14 +64,14 @@
 	                      
 	                      
 	                      
-	                      <li ng-show="[[alldates.link]]" target="_blank"><a ng-href="[[alldates.link]]">[['Read more about' | translate]] [[prediction.source.title]]</a></li>
+	                      <li ng-show="alldates.link" target="_blank"><a ng-href="[[alldates.link]]">[['Read more about' | translate]] [[prediction.source.title]]</a></li>
 		                  <li><a ng-href="[[alldates.amzn]]" target="_blank">[['Buy ' | translate]] [[prediction.source.title]] [['on Amazon' | translate]]</a></li>
 		               </div>
 		               <div ng-switch-when="predicted">[['Story in' | translate]] [[prediction.source.title]] [['is set in' | translate]] [[alldates.year]].</div>
 		               <div ng-switch-when="introduced">
 		                   <p class="translated-[[alldates.isTranslated]]">[[alldates|getTranslated:'text']] <span><a href="" ng-if="!alldates.isTranslated" ng-click="alldates.isTranslating = !alldates.isTranslating">([['Translate' | translate]])</a></span></p>
 		                   <p class="credit" ng-show="alldates.credit">&mdash; [['contributed by' | translate]] [[alldates.credit]]</p>
-		                   <li ng-show="[[alldates.link]]" target="_blank"><a ng-href="[[alldates.link]]">[['Read more about this' | translate]]</a></li>
+		                   <li ng-show="alldates.link" target="_blank"><a ng-href="[[alldates.link]]">[['Read more about this' | translate]]</a></li>
 		                   <form role="form" ng-show="alldates.isTranslating" ng-submit="translate(alldates,'realisation')">
 		                       <div class="form-group">
                                    <label for="realisation" ng-if="alldates.translateToE">[['Translate to English' | translate]]</label>
@@ -86,7 +86,7 @@
 		               </div>
 	               </div>
 	               <div class="col col-sm-3">
-	                   <a ng-href="[[alldates.amzn]]" target="_blank"><img width="100%" ng-src="/uploaded/[[alldates.img]]" alt="[[prediction.source.title]]" ng-show="[[alldates.img]]" title="Buy on Amazon"/ class="hidden-xs"></a>
+	                   <a ng-href="[[alldates.amzn]]" target="_blank"><img width="100%" ng-src="/uploaded/[[alldates.img]]" alt="[[prediction.source.title]]" ng-show="alldates.img" title="Buy on Amazon"/ class="hidden-xs"></a>
 	               </div>
 	               
             </div>

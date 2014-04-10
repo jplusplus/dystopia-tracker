@@ -20,6 +20,7 @@ angular.module('dystopia-tracker.filters')
 }])
     .filter('reverse',[function(){
 	    return function (string) {
+		    if(!string) {return string}
 		    return string.split(',').reverse().join(' ');
 	   }
    }]);
