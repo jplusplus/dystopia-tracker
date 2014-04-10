@@ -1,5 +1,5 @@
-angular.module('dystopia-tracker').controller('DetailsCtrl', ['$scope', 'Prediction', 'Categories', 'Sources', 'Realisation', '$rootScope', '$location', '$routeParams', '$cookies', '$filter',
-                                                           function($scope, Prediction, Categories, Sources, Realisation, $rootScope, $location, $routeParams, $cookies, $filter) {
+angular.module('dystopia-tracker').controller('DetailsCtrl', ['$scope', 'Prediction', 'Categories', 'Sources', 'Realisation', '$rootScope', '$location', '$routeParams', '$cookies', '$filter', '$timeout',
+                                                           function($scope, Prediction, Categories, Sources, Realisation, $rootScope, $location, $routeParams, $cookies, $filter,$timeout) {
     
     
     // check if user has visited the site before
@@ -212,7 +212,7 @@ angular.module('dystopia-tracker').controller('DetailsCtrl', ['$scope', 'Predict
             item.isTranslating = false;
             item.isTranslated = true;
             item.thanks = true; 
-            setTimeout(function(){
+            $timeout(function(){
                 item.thanks = false;
                 }, 3000);
 		    };
