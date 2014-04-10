@@ -15,7 +15,7 @@
         <div class="col col-lg-6 col-lg-offset-3">
         
             <div class="prediction">
-                <img ng-show="prediction.image" ng-src="/uploaded/[[prediction.image]]" width="100%" ng-show="prediction.image"/>
+                <img ng-show="prediction.image" ng-if="prediction.image" ng-src="/uploaded/[[prediction.image]]" width="100%" ng-show="prediction.image"/>
                 <div class="predictiontext">
                 <h2>[[prediction|getTranslated:'headline']]</h2>    
                 <p class="translated-[[prediction.isTranslated]]">[[prediction|getTranslated:'description']] <span><a href="" ng-if="!prediction.isTranslated" ng-click="prediction.isTranslating = !prediction.isTranslating">([['Translate' | translate]])</a></span></p>
@@ -86,7 +86,7 @@
 		               </div>
 	               </div>
 	               <div class="col col-sm-3">
-	                   <a ng-href="[[alldates.amzn]]" target="_blank"><img width="100%" ng-src="/uploaded/[[alldates.img]]" alt="[[prediction.source.title]]" ng-show="alldates.img" title="Buy on Amazon"/ class="hidden-xs"></a>
+	                   <a ng-href="[[alldates.amzn]]" target="_blank"><img width="100%" ng-src="/uploaded/[[alldates.img]]" alt="[[prediction.source.title]]" ng-if="alldates.img" title="Buy on Amazon"/ class="hidden-xs"></a>
 	               </div>
 	               
             </div>

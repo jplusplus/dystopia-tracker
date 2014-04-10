@@ -13,10 +13,10 @@
 
         {% compress css %}
             <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/base.css">
+            <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/animations.css">
         {% endcompress %}
         <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}vendor/bootswatch/yeti/bootstrap.css">
         {% block extracss %}{% endblock %}
-		<link href='http://fonts.googleapis.com/css?family=Raleway:300' rel='stylesheet' type='text/css'>
         <base href="{% url 'home' %}" />
 
         <script type="text/javascript">
@@ -37,6 +37,7 @@
         <script type="text/javascript" src="{{ STATIC_URL }}vendor/angular-translate/angular-translate.js"></script>
         <script type="text/javascript" src="{{ STATIC_URL }}vendor/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
         <script type="text/javascript" src="{{ STATIC_URL }}vendor/angular-slugify/angular-slugify.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}vendor/angular-animate/angular-animate.js"></script>
         
         <!-- Google Analytics -->
         <script type="text/javascript">
