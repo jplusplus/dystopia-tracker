@@ -21,6 +21,12 @@ angular.module('dystopia-tracker').controller('HomeCtrl', ['$scope', 'Prediction
 
     readUrlParams();
 
+    $scope.$watch(function() { return $scope.filters }, function() {
+        if (typeof($scope.filters.title) === 'object') {
+            $scope.update(true);
+        }
+    }, true);
+
     // TODO use multiple datasets so different source types appear grouped in typeahead: http://twitter.github.io/typeahead.js/examples/#multiple-datasets
     var titles = new Bloodhound({
         datumTokenizer: Bloodhound.tokenizers.obj.whitespace('title'),
