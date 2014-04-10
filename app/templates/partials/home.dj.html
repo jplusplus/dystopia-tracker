@@ -30,9 +30,9 @@
     </div>
     
     <div id="content">
-        <div class="sectionhead">[['Editors Picks' | translate]]</div>
+        
         <div class="cardview editorspicks row" ng-hide="editorspicks.length==0">
-	        
+	        <div class="sectionhead">[['Editors Picks' | translate]]</div>    
             <div class="col-sm-6 col-md-4" ng-repeat="editorspickslist in editorspicks">
                 <li class="card imagecard color-[[editorspick.category]]" ng-repeat="editorspick in editorspickslist">
     	            <a ng-href="[[language]]/p/[[editorspick.source.author | reverse | slugify]]/[[editorspick.source.title | slugify]]/[[editorspick.id]]">
@@ -52,9 +52,10 @@
 
         <div class="buffer"></div>
         
-        <div class="sectionhead">[['Latest' | translate]]</div>
+
         <div class="cardview latest row clearfix">
-                        <div ng-switch on="predictions.length">
+        <div class="sectionhead">[['Latest' | translate]]</div>
+            <div ng-switch on="predictions.length">
                 <div ng-switch-default>
                     <div class="col-sm-4 col-md-3" ng-repeat="predictionsslist in predictions">
                         <a ng-if="$first" ng-href="[[language]]/submit/prediction" type="button" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-plus"></span> [['Add new prediction' | translate]]</a>
