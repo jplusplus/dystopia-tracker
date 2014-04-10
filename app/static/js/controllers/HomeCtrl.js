@@ -21,7 +21,7 @@ angular.module('dystopia-tracker').controller('HomeCtrl', ['$scope', 'Prediction
 
     readUrlParams();
 
-    $scope.$watch(function() { return $scope.filters }, function() {
+    $scope.$watch('filters', function() {
         if (typeof($scope.filters.title) === 'object') {
             $scope.update(true);
         }
