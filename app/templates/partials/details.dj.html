@@ -41,31 +41,37 @@
     <div class="buffer"></div>
         
         
-    <div class="timeline col-lg-6 col-lg-offset-3">
-	        <div class="row moments [[alldates.type]]" ng-repeat="alldates in alldates | orderBy:sorting">
-	               <div class="col col-sm-1"><strong>[[alldates.year]]</strong></div>
+    <div class="timeline row">
+	        <div class="row moments [[alldates.type]] col-lg-6 col-lg-offset-3" ng-repeat="alldates in alldates | orderBy:sorting">
+	               <div class="col col-sm-1">
+	                   <strong>[[alldates.year]]</strong>
+	               </div>
 	               <div class="col col-sm-8" ng-switch on="alldates.type">
+	                   
 	                   <div ng-switch-when="published">
 	                      <p>[['Prediction is published in' | translate]] [[prediction.source.title]] [['by' | translate]] [[prediction.source.author | reverse]].
 	                      <p class="source">[[prediction.source | getTranslated:'description']]  <span><a href="" ng-if="!alldates.isTranslated" ng-click="alldates.isTranslating = !alldates.isTranslating">([['Translate' | translate]])</a></span></p>             
+	                      
 	                      <form role="form" ng-show="alldates.isTranslating" ng-submit="translate(alldates,'source')">
-		             <div class="form-group">
-                         <label for="sourcedescription" ng-if="alldates.translateToE">[['Translate to English' | translate]]</label>
-                         <label for="sourcedescription" ng-if="!alldates.translateToE">[['Translate to German' | translate]]</label>
-                         <textarea class="form-control" id="sourcedescription" rows="5" maxlength="300" ng-model="translationArray[alldates.id]" required autofocus></textarea>
-                     </div>
-                     <button type="submit" class="btn btn-default btn-block">[['Submit translation' | translate]]</button>
-		         </form>
-		        <div class="help-block alert alert-success alert-dismissable" ng-show="alldates.thanks">
-		            <p>[['Thank you for your translation. The internet thanks you.' | translate]]</p>
-                </div>
-	                      
-	                      
-	                      
+		                      <div class="form-group">
+                              <label for="sourcedescription" ng-if="alldates.translateToE">[['Translate to English' | translate]]</label>
+                              <label for="sourcedescription" ng-if="!alldates.translateToE">[['Translate to German' | translate]]</label>
+                              <textarea class="form-control" id="sourcedescription" rows="5" maxlength="300" ng-model="translationArray[alldates.id]" required autofocus></textarea>
+                              </div>
+                              <button type="submit" class="btn btn-default btn-block">[['Submit translation' | translate]]</button>
+		                  </form>
+		                  <div class="help-block alert alert-success alert-dismissable" ng-show="alldates.thanks">
+		                      <p>[['Thank you for your translation. The internet thanks you.' | translate]]</p>
+                          </div>
+	                     
 	                      <li ng-show="alldates.link" target="_blank"><a ng-href="[[alldates.link]]">[['Read more about' | translate]] [[prediction.source.title]]</a></li>
 		                  <li><a ng-href="[[alldates.amzn]]" target="_blank">[['Buy ' | translate]] [[prediction.source.title]] [['on Amazon' | translate]]</a></li>
 		               </div>
-		               <div ng-switch-when="predicted">[['Story in' | translate]] [[prediction.source.title]] [['is set in' | translate]] [[alldates.year]].</div>
+		               
+		               <div ng-switch-when="predicted">
+		                   [['Story in' | translate]] [[prediction.source.title]] [['is set in' | translate]] [[alldates.year]].
+		               </div>
+		               
 		               <div ng-switch-when="introduced">
 		                   <p class="translated-[[alldates.isTranslated]]">[[alldates|getTranslated:'text']] <span><a href="" ng-if="!alldates.isTranslated" ng-click="alldates.isTranslating = !alldates.isTranslating">([['Translate' | translate]])</a></span></p>
 		                   <p class="credit" ng-show="alldates.credit">&mdash; [['contributed by' | translate]] [[alldates.credit]]</p>
@@ -79,29 +85,37 @@
                                <button type="submit" class="btn btn-default btn-block">[['Submit translation' | translate]]</button>
 		                   </form>
 		                   <div class="help-block alert alert-success alert-dismissable" ng-show="alldates.thanks">
-							       <p>[['Thank you for your translation. The internet thanks you.' | translate]]</p>
+						       <p>[['Thank you for your translation. The internet thanks you.' | translate]]</p>
                            </div>
 		               </div>
-	               </div>
+		               
+	               </div> <!-- col-8 -->
+	               
 	               <div class="col col-sm-3">
 	                   <a ng-href="[[alldates.amzn]]" target="_blank"><img width="100%" ng-src="/uploaded/[[alldates.img]]" alt="[[prediction.source.title]]" ng-if="alldates.img" title="Buy on Amazon"/ class="hidden-xs"></a>
 	               </div>
 	               
-            </div>
+            </div> <! -- moments -->
             
-	        <a ng-href="[[language]]/submit/realisation?p=[[prediction.id]]" class="btn btn-primary btn-lg btn-block addRealisation">[['Add a realisation' | translate]]</a>
+            <div class="col-sm-6 col-lg-4 col-sm-offset-3 col-lg-offset-4">
+	            <p class="text-center"><small>Has the prediction become a reality in a way that isn't described here yet?</small></p>
+	            <a ng-href="[[language]]/submit/realisation?p=[[prediction.id]]" class="btn btn-primary btn-lg btn-block addRealisation">[['Add a realisation' | translate]]</a>
+            </div>
             
 	</div> <!- timeline -->
        
 	<div class="buffer"></div>
+	
 	<div id="sharing" class="row">
-	    <div id="share-buttons" class="col col-sm-3 col-sm-offset-3">
+	    <div id="share-buttons" class="col col-lg-2 col-lg-offset-4">
+            <small>Share</small><br/>
             <a ng-href="[[shareurls.fb]]" target="_blank"><img src="{{ STATIC_URL }}img/facebook.png" alt="Facebook" /></a>
             <a ng-href="[[shareurls.twi]]" target="_blank"><img src="{{ STATIC_URL }}img/twitter.png" alt="Twitter" /></a>
             <a ng-href="[[shareurls.mail]]"><img src="{{ STATIC_URL }}img/email.png" alt="Email" /></a>
     	</div>
-    	<div id="embed" class="col col-sm-3">
-	    	<input placeholder="here will be the embed code">
+    	<div id="embed" class="col col-sm-2">
+	    	<label for="embedcode">Embed</label>
+	    	<input class="embedcode" value="here will be the embed code" readonly>
     	</div>
 	</div>                       
     

@@ -113,10 +113,6 @@ body {
 
 .description:before {content: "— ";}
 
-
-
-
-
 .source, .credit {
     font-size: 0.8em;
     color:grey;
@@ -141,7 +137,7 @@ body {
 
 /* Single page styles */
 
-.detail {margin-top:40px;height:500px;clear: both;}
+.detail {margin-top:40px;height:600px;clear: both;}
 
 .singleline {text-align: center;}
 .line span {
@@ -161,7 +157,7 @@ body {
 
 .prediction {position: relative;}
 .prediction img {position: absolute;top:0;left:0;background-color: grey;}
-.predictiontext {position: absolute;margin:30% 5% 0 5%;width: 90%;padding:0 10px;background-color: rgba(255,255,255,0.79);font-size: 140%;}
+.predictiontext {position: absolute;margin:40% 5% 0 5%;width: 90%;padding:0 10px;background-color: rgba(255,255,255,0.79);font-size: 140%;}
 
 .moments {margin-bottom: 20px;}
 .moments p.credit {margin-top: 0;float: right;}
@@ -173,13 +169,7 @@ body {
 		content: "\2023 \0020";
 	     }
 
-
-.verticalline {border-left: 4px solid black;padding-left:20px;min-height: 400px;width:50px;margin-right: 10px;width: 0;overflow: visible;}
-.timedot {width: 20px;height:20px;left:-12px;background: fuchsia;border-radius: 50%;border:3px solid black;}
-.timetext {width:50px;left:10px;}
-.addRealisation {}
-.addRealisation:hover {}
-
+#sharing {}
 /* form styles */
 
 .back {text-align: center;margin-top: 20px;font-size:85%;}
@@ -193,14 +183,19 @@ body {
 /* footer styles */
 
 #share-buttons img {
-width: 50px;
+width: 60px;
 padding: 10px;
 border: 0;
 box-shadow: 0;
 display: inline;
+opacity: 0.7;
 }
 
+#share-buttons img:hover {
+	opacity: 1;
+}
 
+input.embedcode {margin-top: 8px;width: 100% !important;}
 
 /* Responsive CSS fixes */
 
