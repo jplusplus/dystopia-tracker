@@ -23,6 +23,8 @@
         <script type="text/javascript" src="{{ STATIC_URL }}js/services/Prediction.js"></script>
         <script type="text/javascript" src="{{ STATIC_URL }}js/services/Realisation.js"></script>
         <script type="text/javascript" src="{{ STATIC_URL }}js/services/Sources.js"></script>
+        
+        <script type="text/javascript" src="{{ STATIC_URL }}js/animations.js"></script>
     {% endcompress %}
 {% endblock %}
 
@@ -39,7 +41,7 @@
         
     </div>
 <!-- get content from partials -->
-<div id="content" ng-view class="view-frame"></div>
+<div id="content" ng-view autoscroll="true"></div>
 
 <div id="footer" class="row text-muted small" ng-hide="isEmbed">
 		

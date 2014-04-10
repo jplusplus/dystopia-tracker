@@ -1,4 +1,4 @@
-/* animate page */
+/* animate page
 
 .view-container {
   position: relative;
@@ -54,28 +54,28 @@
   to { opacity: 0; }
 }
 
+*/
+
 /* animate cards */
 
 .card.ng-enter,
 .card.ng-leave,
 .card.ng-move {
-  -webkit-transition: 0.5s linear all;
-  -moz-transition: 0.5s linear all;
-  -o-transition: 0.5s linear all;
-  transition: 0.5s linear all;
+  -webkit-transition: 1s linear all;
+  -moz-transition: 1s linear all;
+  -o-transition: 1s linear all;
+  transition: 1s linear all;
 }
  
 .card.ng-enter,
 .card.ng-move {
   opacity: 0;
-  height: 0;
   overflow: hidden;
 }
  
 .card.ng-move.ng-move-active,
 .card.ng-enter.ng-enter-active {
   opacity: 1;
-  height: 120px;
 }
  
 .card.ng-leave {
@@ -85,8 +85,16 @@
  
 .card.ng-leave.ng-leave-active {
   opacity: 0;
-  height: 0;
   padding-top: 0;
   padding-bottom: 0;
 }
 
+/* other animations */
+
+.fadeout {
+	.card.ng-move {
+  -webkit-transition: 1s linear all;
+  -moz-transition: 1s linear all;
+  -o-transition: 1s linear all;
+  transition: 1s linear all;
+}

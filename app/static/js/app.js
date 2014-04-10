@@ -1,8 +1,10 @@
 angular.module('dystopia-tracker.services', ['ngResource','dystopia-tracker.filters', 'ngCookies']);
 angular.module('dystopia-tracker.filters', []);
+angular.module('dystopia-tracker.animations', ['ngAnimate']);
 
 var app = angular.module('dystopia-tracker', [
         'ngRoute',
+        'dystopia-tracker.animations',
         'siyfion.sfTypeahead',
         'pascalprecht.translate',
         'slugifier',

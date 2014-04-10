@@ -54,7 +54,7 @@ angular.module('dystopia-tracker').controller('DetailsCtrl', ['$scope', 'Predict
 	    if (object.description_E && object.description_D) {
                 object.isTranslated = true;
             }
-            else {
+        else {
 	            object.isTranslated = false;
 	            if (object.description_D) {
                     object.translateToE = true;
@@ -132,6 +132,7 @@ angular.module('dystopia-tracker').controller('DetailsCtrl', ['$scope', 'Predict
             } else {
                 fieldToUpdate = 'description_D';
             }
+            var updatedata = { id : item.id };
         }
         
         else if (type === "prediction") {  
@@ -140,6 +141,7 @@ angular.module('dystopia-tracker').controller('DetailsCtrl', ['$scope', 'Predict
             } else {
                 fieldToUpdate = 'description_D';
             }
+            var updatedata = { id : $scope.prediction.id };
         }
         
         else if (type === "source") {  
@@ -148,18 +150,22 @@ angular.module('dystopia-tracker').controller('DetailsCtrl', ['$scope', 'Predict
             } else {
                 fieldToUpdate = 'description_D';
             }
+        
+            var updatedata = { id : $scope.prediction.source.id };
         }
         
-        var updatedata = { id : $scope.prediction.source.id };
+        
         updatedata[fieldToUpdate] = $scope.translationArray[item.id];
         
 	    if (type == "realisation") {
-	    
+	      
 	    Realisation.patch(updatedata).success(function(data) {
 	        // update scope with the translation
 	        for (i=0;i<$scope.realisations.length;i++) {
     	            if ($scope.realisations[i].id == data.id) {
+    	            console.log("helo");
     		        $scope.realisations[i] = data;
+    		        console.log($scope.realisations[i]);
        				if (item['text_' + $scope.language] == "") {
     				    item['text_' + $scope.language] = data[fieldToUpdate];
     				}
@@ -180,7 +186,7 @@ angular.module('dystopia-tracker').controller('DetailsCtrl', ['$scope', 'Predict
     			}
             
             // close form and show thankyou message
-            wrapupTranslation(item);
+            wrapupTranslation($scope.prediction);
 		})
 
         }
@@ -205,8 +211,10 @@ angular.module('dystopia-tracker').controller('DetailsCtrl', ['$scope', 'Predict
     function wrapupTranslation(item) {
             item.isTranslating = false;
             item.isTranslated = true;
-            item.thanks = true;
-            setTimeout(function(){item.thanks=false}, 3000);
+            item.thanks = true; 
+            setTimeout(function(){
+                item.thanks = false;
+                }, 3000);
 		    };
     
     

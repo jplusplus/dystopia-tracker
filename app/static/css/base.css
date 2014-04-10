@@ -9,7 +9,7 @@ body {
 
 .card a, #header a {color: black !important;text-decoration: none !important;}
 
-.addnew {position: fixed;bottom:15px;right:15px;}
+.addnew {position: fixed;bottom:15px;right:15px;border-radius: 15% !important;}
 
 .buffer { margin-top:50px; }
 
@@ -141,7 +141,7 @@ body {
 
 /* Single page styles */
 
-.detail {height:500px;clear: both;}
+.detail {margin-top:40px;sheight:500px;clear: both;}
 
 .singleline {text-align: center;}
 .line span {
@@ -257,7 +257,7 @@ display: inline;
 }
 
 .tt-hint {
-  color: #999
+  color: #999;
 }
 
 .tt-dropdown-menu {
@@ -276,9 +276,8 @@ display: inline;
   line-height: 24px;
 }
 
-.tt-suggestion.tt-is-under-cursor {
-    background-color: rgba(0,130,72,0.4) !important;
-
+.tt-suggestion.tt-cursor {
+    background-color: rgba(0,130,130,0.4);
 }
 
 .tt-suggestion p {

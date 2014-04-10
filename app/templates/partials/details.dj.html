@@ -3,7 +3,7 @@
               <button type="button" ng-click="changeLanguage('D')" class="btn btn-default btn-xs" ng-class="isActive('D')">Deutsch</button>
 </div>
 
-<div class="alert alert-info alert-dismissable fade in" ng-hide="returningVisitor">
+<div class="alert alert-info alert-dismissable" ng-hide="returningVisitor">
 		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 		<strong>[['welcome_bold' | translate ]]</strong> [['welcome_text' | translate ]]
 </div>
@@ -15,20 +15,20 @@
         <div class="col col-lg-6 col-lg-offset-3">
         
             <div class="prediction">
-                <img ng-show="prediction.image" ng-if="prediction.image" ng-src="/uploaded/[[prediction.image]]" width="100%" ng-show="prediction.image"/>
+                <img ng-show="prediction.image" ng-if="prediction.image" ng-src="/uploaded/[[prediction.image]]" width="100%"/>
                 <div class="predictiontext">
                 <h2>[[prediction|getTranslated:'headline']]</h2>    
-                <p class="translated-[[prediction.isTranslated]]">[[prediction|getTranslated:'description']] <span><a href="" ng-if="!prediction.isTranslated" ng-click="prediction.isTranslating = !prediction.isTranslating">([['Translate' | translate]])</a></span></p>
+                <p class="translated-[[prediction.isTranslated]]">[[prediction|getTranslated:'description']] <span ng-if="!prediction.isTranslated"><a href="" ng-click="prediction.isTranslating = !prediction.isTranslating">([['Translate' | translate]])</a></span></p>
                 
-                 <form role="form" ng-show="prediction.isTranslating" ng-submit="translate(prediction,'prediction')">
+                 <form role="form" ng-if="prediction.isTranslating" ng-submit="translate(prediction,'prediction')">
 		             <div class="form-group">
                          <label for="prediction" ng-if="prediction.translateToE">[['Translate to English' | translate]]</label>
                          <label for="prediction" ng-if="!prediction.translateToE">[['Translate to German' | translate]]</label>
-                         <textarea class="form-control" id="prediction" rows="5" maxlength="300" ng-model="translationArray[prediction.id]" required></textarea>
+                         <textarea class="form-control" id="prediction" rows="5" maxlength="300" ng-model="translationArray[prediction.id]" required autofocus></textarea>
                      </div>
                      <button type="submit" class="btn btn-default btn-block">[['Submit translation' | translate]]</button>
 		         </form>
-		        <div class="help-block alert alert-success alert-dismissable fade in" ng-show="prediction.thanks">
+		        <div class="help-block alert alert-success alert-dismissable" ng-show="prediction.thanks">
 		            <p>[['Thank you for your translation. The internet thanks you.' | translate]]</p>
                 </div>
                 
@@ -47,18 +47,16 @@
 	               <div class="col col-sm-8" ng-switch on="alldates.type">
 	                   <div ng-switch-when="published">
 	                      <p>[['Prediction is published in' | translate]] [[prediction.source.title]] [['by' | translate]] [[prediction.source.author | reverse]].
-	                      <p class="source">[[prediction.source | getTranslated:'description']]  <span><a href="" ng-if="!alldates.isTranslated" ng-click="alldates.isTranslating = !alldates.isTranslating">([['Translate' | translate]])</a></span></p>
-	                      
-	                      
+	                      <p class="source">[[prediction.source | getTranslated:'description']]  <span><a href="" ng-if="!alldates.isTranslated" ng-click="alldates.isTranslating = !alldates.isTranslating">([['Translate' | translate]])</a></span></p>             
 	                      <form role="form" ng-show="alldates.isTranslating" ng-submit="translate(alldates,'source')">
 		             <div class="form-group">
                          <label for="sourcedescription" ng-if="alldates.translateToE">[['Translate to English' | translate]]</label>
                          <label for="sourcedescription" ng-if="!alldates.translateToE">[['Translate to German' | translate]]</label>
-                         <textarea class="form-control" id="sourcedescription" rows="5" maxlength="300" ng-model="translationArray[alldates.id]" required></textarea>
+                         <textarea class="form-control" id="sourcedescription" rows="5" maxlength="300" ng-model="translationArray[alldates.id]" required autofocus></textarea>
                      </div>
                      <button type="submit" class="btn btn-default btn-block">[['Submit translation' | translate]]</button>
 		         </form>
-		        <div class="help-block alert alert-success alert-dismissable fade in" ng-show="alldates.thanks">
+		        <div class="help-block alert alert-success alert-dismissable" ng-show="alldates.thanks">
 		            <p>[['Thank you for your translation. The internet thanks you.' | translate]]</p>
                 </div>
 	                      
@@ -76,11 +74,11 @@
 		                       <div class="form-group">
                                    <label for="realisation" ng-if="alldates.translateToE">[['Translate to English' | translate]]</label>
                                    <label for="realisation" ng-if="!alldates.translateToE">[['Translate to German' | translate]]</label>
-                                   <textarea class="form-control" id="realisation" rows="5" maxlength="300" ng-model="translationArray[alldates.id]" required></textarea>
+                                   <textarea class="form-control" id="realisation" rows="5" maxlength="300" ng-model="translationArray[alldates.id]" required autofocus></textarea>
                                </div>
                                <button type="submit" class="btn btn-default btn-block">[['Submit translation' | translate]]</button>
 		                   </form>
-		                   <div class="help-block alert alert-success alert-dismissable fade in" ng-show="alldates.thanks">
+		                   <div class="help-block alert alert-success alert-dismissable" ng-show="alldates.thanks">
 							       <p>[['Thank you for your translation. The internet thanks you.' | translate]]</p>
                            </div>
 		               </div>
