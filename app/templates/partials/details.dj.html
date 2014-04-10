@@ -47,7 +47,23 @@
 	               <div class="col col-sm-8" ng-switch on="alldates.type">
 	                   <div ng-switch-when="published">
 	                      <p>[['Prediction is published in' | translate]] [[prediction.source.title]] [['by' | translate]] [[prediction.source.author | reverse]].
-	                      <p class="source" ng-show="[[prediction.source.description_E]]">[[prediction.source | getTranslated:'description']]</p>
+	                      <p class="source">[[prediction.source | getTranslated:'description']]  <span><a href="" ng-if="!alldates.isTranslated" ng-click="alldates.isTranslating = !alldates.isTranslating">([['Translate' | translate]])</a></span></p>
+	                      
+	                      
+	                      <form role="form" ng-show="alldates.isTranslating" ng-submit="translate(alldates,'source')">
+		             <div class="form-group">
+                         <label for="sourcedescription" ng-if="alldates.translateToE">[['Translate to English' | translate]]</label>
+                         <label for="sourcedescription" ng-if="!alldates.translateToE">[['Translate to German' | translate]]</label>
+                         <textarea class="form-control" id="sourcedescription" rows="5" maxlength="300" ng-model="translationArray[alldates.id]" required></textarea>
+                     </div>
+                     <button type="submit" class="btn btn-default btn-block">[['Submit translation' | translate]]</button>
+		         </form>
+		        <div class="help-block alert alert-success alert-dismissable fade in" ng-show="alldates.thanks">
+		            <p>[['Thank you for your translation. The internet thanks you.' | translate]]</p>
+                </div>
+	                      
+	                      
+	                      
 	                      <li ng-show="[[alldates.link]]" target="_blank"><a ng-href="[[alldates.link]]">[['Read more about' | translate]] [[prediction.source.title]]</a></li>
 		                  <li><a ng-href="[[alldates.amzn]]" target="_blank">[['Buy ' | translate]] [[prediction.source.title]] [['on Amazon' | translate]]</a></li>
 		               </div>
