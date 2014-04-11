@@ -136,6 +136,8 @@ display: block;
 .color-7:hover, .color-3:hover {background: rgba(0,0,255,0.2);}
 .color-8:hover, .color-4:hover {background: rgba(9,88,15,0.2);}
 
+.linecolor-7 span:after, .linecolor-7 span:before {border-color: rgba(0,0,255,0.2) !important;}
+
 
 /* Single page styles */
 
@@ -149,7 +151,7 @@ display: block;
 .singleline span:before,
 .singleline span:after {
   height: 4px;
-  border-top: 4px solid teal !important;
+  border-top: 4px solid rgba(255,255,255,0.79);
   top: 0.2em;
   width: 300px !important;
 }
@@ -164,7 +166,7 @@ display: block;
 .predictiontext {font-size:140%;}
 
 .moments {margin-bottom: 20px;}
-.moments p.credit {margin-top: 0;float: right;}
+.moments p.credit, .prediction p.credit {margin-top: 0;float: right;}
 .moments li     	     {
 		list-style: none;
 	     }
