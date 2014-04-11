@@ -89,7 +89,7 @@ body {
 
 .textcard a {
 display: block;
-		padding: 5% 5% 0 5%;
+		padding: 5% 5% 2% 5%;
 }
 
 .textcard .badge {margin-left: 5%;}
@@ -136,10 +136,10 @@ display: block;
 .color-7:hover, .color-3:hover {background: rgba(0,0,255,0.2);}
 .color-8:hover, .color-4:hover {background: rgba(9,88,15,0.2);}
 
-.linecolor-5 span:before, .linecolor-1 span:after {border-color: rgba(0,128,128,0.2) !important;}
-.linecolor-6 span:before, .linecolor-2 span:after {border-color: rgba(255,0,255,0.2) !important;}
-.linecolor-7 span:before, .linecolor-3 span:after {border-color: rgba(0,0,255,0.2) !important;}
-.linecolor-8 span:before, .linecolor-4 span:after {border-color: rgba(9,88,15,0.2) !important;}
+.linecolor-5 span:before, .linecolor-5 span:after {border-color: rgba(0,128,128,0.2) !important;}
+.linecolor-6 span:after, .linecolor-6 span:before {border-color: rgba(255,0,255,0.2) !important;}
+.linecolor-7 span:after, .linecolor-7 span:before {border-color: rgba(0,0,255,0.2) !important;}
+.linecolor-8 span:before, .linecolor-8 span:after {border-color: rgba(9,88,15,0.2) !important;}
 
 /* Single page styles */
 
