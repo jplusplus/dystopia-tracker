@@ -4,7 +4,7 @@
         <div class="col col-lg-6 col-lg-offset-3">
         
             <div class="prediction">
-                <img ng-show="prediction.image" ng-src="/uploaded/[[prediction.image]]" width="100%"/>
+                <img ng-show="prediction.image" ng-src="{{STATIC_URL}}{{MEDIA_URL}}[[prediction.image]]" width="100%"/>
                 <div class="predictiontext">
                 <h2>[[prediction|getTranslated:'headline']]</h2>       
                 <p>[[prediction|getTranslated:'description']]</p>
@@ -21,7 +21,7 @@
         <div class="verticalline"> 
             
             <div class="timedot"></div><div class="timetext">Published in [[prediction.source.year_published]]</div>
-            <img class="cover" ng-src="/uploaded/[[prediction.source.image]]" alt="[[prediction.source.title]]">
+            <img class="cover" ng-src="{{STATIC_URL}}{{MEDIA_URL}}[[prediction.source.image]]" alt="[[prediction.source.title]]">
             <div class="timedot"></div><div class="timetext">Predicted for [[prediction.year_predicted]]</div>
             
             <div class="realisation" ng-repeat="realisation in realisations">

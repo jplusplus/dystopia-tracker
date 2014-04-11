@@ -36,7 +36,7 @@
             <div class="col-sm-6 col-md-4" ng-repeat="editorspickslist in editorspicks">
                 <li class="card imagecard color-[[editorspick.category]]" ng-repeat="editorspick in editorspickslist">
     	            <a ng-href="[[language]]/p/[[editorspick.source.author | reverse | slugify]]/[[editorspick.source.title | slugify]]/[[editorspick.id]]">
-    	            <img class="cover" ng-src="/uploaded/[[editorspick.source.image]]" alt="[[editorspick.source.title]]">
+    	            <img class="cover" ng-src="{{STATIC_URL}}{{MEDIA_URL}}[[editorspick.source.image]]" alt="[[editorspick.source.title]]">
     	             <p class="cardtext">[[editorspick|getTranslated:'description']]</p>
     	             <div class"realisation-no" ng-switch on="editorspick.realisations.length">
     	                 <span class="badge" ng-switch-when="0">[['This real? Add realisation.' | translate ]]</span>
