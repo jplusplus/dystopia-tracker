@@ -83,11 +83,17 @@ body {
 }
 
 .textcard {
-	padding:5%;
 	border-left: 6px solid;
 	border: 1px solid rgba(225,225,225,0.2);
 	font-size: 120%;
 }
+
+.textcard a {
+display: block;
+		padding: 5% 5% 0 5%;
+}
+
+.textcard .badge {margin-left: 5%;}
 
 .imagecard {
   -moz-box-sizing: border-box;
