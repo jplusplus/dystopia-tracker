@@ -182,6 +182,8 @@ body {
 
 /* footer styles */
 
+#share-buttons {margin-bottom: 10px;}
+
 #share-buttons img {
 width: 60px;
 padding: 10px;
