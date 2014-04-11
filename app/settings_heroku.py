@@ -25,6 +25,8 @@ STATIC_URL = os.getenv('STATIC_URL')
 
 STATIC_ROOT = here('staticfiles')
 
+MEDIA_ROOT = here('uploaded/')
+
 STATICFILES_DIRS = (here('static'),)
 
 INSTALLED_APPS            += ('storages',)
