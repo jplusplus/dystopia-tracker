@@ -6,25 +6,25 @@
  
 .view-frame.ng-enter, .view-frame.ng-leave {
   background: white;
-  position: absolute;
+  position: relative;
   top: 0;
   left: 0;
   right: 0;
 }
  
 .view-frame.ng-enter {
-  -webkit-animation: 0.5s fade-in;
+  -webkit-animation: 1s fade-in;
   -moz-animation: 0.5s fade-in;
   -o-animation: 0.5s fade-in;
-  animation: 0.5s fade-in;
+  animation: 5s fade-in;
   z-index: 100;
 }
  
 .view-frame.ng-leave {
-  -webkit-animation: 0.5s fade-out;
+  -webkit-animation: 1s fade-out;
   -moz-animation: 0.5s fade-out;
   -o-animation: 0.5s fade-out;
-  animation: 0.5s fade-out;
+  animation: 5s fade-out;
   z-index:99;
 }
  

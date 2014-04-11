@@ -29,13 +29,12 @@
 {% endblock %}
 
 {% block content %}
-<div class="container-fluid">
-
+<div class="container-fluid" >
 
     <div id="header" ng-hide="isEmbed">
         <h1><a href="/">[[title()]]</a></h1>
         <ul class="nav nav-pills hidden-xs">
-	        <li><a href="">Cards</a></li>
+	        <li><a href="/">Cards</a></li>
 	        <li><a href="">Timeline</a></li>
         </ul>
         
@@ -51,9 +50,15 @@
 			<p><strong>[['The Dystopia Tracker' | translate ]]</strong> [['infotext' | translate ]]</p>
 		</div>
 		<div class="col col-sm-6 col-lg-4">
-		    <p><strong>[['license_bold' | translate ]]</strong> [['license_rest' | translate ]]</p>
+		    <p><strong>[['license_bold' | translate ]]</strong> [['license_rest1' | translate ]] <a href="http://creativecommons.org/licenses/by-sa/3.0/">BY-SA Creative Commons</a> [['license_rest2' | translate ]] <a href="https://github.com/jplusplus/dystopia-tracker/wiki/API-Methods">Dystopia Tracker API</a> [['license_rest3' | translate ]].</p>
 		</div>
-    </div>
-</div> <!- wrapper ->    
+		
+		<div class="col col-lg-2">
+			<a href="https://twitter.com/dystopiatracker" class="twitter-follow-button" data-show-count="false" data-dnt="true">Follow @dystopiatracker</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+		</div>
+		
+    </div> 
+</div>  
     
 {% endblock %}
