@@ -51,6 +51,10 @@ angular.module('dystopia-tracker').controller('DetailsCtrl', ['$scope', 'Predict
     });	
     
     function findTranslationStatus(object) {
+	    if (!object.description_E && !object.description_D) {
+		    object.isEmpty = true;    
+	    };
+	    
 	    if (object.description_E && object.description_D) {
                 object.isTranslated = true;
             }
@@ -76,7 +80,7 @@ angular.module('dystopia-tracker').controller('DetailsCtrl', ['$scope', 'Predict
         
         // push the publish year
         findTranslationStatus(prediction.source);
-        $scope.alldates.push({"year":prediction.source.year_published, "img":prediction.source.image, "credit": "", "type": "published", "link": prediction.source.more_info, "amzn": prediction.amzn,"isTranslated" : prediction.source.isTranslated, "translateToE":prediction.source.translateToE});
+        $scope.alldates.push({"year":prediction.source.year_published, "img":prediction.source.image, "credit": "", "type": "published", "link": prediction.source.more_info, "amzn": prediction.amzn,"isTranslated" : prediction.source.isTranslated, "translateToE":prediction.source.translateToE, "isEmpty":prediction.source.isEmpty});
         
         // push the predicted year
         if (prediction.year_predicted != 0) {
