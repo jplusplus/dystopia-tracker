@@ -1,14 +1,18 @@
 from django.contrib import admin
 from import_export.admin import ImportExportModelAdmin
 from app.core.models import Category, Source, Prediction, Realisation
-from app.core.resources import SourceResource, PredictionResource, RealisationResource
+from app.core.resources import SourceResource, PredictionResource, RealisationResource, CategoryResource
 
-admin.site.register(Category)
+class CategoryAdmin(ImportExportModelAdmin):
+    resource_class = CategoryResource
+    search_fields = ('title_D', 'title_E')
+    list_display = ('id', 'title_E', 'title_E')
+admin.site.register(Category, CategoryAdmin)
 
 class SourceAdmin(ImportExportModelAdmin):
     resource_class = SourceResource
     search_fields = ('title', 'author', 'year_published', 'description_E', 'description_D')
-    list_display = ('title', 'author', 'year_published', 'type', 'image')
+    list_display = ('id', 'title', 'author', 'year_published', 'type', 'image')
     list_filter = ('featured', 'type')
 admin.site.register(Source, SourceAdmin)
 

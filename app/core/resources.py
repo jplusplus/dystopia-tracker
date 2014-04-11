@@ -1,5 +1,10 @@
 from import_export import resources
-from app.core.models import Source, Prediction, Realisation
+from app.core.models import Source, Prediction, Realisation, Category
+
+class CategoryResource(resources.ModelResource):
+    class Meta:
+        model = Category
+        exclude = ()
 
 class SourceResource(resources.ModelResource):
     class Meta:
