@@ -15,7 +15,7 @@
         <div class="col col-lg-6 col-lg-offset-3">
         
             <div class="prediction">
-                <img ng-show="prediction.image" ng-if="prediction.image" ng-src="/uploaded/[[prediction.image]]" width="100%"/>
+                <img ng-if="prediction.image" ng-src="/uploaded/[[prediction.image]]" width="100%"/>
                 <div class="predictiontext">
                 <h2>[[prediction|getTranslated:'headline']]</h2>    
                 <p class="translated-[[prediction.isTranslated]]">[[prediction|getTranslated:'description']] <span ng-if="!prediction.isTranslated"><a href="" ng-click="prediction.isTranslating = !prediction.isTranslating">([['Translate' | translate]])</a></span></p>
@@ -133,7 +133,7 @@
 	                </a>
 	            </li>
 	            </div>
-	            <p ng-switch-when="0">[['No more predictions from (title)' | translate]] [[prediction.source.title]] [['yet. Know one?' | translate]] <a ng-href="[[language]]/submit/prediction" type="button" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-plus"></span> [['Add a prediction' | translate]]</a></p>
+	            <p ng-switch-when="0">[['No more predictions from (title)' | translate]] [[prediction.source.title]][['yet. Know one?' | translate]] <a ng-href="[[language]]/submit/prediction" type="button" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-plus"></span> [['Add a prediction' | translate]]</a></p>
 	        </div>
         </div>
         <div class="morefrom col col-sm-4">
@@ -146,7 +146,7 @@
 	                </a>
 	            </li>
 	            </div>
-	            <p ng-switch-when="0">[['No more predictions from (author)' | translate]] [[prediction.source.author | reverse]] [['yet. Know one?' | translate]] <a ng-href="[[language]]/submit/prediction" type="button" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-plus"></span> [['Add a prediction' | translate]]</a></p>
+	            <p ng-switch-when="0">[['No more predictions from (author)' | translate]] [[prediction.source.author | reverse]][['yet. Know one?' | translate]] <a ng-href="[[language]]/submit/prediction" type="button" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-plus"></span> [['Add a prediction' | translate]]</a></p>
 	        </div>
         </div>
         <div class="morefrom col col-sm-4">
@@ -159,7 +159,7 @@
 	                </a>
 	            </li>
 	            </div>
-	            <p ng-switch-when="0">[['No more predictions from (category)' | translate]] [[category|getTranslated:'title']] [['yet. Know one?' | translate]] <a ng-href="[[language]]/submit/prediction" type="button" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-plus"></span> [['Add a prediction' | translate]]</a></p>
+	            <p ng-switch-when="0">[['No more predictions from (category)' | translate]] [[category|getTranslated:'title']][['yet. Know one?' | translate]] <a ng-href="[[language]]/submit/prediction" type="button" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-plus"></span> [['Add a prediction' | translate]]</a></p>
 	        </div>
         </div>
         </div>
