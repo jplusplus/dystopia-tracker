@@ -27,6 +27,8 @@ STATIC_ROOT = here('staticfiles')
 
 MEDIA_ROOT = here('uploaded/')
 
+MEDIA_URL = ''
+
 STATICFILES_DIRS = (here('static'),)
 
 INSTALLED_APPS            += ('storages',)
