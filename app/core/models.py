@@ -1,9 +1,21 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
+COLOR_ID = (
+    ('1', _('1')),
+    ('2', _('2')),
+    ('3', _('3')),
+    ('4', _('4')),
+    ('5', _('5')),
+    ('6', _('6')),
+    ('7', _('7')),
+    ('8', _('8')),
+)
+
 class Category(models.Model):
     title_E = models.CharField(max_length=75)
     title_D = models.CharField(max_length=75)
+    color = models.CharField(max_length=20, choices=COLOR_ID, default='1')
 
     def __unicode__(self):
         return self.title_E
