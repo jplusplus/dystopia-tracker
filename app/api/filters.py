@@ -61,6 +61,13 @@ class PredictionFilter(django_filters.FilterSet):
                   'author', 'exclude', 'published', 'incomplete']
 
 class SourceFilter(django_filters.FilterSet):
+    def _title(queryset, value):
+        if value == '':
+            return queryset
+        return queryset.filter(Q(title_E=value) | Q(title_D=value))
+
+    title = django_filters.CharFilter(action=_title)
+
     class Meta:
         model = Source
-        fields = ['type']
+        fields = ['type', 'title']
