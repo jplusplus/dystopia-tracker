@@ -29,7 +29,7 @@ class PredictionFilter(django_filters.FilterSet):
             return queryset.filter(published=False)
 
     def _source_title(queryset, value):
-        return queryset.filter(title_E__contains=value, title_D__contains=value)
+        return queryset.filter(source__title_E__contains=value, source__title_D__contains=value)
 
     # Define custom filters
     lang = django_filters.CharFilter(action=_lang)
