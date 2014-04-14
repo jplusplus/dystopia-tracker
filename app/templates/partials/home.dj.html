@@ -34,6 +34,7 @@
         
         <div class="cardview editorspicks row" ng-hide="editorspicks.length==0">
 	        <div class="sectionhead">[['Editors Picks' | translate]]</div>    
+	        <div id="loading" ng-if="spinner"><div class="spinner"></div>Loading...</div>
             <div class="col-sm-6 col-md-4" ng-repeat="editorspickslist in editorspicks">
                 <li class="card imagecard color-[[editorspick.category]]" ng-repeat="editorspick in editorspickslist">
     	            <a ng-href="[[language]]/p/[[editorspick.source.author | reverse | slugify]]/[[editorspick.source.title | slugify]]/[[editorspick.id]]">
@@ -56,6 +57,7 @@
 
         <div class="cardview latest row clearfix">
         <div class="sectionhead">[['Latest' | translate]]</div>
+        <div id="loading" ng-if="spinner"><div class="spinner"></div>Loading...</div>
             <div ng-switch on="predictions.length">
                 <div ng-switch-default>
                     <div class="col-sm-4 col-md-3" ng-repeat="predictionsslist in predictions">

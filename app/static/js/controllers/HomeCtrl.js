@@ -45,6 +45,8 @@ angular.module('dystopia-tracker').controller('HomeCtrl', ['$scope', 'Prediction
         
         $scope.filters.lang = $scope._lang;
         
+        $scope.spinner = true;
+        
         // increment to the next page of the API
         $scope.filters.page++;
         
@@ -67,7 +69,7 @@ angular.module('dystopia-tracker').controller('HomeCtrl', ['$scope', 'Prediction
     	    // define number of editors picks to show
     	    editorspick_filters.page_size = 6;
 		    Prediction.get(editorspick_filters).success(function(data) {
-		    
+		        $scope.spinner = false;
 		        for (var i=0;i<data.results.length;i++) {
                     var index = i % 3;
                     if ($scope.editorspicks[index] == null) { $scope.editorspicks[index] = []; }
@@ -78,6 +80,7 @@ angular.module('dystopia-tracker').controller('HomeCtrl', ['$scope', 'Prediction
         
         // get all predictions with selected filter applied
 		Prediction.get($scope.filters).success(function(data) {
+		    $scope.spinner = false;
 		    for (var i=0;i<data.results.length;i++) {
                 // 4 columns, +1 to add first element to second column
                 var index = (i+1) % 4;

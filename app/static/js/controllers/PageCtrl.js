@@ -15,6 +15,8 @@ angular.module('dystopia-tracker').controller('PageCtrl', ['$scope', '$location'
         $rootScope._lang = lang;
         $translate.use($rootScope._lang);
     };
+    
+    $scope.spinner = false;
 
     // Handle languages
     var re = /^\/([A-Z]{1})\/?/;
