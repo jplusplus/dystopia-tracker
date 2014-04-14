@@ -29,6 +29,8 @@ class PredictionFilter(django_filters.FilterSet):
             return queryset.filter(published=False)
 
     def _source_title(queryset, value):
+        if value == '':
+            return queryset
         return queryset.filter(Q(source__title_E=value) | Q(source__title_D=value))
 
     def _incomplete(queryset, value):
