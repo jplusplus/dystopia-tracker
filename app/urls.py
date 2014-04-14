@@ -19,6 +19,8 @@ urlpatterns = patterns('',
 
     url(r'^partial/(?P<partial_name>([a-zA-Z0-9_\-/\.]+))\.html$', 'app.views.partial', name='partial'),
 
+    url(r'^[A-Z]{1}/timeline/?$', 'app.views.home'),
+
     url(r'^api/',       include('app.api.urls')),
 
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
