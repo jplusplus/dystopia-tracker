@@ -182,7 +182,7 @@ display: block;
 
 /* form styles */
 
-.back {text-align: center;margin-top: 20px;font-size:85%;}
+.back {text-align: center;margin-top: 20px;font-size:85%;cursor: pointer;}
 
 /* embed styles */
 
