@@ -1,14 +1,14 @@
-        <div id="filters">
+        <div id="filters" class="row">
             
             <div class="btn-group langswitch">
-              <button type="button" ng-click="changeLanguage('E')" class="btn btn-default btn-xs" ng-class="isActive('E')">English</button>
-              <button type="button" ng-click="changeLanguage('D')" class="btn btn-default btn-xs" ng-class="isActive('D')">Deutsch</button>
+              <button type="button" ng-click="changeLanguage('E')" class="btn btn-default btn-xs" ng-class="isActive('E')">En<span class="hidden-xs">glish</span></button>
+              <button type="button" ng-click="changeLanguage('D')" class="btn btn-default btn-xs" ng-class="isActive('D')">De<span class="hidden-xs">utsch</span></button>
             </div>
-            <select id="category" ng-model="filters.category" ng-change="update(true)" ng-options="category.id as getCategoryTitle(category) for category in categories">
+            <select id="category" class="col-sm-3 col-lg-1" ng-model="filters.category" ng-change="update(true)" ng-options="category.id as getCategoryTitle(category) for category in categories">
                  <option value=''>[[ 'All categories' | translate ]]</option>
             </select>
 
-            <select id="sourcetype" class="hidden-xs" ng-model="filters.source__type" ng-change="update(true)">
+            <select id="sourcetype" class="hidden-xs col-sm-3 col-lg-1" ng-model="filters.source__type" ng-change="update(true)">
                  <option value=''>[['All sources' | translate ]]</option>
                  <option value='literature'>[['Literature' | translate ]]</option>
                  <option value='movies'>[['Movies' | translate ]]</option>
@@ -17,7 +17,7 @@
                  <option value='others'>[['Others' | translate ]]</option>
             </select>
 
-            <form id="searchform" ng-submit="update(true)">
+            <form id="searchform" ng-submit="update(true)" class="col-sm-3 col-lg-2">
                 <input type="text" class="sfTypeahead" options="typeahedOptions" datasets="typeaheadData" placeholder="[['Search for a title' | translate ]]" autofocus ng-model="filters.title">
                 <input type='submit' tabindex='-1' hidefocus='true'>
             </form>

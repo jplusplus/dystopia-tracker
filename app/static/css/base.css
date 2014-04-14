@@ -25,9 +25,10 @@ body {
 
 /* Header styles */
 
-#header {background: rgba(103,91,49,0.20); margin:0 -30px;padding:30px 30px 0 30px;max-height: 150px;}
+#header {background: rgba(103,91,49,0.20); margin:0 -30px;padding:0px 30px;max-height: 150px;}
 
 .langswitch {position: absolute !important;top:10px;right:10px;}
+.viewswitch {position: absolute !important;top:10px;right:140px;}
 
 #filters {text-align: center;}
 
@@ -145,6 +146,8 @@ display: block;
 .linecolor-8 span:before, .linecolor-8 span:after {border-color: rgba(9,88,15,0.2) !important;}
 
 /* Single page styles */
+
+#content {margin-top: 20px; }
 
 .detail {margin-top:40px;clear: both;}
 
@@ -330,6 +333,7 @@ input.embedcode {margin-top: 8px;width: 100% !important;}
 .imagecard {border:0;background-color: #fbfbfb !important;}
 .imagecard img {float:left;width:100px;height:auto;margin: 10px;}
 .imagecard .cardtext {padding: 8px 5px 0 0;}
+.langswitch {top:0px;right:0px;}
 }
 
 @media (min-width:400px){
