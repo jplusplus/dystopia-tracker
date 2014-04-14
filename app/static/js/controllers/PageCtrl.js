@@ -17,6 +17,17 @@ angular.module('dystopia-tracker').controller('PageCtrl', ['$scope', '$location'
     };
     
     $scope.spinner = false;
+    
+    // add active class to view switch
+    $rootScope.activeView = function(view) {
+        if (view == "cards" && $location.path() == '/' + $rootScope._lang) {
+        return 'active';
+        }
+        console.log($location.path());
+        if (view == "timeline" && $location.path() == '/' + $rootScope._lang + '/timeline') {
+	        return 'active';
+        } 
+    };
 
     // Handle languages
     var re = /^\/([A-Z]{1})\/?/;

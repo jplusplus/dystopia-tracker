@@ -35,8 +35,8 @@
     <div id="header" class="row" ng-hide="isEmbed">
         <h1><a href="/">[[title()]]</a></h1>
         <div class="viewswitch btn-group hidden-xs">
-	         <a href="/" type="button" class="btn btn-default btn-xs active">Cards</a>
-	         <a ng-href="[[_lang]]/timeline" type="button" class="btn btn-default btn-xs">Timeline</a>
+	         <a href="/" type="button" class="btn btn-default btn-xs active" ng-class="activeView('cards')">Cards</a>
+	         <a ng-href="[[_lang]]/timeline" type="button" class="btn btn-default btn-xs" ng-class="activeView('timeline')">Timeline</a>
         </div>
         
     
