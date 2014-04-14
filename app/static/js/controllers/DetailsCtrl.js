@@ -43,7 +43,6 @@ angular.module('dystopia-tracker').controller('DetailsCtrl', ['$scope', 'Predict
 		$scope.prediction.amzn = "http://www.amazon.de/s/?url=search-alias=aps&field-keywords=" + data.source.title + "&tag=davidbauerch-21&link_code=wql&_encoding=UTF-8";
         $scope.realisations = $scope.prediction.realisations;
 		createYearsArray($scope.prediction,$scope.realisations);
-	    getCategoryDetails($scope.prediction.category);
 		getMore("title",$scope.prediction.source.title);
         getMore("author",$scope.prediction.source.author);
         getMore("category",$scope.prediction.category);

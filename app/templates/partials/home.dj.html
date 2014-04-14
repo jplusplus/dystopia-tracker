@@ -62,7 +62,7 @@
                 <div ng-switch-default>
                     <div class="col-sm-4 col-md-3" ng-repeat="predictionsslist in predictions">
                         <a ng-if="$first" ng-href="[[language]]/submit/prediction" type="button" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-plus"></span> [['Add new prediction' | translate]]</a>
-    		        	<li class="card textcard color-[[prediction.category]]" ng-repeat="prediction in predictionsslist | orderBy: 'creation_date':true"> 
+    		        	<li class="card textcard color-[[prediction.category.color]]" ng-repeat="prediction in predictionsslist | orderBy: 'creation_date':true"> 
     	                    <a ng-href="[[language]]/p/[[prediction.source.author | reverse | slugify]]/[[prediction.source | getTranslated:'title' | slugify]]/[[prediction.id]]">
     	                    <p class="cardtext">[[prediction|getTranslated:'description']]</p>
     	                    <p class="source">&mdash; [[prediction.source|getTranslated:'title']] <span ng-if="prediction.source.author">[['by' | translate ]] [[prediction.source.author | reverse]]</span> <span ng-if="prediction.source.year_published">([[prediction.source.year_published]])</span></p>
