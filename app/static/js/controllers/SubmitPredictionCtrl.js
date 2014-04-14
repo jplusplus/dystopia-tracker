@@ -67,7 +67,7 @@ angular.module('dystopia-tracker').controller('SubmitPredictionCtrl', ['$scope',
 
     // show only titles with matching source_type based on users selection before
     $scope.titles = new Bloodhound({
-        datumTokenizer: Bloodhound.tokenizers.obj.whitespace('title'),
+        datumTokenizer: Bloodhound.tokenizers.obj.whitespace('title_' + $scope.language),
         queryTokenizer: Bloodhound.tokenizers.whitespace,
         local: []
     });
@@ -82,7 +82,7 @@ angular.module('dystopia-tracker').controller('SubmitPredictionCtrl', ['$scope',
 
     // Typeahead data object
     $scope.typeaheadData = {
-        displayKey: 'title',
+        displayKey: 'title_' + $scope.language,
         source: $scope.titles.ttAdapter()
     };
     
