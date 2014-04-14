@@ -88,10 +88,12 @@ angular.module('dystopia-tracker').controller('HomeCtrl', ['$scope', 'Prediction
                 $scope.predictions[index].push(data.results[i]);
 		    }
 		
+		
 		    if (data.next==null) {
 		    $scope.hideMoreButton = true;
 		    }
-        }); 
+        });
+        
          
     };
 
