@@ -51,7 +51,7 @@ angular.module('dystopia-tracker').controller('HomeCtrl', ['$scope', 'Prediction
         $scope.filters.page++;
         
         if (typeof($scope.filters.title) === 'object') {
-            $scope.filters.title = $scope.filters.title.title;
+            $scope.filters.title = $scope.filters.title['title_' + $scope.language];
         }
         
         updateUrl($scope.filters);
@@ -125,7 +125,7 @@ angular.module('dystopia-tracker').controller('HomeCtrl', ['$scope', 'Prediction
 	    $scope._lang = $scope.language = lang;
 	    $location.path('/' + $scope.language);
 	    $scope.translateTo($scope.language);
-	    $scope.update(false);
+        $scope.update(false);
     };
     
     // add active class to button of active language 
@@ -163,6 +163,12 @@ angular.module('dystopia-tracker').controller('HomeCtrl', ['$scope', 'Prediction
         }
         if (urlparams.t) {
 	        $scope.filters.title = urlparams.t;
+            Sources.get({title:$scope.filters.title}).success(function(data) {
+                if (data.count > 0) {
+                    $scope.filters.title = data.results[0]['title_' + $scope.language];
+                    updateUrl($scope.filters);
+                }
+            });
         }
 	 };
 
