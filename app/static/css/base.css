@@ -4,7 +4,8 @@ font-family: 'Raleway', Helvetica, Arial, sans-serif !important;
 }
 
 body {
-    background: rgba(103,91,49,0.02) !important;
+    /*background: rgba(103,91,49,0.02) !important;*/
+    background: rgba(103,91,49,0.20) !important;
 }
 
 .card a {color: black !important;text-decoration: none !important;}
@@ -25,7 +26,7 @@ body {
 
 /* Header styles */
 
-#header {background: rgba(103,91,49,0.20); margin:0 -30px;padding:0px 30px;max-height: 150px;}
+#header {background: rgba(103,91,49,0.2); margin:0 -30px;padding:0px 30px;max-height: 150px;}
 
 .langswitch {position: absolute !important;top:10px;right:10px;}
 .viewswitch {position: absolute !important;top:10px;right:140px;}
@@ -44,7 +45,7 @@ body {
 
 /* Card view styles */
 
-.sectionhead {text-transform: uppercase;color: #dbdbdb;font-size:80%;text-align: center;margin: 20px auto 10px;}
+.sectionhead {text-transform: uppercase;color: black;font-size:80%;text-align: center;margin: 20px auto 10px;}
 
 .line {
   line-height: 0.5;
@@ -97,10 +98,10 @@ display: block;
   margin-right: 20px;
   position: relative;
   min-height: 220px;
-  border: 1px solid #efefef;
+  /*border: 1px solid #efefef;*/
 }
 
-.imagecard:not(:hover) {background: white !important;}
+.imagecard:not(:hover) {background: background: rgba(103,91,49,0.20) !important;}
 
 .imagecard img {float:left;width:150px;height:220px;margin-right: 15px;}
 
