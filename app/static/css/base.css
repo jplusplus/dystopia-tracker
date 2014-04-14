@@ -29,7 +29,7 @@ body {
 
 /* Header styles */
 
-#header {background-image:linear-gradient(to bottom,#563d7c 0,#6f5499 100%);margin:0 -30px;padding:30px 30px 0 30px;max-height: 140px;}
+#header {background-image:linear-gradient(to bottom,#563d7c 0,#6f5499 100%);margin:0 -30px;padding:30px 30px 0 30px;max-height: 150px;}
 
 .langswitch {position: absolute !important;top:10px;right:10px;}
 
@@ -174,6 +174,11 @@ display: block;
 .morefrom .btn {width: 100%;margin-top: 10px;}
 #thankyou .btn {width: 100%;margin: 10px 0;}
 
+/* timeline styles */
+
+#timelineinfo {position: absolute;top:170px;background-color: rgba(255,255,255,0.7);border-radius: 10px;padding:30px;}
+
+
 /* form styles */
 
 .back {text-align: center;margin-top: 20px;font-size:85%;cursor: pointer;}
@@ -184,6 +189,8 @@ display: block;
 #signature {padding:5px;background-color: #000040;color:white;height:30px;}
 
 /* footer styles */
+
+#footer {margin-bottom: 50px;}
 
 #share-buttons {margin-bottom: 10px;}
 
