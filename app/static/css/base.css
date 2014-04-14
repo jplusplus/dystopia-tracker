@@ -7,7 +7,7 @@ body {
     background-color: rgba(255,255,255,0.79) !important;
 }
 
-.card a, #header a {color: black !important;text-decoration: none !important;}
+.card a {color: black !important;text-decoration: none !important;}
 
 .addnew {position: fixed;bottom:15px;right:15px;border-radius: 15% !important;z-index: 100;}
 
