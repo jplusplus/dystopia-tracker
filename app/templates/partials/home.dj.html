@@ -9,7 +9,7 @@
             </select>
 
             <select id="sourcetype" class="hidden-xs" ng-model="filters.source__type" ng-change="update(true)">
-                 <option value=''>[['All Sources' | translate ]]</option>
+                 <option value=''>[['All sources' | translate ]]</option>
                  <option value='literature'>[['Literature' | translate ]]</option>
                  <option value='movies'>[['Movies' | translate ]]</option>
                  <option value='tv_series'>[['TV Series' | translate ]]</option>
@@ -37,8 +37,8 @@
 	        <div id="loading" ng-if="spinner"><div class="spinner"></div>Loading...</div>
             <div class="col-sm-6 col-md-4" ng-repeat="editorspickslist in editorspicks">
                 <li class="card imagecard color-[[editorspick.category]]" ng-repeat="editorspick in editorspickslist">
-    	            <a ng-href="[[language]]/p/[[editorspick.source.author | reverse | slugify]]/[[editorspick.source.title | slugify]]/[[editorspick.id]]">
-    	            <img class="cover" ng-src="{{STATIC_URL}}{{MEDIA_URL}}[[editorspick.source.image]]" alt="[[editorspick.source.title]]">
+    	            <a ng-href="[[language]]/p/[[editorspick.source.author | reverse | slugify]]/[[editorspick.source | getTranslated:'title' | slugify]]/[[editorspick.id]]">
+    	            <img class="cover" ng-src="{{STATIC_URL}}{{MEDIA_URL}}[[editorspick.source.image]]" alt="[[editorspick.source | getTranslated:'title']]">
     	             <p class="cardtext">[[editorspick|getTranslated:'description']]</p>
     	             <div class"realisation-no" ng-switch on="editorspick.realisations.length">
     	                 <span class="badge" ng-switch-when="0">[['This real? Add realisation.' | translate ]]</span>
@@ -63,9 +63,9 @@
                     <div class="col-sm-4 col-md-3" ng-repeat="predictionsslist in predictions">
                         <a ng-if="$first" ng-href="[[language]]/submit/prediction" type="button" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-plus"></span> [['Add new prediction' | translate]]</a>
     		        	<li class="card textcard color-[[prediction.category]]" ng-repeat="prediction in predictionsslist | orderBy: 'creation_date':true"> 
-    	                    <a ng-href="[[language]]/p/[[prediction.source.author | reverse | slugify]]/[[prediction.source.title | slugify]]/[[prediction.id]]">
+    	                    <a ng-href="[[language]]/p/[[prediction.source.author | reverse | slugify]]/[[prediction.source | getTranslated:'title' | slugify]]/[[prediction.id]]">
     	                    <p class="cardtext">[[prediction|getTranslated:'description']]</p>
-    	                    <p class="source">&mdash; [[prediction.source.title]] <span ng-if="prediction.source.author">[['by' | translate ]] [[prediction.source.author | reverse]]</span> <span ng-if="prediction.source.year_published">([[prediction.source.year_published]])</span></p>
+    	                    <p class="source">&mdash; [[prediction.source|getTranslated:'title']] <span ng-if="prediction.source.author">[['by' | translate ]] [[prediction.source.author | reverse]]</span> <span ng-if="prediction.source.year_published">([[prediction.source.year_published]])</span></p>
     	                    <p class"realisations" ng-switch on="prediction.realisations.length">
     	                        <span class="badge" ng-switch-when="0"></span>
     	                        <span class="badge" ng-switch-when="1">1 [['realisation' | translate ]]</span>
