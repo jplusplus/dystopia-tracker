@@ -43,7 +43,7 @@ angular.module('dystopia-tracker').controller('DetailsCtrl', ['$scope', 'Predict
 		$scope.prediction.amzn = "http://www.amazon.de/s/?url=search-alias=aps&field-keywords=" + data.source.title + "&tag=davidbauerch-21&link_code=wql&_encoding=UTF-8";
         $scope.realisations = $scope.prediction.realisations;
 		createYearsArray($scope.prediction,$scope.realisations);
-	    getCategoryTitle($scope.prediction.category);
+	    getCategoryDetails($scope.prediction.category);
 		getMore("title",$scope.prediction.source.title);
         getMore("author",$scope.prediction.source.author);
         getMore("category",$scope.prediction.category);
@@ -69,7 +69,7 @@ angular.module('dystopia-tracker').controller('DetailsCtrl', ['$scope', 'Predict
             }
     };
     
-    function getCategoryTitle(id) {
+    function getCategoryDetails(id) {
         Categories.get({id:id}, function(data) {
         $scope.category = data;
         });
