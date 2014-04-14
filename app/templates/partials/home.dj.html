@@ -63,12 +63,12 @@
     	                    <a ng-href="[[language]]/p/[[prediction.source.author | reverse | slugify]]/[[prediction.source.title | slugify]]/[[prediction.id]]">
     	                    <p class="cardtext">[[prediction|getTranslated:'description']]</p>
     	                    <p class="source">&mdash; [[prediction.source.title]] <span ng-if="prediction.source.author">[['by' | translate ]] [[prediction.source.author | reverse]]</span> <span ng-if="prediction.source.year_published">([[prediction.source.year_published]])</span></p>
-    	                    </a>
     	                    <p class"realisations" ng-switch on="prediction.realisations.length">
-    	                 <span class="badge" ng-switch-when="0"></span>
-    	                 <span class="badge" ng-switch-when="1">1 [['realisation' | translate ]]</span>
-    	                 <span class="badge" ng-switch-default>[[prediction.realisations.length]] [['realisations' | translate ]]</span>
-    	             </p>
+    	                        <span class="badge" ng-switch-when="0"></span>
+    	                        <span class="badge" ng-switch-when="1">1 [['realisation' | translate ]]</span>
+    	                        <span class="badge" ng-switch-default>[[prediction.realisations.length]] [['realisations' | translate ]]</span>
+    	                    </p>
+    	                    </a>
                         </li>
                         <button ng-if="$last" type="button" class="btn btn-default btn-lg btn-block" ng-hide="hideMoreButton" ng-click="update(false)">[['Load more' | translate]]...</button>
                     </div>
