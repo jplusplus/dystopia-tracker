@@ -14,7 +14,7 @@ body {
 .buffer { margin-top:50px; }
 
 /* smooth hover effects */
-.card, button, .btn, .button, #share-buttons img {
+.card, button, .btn, .button, #share-buttons img, #twitter-widget-0 {
   -webkit-transition: all 0.3s ease-in-out;
   -moz-transition: all 0.3s ease-in-out;
   -o-transition: all 0.3s ease-in-out;
@@ -159,13 +159,9 @@ display: block;
 .translated-false {color: grey;}
 .translated-false span {font-size: 80%;}
 
-/*.prediction {position: relative;}
-.prediction img {position: absolute;top:0;left:0;}
-.predictiontext {position: absolute;margin:40% 5% 0 5%;width: 90%;padding:0 10px;background-color: rgba(255,255,255,0.79);font-size: 140%;}
-*/
 .predictiontext {font-size:140%;}
 
-.moments {margin-bottom: 20px;}
+.moments {margin-bottom: 50px;}
 .moments p.credit, .prediction p.credit {margin-top: 0;float: right;}
 .moments li     	     {
 		list-style: none;
@@ -205,6 +201,9 @@ opacity: 0.7;
 }
 
 input.embedcode {margin-top: 8px;width: 100% !important;}
+
+#twitter-widget-0 {opacity: 0.6;}
+#twitter-widget-0:hover {opacity: 1;}
 
 /* Responsive CSS fixes */
 
