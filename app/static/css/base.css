@@ -9,7 +9,7 @@ body {
 
 .card a, #header a {color: black !important;text-decoration: none !important;}
 
-.addnew {position: fixed;bottom:15px;right:15px;border-radius: 15% !important;}
+.addnew {position: fixed;bottom:15px;right:15px;border-radius: 15% !important;z-index: 100;}
 
 .buffer { margin-top:50px; }
 
@@ -212,25 +212,6 @@ input.embedcode {margin-top: 8px;width: 100% !important;}
 #twitter-widget-0 {opacity: 0.6;}
 #twitter-widget-0:hover {opacity: 1;}
 
-/* Responsive CSS fixes */
-
-@media (min-width: 768px) {
-
-}
-
-@media (max-width: 767px) {
-.imagecard {border:0;background-color: #fbfbfb !important;}
-.imagecard img {float:left;width:100px;height:auto;margin: 10px;}
-.imagecard .cardtext {padding: 8px 5px 0 0;}
-}
-
-@media (min-width:400px){
-}
-
-@media (max-width:400px){
-.sectionhead {text-align: center;}
-}
-
 
 /* typeahead styles */
 .tt-dropdown-menu,
@@ -329,5 +310,24 @@ input.embedcode {margin-top: 8px;width: 100% !important;}
     transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
     -webkit-transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
   }
+}
+
+/* Responsive CSS fixes */
+
+@media (min-width: 768px) {
+
+}
+
+@media (max-width: 767px) {
+.imagecard {border:0;background-color: #fbfbfb !important;}
+.imagecard img {float:left;width:100px;height:auto;margin: 10px;}
+.imagecard .cardtext {padding: 8px 5px 0 0;}
+}
+
+@media (min-width:400px){
+}
+
+@media (max-width:400px){
+.sectionhead {text-align: center;}
 }
 
