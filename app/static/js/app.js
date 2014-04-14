@@ -44,6 +44,10 @@ var app = angular.module('dystopia-tracker', [
                     controller: 'DetailsCtrl',
                     templateUrl: '/partial/details.html',
                     reloadOnSearch: false
+                }).when('/:lang/p//:title/:id', {
+                    controller: 'DetailsCtrl',
+                    templateUrl: '/partial/details.html',
+                    reloadOnSearch: false
                 }).when('/:lang/submit/prediction', {
                     controller: 'SubmitPredictionCtrl',
                     templateUrl: '/partial/submit-prediction.html',
@@ -59,6 +63,10 @@ var app = angular.module('dystopia-tracker', [
                 }).when('/:lang/p/:author/:title/:id/embed', {
                     controller: 'EmbedCtrl',
                     templateUrl: '/partial/embed.html',
+                    reloadOnSearch: false
+                }).when('/:lang/timeline', {
+                    controller: 'TimelineCtrl',
+                    templateUrl: '/partial/timeline.html',
                     reloadOnSearch: false
                 }).otherwise({
                     redirectTo: '/' + defaultLang
