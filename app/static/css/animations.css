@@ -1,4 +1,4 @@
-/* animate page
+/* animate page */
 
 .view-container {
   position: relative;
@@ -14,17 +14,17 @@
  
 .view-frame.ng-enter {
   -webkit-animation: 1s fade-in;
-  -moz-animation: 0.5s fade-in;
-  -o-animation: 0.5s fade-in;
-  animation: 5s fade-in;
+  -moz-animation: 1s fade-in;
+  -o-animation: 1s fade-in;
+  animation: 1s fade-in;
   z-index: 100;
 }
  
 .view-frame.ng-leave {
   -webkit-animation: 1s fade-out;
-  -moz-animation: 0.5s fade-out;
-  -o-animation: 0.5s fade-out;
-  animation: 5s fade-out;
+  -moz-animation: 1s fade-out;
+  -o-animation: 1s fade-out;
+  animation: 1s fade-out;
   z-index:99;
 }
  
@@ -54,7 +54,7 @@
   to { opacity: 0; }
 }
 
-*/
+
 
 /* animate cards */
 
