@@ -3,11 +3,12 @@ angular.module('dystopia-tracker').controller('SubmitPredictionCtrl', ['$scope',
     
     
     // check if user has visited the site before
-    if ($cookies.alreadyVisited) {
-        $scope.returningVisitor = true;
+    if ($cookies.alreadySubmitted) {
+        $scope.returningContributor = true;
     };
     // set cookie
-    $cookies.alreadyVisited = 'true';
+    $cookies.alreadySubmitted = 'true';
+    
     $scope.sources = [];
     $scope.categories = [];
     $scope.language = $rootScope._lang;
