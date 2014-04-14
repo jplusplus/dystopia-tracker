@@ -21,7 +21,7 @@ angular.module('dystopia-tracker').controller('DetailsCtrl', ['$scope', 'Predict
     
     $scope.changeLanguage = function(lang) {
 	    $scope._lang = $scope.language = lang;
-	    $location.path('/' + $scope.language + "/p/" + $filter('slugify')($filter('reverse')($scope.prediction.source.author)) + "/" + $filter('slugify')($scope.prediction.source.title) + "/" + $scope.prediction.id);
+	    $location.path('/' + $scope.language + "/p/" + $filter('slugify')($filter('reverse')($scope.prediction.source.author)) + "/" + $filter('slugify')($scope.prediction.source['title_' + $rootScope._lang]) + "/" + $scope.prediction.id);
 	    $scope.translateTo($scope.language);
 	    $scope.update(false);
     };
