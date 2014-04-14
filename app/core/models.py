@@ -81,7 +81,7 @@ class Prediction(models.Model):
     def __unicode__(self):
         if self.headline_E != None and self.headline_E != "":
             return self.headline_E
-        return '%s : %s [%d]' % (self.source.title, self.description_E, self.id)
+        return '%s : %s [%d]' % (self.source.title_E, self.description_E, self.id)
 
 class Realisation(models.Model):
     prediction = models.ForeignKey(Prediction, related_name='realisations')

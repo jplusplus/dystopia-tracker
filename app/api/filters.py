@@ -31,6 +31,19 @@ class PredictionFilter(django_filters.FilterSet):
     def _source_title(queryset, value):
         return queryset.filter(source__title_E__contains=value, source__title_D__contains=value)
 
+    def _incomplete(queryset, value):
+        if value is None:
+            return queryset
+        q = Q(source=None) | Q(category=None) | Q(description_E="") | \
+            Q(description_D="") | Q(year_predicted=0) | Q(more_info="") | \
+            Q(headline_E="") | Q(headline_D="") | Q(image="") | \
+            Q(image_credit="") | Q(username="")
+        if value:
+            queryset = queryset.filter(q)
+        else:
+            queryset = queryset.filter(~q)
+        return queryset
+
     # Define custom filters
     lang = django_filters.CharFilter(action=_lang)
     title = django_filters.CharFilter(action=_source_title)
@@ -38,11 +51,12 @@ class PredictionFilter(django_filters.FilterSet):
     exclude = django_filters.NumberFilter(action=_exclude_id)
     img = django_filters.BooleanFilter(action=_img_defined)
     published = django_filters.BooleanFilter(action=_published)
+    incomplete = django_filters.BooleanFilter(action=_incomplete)
 
     class Meta:
         model = Prediction
         fields = ['lang', 'editors_pick', 'source__type', 'category', 'title',
-                  'author', 'exclude', 'published']
+                  'author', 'exclude', 'published', 'incomplete']
 
 class SourceFilter(django_filters.FilterSet):
     class Meta:
