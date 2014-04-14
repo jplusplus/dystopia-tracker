@@ -4,7 +4,7 @@ font-family: 'Raleway', Helvetica, Arial, sans-serif !important;
 }
 
 body {
-    background-color: rgba(255,255,255,0.79) !important;
+    background: rgba(103,91,49,0.02) !important;
 }
 
 .card a {color: black !important;text-decoration: none !important;}
@@ -22,14 +22,10 @@ body {
   transition: all 0.3s ease-in-out;
 }
 
-#footer {
-    margin-top: 50px;
-    height: 60px;
-}
 
 /* Header styles */
 
-#header {background-image:linear-gradient(to bottom,#563d7c 0,#6f5499 100%);margin:0 -30px;padding:30px 30px 0 30px;max-height: 150px;}
+#header {background: rgba(103,91,49,0.20); margin:0 -30px;padding:30px 30px 0 30px;max-height: 150px;}
 
 .langswitch {position: absolute !important;top:10px;right:10px;}
 
@@ -190,7 +186,10 @@ display: block;
 
 /* footer styles */
 
-#footer {margin-bottom: 50px;}
+#footer {
+    margin: 50px 0;
+    height: 60px;
+}
 
 #share-buttons {margin-bottom: 10px;}
 
