@@ -11,14 +11,14 @@ admin.site.register(Category, CategoryAdmin)
 
 class SourceAdmin(ImportExportModelAdmin):
     resource_class = SourceResource
-    search_fields = ('title', 'author', 'year_published', 'description_E', 'description_D')
-    list_display = ('id', 'title', 'author', 'year_published', 'type', 'image')
+    search_fields = ('title_E', 'title_D', 'author', 'year_published', 'description_E', 'description_D')
+    list_display = ('id', 'title_E', 'author', 'year_published', 'type', 'image')
     list_filter = ('featured', 'type')
 admin.site.register(Source, SourceAdmin)
 
 class PredictionAdmin(ImportExportModelAdmin):
     resource_class = PredictionResource
-    search_fields = ('source__title', 'source__author', 'source__year_published', 'year_predicted', 'username', 'category__title_E', 'category__title_D', 'description_E', 'description_D')
+    search_fields = ('source__title_E', 'source__title_D', 'source__author', 'source__year_published', 'year_predicted', 'username', 'category__title_E', 'category__title_D', 'description_E', 'description_D')
     list_display = ('id', 'headline_E', 'description_E', 'year_predicted', 'source', 'category', 'username', 'creation_date' )
     list_filter = ('published', 'editors_pick', 'category', 'source')
 admin.site.register(Prediction, PredictionAdmin)

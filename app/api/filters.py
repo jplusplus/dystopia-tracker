@@ -28,9 +28,12 @@ class PredictionFilter(django_filters.FilterSet):
         else:
             return queryset.filter(published=False)
 
+    def _source_title(queryset, value):
+        return queryset.filter(title_E__contains=value, title_D__contains=value)
+
     # Define custom filters
     lang = django_filters.CharFilter(action=_lang)
-    title = django_filters.CharFilter(name='source__title')
+    title = django_filters.CharFilter(action=_source_title)
     author = django_filters.CharFilter(name='source__author')
     exclude = django_filters.NumberFilter(action=_exclude_id)
     img = django_filters.BooleanFilter(action=_img_defined)

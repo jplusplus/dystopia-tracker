@@ -19,7 +19,8 @@ SOURCE_TYPES = (
 class Source(models.Model):
     type = models.CharField(max_length=20, choices=SOURCE_TYPES)
 
-    title = models.CharField(max_length=75)
+    title_E = models.CharField(max_length=75, blank=True)
+    title_D = models.CharField(max_length=75, blank=True)
 
     author = models.CharField(max_length=75, blank=True)
 
@@ -44,7 +45,7 @@ class Source(models.Model):
         super(Source, self).save(*args, **kwargs)
 
     def __unicode__(self):
-        return '%s (%s, %d)' % (self.title, self.author, self.year_published)
+        return '%s (%s, %d)' % (self.title_E, self.author, self.year_published)
 
 class Prediction(models.Model):
     source = models.ForeignKey(Source)
