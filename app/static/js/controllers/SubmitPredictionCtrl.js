@@ -23,8 +23,6 @@ angular.module('dystopia-tracker').controller('SubmitPredictionCtrl', ['$scope',
          "published": true 
      }
 
-    $scope.foo = function() { alert('here'); }
-
     $scope.showSourceDetails = false;
 
     $scope.updateSourceDetailsShow = function() {
@@ -67,7 +65,7 @@ angular.module('dystopia-tracker').controller('SubmitPredictionCtrl', ['$scope',
 		    });    
     }
 
-    // TODO only titles with matching source_type based on users selection before
+    // show only titles with matching source_type based on users selection before
     $scope.titles = new Bloodhound({
         datumTokenizer: Bloodhound.tokenizers.obj.whitespace('title'),
         queryTokenizer: Bloodhound.tokenizers.whitespace,
