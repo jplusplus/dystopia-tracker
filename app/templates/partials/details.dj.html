@@ -65,7 +65,7 @@
                           </div>
 	                     
 	                      <li ng-show="alldates.link" target="_blank"><a ng-href="[[alldates.link]]">[['Read more about' | translate]] [[prediction.source | getTranslated:'title']]</a></li>
-		                  <li><a ng-href="[[alldates.amzn]]" target="_blank">[['Buy ' | translate]] [[prediction.source | getTranslated:'title']] [['on Amazon' | translate]]</a></li>
+		                  <li><a ng-href="[[prediction.amzn]]" target="_blank">[['Buy ' | translate]] [[prediction.source | getTranslated:'title']] [['on Amazon' | translate]]</a></li>
 		               </div>
 		               
 		               <div ng-switch-when="predicted">
