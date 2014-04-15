@@ -47,6 +47,7 @@ angular.module('dystopia-tracker').controller('DetailsCtrl', ['$scope', 'Predict
         getMore("author",$scope.prediction.source.author);
         getMore("category",$scope.prediction.category);
         findTranslationStatus($scope.prediction);
+        createShareUrls($scope.prediction);
     });	
     
     function findTranslationStatus(object) {
@@ -107,14 +108,18 @@ angular.module('dystopia-tracker').controller('DetailsCtrl', ['$scope', 'Predict
     
     // add metadata to sharing urls
     // TODO: add image to optimise sharing, register domain in facebook app
-    if ($rootScope._lang == "D") {
-	    $scope.shareurls.description = "Deutsche Beschreibung"
+    function createShareUrls (prediction) {
+        if ($rootScope._lang == "D") {
+        $scope.shareurls.desc = "Erkunden Sie dystopische Vorhersagen und ihre Realisierungen – wie diese: " + prediction.description_D;
+        }
+        else {$scope.shareurls.desc = "Browse dystopian predictions and their realisations. Like this one: " + prediction.description_E}
+            console.log($scope.shareurls.desc);
+        $scope.shareurls.picture = "";
+        $scope.shareurls.fb = "https://www.facebook.com/dialog/feed?app_id=624040751022885&redirect_uri=" + $location.absUrl() + "&display=page&link=" + $location.absUrl() + "&name=Dystopia%20Tracker&description=" + $scope.shareurls.desc + "&picture=" + $scope.shareurls.picture;
+        $scope.shareurls.twi = "https://twitter.com/intent/tweet?text=" + $scope.shareurls.desc + "&url=" + $location.absUrl() + "&via=dystopiatracker";    
+        $scope.shareurls.mail = "mailto:?Subject=Dystopia Tracker&Body=" + $scope.shareurls.desc + " --> " + $location.absUrl();
     }
-    else {$scope.shareurls.description = "English description"};
-    $scope.shareurls.picture = "";
     
-    $scope.shareurls.fb = "https://www.facebook.com/dialog/feed?app_id=624040751022885&redirect_uri=" + $location.absUrl() + "&display=page&link=" + $location.absUrl() + "&name=Dystopia%20Tracker&description=" + $scope.shareurls.description + "&picture=" + $scope.shareurls.picture;
-    $scope.shareurls.twi = "https://twitter.com/intent/tweet?text=" + $scope.shareurls.description + "&url=" + $location.absUrl() + "&via=dystopiatracker";    $scope.shareurls.mail = "mailto:?Subject=Dystopia Tracker&Body=" + $scope.shareurls.description + " --> " + $location.absUrl();
     
     // save translation
     $scope.translate = function(item, type) {
