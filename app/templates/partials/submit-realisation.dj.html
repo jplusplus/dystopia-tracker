@@ -18,9 +18,10 @@
          <textarea class="form-control" id="prediction" rows="5" maxlength="300" ng-model="realisation['description_' + language]" autofocus required></textarea>
        </div>
        
-       <div class="form-group">
+       <div class="form-group" ng-class="numbererror">
+         <p ng-if="numbererror">This should be a number</p>
          <label for="year_introduced">[['What year was that?' | translate ]]</label>
-         <input type="number" class="form-control" id="year_predicted" placeholder="" ng-model="realisation.year_introduced" required>
+         <input inputmode='numeric' type="number" class="form-control" id="year_predicted" placeholder="" ng-model="realisation.year_introduced" required>
        </div>
        
        <div class="form-group">
