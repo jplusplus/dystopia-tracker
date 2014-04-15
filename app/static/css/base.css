@@ -243,10 +243,6 @@ opacity: 0.7;
 
 input.embedcode {margin-top: 8px;width: 100% !important;}
 
-#twitter-widget-0 {opacity: 0.6;}
-#twitter-widget-0:hover {opacity: 1;}
-
-
 /* typeahead styles */
 .tt-dropdown-menu,
 .gist {
