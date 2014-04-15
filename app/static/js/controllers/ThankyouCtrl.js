@@ -8,8 +8,8 @@ angular.module('dystopia-tracker').controller('ThankyouCtrl', ['$scope', 'Predic
     
 
     Prediction.get({id:$scope.prediction.id}).success(function(data) {
-		$scope.prediction = data;
-		createSharingUrls($scope.prediction);
+		    $scope.prediction = data;
+		    createSharingUrls($scope.prediction);
     });  
 
     function createSharingUrls(prediction) {
@@ -18,19 +18,18 @@ angular.module('dystopia-tracker').controller('ThankyouCtrl', ['$scope', 'Predic
         $scope.url = "http://www.dystopiatracker.com/" + $scope.language + "/p/" + $filter('slugify')($filter('reverse')(prediction.source.author)) + "/" + $filter('slugify')(prediction.source['title_' + $rootScope._lang]) + "/" + prediction.id;
        
        if ($rootScope._lang == "D") {
-	    $scope.shareurls.description = "Deutsche Beschreibung"
-       }
-       else {$scope.shareurls.description = "English description"};
+            $scope.shareurls.desc = "Ich habe gerade eine dystopische Vorhersage beim Dystopia Tracker erfasst: " + prediction.description_D;
+            $scope.shareurls.shortdesc = "Ich habe gerade eine dystopische Vorhersage beim @dystopiatracker erfasst:"
+        }
+        else {
+            $scope.shareurls.desc = "I just added a dystopian prediction to the Dystopia Tracker: " + prediction.description_E;
+            $scope.shareurls.shortdesc = "I just added a dystopian prediction to the @dystopiatracker, check it out:";
+          }
+
        $scope.shareurls.picture = "";
     
-       $scope.shareurls.fb = "https://www.facebook.com/dialog/feed?app_id=624040751022885&redirect_uri=" + $scope.url + "&display=page&link=" + $scope.url + "&name=Dystopia%20Tracker&description=" + $scope.shareurls.description + "&picture=" + $scope.shareurls.picture;
-       $scope.shareurls.twi = "https://twitter.com/intent/tweet?text=" + $scope.shareurls.description + "&url=" + $scope.url + "&via=dystopiatracker";
-       $scope.shareurls.mail = "mailto:?Subject=Dystopia Tracker&Body=" + $scope.shareurls.description + " --> " + $scope.url;
-       
-       
-       
-       
-       
-    }
-    
+       $scope.shareurls.fb = "https://www.facebook.com/dialog/feed?app_id=624040751022885&redirect_uri=" + $scope.url + "&display=page&link=" + $scope.url + "&name=Dystopia%20Tracker&description=" + $scope.shareurls.desc + "&picture=" + $scope.shareurls.picture;
+       $scope.shareurls.twi = "https://twitter.com/intent/tweet?text=" + $scope.shareurls.shortdesc + "&url=" + $scope.url;
+       $scope.shareurls.mail = "mailto:?Subject=Dystopia Tracker&Body=" + $scope.shareurls.desc + " --> " + $scope.url;  
+    };
 }]); // it's the end of the code as we know it
