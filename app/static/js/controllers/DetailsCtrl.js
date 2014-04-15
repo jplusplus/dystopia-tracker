@@ -106,17 +106,19 @@ angular.module('dystopia-tracker').controller('DetailsCtrl', ['$scope', 'Predict
 	    });    
     }
     
-    // add metadata to sharing urls
-    // TODO: add image to optimise sharing, register domain in facebook app
+    // TODO: add image to optimise sharing
     function createShareUrls (prediction) {
         if ($rootScope._lang == "D") {
-        $scope.shareurls.desc = "Erkunden Sie dystopische Vorhersagen und ihre Realisierungen – wie diese: " + prediction.description_D;
+            $scope.shareurls.desc = "Erkunden Sie dystopische Vorhersagen und ihre Realisierungen – wie diese: " + prediction.description_D;
+            $scope.shareurls.shortdesc = "Erkunde hunderte dystopische Vorhersagen und ihre Realisierungen @dystopiatracker:"
         }
-        else {$scope.shareurls.desc = "Browse dystopian predictions and their realisations. Like this one: " + prediction.description_E}
-            console.log($scope.shareurls.desc);
+        else {
+            $scope.shareurls.desc = "Browse dystopian predictions and their realisations. Like this one: " + prediction.description_E};
+            $scope.shareurls.shortdesc = "The @dystopiatracker lets you browse hundreds of dystopian predictions and their realisations:"
+
         $scope.shareurls.picture = "";
         $scope.shareurls.fb = "https://www.facebook.com/dialog/feed?app_id=624040751022885&redirect_uri=" + $location.absUrl() + "&display=page&link=" + $location.absUrl() + "&name=Dystopia%20Tracker&description=" + $scope.shareurls.desc + "&picture=" + $scope.shareurls.picture;
-        $scope.shareurls.twi = "https://twitter.com/intent/tweet?text=" + $scope.shareurls.desc + "&url=" + $location.absUrl() + "&via=dystopiatracker";    
+        $scope.shareurls.twi = "https://twitter.com/intent/tweet?text=" + $scope.shareurls.shortdesc + "&url=" + $location.absUrl();    
         $scope.shareurls.mail = "mailto:?Subject=Dystopia Tracker&Body=" + $scope.shareurls.desc + " --> " + $location.absUrl();
     }
     
