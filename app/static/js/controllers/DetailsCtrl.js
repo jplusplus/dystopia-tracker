@@ -54,7 +54,7 @@ angular.module('dystopia-tracker').controller('DetailsCtrl', ['$scope', 'Predict
         if (prediction.source.type == "literature") {
             amznType = "books";
         }
-        else if (prediction.source.type == "movies" || prediction.source.type == "tv series") {
+        else if (prediction.source.type == "movies" || prediction.source.type == "tv_series") {
             amznType = "dvd";
         }
         else if (prediction.source.type == "games") {
