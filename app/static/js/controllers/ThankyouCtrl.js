@@ -15,7 +15,7 @@ angular.module('dystopia-tracker').controller('ThankyouCtrl', ['$scope', 'Predic
     function createSharingUrls(prediction) {
         var slugifyfilter = $filter('slugify');
         // TODO: add text and images to optimise sharing: http://ar.zu.my/how-to-really-customize-the-deprecated-facebook-sharer-dot-php/
-        $scope.url = "http://www.dystopiatracker.com/" + $scope.language + "/p/" + $filter('slugify')($filter('reverse')(prediction.source.author)) + "/" + $filter('slugify')(prediction.source['title_' + $rootScope._lang]) + "/" + prediction.id;
+        $scope.url = $scope.language + "/p/" + $filter('slugify')($filter('reverse')(prediction.source.author)) + "/" + $filter('slugify')(prediction.source['title_' + $rootScope._lang]) + "/" + prediction.id;
        
        if ($rootScope._lang == "D") {
             $scope.shareurls.desc = "Ich habe gerade eine dystopische Vorhersage beim Dystopia Tracker erfasst: " + prediction.description_D;
