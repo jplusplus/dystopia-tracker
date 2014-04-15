@@ -5,7 +5,7 @@ font-family: 'Raleway', Helvetica, Arial, sans-serif !important;
 
 body {
     /*background: rgba(103,91,49,0.02) !important;*/
-    background: rgba(103,91,49,0.20) !important;
+    background: rgba(103,91,49,0.15) !important;
 }
 
 .card a, h1 a {color: black !important;text-decoration: none !important;}
@@ -333,7 +333,6 @@ input.embedcode {margin-top: 8px;width: 100% !important;}
 }
 
 @media (max-width: 767px) {
-.imagecard {border:0;background-color: #fbfbfb !important;}
 .imagecard img {float:left;width:100px;height:auto;margin: 10px;}
 .imagecard .cardtext {padding: 8px 5px 0 0;}
 .langswitch {top:0px;right:0px;}
