@@ -3,7 +3,7 @@ angular.module('dystopia-tracker').controller('TimelineCtrl', ['$scope', 'Predic
     
     $scope.changeLanguage = function(lang) {
 	    $scope._lang = $scope.language = lang;
-	    $location.path('/' + $scope.language);
+	    $location.path('/' + $scope.language + "/timeline");
 	    $scope.translateTo($scope.language);
         $scope.update(false);
     };
