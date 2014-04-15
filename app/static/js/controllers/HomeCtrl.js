@@ -1,5 +1,5 @@
-angular.module('dystopia-tracker').controller('HomeCtrl', ['$scope', 'Prediction', 'Categories', 'Sources', '$rootScope', '$location', '$filter', '$cookies',
-                                                           function($scope, Prediction, Categories, Sources, $rootScope, $location, $filter, $cookies) {
+angular.module('dystopia-tracker').controller('HomeCtrl', ['$scope', 'Prediction', 'Categories', 'Sources', '$rootScope', '$location', '$filter', '$cookies', '$timeout',
+                                                           function($scope, Prediction, Categories, Sources, $rootScope, $location, $filter, $cookies, $timeout) {
 
     // check if user has visited the site before
     if ($cookies.alreadyVisited) {
@@ -44,7 +44,7 @@ angular.module('dystopia-tracker').controller('HomeCtrl', ['$scope', 'Prediction
     $scope.update = function(reset) {
         
         $scope.filters.lang = $scope._lang;
-        
+        $scope.noContent = false;
         $scope.spinner = true;
         
         // increment to the next page of the API
@@ -80,7 +80,6 @@ angular.module('dystopia-tracker').controller('HomeCtrl', ['$scope', 'Prediction
         
         // get all predictions with selected filter applied
 		Prediction.get($scope.filters).success(function(data) {
-		    $scope.spinner = false;
 		    for (var i=0;i<data.results.length;i++) {
                 // 4 columns, +1 to add first element to second column
                 var index = (i+1) % 4;
@@ -88,13 +87,18 @@ angular.module('dystopia-tracker').controller('HomeCtrl', ['$scope', 'Prediction
                 $scope.predictions[index].push(data.results[i]);
 		    }
 		
-		
 		    if (data.next==null) {
 		    $scope.hideMoreButton = true;
 		    }
-        });
-        
-         
+
+            $scope.spinner = false;
+
+            $timeout(function(){
+                if ($scope.predictions.length == 0) {
+                    $scope.noContent = true;
+                }
+            }, 500);
+        });     
     };
 
     $scope.update(true);
