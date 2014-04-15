@@ -40,7 +40,6 @@ angular.module('dystopia-tracker').controller('DetailsCtrl', ['$scope', 'Predict
     
     Prediction.get({id:$routeParams.id}).success(function(data) {
 		$scope.prediction = data;
-		$scope.prediction.amzn = "http://www.amazon.de/s/?url=search-alias=aps&field-keywords=" + data.source.title + "&tag=davidbauerch-21&link_code=wql&_encoding=UTF-8";
         $scope.realisations = $scope.prediction.realisations;
 		createYearsArray($scope.prediction,$scope.realisations);
 		getMore("title",$scope.prediction.source.title);
@@ -48,7 +47,25 @@ angular.module('dystopia-tracker').controller('DetailsCtrl', ['$scope', 'Predict
         getMore("category",$scope.prediction.category);
         findTranslationStatus($scope.prediction);
         createShareUrls($scope.prediction);
+        createAmznLink($scope.prediction);  
     });	
+
+    function createAmznLink(prediction) {
+        if (prediction.source.type == "literature") {
+            amznType = "books";
+        }
+        else if (prediction.source.type == "movies" || prediction.source.type == "tv series") {
+            amznType = "dvd";
+        }
+        else if (prediction.source.type == "games") {
+            amznType = "pc & video games";
+        }
+        else {
+            amznType = "all products";
+        }
+        $scope.prediction.amzn = "http://www.amazon.de/s/?url=search-alias=aps&field-keywords=" + data.source.title + "&category=" + amznType + "&tag=davidbauerch-21&link_code=wql&_encoding=UTF-8";
+        console.log($scope.prediction.amzn);
+    };
     
     function findTranslationStatus(object) {
 	    if (!object.description_E && !object.description_D) {
