@@ -1,14 +1,11 @@
-    <div id="filters" class="row">
-            
-        <div class="btn-group langswitch">
-              <button type="button" ng-click="changeLanguage('E')" class="btn btn-default btn-xs" ng-class="isActive('E')">En<span class="hidden-xs">glish</span></button>
-              <button type="button" ng-click="changeLanguage('D')" class="btn btn-default btn-xs" ng-class="isActive('D')">De<span class="hidden-xs">utsch</span></button>
-        </div>
-        <select id="category" class="col-sm-3 col-lg-1" ng-model="filters.category" ng-change="update(true)" ng-options="category.id as getCategoryTitle(category) for category in categories">
+<div id="filters" class="form-inline">
+        
+    <div class="row">
+        <select id="category" class="form-control col-sm-3" ng-model="filters.category" ng-change="update(true)" ng-options="category.id as getCategoryTitle(category) for category in categories">
                  <option value=''>[[ 'All categories' | translate ]]</option>
         </select>
 
-        <select id="sourcetype" class="hidden-xs col-sm-3 col-lg-1" ng-model="filters.source__type" ng-change="update(true)">
+        <select id="sourcetype" class="hidden-xs form-control col-sm-3" ng-model="filters.source__type" ng-change="update(true)">
                  <option value=''>[['All sources' | translate ]]</option>
                  <option value='literature'>[['Literature' | translate ]]</option>
                  <option value='movies'>[['Movies' | translate ]]</option>
@@ -17,44 +14,47 @@
                  <option value='others'>[['Others' | translate ]]</option>
         </select>
 
-        <form id="searchform" ng-submit="update(true)" class="col-sm-3 col-lg-2">
+        <form id="searchform" ng-submit="update(true)" class="col-sm-6">
                 <input type="text" class="sfTypeahead" options="typeahedOptions" datasets="typeaheadData" placeholder="[['Search for a title' | translate ]]" autofocus ng-model="filters.title">
                 <input type='submit' tabindex='-1' hidefocus='true'>
         </form>
-            
-    </div> <!-- filters -->
-</div> <!-- header -->
-
-	<div class="alert alert-info alert-dismissable fade in" ng-hide="returningVisitor">
-		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-		<p><strong>[['welcome_bold' | translate ]]</strong> [['welcome_text' | translate ]]</p>
     </div>
-    
-    <div id="content">
         
-        <div class="cardview editorspicks row" ng-hide="editorspicks.length==0">
-	        <div class="sectionhead">[['Editors Picks' | translate]]</div>    
-	        <div id="loading" ng-if="spinner"><div class="spinner"></div>Loading...</div>
-            <div class="col-sm-6 col-md-4" ng-repeat="editorspickslist in editorspicks">
-                <li class="card imagecard color-[[editorspick.category.color]]" ng-repeat="editorspick in editorspickslist">
-    	            <a ng-href="[[language]]/p/[[editorspick.source.author | reverse | slugify]]/[[editorspick.source | getTranslated:'title' | slugify]]/[[editorspick.id]]">
-    	            <img class="cover" ng-src="{{STATIC_URL}}{{MEDIA_URL}}[[editorspick.source.image]]" alt="[[editorspick.source | getTranslated:'title']]">
-    	             <p class="cardtext">[[editorspick|getTranslated:'description']]</p>
-    	             <div class"realisation-no" ng-switch on="editorspick.realisations.length">
-    	                 <span class="badge" ng-switch-when="0">[['This real? Add realisation.' | translate ]]</span>
-    	                 <span class="badge" ng-switch-when="1">1 [['realisation' | translate ]]</span>
-    	                 <span class="badge" ng-switch-default>[[editorspick.realisations.length]] [['realisations' | translate ]]</span>
-    	             </div>
-    	            </a>
-                </li>
-            </div>
+</div> 
+
+<div class="btn-group langswitch">
+    <button type="button" ng-click="changeLanguage('E')" class="btn btn-default btn-xs" ng-class="isActive('E')">En<span class="hidden-xs">glish</span></button>
+    <button type="button" ng-click="changeLanguage('D')" class="btn btn-default btn-xs" ng-class="isActive('D')">De<span class="hidden-xs">utsch</span></button>
+</div>
+
+<div class="alert alert-info alert-dismissable fade in" ng-hide="returningVisitor">
+	<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+	<p><strong>[['welcome_bold' | translate ]]</strong> [['welcome_text' | translate ]]</p>
+</div>
+
+<div id="content">
+        
+    <div class="cardview editorspicks row" ng-hide="editorspicks.length==0">
+        <div class="sectionhead">[['Editors Picks' | translate]]</div>    
+        <div id="loading" ng-if="spinner"><div class="spinner"></div>Loading...</div>
+        <div class="col-sm-6 col-md-4" ng-repeat="editorspickslist in editorspicks">
+            <li class="card imagecard color-[[editorspick.category.color]]" ng-repeat="editorspick in editorspickslist">
+	            <a ng-href="[[language]]/p/[[editorspick.source.author | reverse | slugify]]/[[editorspick.source | getTranslated:'title' | slugify]]/[[editorspick.id]]">
+	            <img class="cover" ng-src="{{STATIC_URL}}{{MEDIA_URL}}[[editorspick.source.image]]" alt="[[editorspick.source | getTranslated:'title']]">
+	             <p class="cardtext">[[editorspick|getTranslated:'description']]</p>
+	             <div class"realisation-no" ng-switch on="editorspick.realisations.length">
+	                 <span class="badge" ng-switch-when="0">[['This real? Add realisation.' | translate ]]</span>
+	                 <span class="badge" ng-switch-when="1">1 [['realisation' | translate ]]</span>
+	                 <span class="badge" ng-switch-default>[[editorspick.realisations.length]] [['realisations' | translate ]]</span>
+	             </div>
+	            </a>
+            </li>
         </div>
+    </div><!-- editorspicks -->
 
-        </div><!-- editorspicks -->
-
-        <div class="buffer"></div>
-        
-        <div class="cardview latest row clearfix">
+    <div class="buffer"></div>
+    
+    <div class="cardview latest row clearfix">
         <div class="sectionhead">[['Latest' | translate]]</div>
         <div id="loading" ng-if="spinner"><div class="spinner"></div>Loading...</div>
             <div ng-switch on="predictions.length">
@@ -62,25 +62,25 @@
                     <div class="col-sm-4 col-md-3" ng-repeat="predictionsslist in predictions">
                         <a ng-if="$first" ng-href="[[language]]/submit/prediction" type="button" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-plus"></span> [['Add new prediction' | translate]]</a>
     		        	<li class="card textcard color-[[prediction.category.color]]" ng-repeat="prediction in predictionsslist | orderBy: 'creation_date':true"> 
-    	                    <a ng-href="[[language]]/p/[[prediction.source.author | reverse | slugify]]/[[prediction.source | getTranslated:'title' | slugify]]/[[prediction.id]]">
-    	                    <p class="cardtext">[[prediction|getTranslated:'description']]</p>
-    	                    <p class="source">&mdash; [[prediction.source|getTranslated:'title']] <span ng-if="prediction.source.author">[['by' | translate ]] [[prediction.source.author | reverse]]</span> <span ng-if="prediction.source.year_published">([[prediction.source.year_published]])</span></p>
-    	                    <p class"realisations" ng-switch on="prediction.realisations.length">
-    	                        <span class="badge" ng-switch-when="0"></span>
-    	                        <span class="badge" ng-switch-when="1">1 [['realisation' | translate ]]</span>
-    	                        <span class="badge" ng-switch-default>[[prediction.realisations.length]] [['realisations' | translate ]]</span>
-    	                    </p>
-    	                    </a>
-                        </li>
-                        <button ng-if="$last" type="button" class="btn btn-default btn-lg btn-block" ng-hide="hideMoreButton" ng-click="update(false)">[['Load more' | translate]]...</button>
-                    </div>
+	                    <a ng-href="[[language]]/p/[[prediction.source.author | reverse | slugify]]/[[prediction.source | getTranslated:'title' | slugify]]/[[prediction.id]]">
+	                    <p class="cardtext">[[prediction|getTranslated:'description']]</p>
+	                    <p class="source">&mdash; [[prediction.source|getTranslated:'title']] <span ng-if="prediction.source.author">[['by' | translate ]] [[prediction.source.author | reverse]]</span> <span ng-if="prediction.source.year_published">([[prediction.source.year_published]])</span></p>
+	                    <p class"realisations" ng-switch on="prediction.realisations.length">
+	                        <span class="badge" ng-switch-when="0"></span>
+	                        <span class="badge" ng-switch-when="1">1 [['realisation' | translate ]]</span>
+	                        <span class="badge" ng-switch-default>[[prediction.realisations.length]] [['realisations' | translate ]]</span>
+	                    </p>
+	                    </a>
+                    </li>
+                    <button ng-if="$last" type="button" class="btn btn-default btn-lg btn-block" ng-hide="hideMoreButton" ng-click="update(false)">[['Load more' | translate]]...</button>
                 </div>
-            <div ng-if="noContent" class="col-sm-6 col-md-4 col-sm-offset-3 col-md-offset-4">
-            <p ng-bind-template="[['Bummer, no content' | translate ]]"></p>
-            <a ng-href="[[language]]/submit/prediction" type="button" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-plus"></span> [['Add new prediction' | translate]]</a></div>
             </div>
-					
-        </div> <!-- latest -->
-        
-        <a ng-href="[[language]]/submit/prediction" class="btn btn-primary btn-xs visible-xs addnew"><span class="glyphicon glyphicon-plus"></span></button>
-    </div> <!-- content -->
+        <div ng-if="noContent" class="col-sm-6 col-md-4 col-sm-offset-3 col-md-offset-4">
+        <p ng-bind-template="[['Bummer, no content' | translate ]]"></p>
+        <a ng-href="[[language]]/submit/prediction" type="button" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-plus"></span> [['Add new prediction' | translate]]</a></div>
+        </div>
+				
+    </div> <!-- latest -->
+    
+    <a ng-href="[[language]]/submit/prediction" class="btn btn-primary btn-xs visible-xs addnew"><span class="glyphicon glyphicon-plus"></span></button>
+</div> <!-- content -->

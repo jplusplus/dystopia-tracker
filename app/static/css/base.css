@@ -25,12 +25,21 @@ body {
 
 /* Header styles */
 
-#header {background: rgba(103,91,49,0.2); margin:0 -30px;padding:0px 30px;max-height: 150px;}
+#header {background: rgba(103,91,49,0.2);}
 
 .langswitch {position: absolute !important;top:10px;right:10px;}
 .viewswitch {position: absolute !important;top:10px;right:140px;}
 
-#filters {text-align: center;}
+#filters {
+  position:absolute;
+  top:0px;
+  height:74px;
+  line-height: 74px;
+  left:50%;
+  -webkit-transform:translateX(-50%); 
+  text-align: center;
+  padding:10px;
+}
 
 #filters input[type='submit'] {
   position: absolute;
