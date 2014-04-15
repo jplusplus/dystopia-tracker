@@ -1,6 +1,9 @@
 angular.module('dystopia-tracker.filters')
     .filter('getTranslated', ['$rootScope', function($rootScope) {
         return function(item, fieldname) {
+            if (item == null) {
+                return '';
+            }
             var oppositeLang = {'E':'D', 'D':'E'};
             // check if translation is available
             if (item[fieldname + '_' + $rootScope._lang] != null && item[fieldname + '_' + $rootScope._lang] != "") {
