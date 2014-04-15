@@ -12,7 +12,21 @@ angular.module('dystopia-tracker').controller('SubmitRealisationCtrl', ['$scope'
         "more_info": "", 
         "username": "",
         "published": true 
-    } 
+    }
+    
+    $scope.changeLanguage = function(lang) {
+	    $scope._lang = $scope.language = lang;
+	    $location.path('/' + $scope.language + "/submit/realisation");
+	    $scope.translateTo($scope.language);
+        $scope.update(false);
+    };
+    
+    // add active class to button of active language 
+    $scope.isActive = function(lang) {
+        if (lang == $scope._lang) {
+        return 'active';
+        } 
+    }; 
     
     	Prediction.get({id:$scope.prediction.id}).success(function(data) {
 		$scope.prediction = data;

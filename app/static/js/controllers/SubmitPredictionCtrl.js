@@ -25,6 +25,20 @@ angular.module('dystopia-tracker').controller('SubmitPredictionCtrl', ['$scope',
 
     $scope.showSourceDetails = false;
 
+    $scope.changeLanguage = function(lang) {
+	    $scope._lang = $scope.language = lang;
+	    $location.path('/' + $scope.language + "/submit/prediction");
+	    $scope.translateTo($scope.language);
+        $scope.update(false);
+    };
+    
+    // add active class to button of active language 
+    $scope.isActive = function(lang) {
+        if (lang == $scope._lang) {
+        return 'active';
+        } 
+    };
+    
     $scope.updateSourceDetailsShow = function() {
         $scope.showSourceDetails = (typeof $scope.prediction.source.title === "string");
     }

@@ -23,7 +23,6 @@ body {
   transition: all 0.3s ease-in-out;
 }
 
-
 /* Header styles */
 
 #header {background: rgba(103,91,49,0.2); margin:0 -30px;padding:0px 30px;max-height: 150px;}
