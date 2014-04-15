@@ -23,7 +23,6 @@ angular.module('dystopia-tracker').controller('PageCtrl', ['$scope', '$location'
         if (view == "cards" && $location.path() == '/' + $rootScope._lang) {
         return 'active';
         }
-        console.log($location.path());
         if (view == "timeline" && $location.path() == '/' + $rootScope._lang + '/timeline') {
 	        return 'active';
         } 
