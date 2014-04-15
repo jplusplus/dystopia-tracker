@@ -52,6 +52,7 @@
     "Submit" : "Submit",
     "Bummer, no content" : "Bummer. No predictions available for the selection you made. The good news: Now it's your time to shine.",
     "Submit realisation" : "Submit realisation",
+    "Has the prediction become a reality?" : "Has the prediction become a reality in a way that isn't described here yet?",
     "For" : "For",
     "Describe the realisation." : "Describe the realisation. What exactly has been realised?",
     "What year was that?" : "What year was that?",
@@ -80,5 +81,6 @@
     "Translate to English": "Translate to English",
     "Translate to German": "Translate to German",
     "Thank you for your translation. The internet thanks you.": "Thank you for your translation. The internet thanks you.",
-    "timeline_text" : "We're still working on a timeline view that will allow you to browse predictions and realisations by year and let you see the big picture. Follow @dystopiatracker on Twitter to be among the first to know when the timeline view is ready."
+    "timeline_text" : "We're still working on a timeline view that will allow you to browse predictions and realisations by year and let you see the big picture. Follow @dystopiatracker on Twitter to be among the first to know when the timeline view is ready.",
+    "Function not available yet" : "Function not available yet"
     }

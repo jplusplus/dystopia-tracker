@@ -52,6 +52,7 @@
     "Submit" : "Veröffentlichen",
     "Bummer, no content" : "Leider gibt es noch keine Vorhersagen für diese Auswahl. Das muss aber nicht so bleiben, der Ball ist bei Ihnen:",
     "Submit realisation" : "Realisierung erfassen",
+    "Has the prediction become a reality?" : "Ist diese Vorhersage bereits Realität geworden in einer Form, die hier noch nicht beschrieben ist?",
     "For" : "Für",
     "Describe the realisation." : "Beschreiben Sie die Realisierung. Was genau wurde von wem umgesetzt?",
     "What year was that?" : "In welchem Jahr war das?",
@@ -80,5 +81,6 @@
     "Translate to English": "Ins Englische übersetzen",
     "Translate to German": "Ins Deutsche übersetzen",
     "Thank you for your translation. The internet thanks you.": "Danke für Ihre Übersetzung. Das Internet sagt Danke.",
-    "timeline_text" : "Wir arbeiten derzeit noch an der Timeline-Ansicht. Sie wird die grosse Übersicht bieten und Ihnen die Möglichkeit bieten, sämtliche Vorhersagen und Realisierungen nach Jahr zu durchstöbern. Folgen Sie @dystopiatracker auf Twitter und Sie gehören zu den ersten, die erfahren, wenn die Timeline-Ansicht veröffentlicht wird."
+    "timeline_text" : "Wir arbeiten derzeit noch an der Timeline-Ansicht. Sie wird die grosse Übersicht bieten und Ihnen die Möglichkeit bieten, sämtliche Vorhersagen und Realisierungen nach Jahr zu durchstöbern. Folgen Sie @dystopiatracker auf Twitter und Sie gehören zu den ersten, die erfahren, wenn die Timeline-Ansicht veröffentlicht wird.",
+    "Function not available yet" : "Funktion noch nicht verfügbar"
 }
