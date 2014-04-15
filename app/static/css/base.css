@@ -183,6 +183,8 @@ display: block;
 .morefrom .btn {width: 100%;margin-top: 10px;}
 #thankyou .btn {width: 100%;margin: 10px 0;}
 
+input.embedcode {opacity: 0.5;}
+
 /* timeline styles */
 
 #timelineinfo {position: absolute;top:170px;background-color: rgba(255,255,255,0.7);border-radius: 10px;padding:30px;}
