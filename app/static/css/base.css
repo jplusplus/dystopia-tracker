@@ -25,7 +25,7 @@ body {
 
 /* Header styles */
 
-#header {background: rgba(103,91,49,0.2);margin-bottom: 10px;}
+#header {background: rgba(103,91,49,0.2);margin-bottom: 10px;padding:0 15px;}
 
 .langswitch {position: absolute !important;top:10px;right:10px;}
 .viewswitch {position: absolute !important;top:10px;right:140px;}
@@ -141,7 +141,7 @@ display: block;
     color:grey;
 }
 
-/* category colors TODO: find good scheme once number of categories is known */
+/* category colors */
 
 .color-1 {background-color: rgba(0,128,128,0.05);}
 .color-2 {background-color: rgba(255,0,255,0.05);}
@@ -161,10 +161,14 @@ display: block;
 .color-7:hover {background-color: rgba(129,209,255,0.2);} /**/
 .color-8:hover {background-color: rgba(0,255,150,0.2);} /**/
 
-.linecolor-3 span:before, .linecolor-3 span:after {border-color: rgba(0,128,128,0.2) !important;}
-.linecolor-6 span:after, .linecolor-6 span:before {border-color: rgba(255,0,255,0.2) !important;}
-.linecolor-7 span:after, .linecolor-7 span:before {border-color: rgba(0,0,255,0.2) !important;}
-.linecolor-8 span:before, .linecolor-8 span:after {border-color: rgba(9,88,15,0.2) !important;}
+.linecolor-1 span:before, .linecolor-1 span:after {border-color: rgba(0,128,128,0.2) !important;}
+.linecolor-2 span:before, .linecolor-2 span:after {border-color: rgba(255,0,255,0.2) !important;}
+.linecolor-3 span:before, .linecolor-3 span:after {border-color: rgba(0,0,255,0.2) !important;}
+.linecolor-4 span:before, .linecolor-4 span:after {border-color: rgba(56,255,0,0.2) !important;}
+.linecolor-5 span:before, .linecolor-5 span:after {border-color: rgba(255,255,22,0.2) !important;}
+.linecolor-6 span:before, .linecolor-6 span:after {border-color: rgba(255,0,0,0.2) !important;}
+.linecolor-7 span:before, .linecolor-7 span:after {border-color: rgba(129,209,255,0.2) !important;}
+.linecolor-8 span:before, .linecolor-8 span:after {border-color: rgba(0,255,150,0.2) !important;}
 
 /* Single page styles */
 
