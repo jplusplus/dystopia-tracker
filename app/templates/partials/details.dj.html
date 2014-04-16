@@ -49,7 +49,7 @@
 	               <div class="col col-sm-8" ng-switch on="alldates.type">
 	                   
 	                   <div ng-switch-when="published">
-	                      <p>[['Prediction is published in' | translate]] «[[prediction.source | getTranslated:'title']]» [['by' | translate]] [[prediction.source.author | reverse]].
+	                      <p>[['Prediction is published in' | translate]] «[[prediction.source | getTranslated:'title']]» [['by' | translate]] [[prediction.source.author]].
 	                      <p class="source">[[prediction.source | getTranslated:'description']]  <span><a href="" ng-if="!alldates.isTranslated && !alldates.isEmpty" ng-click="alldates.isTranslating = !alldates.isTranslating">([['Translate' | translate]])</a></span></p>             
 	                      
 	                      <form role="form" ng-show="alldates.isTranslating" ng-submit="translate(alldates,'source')">
@@ -128,7 +128,7 @@
 	        <div ng-switch on="more.title.length">
 	            <div ng-switch-default>
 	            <li class="card textcard color-[[item.category.color]]" ng-repeat="item in more.title | limitTo:2" >
-	                <a ng-href="[[language]]/p/[[item.source.author | reverse | slugify]]/[[item.source | getTranslated:'title' | slugify]]/[[item.id]]">
+	                <a ng-href="[[language]]/p/[[item.source.author | slugify]]/[[item.source | getTranslated:'title' | slugify]]/[[item.id]]">
 	                <p>[[item|getTranslated:'description']]</p>
 	                </a>
 	            </li>
@@ -137,16 +137,16 @@
 	        </div>
         </div>
         <div class="morefrom col col-sm-4">
-	        <h4>[['More author' | translate]] [[prediction.source.author | reverse]]</h4>
+	        <h4>[['More author' | translate]] [[prediction.source.author]]</h4>
 	        <div ng-switch on="more.author.length">
 	            <div ng-switch-default>
 	            <li class="card textcard color-[[item.category.color]]" ng-repeat="item in more.author | limitTo:2">
-	                <a ng-href="[[language]]/p/[[item.source.author | reverse | slugify]]/[[item.source | getTranslated:'title' | slugify]]/[[item.id]]">
+	                <a ng-href="[[language]]/p/[[item.source.author | slugify]]/[[item.source | getTranslated:'title' | slugify]]/[[item.id]]">
 	                <p>[[item|getTranslated:'description']]</p>
 	                </a>
 	            </li>
 	            </div>
-	            <p ng-switch-when="0">[['No more predictions from (author)' | translate]] [[prediction.source.author | reverse]][['yet. Know one?' | translate]] <a ng-href="[[language]]/submit/prediction" type="button" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-plus"></span> [['Add a prediction' | translate]]</a></p>
+	            <p ng-switch-when="0">[['No more predictions from (author)' | translate]] [[prediction.source.author]][['yet. Know one?' | translate]] <a ng-href="[[language]]/submit/prediction" type="button" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-plus"></span> [['Add a prediction' | translate]]</a></p>
 	        </div>
         </div>
         <div class="morefrom col col-sm-4">
@@ -154,7 +154,7 @@
 	        <div ng-switch on="more.category.length">
 	            <div ng-switch-default>
 	            <li class="card textcard color-[[item.category.color]]" ng-repeat="item in more.category | limitTo:2">
-	                <a ng-href="[[language]]/p/[[item.source.author | reverse | slugify]]/[[item.source | getTranslated:'title' | slugify]]/[[item.id]]">
+	                <a ng-href="[[language]]/p/[[item.source.author | slugify]]/[[item.source | getTranslated:'title' | slugify]]/[[item.id]]">
 	                <p>[[item|getTranslated:'description']]</p>
 	                </a>
 	            </li>

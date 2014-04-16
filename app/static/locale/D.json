@@ -41,7 +41,7 @@
     "Title" : "Titel",
     "form_source-infotext" : "Wir haben diesen Titel noch nicht in unserer Datenbank. Können Sie uns noch ein paar weitere Angaben dazu geben?",
     "Author" : "Autor",
-    "Last name, first name" : "Nachname, Vorname",
+    "First name last name" : "Vorname Nachname",
     "When was it first published?" : "Wann wurde er erstmals veröffentlicht?",
     "Enter the prediction. Try to be specific." : "Beschreiben Sie die Vorhersage möglichst genau.",
     "What year" : "Für welches Jahr wurde die Vorhersage gemacht? Bitte nur angeben, wenn genaues Jahr bekannt.",

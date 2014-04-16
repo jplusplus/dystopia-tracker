@@ -34,7 +34,7 @@ angular.module('dystopia-tracker').controller('SubmitRealisationCtrl', ['$scope'
          
     $scope.submit = function () {
 	    Realisation.post($scope.realisation).success(function(data) {
-		    $location.path($scope.language + "/p/" + $filter('slugify')($filter('reverse')($scope.prediction.source.author)) + "/" + $filter('slugify')($scope.prediction.source.title) + "/" + $scope.prediction.id);
+		    $location.path($scope.language + "/p/" + $filter('slugify')($scope.prediction.source.author) + "/" + $filter('slugify')($scope.prediction.source.title) + "/" + $scope.prediction.id);
 		}).error(function(data) {
             if (data.year_introduced != null) {
                 $scope.numbererror = 'help-block alert alert-warning alert-dismissable fade in';
