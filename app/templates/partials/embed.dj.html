@@ -1,18 +1,19 @@
 <div id="content" class="embed row">
         <div class="col col-lg-6 col-lg-offset-3">
             <div class="prediction">
-                <p class="predictiontext">[[prediction|getTranslated:'description']]</p>
-                <p class="source">&mdash; [[prediction.source|getTranslated:'title']] <span ng-if="prediction.source.author">[['by' | translate ]] [[prediction.source.author]]</span> <span ng-if="prediction.source.year_published">([[prediction.source.year_published]])</span>
-                </p>    
+              <p class="predictiontext">[[prediction|getTranslated:'description']]</p>
+              <p class="source">&mdash; [[prediction.source|getTranslated:'title']] <span ng-if="prediction.source.author">[['by' | translate ]] [[prediction.source.author]]</span> <span ng-if="prediction.source.year_published">([[prediction.source.year_published]])</span>
+                
+                <span class"realisations" ng-switch on="prediction.realisations.length">
+                <span class="badge" ng-switch-when="0"></span>
+                <span class="badge" ng-switch-when="1">1 [['realisation' | translate ]]</span>
+                <span class="badge" ng-switch-default>[[prediction.realisations.length]] [['realisations' | translate ]]</span>
+                </span>   
+              </p>
             </div>
         </div>     
 </div>
 <div id="signature">
-  <span class"realisations" ng-switch on="prediction.realisations.length">
-    <span class="badge" ng-switch-when="0"></span>
-    <span class="badge" ng-switch-when="1">1 [['realisation' | translate ]]</span>
-    <span class="badge" ng-switch-default>[[prediction.realisations.length]] [['realisations' | translate ]]</span>
-  </span> 
   <span><a ng-href="http://www.dystopiatracker.com/[[url]]">[['Visit Dystopia Tracker for more details' | translate]]</a>.
   </span>
 </div>

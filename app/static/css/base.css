@@ -223,14 +223,24 @@ input.embedcode {opacity: 0.5;}
 
 /* embed styles */
 
-.embed-true {border:1px solid black;background: transparent;}
-.embed .badge {background-color: rgba(0,0,64,0.1); color: rgba(103,91,49,0.5);margin-left: 20px;}
+.embed-true {
+border:1px solid black;
+background: transparent;
+-moz-box-shadow: 2px 2px 3px 0px #ccc;
+-webkit-box-shadow: 2px 2px 3px 0px #ccc;
+box-shadow: 2px 2px 3px 0px #ccc;}
+
+.embed .badge {background-color: rgba(0,0,64,0.1); color: rgba(103,91,49,0.5);float:right;}
+
 #signature {
 padding:5px;
-border-top: 1px solid rgba(103,91,49,0.25);
+border-top: 1px solid rgba(127,127,127,0.15);
 font-size: 0.8em;
 color:grey;
 }
+
+
+#signature a {float:right;}
 
 /* footer styles */
 
