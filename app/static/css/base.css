@@ -361,6 +361,8 @@ input.embedcode {margin-top: 8px;width: 100% !important;}
 }
 
 @media (max-width:400px){
+.buffer { margin-top:20px; }
 .sectionhead {text-align: center;}
+#share-buttons {text-align: center;}
 }
 
