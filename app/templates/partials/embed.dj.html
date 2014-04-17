@@ -1,58 +1,20 @@
-<div id="content" class="embed">
-    <div class="detail row">
-        <div class="col col-lg-6 col-lg-offset-3">
-            <div class="prediction">
-                <img ng-if="prediction.image" ng-src="{{STATIC_URL}}{{MEDIA_URL}}[[prediction.image]]" width="100%"/>
-                <div class="predictiontext">
-                <h2>[[prediction|getTranslated:'headline']]</h2>    
-                <p>[[prediction|getTranslated:'description']]</p>                
-                <p class="credit" ng-show="prediction.username">&mdash; [['contributed by' | translate]] [[prediction.username]]</p>
-                </div>     
-            </div>
-        </div>
-    </div>        
-        
-    <div class="timeline row">
-            <div class="row moments [[alldates.type]] col-lg-6 col-lg-offset-3" ng-repeat="alldates in alldates | orderBy:sorting">
-                   <div class="col col-sm-1">
-                       <strong>[[alldates.year]]</strong>
-                   </div>
-                   <div class="col col-sm-8" ng-switch on="alldates.type">
-                       
-                       <div ng-switch-when="published">
-                          <p>[['Prediction is published in' | translate]] [[prediction.source | getTranslated:'title']] [['by' | translate]] [[prediction.source.author | reverse]].
-                          <p class="source">[[prediction.source | getTranslated:'description']] </p>             
-                         
-                          <li ng-show="alldates.link" target="_blank"><a ng-href="[[alldates.link]]">[['Read more about' | translate]] [[prediction.source | getTranslated:'title']]</a></li>
-                          <li><a ng-href="[[alldates.amzn]]" target="_blank">[['Buy ' | translate]] [[prediction.source | getTranslated:'title']] [['on Amazon' | translate]]</a></li>
-                       </div>
-                       
-                       <div ng-switch-when="predicted">
-                           [['Story in' | translate]] [[prediction.source | getTranslated:'title']] [['is set in' | translate]] [[alldates.year]].
-                       </div>
-                       
-                       <div ng-switch-when="introduced">
-                           <p class="translated-[[alldates.isTranslated]]">[[alldates|getTranslated:'text']]</p>
-                           <p class="credit" ng-show="alldates.credit">&mdash; [['contributed by' | translate]] [[alldates.credit]]</p>
-                           <li ng-show="alldates.link" target="_blank"><a ng-href="[[alldates.link]]">[['Read more about this' | translate]]</a></li>
-                       </div>
-                       
-                   </div> <!-- col-8 -->
-                   
-                   <div class="col col-sm-3">
-                       <a ng-href="[[alldates.amzn]]" target="_blank"><img width="100%" ng-src="{{STATIC_URL}}{{MEDIA_URL}}[[alldates.img]]" alt="[[prediction.source | getTranslated:'title']]" ng-if="alldates.img" title="Buy on Amazon"/ class="hidden-xs"></a>
-                   </div>
-                   
-            </div> <! -- moments -->
-            
-            <div class="col-sm-6 col-lg-4 col-sm-offset-3 col-lg-offset-4">
-                <p class="text-center"><small>Has the prediction become a reality in a way that isn't described here yet?</small></p>
-                <a ng-href="[[language]]/submit/realisation?p=[[prediction.id]]" class="btn btn-primary btn-lg btn-block addRealisation">[['Add a realisation' | translate]]</a>
-            </div>
-            
-    </div> <!- timeline -->
-
-    <div id="signature">
-        <p>Dystopia Tracker. Visit site.</p>
-    </div>
+<div id="content" class="embed row">
+  <div class="col col-lg-6 col-lg-offset-3">
+      <div class="prediction">
+        <p class="predictiontext">[[prediction|getTranslated:'description']]</p>
+        <p class="source">&mdash; [[prediction.source|getTranslated:'title']] <span ng-if="prediction.source.author">[['by' | translate ]] [[prediction.source.author]]</span> <span ng-if="prediction.source.year_published">([[prediction.source.year_published]])</span>
+          <a ng-href="http://www.dystopiatracker.com/[[url]]">
+          <span class"realisations" ng-switch on="prediction.realisations.length">
+          <span class="badge" ng-switch-when="0"></span>
+          <span class="badge" ng-switch-when="1">1 [['realisation' | translate ]]</span>
+          <span class="badge" ng-switch-default>[[prediction.realisations.length]] [['realisations' | translate ]]</span>
+          </span>
+          </a>  
+        </p>
+      </div>
+  </div>     
+</div>
+<div id="signature">
+  <span><a ng-href="http://www.dystopiatracker.com/[[url]]">[['Visit Dystopia Tracker for more details' | translate]]</a>.
+  </span>
 </div>

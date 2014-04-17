@@ -4,7 +4,11 @@ font-family: 'Raleway', Helvetica, Arial, sans-serif !important;
 }
 
 body {
-    /*background: rgba(103,91,49,0.02) !important;*/
+    
+}
+
+.container-fluid {
+	/*background: rgba(103,91,49,0.02) !important;*/
     background: rgba(103,91,49,0.15) !important;
 }
 
@@ -275,9 +279,9 @@ body {
 }
 
 .translated-false {color: grey;}
-.translated-false span {font-size: 80%;}
 
 .predictiontext {font-size:140%;}
+span.tools {font-size:60%;}
 
 .moments {margin-bottom: 50px;}
 .moments p.credit, .prediction p.credit {margin-top: 0;float: right;}
@@ -305,8 +309,24 @@ input.embedcode {opacity: 0.5;}
 
 /* embed styles */
 
-.embed p {font-size: 20px !important;}
-#signature {padding:5px;background-color: #000040;color:white;height:30px;}
+.embed-true {
+border:1px solid black;
+background: transparent;
+-moz-box-shadow: 2px 2px 3px 0px #ccc;
+-webkit-box-shadow: 2px 2px 3px 0px #ccc;
+box-shadow: 2px 2px 3px 0px #ccc;}
+
+.embed .badge {background-color: rgba(0,0,64,1); color: white;float:right;}
+
+#signature {
+padding:5px;
+border-top: 1px solid rgba(127,127,127,0.15);
+font-size: 0.8em;
+color:grey;
+}
+
+
+#signature a {float:right;}
 
 /* footer styles */
 
@@ -453,6 +473,7 @@ input.embedcode {margin-top: 8px;width: 100% !important;}
   .buffer { margin-top:20px; }
   .sectionhead {text-align: center;}
   #share-buttons {text-align: center;}
+  .embed .predictiontext {font-size:110%;}
   #header h1:after {
     border:0;
   }
