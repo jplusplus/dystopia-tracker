@@ -49,7 +49,7 @@
 	               <div class="col col-sm-8" ng-switch on="alldates.type">
 	                   
 	                   <div ng-switch-when="published">
-	                      <p>[['Prediction is published in' | translate]] «[[prediction.source | getTranslated:'title']]» [['by' | translate]] [[prediction.source.author]].
+	                      <p>[['Prediction is published in' | translate]] «[[prediction.source | getTranslated:'title']]» [['by' | translate]] [[prediction.source.author]].</p>
 	                      <p class="source">[[prediction.source | getTranslated:'description']]  <span><a href="" ng-if="!alldates.isTranslated && !alldates.isEmpty" ng-click="alldates.isTranslating = !alldates.isTranslating">([['Translate' | translate]])</a></span></p>             
 	                      
 	                      <form role="form" ng-show="alldates.isTranslating" ng-submit="translate(alldates,'source')">

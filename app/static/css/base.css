@@ -4,7 +4,11 @@ font-family: 'Raleway', Helvetica, Arial, sans-serif !important;
 }
 
 body {
-    /*background: rgba(103,91,49,0.02) !important;*/
+    
+}
+
+.container-fluid {
+	/*background: rgba(103,91,49,0.02) !important;*/
     background: rgba(103,91,49,0.15) !important;
 }
 
@@ -219,8 +223,14 @@ input.embedcode {opacity: 0.5;}
 
 /* embed styles */
 
-.embed p {font-size: 20px !important;}
-#signature {padding:5px;background-color: #000040;color:white;height:30px;}
+.embed-true {border:1px solid black;background: transparent;}
+.embed .badge {background-color: rgba(0,0,64,0.1); color: rgba(103,91,49,0.5);margin-left: 20px;}
+#signature {
+padding:5px;
+border-top: 1px solid rgba(103,91,49,0.25);
+font-size: 0.8em;
+color:grey;
+}
 
 /* footer styles */
 
