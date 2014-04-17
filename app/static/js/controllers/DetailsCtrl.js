@@ -16,6 +16,8 @@ angular.module('dystopia-tracker').controller('DetailsCtrl', ['$scope', 'Predict
     $scope.shareurls = [];
     $scope.more = [];
     $scope.translationArray = [];
+    $scope.editingArray = [];
+    console.debug($scope.editingArray);
     $scope.filters = {exclude : $routeParams.id, title : '', author : '', category : ''};
     $scope.language = $rootScope._lang;
     
@@ -248,11 +250,110 @@ angular.module('dystopia-tracker').controller('DetailsCtrl', ['$scope', 'Predict
     function wrapupTranslation(item) {
             item.isTranslating = false;
             item.isTranslated = true;
-            item.thanks = true; 
+            item.translatethanks = true; 
             $timeout(function(){
                 item.thanks = false;
                 }, 3000);
 		    };
     
+    // save translation
+    $scope.edit = function(item, type) {
+        // find the realisation object with the given id
+        if (type === "realisation") {
+            for (i=0;i<$scope.realisations.length;i++) {
+                if ($scope.realisations[i].id == item.id) {
+                    var realisation = $scope.realisations[i];
+                }
+            }
+        };
+        
+        var fieldToUpdate = "";
+        
+        if (type === "realisation") {  
+            if (realisation.description_E === '') {
+                fieldToUpdate = 'description_E';
+            } else {
+                fieldToUpdate = 'description_D';
+            }
+            var updatedata = { id : item.id };
+        }
+        
+        else if (type === "prediction") {  
+            fieldToUpdate = 'description_' + $scope.language;
+            var updatedata = { id : $scope.prediction.id };
+        }
+        
+        else if (type === "source") {  
+            if ($scope.prediction.source.description_E === '') {
+                fieldToUpdate = 'description_E';
+            } else {
+                fieldToUpdate = 'description_D';
+            }
+        
+            var updatedata = { id : $scope.prediction.source.id };
+        }
+        
+        
+        updatedata[fieldToUpdate] = $scope.editingArray[item.id];
+        console.debug(updatedata);
+        
+        if (type == "realisation") {
+          
+        Realisation.patch(updatedata).success(function(data) {
+            // update scope with the translation
+            for (i=0;i<$scope.realisations.length;i++) {
+                    if ($scope.realisations[i].id == data.id) {
+                    console.log("helo");
+                    $scope.realisations[i] = data;
+                    console.log($scope.realisations[i]);
+                    if (item['text_' + $scope.language] == "") {
+                        item['text_' + $scope.language] = data[fieldToUpdate];
+                    }
+                    }
+            };
+            // close form and show thankyou message
+            wrapupTranslation(item);
+        })
+        }
+        
+        else if (type === "prediction") {
+        Prediction.patch(updatedata).success(function(data) {
+           
+           // update scope with the translation
+           $scope.prediction = data;
+            
+            // close form and show thankyou message
+            wrapupEditing($scope.prediction);
+        })
+
+        }
+        
+        else if (type === "source") {
+        Sources.patch(updatedata).success(function(data) {
+           
+           // update scope with the translation
+           $scope.prediction.source = data;
+            if (item['text_' + $scope.language] == "") {
+                item['text_' + $scope.language] = data[fieldToUpdate];
+                }
+            
+            // close form and show thankyou message
+            wrapupTranslation(item);
+        })
+
+        };
     
+    };
+
+    function wrapupEditing(item) {
+            item.isEditing = false;
+            item.editthanks = true; 
+            $timeout(function(){
+                item.thanks = false;
+                }, 3000);
+            };
+
+
+
+
 }]); // it's the end of the code as we know it

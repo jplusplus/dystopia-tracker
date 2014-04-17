@@ -19,9 +19,10 @@
                 <p class="text-muted credit">[[prediction.image_credit]]</p>
                 <div class="predictiontext">
                 <h2>[[prediction|getTranslated:'headline']]</h2>    
-                <p class="translated-[[prediction.isTranslated]]">[[prediction|getTranslated:'description']] <span ng-if="!prediction.isTranslated"><a href="" ng-click="prediction.isTranslating = !prediction.isTranslating">([['Translate' | translate]])</a></span></p>
-                
-                 <form role="form" ng-if="prediction.isTranslating" ng-submit="translate(prediction,'prediction')">
+                <p class="translated-[[prediction.isTranslated]]">[[prediction|getTranslated:'description']] <span class="tools"><a href="" ng-click="prediction.isEditing = !prediction.isEditing; prediction.isTranslating = false">[['Edit' | translate]]</a><span ng-if="!prediction.isTranslated"> | <a href="" ng-click="prediction.isTranslating = !prediction.isTranslating;prediction.isEditing = false">[['Translate' | translate]]</a></span></span></p>
+
+                <!-- translate form -->
+                <form role="form" ng-if="prediction.isTranslating && !prediction.isEditing" ng-submit="translate(prediction,'prediction')">
 		             <div class="form-group">
                          <label for="prediction" ng-if="prediction.translateToE">[['Translate to English' | translate]]</label>
                          <label for="prediction" ng-if="!prediction.translateToE">[['Translate to German' | translate]]</label>
@@ -29,8 +30,19 @@
                      </div>
                      <button type="submit" class="btn btn-default btn-block">[['Submit translation' | translate]]</button>
 		         </form>
-		        <div class="help-block alert alert-success alert-dismissable" ng-show="prediction.thanks">
+		        <div class="help-block alert alert-success alert-dismissable" ng-show="prediction.translatethanks">
 		            <p>[['Thank you for your translation. The internet thanks you.' | translate]]</p>
+                </div>
+
+                <!-- edit form -->
+                <form role="form" ng-if="prediction.isEditing && !prediction.isTranslating" ng-submit="edit(prediction,'prediction')">
+		             <div class="form-group">
+                         <textarea class="form-control" id="prediction" rows="5" maxlength="300" ng-model="editingArray[prediction.id]"></textarea>
+                     </div>
+                     <button type="submit" class="btn btn-default btn-block">[['Save edits' | translate]]</button>
+		         </form>
+		        <div class="help-block alert alert-success alert-dismissable" ng-show="prediction.editthanks">
+		            <p>[['Thank you for your edits. The internet thanks you.' | translate]]</p>
                 </div>
                 
                 <p class="credit" ng-show="prediction.username">&mdash; [['contributed by' | translate]] [[prediction.username]]</p>

@@ -193,9 +193,9 @@ body {
 }
 
 .translated-false {color: grey;}
-.translated-false span {font-size: 80%;}
 
 .predictiontext {font-size:140%;}
+span.tools {font-size:60%;}
 
 .moments {margin-bottom: 50px;}
 .moments p.credit, .prediction p.credit {margin-top: 0;float: right;}
