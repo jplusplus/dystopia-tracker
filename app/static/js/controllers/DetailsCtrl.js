@@ -256,7 +256,7 @@ angular.module('dystopia-tracker').controller('DetailsCtrl', ['$scope', 'Predict
                 }, 3000);
 		    };
     
-    // save translation
+    // save edits
     $scope.edit = function(item, type) {
         // find the realisation object with the given id
         if (type === "realisation") {
@@ -270,11 +270,7 @@ angular.module('dystopia-tracker').controller('DetailsCtrl', ['$scope', 'Predict
         var fieldToUpdate = "";
         
         if (type === "realisation") {  
-            if (realisation.description_E === '') {
-                fieldToUpdate = 'description_E';
-            } else {
-                fieldToUpdate = 'description_D';
-            }
+            fieldToUpdate = 'description_' + $scope.language;
             var updatedata = { id : item.id };
         }
         
@@ -303,16 +299,12 @@ angular.module('dystopia-tracker').controller('DetailsCtrl', ['$scope', 'Predict
             // update scope with the translation
             for (i=0;i<$scope.realisations.length;i++) {
                     if ($scope.realisations[i].id == data.id) {
-                    console.log("helo");
                     $scope.realisations[i] = data;
-                    console.log($scope.realisations[i]);
-                    if (item['text_' + $scope.language] == "") {
-                        item['text_' + $scope.language] = data[fieldToUpdate];
-                    }
+                    item['text_' + $scope.language] = data[fieldToUpdate];
                     }
             };
             // close form and show thankyou message
-            wrapupTranslation(item);
+            wrapupEditing(item);
         })
         }
         
