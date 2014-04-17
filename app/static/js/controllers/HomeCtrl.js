@@ -7,6 +7,8 @@ angular.module('dystopia-tracker').controller('HomeCtrl', ['$scope', 'Prediction
     };
     // set cookie
     $cookies.alreadyVisited = 'true';
+    
+    // define variables for later
     $scope.categories = [];
     $scope.predictions;
     $scope.editorspicks;
@@ -14,6 +16,7 @@ angular.module('dystopia-tracker').controller('HomeCtrl', ['$scope', 'Prediction
     $scope.filters = {category:'', source__type:'', title:''};
     $scope.filters.page = 0;
     $scope.hideMoreButton = false;
+    
     // define number of predictions to load
     $scope.filters.page_size = 10;
     $scope.language = $rootScope._lang;
@@ -63,7 +66,7 @@ angular.module('dystopia-tracker').controller('HomeCtrl', ['$scope', 'Prediction
             $scope.hideMoreButton = false;
             
             
-            // get all editor's picks with selected filter applied 
+            // get all editors picks with selected filter applied 
 		    editorspick_filters = angular.copy($scope.filters);
     	    editorspick_filters.editors_pick = 'True';
     	    // define number of editors picks to show
@@ -101,6 +104,7 @@ angular.module('dystopia-tracker').controller('HomeCtrl', ['$scope', 'Prediction
         });     
     };
 
+    // load content for the first time
     $scope.update(true);
 
     // Typeahead options object
