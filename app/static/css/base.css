@@ -100,14 +100,13 @@ body {
 }
 
 .textcard {
-	border-left: 6px solid;
 	border: 1px solid rgba(225,225,225,0.2);
 	font-size: 120%;
 }
 
 .textcard a {
-display: block;
-		padding: 5% 5% 2% 5%;
+    display: block;
+	padding: 5% 5% 2% 5%;
 }
 
 .imagecard {
