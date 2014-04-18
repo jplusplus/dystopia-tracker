@@ -443,6 +443,7 @@ input.embedcode {margin-top: 8px;width: 100% !important;}
 
 .tt-suggestion.tt-cursor {
     background-color: #eeeeee;
+    cursor: pointer;
 }
 
 .tt-suggestion p {
