@@ -204,7 +204,7 @@ angular.module('dystopia-tracker').controller('DetailsCtrl', ['$scope', 'Predict
         
         updatedata[fieldToUpdate] = $scope.translationArray[type][item.id];
         
-	    if (type == "realisation") {
+	    if (type === "realisation") {
 	      
 	    Realisation.patch(updatedata).success(function(data) {
 	        // update scope with the translation
@@ -301,7 +301,7 @@ angular.module('dystopia-tracker').controller('DetailsCtrl', ['$scope', 'Predict
         updatedata[fieldToUpdate] = $scope.editingArray[type][item.id];
         console.debug(updatedata);
         
-        if (type == "realisation") {
+        if (type === "realisation") {
           
         Realisation.patch(updatedata).success(function(data) {
             // update scope with the translation
@@ -352,8 +352,5 @@ angular.module('dystopia-tracker').controller('DetailsCtrl', ['$scope', 'Predict
                 item.editthanks = false;
                 }, 3000);
             };
-
-
-
 
 }]); // it's the end of the code as we know it
