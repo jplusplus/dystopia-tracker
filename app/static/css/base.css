@@ -1,15 +1,7 @@
 /* General styles */
-html, body {
-font-family: 'Raleway', Helvetica, Arial, sans-serif !important;
-}
-
-body {
-    
-}
-
-.container-fluid {
-	/*background: rgba(103,91,49,0.02) !important;*/
-    background: rgba(103,91,49,0.15) !important;
+html, body, .container-fluid {
+  font-family: 'Raleway', Helvetica, Arial, sans-serif !important;
+  background: #E8E6E0 !important;
 }
 
 .card a, h1 a {color: black !important;text-decoration: none !important;}
@@ -346,7 +338,8 @@ color:grey;
 /* footer styles */
 
 #footer {
-    margin: 50px 0;
+    margin:0;
+    padding: 50px 0;
     height: 60px;
 }
 
@@ -518,6 +511,8 @@ input.embedcode {margin-top: 8px;width: 100% !important;}
     width:auto;
   }
 
-
+  html, body {
+    width: 400px;
+  }
 }
 
