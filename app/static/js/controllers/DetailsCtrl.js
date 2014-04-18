@@ -161,7 +161,7 @@ angular.module('dystopia-tracker').controller('DetailsCtrl', ['$scope', 'Predict
         $scope.shareurls.picture = "";
         $scope.shareurls.fb = "https://www.facebook.com/dialog/feed?app_id=624040751022885&redirect_uri=" + $location.absUrl() + "&display=page&link=" + $location.absUrl() + "&name=Dystopia%20Tracker&description=" + $scope.shareurls.desc + "&picture=" + $scope.shareurls.picture;
         $scope.shareurls.twi = "https://twitter.com/intent/tweet?text=" + $scope.shareurls.shortdesc + "&url=" + $location.absUrl();    
-        $scope.shareurls.mail = "mailto:?Subject=Dystopia Tracker&Body=" + $scope.shareurls.desc + " --> " + $location.absUrl();
+        $scope.shareurls.mail = "mailto:?Subject=Dystopia Tracker&Body=" + $scope.shareurls.desc + " " + $location.absUrl();
     }
 
     function createEmbedUrl (prediction) {
