@@ -152,8 +152,8 @@ angular.module('dystopia-tracker').controller('DetailsCtrl', ['$scope', 'Predict
             $scope.shareurls.shortdesc = "Erkunde hunderte dystopische Vorhersagen und ihre Realisierungen @dystopiatracker:"
         }
         else {
-            $scope.shareurls.desc = "Browse dystopian predictions and their realisations. Like this one: " + prediction.description_E};
-            $scope.shareurls.shortdesc = "The @dystopiatracker lets you browse hundreds of dystopian predictions and their realisations:"
+            $scope.shareurls.desc = "Explore dystopian predictions and their realisations. Like this one: " + prediction.description_E};
+            $scope.shareurls.shortdesc = "Check out @dystopiatacker: Explore and contribute predictions about the future and their realisations."
 
         $scope.shareurls.picture = "";
         $scope.shareurls.fb = "https://www.facebook.com/dialog/feed?app_id=624040751022885&redirect_uri=" + $location.absUrl() + "&display=page&link=" + $location.absUrl() + "&name=Dystopia%20Tracker&description=" + $scope.shareurls.desc + "&picture=" + $scope.shareurls.picture;
