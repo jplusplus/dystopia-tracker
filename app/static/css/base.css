@@ -478,6 +478,13 @@ input.embedcode {margin-top: 8px;width: 100% !important;}
 .imagecard .cardtext {padding: 8px 5px 0 0;}
 }
 
+
+@media (min-width:620px){  
+  #toggle-filters {
+    display:none;
+  }
+}
+
 @media (max-width:620px){  
   #filters {
     left:0;
