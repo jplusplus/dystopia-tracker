@@ -16,6 +16,9 @@ angular.module('dystopia-tracker').controller('HomeCtrl', ['$scope', 'Prediction
     $scope.filters = {category:'', source__type:'', title:''};
     $scope.filters.page = 0;
     $scope.hideMoreButton = false;
+
+    // tell facebook it's the home page
+    $scope.pagetype('website');
     
     // define number of predictions to load
     $scope.filters.page_size = 10;

@@ -1,5 +1,8 @@
 angular.module('dystopia-tracker').controller('PageCtrl', ['$scope', '$location', '$rootScope', '$translate', function($scope, $location, $rootScope, $translate) {
     var _title = 'Dystopia Tracker';
+    var _description = 'Explore and contribute predictions about the future and their realisations.'
+    var _image = '';
+    var _pagetype = 'article';
 
     var defaultLang;
     if (navigator.language.indexOf("de") == 0) {
@@ -41,4 +44,26 @@ angular.module('dystopia-tracker').controller('PageCtrl', ['$scope', '$location'
         }
         return _title;
     };
+
+    $scope.description = function(newDescription) {
+        if (newDescription != null) {
+            _description = newDescription;
+        }
+        return _description;
+    };
+
+    $scope.image = function(newImage) {
+        if (newImage != null) {
+            _image = newImage;
+        }
+        return _image;
+    }; 
+
+    $scope.pagetype = function(newPagetype) {
+        if (newPagetype != null) {
+            _pagetype = newPagetype;
+        }
+        return _pagetype;
+    };    
+
 }]);

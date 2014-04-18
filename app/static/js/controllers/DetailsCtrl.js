@@ -47,6 +47,7 @@ angular.module('dystopia-tracker').controller('DetailsCtrl', ['$scope', 'Predict
     $scope.alldates = [];
     $scope.sorting = 'year';
     
+    // get prediction data via API
     Prediction.get({id:$routeParams.id}).success(function(data) {
 		$scope.prediction = data;
         $scope.realisations = $scope.prediction.realisations;
@@ -58,7 +59,18 @@ angular.module('dystopia-tracker').controller('DetailsCtrl', ['$scope', 'Predict
         createShareUrls($scope.prediction);
         createEmbedUrl($scope.prediction);
         createAmznLink($scope.prediction);
-        $scope.editingArray["prediction"][$scope.prediction.id] = $scope.prediction['description_' + $scope.language];  
+        $scope.editingArray["prediction"][$scope.prediction.id] = $scope.prediction['description_' + $scope.language];
+        // set page meta tags
+        $scope.title($scope.prediction.source['title_' + $scope.language] + " | Dystopia Tracker");
+        $scope.description("A prediction from the Dystopia Tracker: " + $scope.prediction['description_' + $scope.language]);
+        if ($scope.prediction.image) {
+            $scope.image($scope.prediction.image);    
+        }
+        else {
+            if ($scope.predicton.source.image) {
+                $scope.image($scope.prediction.source.image);
+            }
+        };
     });	
 
     function createAmznLink(prediction) {
