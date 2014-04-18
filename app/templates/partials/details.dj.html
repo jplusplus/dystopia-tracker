@@ -26,7 +26,7 @@
 		             <div class="form-group">
                          <label for="prediction" ng-if="prediction.translateToE">[['Translate to English' | translate]]</label>
                          <label for="prediction" ng-if="!prediction.translateToE">[['Translate to German' | translate]]</label>
-                         <textarea class="form-control" id="prediction" rows="5" maxlength="300" ng-model="translationArray[prediction.id]" required autofocus></textarea>
+                         <textarea class="form-control" id="prediction" rows="5" maxlength="300" ng-model="translationArray.prediction[prediction.id]" required autofocus></textarea>
                      </div>
                      <button type="submit" class="btn btn-default btn-block">[['Submit translation' | translate]]</button>
 		         </form>
@@ -37,7 +37,7 @@
                 <!-- edit form -->
                 <form role="form" ng-if="prediction.isEditing && !prediction.isTranslating" ng-submit="edit(prediction,'prediction')">
 		             <div class="form-group">
-                         <textarea class="form-control" id="prediction" rows="5" maxlength="300" ng-model="editingArray[prediction.id]"></textarea>
+                         <textarea class="form-control" id="prediction" rows="5" maxlength="300" ng-model="editingArray.prediction[prediction.id]"></textarea>
                      </div>
                      <button type="submit" class="btn btn-default btn-block">[['Save edits' | translate]]</button>
 		         </form>
@@ -68,7 +68,7 @@
 		                      <div class="form-group">
                               <label for="sourcedescription" ng-if="alldates.translateToE">[['Translate to English' | translate]]</label>
                               <label for="sourcedescription" ng-if="!alldates.translateToE">[['Translate to German' | translate]]</label>
-                              <textarea class="form-control" id="sourcedescription" rows="5" maxlength="300" ng-model="translationArray[alldates.id]" required autofocus></textarea>
+                              <textarea class="form-control" id="sourcedescription" rows="5" maxlength="300" ng-model="translationArray.source[alldates.id]" required autofocus></textarea>
                               </div>
                               <button type="submit" class="btn btn-default btn-block">[['Submit translation' | translate]]</button>
 		                  </form>
@@ -92,11 +92,11 @@
 		                   <!-- edit form -->
 			                <form role="form" ng-if="alldates.isEditing && !alldates.isTranslating" ng-submit="edit(alldates,'realisation')">
 					             <div class="form-group">
-			                         <textarea class="form-control" id="prediction" rows="5" maxlength="300" ng-model="editingArray[alldates.id]"></textarea>
+			                         <textarea class="form-control" id="prediction" rows="5" maxlength="300" ng-model="editingArray.realisation[alldates.id]"></textarea>
 			                     </div>
 			                     <button type="submit" class="btn btn-default btn-block">[['Save edits' | translate]]</button>
 					         </form>
-					        <div class="help-block alert alert-success alert-dismissable" ng-show="prediction.editthanks">
+					        <div class="help-block alert alert-success alert-dismissable" ng-show="alldates.editthanks">
 					            <p>[['Thank you for your edits. The internet thanks you.' | translate]]</p>
 			                </div>
                 
@@ -105,7 +105,7 @@
 		                       <div class="form-group">
                                    <label for="realisation" ng-if="alldates.translateToE">[['Translate to English' | translate]]</label>
                                    <label for="realisation" ng-if="!alldates.translateToE">[['Translate to German' | translate]]</label>
-                                   <textarea class="form-control" id="realisation" rows="5" maxlength="300" ng-model="translationArray[alldates.id]" required autofocus></textarea>
+                                   <textarea class="form-control" id="realisation" rows="5" maxlength="300" ng-model="translationArray.realisation[alldates.id]" required autofocus></textarea>
                                </div>
                                <button type="submit" class="btn btn-default btn-block">[['Submit translation' | translate]]</button>
 		                   </form>
@@ -118,7 +118,7 @@
 	               
 	               <div class="col col-sm-3">
 	                   <img width="100%" ng-src="{{STATIC_URL}}{{MEDIA_URL}}[[alldates.img]]" alt="[[prediction.source | getTranslated:'title']]" ng-if="alldates.img" class="hidden-xs">
-	                   <p ng-if="alldates.img_credit" class="text-muted credit">[[alldates.img_credit]]</p>
+	                   <p ng-if="alldates.img_credit" class="text-muted credit hidden-xs">[[alldates.img_credit]]</p>
 	               </div>
 	               
             </div> <!-- moments -->

@@ -15,8 +15,15 @@ angular.module('dystopia-tracker').controller('DetailsCtrl', ['$scope', 'Predict
     $scope.category = [];
     $scope.shareurls = [];
     $scope.more = [];
-    $scope.translationArray = [];
-    $scope.editingArray = [];
+    $scope.translationArray = {
+        "prediction" : [],
+        "realisation" : [],
+        "source" : []
+    };
+    $scope.editingArray = {
+        "prediction" : [],
+        "realisation" : []
+    };
     console.debug($scope.editingArray);
     $scope.filters = {exclude : $routeParams.id, title : '', author : '', category : ''};
     $scope.language = $rootScope._lang;
@@ -40,6 +47,7 @@ angular.module('dystopia-tracker').controller('DetailsCtrl', ['$scope', 'Predict
     $scope.alldates = [];
     $scope.sorting = 'year';
     
+    // get prediction data via API
     Prediction.get({id:$routeParams.id}).success(function(data) {
 		$scope.prediction = data;
         $scope.realisations = $scope.prediction.realisations;
@@ -50,7 +58,19 @@ angular.module('dystopia-tracker').controller('DetailsCtrl', ['$scope', 'Predict
         findTranslationStatus($scope.prediction);
         createShareUrls($scope.prediction);
         createEmbedUrl($scope.prediction);
-        createAmznLink($scope.prediction);  
+        createAmznLink($scope.prediction);
+        $scope.editingArray["prediction"][$scope.prediction.id] = $scope.prediction['description_' + $scope.language];
+        // set page meta tags
+        $scope.title($scope.prediction.source['title_' + $scope.language] + " | Dystopia Tracker");
+        $scope.description("A prediction from the Dystopia Tracker: " + $scope.prediction['description_' + $scope.language]);
+        if ($scope.prediction.image) {
+            $scope.image($scope.prediction.image);    
+        }
+        else {
+            if ($scope.predicton.source.image) {
+                $scope.image($scope.prediction.source.image);
+            }
+        };
     });	
 
     function createAmznLink(prediction) {
@@ -194,9 +214,9 @@ angular.module('dystopia-tracker').controller('DetailsCtrl', ['$scope', 'Predict
         }
         
         
-        updatedata[fieldToUpdate] = $scope.translationArray[item.id];
+        updatedata[fieldToUpdate] = $scope.translationArray[type][item.id];
         
-	    if (type == "realisation") {
+	    if (type === "realisation") {
 	      
 	    Realisation.patch(updatedata).success(function(data) {
 	        // update scope with the translation
@@ -252,7 +272,7 @@ angular.module('dystopia-tracker').controller('DetailsCtrl', ['$scope', 'Predict
             item.isTranslated = true;
             item.translatethanks = true; 
             $timeout(function(){
-                item.thanks = false;
+                item.translatethanks = false;
                 }, 3000);
 		    };
     
@@ -290,10 +310,10 @@ angular.module('dystopia-tracker').controller('DetailsCtrl', ['$scope', 'Predict
         }
         
         
-        updatedata[fieldToUpdate] = $scope.editingArray[item.id];
+        updatedata[fieldToUpdate] = $scope.editingArray[type][item.id];
         console.debug(updatedata);
         
-        if (type == "realisation") {
+        if (type === "realisation") {
           
         Realisation.patch(updatedata).success(function(data) {
             // update scope with the translation
@@ -341,11 +361,8 @@ angular.module('dystopia-tracker').controller('DetailsCtrl', ['$scope', 'Predict
             item.isEditing = false;
             item.editthanks = true; 
             $timeout(function(){
-                item.thanks = false;
+                item.editthanks = false;
                 }, 3000);
             };
-
-
-
 
 }]); // it's the end of the code as we know it
