@@ -26,7 +26,7 @@
 		             <div class="form-group">
                          <label for="prediction" ng-if="prediction.translateToE">[['Translate to English' | translate]]</label>
                          <label for="prediction" ng-if="!prediction.translateToE">[['Translate to German' | translate]]</label>
-                         <textarea class="form-control" id="prediction" rows="5" maxlength="300" ng-model="translationArray[prediction.id]" required autofocus></textarea>
+                         <textarea class="form-control" id="prediction" rows="5" maxlength="300" ng-model="translationArray.prediction[prediction.id]" required autofocus></textarea>
                      </div>
                      <button type="submit" class="btn btn-default btn-block">[['Submit translation' | translate]]</button>
 		         </form>
@@ -68,7 +68,7 @@
 		                      <div class="form-group">
                               <label for="sourcedescription" ng-if="alldates.translateToE">[['Translate to English' | translate]]</label>
                               <label for="sourcedescription" ng-if="!alldates.translateToE">[['Translate to German' | translate]]</label>
-                              <textarea class="form-control" id="sourcedescription" rows="5" maxlength="300" ng-model="translationArray[alldates.id]" required autofocus></textarea>
+                              <textarea class="form-control" id="sourcedescription" rows="5" maxlength="300" ng-model="translationArray.source[alldates.id]" required autofocus></textarea>
                               </div>
                               <button type="submit" class="btn btn-default btn-block">[['Submit translation' | translate]]</button>
 		                  </form>
@@ -105,7 +105,7 @@
 		                       <div class="form-group">
                                    <label for="realisation" ng-if="alldates.translateToE">[['Translate to English' | translate]]</label>
                                    <label for="realisation" ng-if="!alldates.translateToE">[['Translate to German' | translate]]</label>
-                                   <textarea class="form-control" id="realisation" rows="5" maxlength="300" ng-model="translationArray[alldates.id]" required autofocus></textarea>
+                                   <textarea class="form-control" id="realisation" rows="5" maxlength="300" ng-model="translationArray.realisation[alldates.id]" required autofocus></textarea>
                                </div>
                                <button type="submit" class="btn btn-default btn-block">[['Submit translation' | translate]]</button>
 		                   </form>

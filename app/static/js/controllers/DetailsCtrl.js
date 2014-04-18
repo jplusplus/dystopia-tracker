@@ -15,7 +15,11 @@ angular.module('dystopia-tracker').controller('DetailsCtrl', ['$scope', 'Predict
     $scope.category = [];
     $scope.shareurls = [];
     $scope.more = [];
-    $scope.translationArray = [];
+    $scope.translationArray = {
+        "prediction" : [],
+        "realisation" : [],
+        "source" : []
+    };
     $scope.editingArray = {
         "prediction" : [],
         "realisation" : []
@@ -198,7 +202,7 @@ angular.module('dystopia-tracker').controller('DetailsCtrl', ['$scope', 'Predict
         }
         
         
-        updatedata[fieldToUpdate] = $scope.translationArray[item.id];
+        updatedata[fieldToUpdate] = $scope.translationArray[type][item.id];
         
 	    if (type == "realisation") {
 	      
@@ -256,7 +260,7 @@ angular.module('dystopia-tracker').controller('DetailsCtrl', ['$scope', 'Predict
             item.isTranslated = true;
             item.translatethanks = true; 
             $timeout(function(){
-                item.thanks = false;
+                item.translatethanks = false;
                 }, 3000);
 		    };
     
@@ -345,7 +349,7 @@ angular.module('dystopia-tracker').controller('DetailsCtrl', ['$scope', 'Predict
             item.isEditing = false;
             item.editthanks = true; 
             $timeout(function(){
-                item.thanks = false;
+                item.editthanks = false;
                 }, 3000);
             };
 
