@@ -148,6 +148,10 @@ body {
   text-align: left;
 }
 
+#filters .dropdown li {
+	cursor: pointer;
+}
+
 #filters .dropdown .btn {
   max-width:120px;
 }
@@ -244,7 +248,7 @@ body {
 
 /* category colors */
 
-.dropdown-menu li {background-color: inherit; border-left: 4px solid grey;}
+.categories li {background-color: inherit; border-left: 4px solid grey;}
 
 .dropdown-menu li.color-1 {border-color: rgba(0,128,128,0.3);}
 .dropdown-menu li.color-2 {border-color: rgba(255,0,255,0.3);}
@@ -438,7 +442,7 @@ input.embedcode {margin-top: 8px;width: 100% !important;}
 }
 
 .tt-suggestion.tt-cursor {
-    background-color: rgba(0,130,130,0.4);
+    background-color: #eeeeee;
 }
 
 .tt-suggestion p {
