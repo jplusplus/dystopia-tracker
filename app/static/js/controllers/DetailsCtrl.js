@@ -60,6 +60,9 @@ angular.module('dystopia-tracker').controller('DetailsCtrl', ['$scope', 'Predict
         createEmbedUrl($scope.prediction);
         createAmznLink($scope.prediction);
         $scope.editingArray["prediction"][$scope.prediction.id] = $scope.prediction['description_' + $scope.language];
+        if ($scope.prediction.source['description_' + $scope.language].length > 300) {
+            $scope.prediction.source.longdesc = true;
+        }
         // set page meta tags
         $scope.title($scope.prediction.source['title_' + $scope.language] + " | Dystopia Tracker");
         $scope.description("A prediction from the Dystopia Tracker: " + $scope.prediction['description_' + $scope.language]);
