@@ -62,7 +62,7 @@
 	                   
 	                   <div ng-switch-when="published">
 	                      <p>[['Prediction is published in' | translate]] «[[prediction.source | getTranslated:'title']]» [['by' | translate]] [[prediction.source.author]].</p>
-	                      <p class="source">[[prediction.source | getTranslated:'description']]  <span><a href="" ng-if="!alldates.isTranslated && !alldates.isEmpty" ng-click="alldates.isTranslating = !alldates.isTranslating">([['Translate' | translate]])</a></span></p>             
+	                      <p class="source" ng-if="prediction.source | getTranslated:'description'">[[prediction.source | getTranslated:'description' | limitTo:300]]<span ng-if="prediction.source.longdesc">...</span>&nbsp;&nbsp;&nbsp;<span class="credit"><a ng-href="[[prediction.source.more_info]]">Wikipedia</a></span> <span><a href="" ng-if="!alldates.isTranslated && !alldates.isEmpty" ng-click="alldates.isTranslating = !alldates.isTranslating">| ([['Translate' | translate]])</a></span></p>             
 	                      
 	                      <form role="form" ng-show="alldates.isTranslating" ng-submit="translate(alldates,'source')">
 		                      <div class="form-group">

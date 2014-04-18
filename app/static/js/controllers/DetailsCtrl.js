@@ -60,6 +60,9 @@ angular.module('dystopia-tracker').controller('DetailsCtrl', ['$scope', 'Predict
         createEmbedUrl($scope.prediction);
         createAmznLink($scope.prediction);
         $scope.editingArray["prediction"][$scope.prediction.id] = $scope.prediction['description_' + $scope.language];
+        if ($scope.prediction.source['description_' + $scope.language].length > 300) {
+            $scope.prediction.source.longdesc = true;
+        }
         // set page meta tags
         $scope.title($scope.prediction.source['title_' + $scope.language] + " | Dystopia Tracker");
         $scope.description("A prediction from the Dystopia Tracker: " + $scope.prediction['description_' + $scope.language]);
@@ -158,7 +161,7 @@ angular.module('dystopia-tracker').controller('DetailsCtrl', ['$scope', 'Predict
         $scope.shareurls.picture = "";
         $scope.shareurls.fb = "https://www.facebook.com/dialog/feed?app_id=624040751022885&redirect_uri=" + $location.absUrl() + "&display=page&link=" + $location.absUrl() + "&name=Dystopia%20Tracker&description=" + $scope.shareurls.desc + "&picture=" + $scope.shareurls.picture;
         $scope.shareurls.twi = "https://twitter.com/intent/tweet?text=" + $scope.shareurls.shortdesc + "&url=" + $location.absUrl();    
-        $scope.shareurls.mail = "mailto:?Subject=Dystopia Tracker&Body=" + $scope.shareurls.desc + " --> " + $location.absUrl();
+        $scope.shareurls.mail = "mailto:?Subject=Dystopia Tracker&Body=" + $scope.shareurls.desc + " " + $location.absUrl();
     }
 
     function createEmbedUrl (prediction) {

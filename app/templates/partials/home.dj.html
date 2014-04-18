@@ -18,13 +18,13 @@
                         <i class="glyphicon glyphicon-filter"></i>                        
                     </span>                    
                 </button>
-                <ul class="dropdown-menu">
+                <ul class="dropdown-menu categories">
                     <li ng-class="filters.category == '' ? 'active' : ''">
                         <a ng-click="filters.category = ''; update(true)">
                             [['All categories' | translate ]]
                         </a>
                     </li>
-                    <li ng-repeat="category in categories" ng-class="filters.category == category.id ? 'active' : ''">
+                    <li class="color-[[category.color]]" ng-repeat="category in categories" ng-class="filters.category == category.id ? 'active' : ''">
                         <a ng-click="filters.category = category.id; update(true)">
                             [[getCategoryTitle(category)]]
                         </a>
@@ -67,7 +67,7 @@
     <i class="glyphicon glyphicon-search" ng-click="showFilters = !showFilters"></i>
 </div>
 
-<div class="btn-group langswitch">
+<div class="btn-group langswitch hidden-xs">
     <button type="button" ng-click="changeLanguage('E')" class="btn btn-default btn-sm" ng-class="isActive('E')">
         En<span class="hidden-xs">glish</span>
     </button>
