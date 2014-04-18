@@ -50,8 +50,8 @@
     <!-- get content from partials -->
     <div ng-view autoscroll="true"></div>
 
-    <div id="footer" class="row text-muted small" ng-hide="isEmbed">
-    		
+    <div id="footer" class="text-muted small" ng-hide="isEmbed">
+    		<div class="row">
     		<div class="col col-lg-2 logos hidden-xs">
 	    		<a href="http:www.jplusplus.org" target="_blank" title="Journalism++"><img src="{{ STATIC_URL }}/img/logo_jpp.png"></a>
     		</div>
@@ -66,6 +66,7 @@
     		<div class="col col-lg-2">
     			<a href="https://twitter.com/dystopiatracker" class="twitter-follow-button" data-show-count="false" data-dnt="true">Follow @dystopiatracker</a>
                 <iframe src="http://ghbtns.com/github-btn.html?user=jplusplus&repo=dystopia-tracker&type=fork" allowtransparency="true" frameborder="0" scrolling="0" width="53" height="20"></iframe>
+    		</div>
     		</div>
     </div>  
     
