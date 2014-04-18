@@ -16,7 +16,10 @@ angular.module('dystopia-tracker').controller('DetailsCtrl', ['$scope', 'Predict
     $scope.shareurls = [];
     $scope.more = [];
     $scope.translationArray = [];
-    $scope.editingArray = [];
+    $scope.editingArray = {
+        "prediction" : [],
+        "realisation" : []
+    };
     console.debug($scope.editingArray);
     $scope.filters = {exclude : $routeParams.id, title : '', author : '', category : ''};
     $scope.language = $rootScope._lang;
@@ -50,7 +53,8 @@ angular.module('dystopia-tracker').controller('DetailsCtrl', ['$scope', 'Predict
         findTranslationStatus($scope.prediction);
         createShareUrls($scope.prediction);
         createEmbedUrl($scope.prediction);
-        createAmznLink($scope.prediction);  
+        createAmznLink($scope.prediction);
+        $scope.editingArray["prediction"][$scope.prediction.id] = $scope.prediction['description_' + $scope.language];  
     });	
 
     function createAmznLink(prediction) {
@@ -290,7 +294,7 @@ angular.module('dystopia-tracker').controller('DetailsCtrl', ['$scope', 'Predict
         }
         
         
-        updatedata[fieldToUpdate] = $scope.editingArray[item.id];
+        updatedata[fieldToUpdate] = $scope.editingArray[type][item.id];
         console.debug(updatedata);
         
         if (type == "realisation") {

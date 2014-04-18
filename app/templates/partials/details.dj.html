@@ -37,7 +37,7 @@
                 <!-- edit form -->
                 <form role="form" ng-if="prediction.isEditing && !prediction.isTranslating" ng-submit="edit(prediction,'prediction')">
 		             <div class="form-group">
-                         <textarea class="form-control" id="prediction" rows="5" maxlength="300" ng-model="editingArray[prediction.id]"></textarea>
+                         <textarea class="form-control" id="prediction" rows="5" maxlength="300" ng-model="editingArray.prediction[prediction.id]"></textarea>
                      </div>
                      <button type="submit" class="btn btn-default btn-block">[['Save edits' | translate]]</button>
 		         </form>
@@ -92,11 +92,11 @@
 		                   <!-- edit form -->
 			                <form role="form" ng-if="alldates.isEditing && !alldates.isTranslating" ng-submit="edit(alldates,'realisation')">
 					             <div class="form-group">
-			                         <textarea class="form-control" id="prediction" rows="5" maxlength="300" ng-model="editingArray[alldates.id]"></textarea>
+			                         <textarea class="form-control" id="prediction" rows="5" maxlength="300" ng-model="editingArray.realisation[alldates.id]"></textarea>
 			                     </div>
 			                     <button type="submit" class="btn btn-default btn-block">[['Save edits' | translate]]</button>
 					         </form>
-					        <div class="help-block alert alert-success alert-dismissable" ng-show="prediction.editthanks">
+					        <div class="help-block alert alert-success alert-dismissable" ng-show="alldates.editthanks">
 					            <p>[['Thank you for your edits. The internet thanks you.' | translate]]</p>
 			                </div>
                 
