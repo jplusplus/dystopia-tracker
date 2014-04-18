@@ -244,6 +244,17 @@ body {
 
 /* category colors */
 
+.dropdown-menu li {background-color: inherit; border-left: 4px solid grey;}
+
+.dropdown-menu li.color-1 {border-color: rgba(0,128,128,0.3);}
+.dropdown-menu li.color-2 {border-color: rgba(255,0,255,0.3);}
+.dropdown-menu li.color-3 {border-color: rgba(0,0,255,0.3);}
+.dropdown-menu li.color-4 {border-color: rgba(56,255,0,0.3);} /**/
+.dropdown-menu li.color-5 {border-color: rgba(255,255,22,0.3);}
+.dropdown-menu li.color-6 {border-color: rgba(255,0,0,0.3);}
+.dropdown-menu li.color-7 {border-color: rgba(129,209,255,0.3);} /**/
+.dropdown-menu li.color-8 {border-color: rgba(0,255,150,0.3);} /**/
+
 .color-1 {background-color: rgba(0,128,128,0.05);}
 .color-2 {background-color: rgba(255,0,255,0.05);}
 .color-3 {background-color: rgba(0,0,255,0.05);}

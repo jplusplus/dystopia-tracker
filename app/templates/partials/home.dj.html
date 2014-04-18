@@ -24,7 +24,7 @@
                             [['All categories' | translate ]]
                         </a>
                     </li>
-                    <li ng-repeat="category in categories" ng-class="filters.category == category.id ? 'active' : ''">
+                    <li class="color-[[category.color]]" ng-repeat="category in categories" ng-class="filters.category == category.id ? 'active' : ''">
                         <a ng-click="filters.category = category.id; update(true)">
                             [[getCategoryTitle(category)]]
                         </a>
