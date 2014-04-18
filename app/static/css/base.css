@@ -326,7 +326,23 @@ span.tools {font-size:60%;}
 .morefrom .btn {width: 100%;margin-top: 10px;}
 #thankyou .btn {width: 100%;margin: 10px 0;}
 
-input.embedcode {opacity: 0.5;}
+#share-buttons {margin-bottom: 10px;}
+
+#share-buttons img {
+width: 60px;
+padding: 10px;
+border: 0;
+box-shadow: 0;
+display: inline;
+opacity: 0.7;
+}
+
+#share-buttons img:hover {
+	opacity: 1;
+}
+
+input.embedcode {margin-top: 8px;width: 100% !important;}
+
 
 /* timeline styles */
 
@@ -365,22 +381,9 @@ color:grey;
     height: 60px;
 }
 
-#share-buttons {margin-bottom: 10px;}
+.logos img {opacity: 0.5;width: 80px;}
+.logos img:hover {opacity: 1;} 
 
-#share-buttons img {
-width: 60px;
-padding: 10px;
-border: 0;
-box-shadow: 0;
-display: inline;
-opacity: 0.7;
-}
-
-#share-buttons img:hover {
-	opacity: 1;
-}
-
-input.embedcode {margin-top: 8px;width: 100% !important;}
 
 /* typeahead styles */
 .tt-dropdown-menu,
