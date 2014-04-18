@@ -1,27 +1,71 @@
-<div id="filters">
+<div id="filters" ng-class="showFilters ? 'visible-mobile' : '' ">
         
     <form id="searchform" ng-submit="update(true)" class="input-group">
 
-        <input type="text" class="sfTypeahead" options="typeahedOptions" datasets="typeaheadData" placeholder="[['Search for a title' | translate ]]" autofocus ng-model="filters.title">
+        <div class="input-group-btn">
+            <div class="dropdown">
+                <button type="button" class="btn btn-default dropdown-toggle">
+                    <span class="hidden-xs">
+                        <span ng-if="filters.category != ''">
+                            [[ getCategoryTitle( getCategory(filters.category) ) | translate ]]
+                        </span>
+                        <span ng-if="filters.category == ''">
+                            [[ 'All categories' | translate ]]
+                        </span>      
+                        <span class="caret"></span>
+                    </span>
+                    <span class="visible-xs">
+                        <i class="glyphicon glyphicon-filter"></i>                        
+                    </span>                    
+                </button>
+                <ul class="dropdown-menu">
+                    <li ng-class="filters.category == '' ? 'active' : ''">
+                        <a ng-click="filters.category = ''; update(true)">
+                            [['All categories' | translate ]]
+                        </a>
+                    </li>
+                    <li ng-repeat="category in categories" ng-class="filters.category == category.id ? 'active' : ''">
+                        <a ng-click="filters.category = category.id; update(true)">
+                            [[getCategoryTitle(category)]]
+                        </a>
+                    </li>
+                </ul>
+            </div>
 
-        <div class="input-group-btn hidden-xs">
-            <select id="category" class="btn btn-default" ng-model="filters.category" ng-change="update(true)" ng-options="category.id as getCategoryTitle(category) for category in categories">
-                <option value=''>[[ 'All categories' | translate ]]</option>
-            </select>
-
-            <select id="sourcetype" class="btn btn-default" ng-model="filters.source__type" ng-change="update(true)">
-                <option value=''>[['All sources' | translate ]]</option>
-                <option value='literature'>[['Literature' | translate ]]</option>
-                <option value='movies'>[['Movies' | translate ]]</option>
-                <option value='tv_series'>[['TV Series' | translate ]]</option>
-                <option value='games'>[['Games' | translate ]]</option>
-                <option value='others'>[['Others' | translate ]]</option>
-            </select>
+            <div class="dropdown hidden-xs">
+                <button type="button" class="btn btn-default dropdown-toggle">
+                    <span ng-if="filters.source__type != ''">
+                        [[ sources[filters.source__type] | translate ]]
+                    </span>
+                    <span ng-if="filters.source__type == ''">
+                            [['All sources' | translate ]]
+                    </span>                    
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li ng-class="filters.source__type == '' ? 'active' : ''">
+                        <a ng-click="filters.source__type = ''; update(true)">
+                            [['All sources' | translate ]]
+                        </a>
+                    </li>
+                    <li ng-repeat="(key, source) in sources" ng-class="filters.source__type == key ? 'active' : ''">
+                        <a ng-click="filters.source__type = key; update(true)">
+                            [[ source | translate ]]
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </div>
+
+        <input type="text" class="sfTypeahead" options="typeahedOptions" datasets="typeaheadData" placeholder="[['Search for a title' | translate ]]" autofocus ng-model="filters.title">
 
     </form>
         
 </div> 
+
+<div id="toggle-filters" ng-init="showFilters = false">
+    <i class="glyphicon glyphicon-search" ng-click="showFilters = !showFilters"></i>
+</div>
 
 <div class="btn-group langswitch">
     <button type="button" ng-click="changeLanguage('E')" class="btn btn-default btn-sm" ng-class="isActive('E')">

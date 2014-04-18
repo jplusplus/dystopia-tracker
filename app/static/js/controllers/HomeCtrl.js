@@ -10,9 +10,15 @@ angular.module('dystopia-tracker').controller('HomeCtrl', ['$scope', 'Prediction
     
     // define variables for later
     $scope.categories = [];
+    $scope.sources = {
+        "literature": "Literature",
+        "movies": "Movies",
+        "tv_series": "TV",
+        "games": "Games",
+        "others": "Others",
+    };
     $scope.predictions;
     $scope.editorspicks;
-    $scope.sources = [];
     $scope.filters = {category:'', source__type:'', title:''};
     $scope.filters.page = 0;
     $scope.hideMoreButton = false;
@@ -182,5 +188,9 @@ angular.module('dystopia-tracker').controller('HomeCtrl', ['$scope', 'Prediction
 
      $scope.getCategoryTitle = function(category) {
         return $filter('getTranslated')(category, "title");
-     }
+     };
+
+     $scope.getCategory = function(id) {
+        return _.findWhere($scope.categories, {id:id});
+     };
 }]); // it's the end of the code as we know it

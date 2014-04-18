@@ -8,6 +8,7 @@ var app = angular.module('dystopia-tracker', [
         'siyfion.sfTypeahead',
         'pascalprecht.translate',
         'slugifier',
+        'ui.bootstrap.dropdownToggle',
         'dystopia-tracker.services']).config([
             '$interpolateProvider',
             '$locationProvider',
