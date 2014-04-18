@@ -374,25 +374,8 @@ color:grey;
 /* footer styles */
 
 #footer {
-<<<<<<< HEAD
-    margin:0;
-    padding: 50px 0;
-    height: 60px;
-}
-
-#share-buttons {margin-bottom: 10px;}
-
-#share-buttons img {
-width: 60px;
-padding: 10px;
-border: 0;
-box-shadow: 0;
-display: inline;
-opacity: 0.7;
-=======
     padding: 50px 0;
     background: #E8E8DE !important;
->>>>>>> bdb4f9de5dd2d41ac361e8b2479d39b9330e40b8
 }
 
 .logos img {opacity: 0.5;width: 80px;}
@@ -552,4 +535,3 @@ opacity: 0.7;
   }
 
 }
-
