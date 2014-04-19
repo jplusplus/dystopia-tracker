@@ -11,7 +11,7 @@
        <p>[['For' | translate]]:  [[prediction | getTranslated:'description']]</p>
                
        <div class="form-group">
-         <label for="prediction">[['Describe the realisation.' | translate]]</label>
+         <label for="prediction">[['Describe the realisation.' | translate]] <span class="charstats">[[300-realisation['description_' + language].length]] [['characters left' | translate]].</span></label>
          <textarea class="form-control" id="prediction" rows="5" maxlength="300" ng-model="realisation['description_' + language]" autofocus required></textarea>
        </div>
        

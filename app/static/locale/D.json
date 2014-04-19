@@ -44,6 +44,7 @@
     "First name last name" : "Vorname Nachname",
     "When was it first published?" : "Wann wurde er erstmals veröffentlicht?",
     "Enter the prediction. Try to be specific." : "Beschreiben Sie die Vorhersage möglichst genau.",
+    "characters left": "Zeichen verfügbar",
     "What year" : "Für welches Jahr wurde die Vorhersage gemacht? Bitte nur angeben, wenn genaues Jahr bekannt.",
     "more info where" : "Wo gibt es weitere Informationen zur Vorhersage?",
     "Pick a category for your prediction" : "Ordnen Sie die Vorhersage einer Kategorie zu.",
