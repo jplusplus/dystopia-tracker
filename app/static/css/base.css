@@ -52,12 +52,6 @@ html, body {
   color:#e8e8d5 !important;
 }
 
-#header h1 a strong {
-  font-weight: normal;
-  color:transparent;
-  text-shadow:0 0 3px #e8e8d5;
-}
-
 #header h1:after {
   content:"";
   position:absolute;
