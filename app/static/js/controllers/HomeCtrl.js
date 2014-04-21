@@ -17,6 +17,11 @@ angular.module('dystopia-tracker').controller('HomeCtrl', ['$scope', 'Prediction
         "games": "Games",
         "others": "Others",
     };
+
+    // To preserve sources order
+    // @see http://stackoverflow.com/a/18124833/797941
+    $scope.sourcesKey = ["literature", "movies", "tv_series", "games", "others"]
+
     $scope.predictions;
     $scope.editorspicks;
     $scope.filters = {category:'', source__type:'', title:''};

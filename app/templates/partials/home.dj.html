@@ -48,7 +48,7 @@
                             [['All sources' | translate ]]
                         </a>
                     </li>
-                    <li ng-repeat="(key, source) in sources" ng-class="filters.source__type == key ? 'active' : ''">
+                    <li ng-repeat="key in sourcesKey" ng-init="source = sources[key]" ng-class="filters.source__type == key ? 'active' : ''">
                         <a ng-click="filters.source__type = key; update(true)">
                             [[ source | translate ]]
                         </a>
