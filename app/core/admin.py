@@ -6,7 +6,7 @@ from app.core.resources import SourceResource, PredictionResource, RealisationRe
 class CategoryAdmin(ImportExportModelAdmin):
     resource_class = CategoryResource
     search_fields = ('title_D', 'title_E')
-    list_display = ('id', 'title_E', 'title_E')
+    list_display = ('id', 'title_E', 'title_E','color')
 admin.site.register(Category, CategoryAdmin)
 
 class SourceAdmin(ImportExportModelAdmin):
@@ -19,7 +19,7 @@ admin.site.register(Source, SourceAdmin)
 class PredictionAdmin(ImportExportModelAdmin):
     resource_class = PredictionResource
     search_fields = ('source__title_E', 'source__title_D', 'source__author', 'source__year_published', 'year_predicted', 'username', 'category__title_E', 'category__title_D', 'description_E', 'description_D')
-    list_display = ('id', 'headline_E', 'description_E', 'year_predicted', 'source', 'category', 'username', 'creation_date' )
+    list_display = ('id', 'headline_E', 'description_E', 'year_predicted', 'source', 'category', 'username', 'creation_date', 'image', )
     list_filter = ('published', 'editors_pick', 'category', 'source')
 admin.site.register(Prediction, PredictionAdmin)
 
