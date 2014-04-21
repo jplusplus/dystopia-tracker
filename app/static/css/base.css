@@ -121,7 +121,7 @@ html, body {
   left:420px;
   right:0;
   text-align: center;
-  background:#929b9b;  
+  background:#646969;  
   min-width:200px;
   z-index:100;
 }
@@ -131,7 +131,7 @@ html, body {
   position:absolute;
   right:100%;
   top:0;
-  border:45px solid #929b9b;  
+  border:45px solid #646969;  
   border-left-color:transparent;
   border-top-color:transparent;
 }
