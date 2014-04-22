@@ -32,7 +32,7 @@ angular.module('dystopia-tracker').controller('HomeCtrl', ['$scope', 'Prediction
     $scope.pagetype('website');
     
     // define number of predictions to load
-    $scope.filters.page_size = 10;
+    $scope.filters.page_size = 20;
     $scope.language = $rootScope._lang;
     var i = 0;
 
@@ -140,6 +140,7 @@ angular.module('dystopia-tracker').controller('HomeCtrl', ['$scope', 'Prediction
                 pageNo++;
                 loadTitles(pageNo);
             }
+            console.log(titles);
         });
     }
     
