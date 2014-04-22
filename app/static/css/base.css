@@ -258,23 +258,23 @@ html, body {
 .dropdown-menu li.color-7 {border-color: rgba(154,227,129,1);}
 .dropdown-menu li.color-8 {border-color: rgba(240,240,106,1);}
 
-.color-1 {background-color: rgba(125,63,66,0.1);}
-.color-2 {background-color: rgba(140,84,110,0.1);}
-.color-3 {background-color: rgba(133,115,153,0.1);}
-.color-4 {background-color: rgba(100,149,181,0.1);}
-.color-5 {background-color: rgba(62,182,186,0.1);}
-.color-6 {background-color: rgba(85,207,165,0.1);}
-.color-7 {background-color: rgba(154,227,129,0.1);}
-.color-8 {background-color: rgba(240,240,106,0.1);}
+.color-1 {background-color: rgba(125,63,66,0.2);}
+.color-2 {background-color: rgba(140,84,110,0.2);}
+.color-3 {background-color: rgba(133,115,153,0.2);}
+.color-4 {background-color: rgba(100,149,181,0.2);}
+.color-5 {background-color: rgba(62,182,186,0.2);}
+.color-6 {background-color: rgba(85,207,165,0.2);}
+.color-7 {background-color: rgba(154,227,129,0.2);}
+.color-8 {background-color: rgba(240,240,106,0.2);}
 
-.color-1:hover {background-color: rgba(125,63,66,0.3);}
-.color-2:hover {background-color: rgba(140,84,110,0.3);}
-.color-3:hover {background-color: rgba(133,115,153,0.3);}
-.color-4:hover {background-color: rgba(100,149,181,0.3);}
-.color-5:hover {background-color: rgba(62,182,186,0.4);}
-.color-6:hover {background-color: rgba(85,207,165,0.4);}
-.color-7:hover {background-color: rgba(154,227,129,0.4);}
-.color-8:hover {background-color: rgba(240,240,106,0.3);}
+.color-1:hover {background-color: rgba(125,63,66,0.4);}
+.color-2:hover {background-color: rgba(140,84,110,0.4);}
+.color-3:hover {background-color: rgba(133,115,153,0.4);}
+.color-4:hover {background-color: rgba(100,149,181,0.4);}
+.color-5:hover {background-color: rgba(62,182,186,0.5);}
+.color-6:hover {background-color: rgba(85,207,165,0.5);}
+.color-7:hover {background-color: rgba(154,227,129,0.5);}
+.color-8:hover {background-color: rgba(240,240,106,0.4);}
 
 .linecolor-1 span:before, .linecolor-1 span:after {border-color: rgba(125,63,66,0.4) !important;}
 .linecolor-2 span:before, .linecolor-2 span:after {border-color: rgba(140,84,110,0.4) !important;}
@@ -378,8 +378,11 @@ color:grey;
     background: #E8E8DE !important;
 }
 
-.logos img {opacity: 0.5;width: 80px;}
-.logos img:hover {opacity: 1;} 
+.logos img {opacity: 0.5;vertical-align: top;}
+.logos img:hover {opacity: 1;}
+.logos img.jplusplus {width: 80px;margin-left: 10px;}
+.logos img.tageswoche {width: 110px;}
+  
 
 /* typeahead styles */
 .tt-dropdown-menu,
