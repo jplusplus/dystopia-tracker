@@ -120,7 +120,7 @@
 		        	<li class="card textcard color-[[prediction.category.color]]" ng-repeat="prediction in predictionsslist | orderBy: 'creation_date':true"> 
                         <a ng-href="[[language]]/p/[[prediction.source.author | slugify]]/[[prediction.source | getTranslated:'title' | slugify]]/[[prediction.id]]">
                             <p class="cardtext">[[prediction|getTranslated:'description']]</p>
-                            <p class="source">&mdash; [[prediction.source|getTranslated:'title']] <span ng-if="prediction.source.author">[['by' | translate ]] [[prediction.source.author]]</span> <span ng-if="prediction.source.year_published">([[prediction.source.year_published]])</span></p>
+                            <p class="source">&mdash; [[prediction.source|getTranslated:'title']] <span ng-if="prediction.source.author">[['by' | translate ]] [[prediction.source.author]]</span> <span ng-if="prediction.source.year_published > 0">([[prediction.source.year_published]])</span></p>
                             <p class"realisations" ng-switch on="prediction.realisations.length">
                                 <span class="badge" ng-switch-when="0"></span>
                                 <span class="badge" ng-switch-when="1">1 [['realisation' | translate ]]</span>
