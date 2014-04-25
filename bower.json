@@ -12,5 +12,8 @@
     "underscore": "~1.6.0",
     "angular-animate": "~1.2.15",
     "angular-ui-bootstrap-bower": "~0.10.0"
+  },
+  "resolutions": {
+    "angular": "1.2.16"
   }
 }
