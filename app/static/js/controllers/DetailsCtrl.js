@@ -52,7 +52,7 @@ angular.module('dystopia-tracker').controller('DetailsCtrl', ['$scope', 'Predict
 		$scope.prediction = data;
         $scope.realisations = $scope.prediction.realisations;
 		createYearsArray($scope.prediction,$scope.realisations);
-		getMore("title",$scope.prediction.source.title);
+        getMore("title",$scope.prediction.source['title_' + $scope.language]);
         getMore("author",$scope.prediction.source.author);
         getMore("category",$scope.prediction.category);
         findTranslationStatus($scope.prediction);
@@ -141,7 +141,7 @@ angular.module('dystopia-tracker').controller('DetailsCtrl', ['$scope', 'Predict
         filters = {exclude : $routeParams.id} 
         filters[param] = value;
 	    Prediction.get(filters).success(function(data) {
-		    $scope.more[param] = data.results;
+            $scope.more[param] = data.results;
 		    $scope.more[param] = _.filter($scope.more[param], function(elem) {
             return elem['description_' + $scope._lang];
             });
