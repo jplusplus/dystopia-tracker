@@ -53,8 +53,8 @@ angular.module('dystopia-tracker').controller('DetailsCtrl', ['$scope', 'Predict
         $scope.realisations = $scope.prediction.realisations;
 		createYearsArray($scope.prediction,$scope.realisations);
         getMore("title",$scope.prediction.source['title_' + $scope.language]);
-        getMore("author",$scope.prediction.source.author);
-        getMore("category",$scope.prediction.category);
+        getMore("author", $scope.prediction.source.author);
+        getMore("category", $scope.prediction.category.id);
         findTranslationStatus($scope.prediction);
         createShareUrls($scope.prediction);
         createEmbedUrl($scope.prediction);
