@@ -30,6 +30,9 @@ angular.module('dystopia-tracker').controller('HomeCtrl', ['$scope', 'Prediction
 
     // tell facebook it's the home page
     $scope.pagetype('website');
+
+    // reset page title
+    $scope.title("Dystopia Tracker");
     
     // define number of predictions to load
     $scope.filters.page_size = 20;
@@ -43,8 +46,6 @@ angular.module('dystopia-tracker').controller('HomeCtrl', ['$scope', 'Prediction
             $scope.update(true);
         }
     }, true);
-
-    // TODO use multiple datasets so different source types appear grouped in typeahead: http://twitter.github.io/typeahead.js/examples/#multiple-datasets
 
     // Typeahead data object
     $scope.typeaheadData = [];
