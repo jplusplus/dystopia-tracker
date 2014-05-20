@@ -31,9 +31,11 @@ angular.module('dystopia-tracker').controller('HomeCtrl', ['$scope', 'Prediction
     // tell facebook it's the home page
     $scope.pagetype('website');
 
-    // reset page title
+    // reset page info
     $scope.title("Dystopia Tracker");
-    
+    $scope.description("Explore and contribute predictions about the future and their realisations.");
+    $scope.image("http://www.dystopiatracker.com/static/img/screenshot.png");
+
     // define number of predictions to load
     $scope.filters.page_size = 20;
     $scope.language = $rootScope._lang;
