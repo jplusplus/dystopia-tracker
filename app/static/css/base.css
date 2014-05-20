@@ -455,6 +455,14 @@ color:grey;
   font-size: 14px;
 }
 
+
+h3.typeahead_category {
+  margin: 0;
+  padding: 4px 0 0 4px;
+  font-weight: 400;
+  font-size: 18px;
+}
+
 /* spinner styles */
 
 #loading {text-align: center;font-size: 80%;}
@@ -535,10 +543,4 @@ color:grey;
     width:auto;
   }
 
-}
-
-h3.typeahead_category {
-  margin: 0;
-  padding: 0;
-  font-weight: 400;
 }
