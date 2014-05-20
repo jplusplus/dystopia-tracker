@@ -45,12 +45,28 @@ angular.module('dystopia-tracker').controller('HomeCtrl', ['$scope', 'Prediction
     }, true);
 
     // TODO use multiple datasets so different source types appear grouped in typeahead: http://twitter.github.io/typeahead.js/examples/#multiple-datasets
-    var titles = new Bloodhound({
-        datumTokenizer: Bloodhound.tokenizers.obj.whitespace('title_' + $scope.language),
-        queryTokenizer: Bloodhound.tokenizers.whitespace,
-        local: []
-    });
-    titles.initialize();
+
+    // Typeahead data object
+    $scope.typeaheadData = [];
+
+    var titles = {};
+    for (var i in $scope.sourcesKey) if ($scope.sourcesKey.hasOwnProperty(i)) {
+        console.debug($scope.sourcesKey[i]);
+        titles[$scope.sourcesKey[i]] = new Bloodhound({
+            datumTokenizer: Bloodhound.tokenizers.obj.whitespace('title_' + $scope.language),
+            queryTokenizer: Bloodhound.tokenizers.whitespace,
+            local: []
+        });
+        titles[$scope.sourcesKey[i]].initialize();
+
+        $scope.typeaheadData.push({
+            displayKey: 'title_' + $scope.language,
+            source: titles[$scope.sourcesKey[i]].ttAdapter(),
+            templates: {
+                header: '<h3 class="typeahead_category">' + $filter("translate")($scope.sources[$scope.sourcesKey[i]]) + '</h3>'
+            }
+        });
+    }
 
     Categories.get({}, function(data) {
         $scope.categories = data.results;
@@ -125,17 +141,14 @@ angular.module('dystopia-tracker').controller('HomeCtrl', ['$scope', 'Prediction
     $scope.typeahedOptions = {
         highlight: true
     };
-
-    // Typeahead data object
-    $scope.typeaheadData = {
-        displayKey: 'title_' + $scope.language,
-        source: titles.ttAdapter()
-    };
     
     // get list of all titles for search field
     function loadTitles(pageNo){
         Sources.get({page: pageNo}).success(function(data) {
-            titles.add(data.results);
+            var results = _.groupBy(data.results, 'type');
+            for (var type in results) if (results.hasOwnProperty(type)) {
+                titles[type].add(results[type]);
+            }
             if(data.next!=null) {
                 pageNo++;
                 loadTitles(pageNo);
