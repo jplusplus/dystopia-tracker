@@ -51,7 +51,6 @@ angular.module('dystopia-tracker').controller('HomeCtrl', ['$scope', 'Prediction
 
     var titles = {};
     for (var i in $scope.sourcesKey) if ($scope.sourcesKey.hasOwnProperty(i)) {
-        console.debug($scope.sourcesKey[i]);
         titles[$scope.sourcesKey[i]] = new Bloodhound({
             datumTokenizer: Bloodhound.tokenizers.obj.whitespace('title_' + $scope.language),
             queryTokenizer: Bloodhound.tokenizers.whitespace,
