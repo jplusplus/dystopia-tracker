@@ -1,7 +1,7 @@
 angular.module('dystopia-tracker').controller('PageCtrl', ['$scope', '$location', '$rootScope', '$translate', function($scope, $location, $rootScope, $translate) {
     var _title = 'Dystopia Tracker';
     var _description = 'Explore and contribute predictions about the future and their realisations.'
-    var _image = '';
+    var _image = 'http://www.dystopiatracker.com/static/img/screenshot.png';
     var _pagetype = 'article';
 
     var defaultLang;

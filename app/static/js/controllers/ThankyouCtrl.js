@@ -26,7 +26,7 @@ angular.module('dystopia-tracker').controller('ThankyouCtrl', ['$scope', 'Predic
             $scope.shareurls.shortdesc = "I just added a dystopian prediction to the @dystopiatracker, check it out:";
           }
 
-       $scope.shareurls.picture = "";
+       $scope.shareurls.picture = "http://www.dystopiatracker.com/static/img/screenshot.png";
     
        $scope.shareurls.fb = "https://www.facebook.com/dialog/feed?app_id=624040751022885&redirect_uri=" + $scope.url + "&display=page&link=" + $scope.url + "&name=Dystopia%20Tracker&description=" + $scope.shareurls.desc + "&picture=" + $scope.shareurls.picture;
        $scope.shareurls.twi = "https://twitter.com/intent/tweet?text=" + $scope.shareurls.shortdesc + "&url=" + $scope.url;
