@@ -8,7 +8,7 @@ urlpatterns = patterns('',
     url(r'^$', 'app.views.home', name='home'),
     url(r'^[A-Z]{1}/?$', 'app.views.home'),
 
-    url(r'^[A-Z]{1}/p/(?P<author>([a-z0-9_\-/\.]+))/(?P<title>([a-z0-9_\-/\.]+))/(?P<id>([0-9]+))/?$', 'app.views.home', name='details'),
+    url(r'^(?P<lang>[A-Z]{1})/p/(?P<author>([a-z0-9_\-/\.]+))/(?P<title>([a-z0-9_\-/\.]+))/(?P<id>([0-9]+))/?$', 'app.views.details', name='details'),
 
     url(r'^[A-Z]{1}/submit/prediction', 'app.views.home', name='submit-prediction'),
     url(r'^[A-Z]{1}/submit/realisation', 'app.views.home', name='submit-realisation'),
