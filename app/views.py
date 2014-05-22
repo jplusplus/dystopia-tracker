@@ -1,7 +1,7 @@
 from django.shortcuts import render_to_response
 from django.template  import RequestContext
 from app.core.models  import Prediction
-from app              import settings
+from django.conf      import settings
 
 def __get_default_meta():
     meta = dict()
@@ -22,22 +22,22 @@ def details(request, *kargs, **kwargs):
         source = prediction.source
 
         # title should be prediction headline (or source title if not defined)
-        headline = getattr(prediction, "headline_{0}".format(kwargs['lang']))
+        headline = getattr(prediction, "headline_{0}".format(kwargs['lang'])).encode('utf-8')
         if (headline):
-            meta['title'] = "{0} | {1}".format(headline, meta['title'])
+            meta['title'] = "{0} | {1}".format(headline, meta['title']).encode('utf-8')
         else:
-            meta['title'] = "{0} | {1}".format(getattr(source, "title_{0}".format(kwargs['lang'])), meta['title'])
+            meta['title'] = "{0} | {1}".format(getattr(source, "title_{0}".format(kwargs['lang']).encode('utf-8')), meta['title'])
 
         # image should be prediction image (or source image if not defined (or default image if not defined))
         image = getattr(prediction, "image") or getattr(source, "image")
         if (image):
-            meta['image'] = "http://{0}{1}{2}{3}".format(request.META['HTTP_HOST'], settings.STATIC_URL, settings.MEDIA_URL, image)
+            meta['image'] = "{0}{1}{2}".format(settings.STATIC_URL, settings.MEDIA_URL, image)
 
         # description should be the prediction description
         if (kwargs['lang'] == 'E'):
-            meta['description'] = "Explore dystopian predictions and their realisations. Like this one: {0}".format(getattr(prediction, 'description_E'))
+            meta['description'] = "Explore dystopian predictions and their realisations. Like this one: {0}".format(getattr(prediction, 'description_E').encode('utf-8'))
         elif (kwargs['lang'] == 'D'):
-            meta['description'] = "Erkunden Sie dystopische Vorhersagen und ihre Realisierungen - wie diese: {0}".format(getattr(prediction, 'description_D'))
+            meta['description'] = "Erkunden Sie dystopische Vorhersagen und ihre Realisierungen - wie diese: {0}".format(getattr(prediction, 'description_D').encode('utf-8'))
 
     return render_to_response('home.dj.html', meta, context_instance=RequestContext(request))
 
