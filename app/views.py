@@ -7,7 +7,7 @@ def __get_default_meta():
     meta = dict()
     meta['title'] = 'Dystopia Tracker'
     meta['description'] = 'Explore and contribute predictions about the future and their realisations.'
-    meta['image'] = 'http://www.dystopiatracker.com/static/img/screenshot.png'
+    meta['image'] = "{0}img/screenshot.png".format(settings.STATIC_URL)
     meta['pagetype'] = 'article'
     return meta
 
