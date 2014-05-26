@@ -100,6 +100,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     # Uncomment the next line for simple clickjacking protection:
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'app.core.middleware.AdminLocaleURLMiddleware'
 )
 
 ROOT_URLCONF = 'app.urls'
@@ -189,3 +190,5 @@ REST_FRAMEWORK = {
     'PAGINATE_BY_PARAM': 'page_size',
     'MAX_PAGINATE_BY': 100
 }
+
+ADMIN_LANGUAGE_CODE = 'en'
