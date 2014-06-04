@@ -24,7 +24,6 @@ angular.module('dystopia-tracker').controller('DetailsCtrl', ['$scope', 'Predict
         "prediction" : [],
         "realisation" : []
     };
-    console.debug($scope.editingArray);
     $scope.filters = {exclude : $routeParams.id, title : '', author : '', category : ''};
     $scope.language = $rootScope._lang;
     
@@ -60,6 +59,7 @@ angular.module('dystopia-tracker').controller('DetailsCtrl', ['$scope', 'Predict
         createEmbedUrl($scope.prediction);
         createAmznLink($scope.prediction);
         $scope.editingArray["prediction"][$scope.prediction.id] = $scope.prediction['description_' + $scope.language];
+        // TODO: pre-populate editingArray with realisation descriptions
         if ($scope.prediction.source['description_' + $scope.language].length > 300) {
             $scope.prediction.source.longdesc = true;
         }
@@ -148,7 +148,7 @@ angular.module('dystopia-tracker').controller('DetailsCtrl', ['$scope', 'Predict
 	    });    
     }
     
-    // TODO: add image to optimise sharing
+    // add image to optimise sharing
     function createShareUrls (prediction) {
         if ($rootScope._lang == "D") {
             $scope.shareurls.desc = "Erkunden Sie dystopische Vorhersagen und ihre Realisierungen – wie diese: " + prediction.description_D;
