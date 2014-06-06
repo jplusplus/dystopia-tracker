@@ -15,11 +15,16 @@ class RealisationSerializer(serializers.ModelSerializer):
 
 class PredictionSerializer(serializers.ModelSerializer):
     source = SourceSerializer()
-    realisations = RealisationSerializer()
+    realisations = serializers.SerializerMethodField('get_published_realisations')
     category = CategorySerializer()
 
     class Meta:
         model = Prediction
+
+    def get_published_realisations(self, obj):
+        realisations = obj.realisations.filter(published=True)
+        serialized = RealisationSerializer(realisations)
+        return serialized.data
 
 class PredictionCreationSerializer(serializers.ModelSerializer):
     class Meta:
