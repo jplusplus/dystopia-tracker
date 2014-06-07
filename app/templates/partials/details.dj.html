@@ -87,7 +87,7 @@
 		               <div ng-switch-when="introduced">
 		                   <p class="translated-[[alldates.isTranslated]]">[[alldates|getTranslated:'text']] <span class="tools"><a href="" ng-click="alldates.isEditing = !alldates.isEditing; alldates.isTranslating = false">[['Edit' | translate]]</a><span ng-if="!alldates.isTranslated"> | <a href="" ng-click="alldates.isTranslating = !alldates.isTranslating;alldates.isEditing = false">[['Translate' | translate]]</a></span></span></p>
 		                   <p class="credit" ng-show="alldates.credit">&mdash; [['contributed by' | translate]] [[alldates.credit]]</p>
-		                   <li ng-show="alldates.link" target="_blank"><a ng-href="[[alldates.link]]">[['Read more about this' | translate]]</a></li>
+		                   <li ng-show="alldates.link"><a ng-href="[[alldates.link]]" target="_blank">[['Read more about this' | translate]]</a></li>
 		                   
 		                   <!-- edit form -->
 			                <form role="form" ng-if="alldates.isEditing && !alldates.isTranslating" ng-submit="edit(alldates,'realisation')">
