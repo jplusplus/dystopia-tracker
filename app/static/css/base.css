@@ -14,7 +14,7 @@ html, body {
 .buffer {margin-top:50px;}
 
 /* smooth hover effects */
-.card, button, .btn, .button, #share-buttons img, #twitter-widget-0, #header h1 {
+.card, button, .btn, .button, #share-buttons img, #twitter-widget-0, #header h1, .follow {
   -webkit-transition: all 0.3s ease-in-out;
   -moz-transition: all 0.3s ease-in-out;
   -o-transition: all 0.3s ease-in-out;
@@ -382,6 +382,11 @@ color:grey;
 .logos img:hover {opacity: 1;}
 .logos img.jplusplus {width: 80px;margin-left: 10px;}
 .logos img.tageswoche {width: 110px;}
+
+.follow {list-style: none; background-color: #36ABDF;padding:3px 8px 2px;border-radius: 3px;opacity: 0.8;margin: 3px 0 6px;}
+.follow a {color:white !important;text-decoration: none !important;}
+.follow:hover {opacity: 1;}
+.follow img {width: 20px;margin-right: 3px;}
   
 
 /* typeahead styles */
