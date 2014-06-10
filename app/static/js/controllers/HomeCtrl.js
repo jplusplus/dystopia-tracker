@@ -87,7 +87,6 @@ var HomeCtrl = function($scope, Prediction, Categories, Sources, $rootScope, $lo
     loadTitles(1);
 
     $scope.update = function(reset) {
-        
         $scope.filters.lang = $scope._lang;
         $scope.noContent = false;
         $scope.spinner = true;
@@ -153,7 +152,7 @@ var HomeCtrl = function($scope, Prediction, Categories, Sources, $rootScope, $lo
     $scope.typeahedOptions = {
         highlight: true
     };
-    
+
     // get list of all titles for search field
     function loadTitles(pageNo){
         Sources.get({page: pageNo}).success(function(data) {
