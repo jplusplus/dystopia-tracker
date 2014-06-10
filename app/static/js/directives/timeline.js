@@ -122,7 +122,7 @@ angular.module('dystopia-tracker').directive('timeline', function() {
             };
 
             this.placePoint = function(datum, line, d3_container) {
-                var x, y, year;
+                var x, y, year, point;
                 var base_y = this.d3_svg_padding.top + 40;
                 var circle = (datum.year_introduced != null) ? true : false;
                 d3_container = d3_container || this.d3_svg;
@@ -139,19 +139,27 @@ angular.module('dystopia-tracker').directive('timeline', function() {
                 y = base_y + line * this.d3_line_height;
 
                 if (circle) {
-                    d3_container.append('svg:circle').attr({
+                    point = d3_container.append('svg:circle').attr({
                         cx : x,
                         cy : y,
                         r : this.d3_node_size / 2
                     });
                 } else {
-                    d3_container.append('svg:rect').attr({
+                    point = d3_container.append('svg:rect').attr({
                         x : x - this.d3_node_size / 2,
                         y : y - (this.d3_node_size / 2),
                         width : this.d3_node_size,
                         height : this.d3_node_size
                     });
                 }
+
+                point.on('click', function() {
+                    var line = d3_container.select('line');
+                    if (line.length > 0) {
+                        line.attr('class', (line.attr('class') == null) ? 'visible' : null);
+                    }
+                });
+
                 return x;
             };
 
