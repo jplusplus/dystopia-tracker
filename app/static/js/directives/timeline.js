@@ -144,6 +144,9 @@ angular.module('dystopia-tracker').directive('timeline', function() {
                 var editorspicks = $scope.editorspicks || [];
                 var predictions = $scope.predictions || [];
                 if (predictions.length > 0 || editorspicks.length > 0) {
+                    if (this.d3_svg != null) {
+                        this.d3_svg.remove();
+                    }
                     // Must flatten the predictions
                     this.init(editorspicks, _.flatten(predictions));
                 }
