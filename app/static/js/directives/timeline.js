@@ -20,6 +20,10 @@ angular.module('dystopia-tracker').directive('timeline', function() {
                     height : element.height()
                 };
 
+                // Reorder both arrays by Category
+                editorspicks = _.sortBy(editorspicks, function(o) { return o.category.id; });
+                predictions = _.sortBy(predictions, function(o) { return o.category.id; });
+
                 // Creating the <svg> tag
                 this.d3_svg = d3.select(element[0]).append('svg')
                 this.d3_svg.attr(this.d3_size);
