@@ -1,4 +1,4 @@
-angular.module('dystopia-tracker').directive('timeline', function() {
+angular.module('dystopia-tracker').directive('timeline', ['$window', '$timeout', function($window, $timeout) {
     return {
         restrict: 'E',
         replace: true,
@@ -147,7 +147,7 @@ angular.module('dystopia-tracker').directive('timeline', function() {
                 } else {
                     point = d3_container.append('svg:rect').attr({
                         x : x - this.d3_node_size / 2,
-                        y : y - (this.d3_node_size / 2),
+                        y : y - this.d3_node_size / 2,
                         width : this.d3_node_size,
                         height : this.d3_node_size
                     });
@@ -157,10 +157,6 @@ angular.module('dystopia-tracker').directive('timeline', function() {
                     return function() {
                         that.select(this);
                     };
-                    // var line = d3_container.select('line');
-                    // if (line.length > 0) {
-                    //     line.attr('class', (line.attr('class') == null) ? 'visible' : null);
-                    // }
                 }(this));
 
                 return x;
@@ -183,7 +179,15 @@ angular.module('dystopia-tracker').directive('timeline', function() {
                 }
             };
 
-            $scope.$watch(function() { return $scope.predictions }, angular.bind(this, function(new_value, old_value) {
+            this.on_resize = function() {
+                var ret = function() {
+                    this.on_data_changed();
+                };
+                ret.timer = undefined;
+                return ret;
+            }();
+
+            this.on_data_changed = function() {
                 var editorspicks = $scope.editorspicks || [];
                 var predictions = $scope.predictions || [];
                 if (predictions.length > 0 || editorspicks.length > 0) {
@@ -193,7 +197,14 @@ angular.module('dystopia-tracker').directive('timeline', function() {
                     // Must flatten the predictions
                     this.init(editorspicks, _.flatten(predictions));
                 }
-            }), true);
+            }
+
+            $scope.$watch(function() { return $scope.predictions }, angular.bind(this, this.on_data_changed), true);
+
+            angular.element($window).bind('resize', angular.bind(this, function() {
+                $timeout.cancel(this.on_resize.timer);
+                this.on_resize.timer = $timeout(angular.bind(this, this.on_resize), 200);
+            }));
         })
-    }
-});
+    };
+}]);
