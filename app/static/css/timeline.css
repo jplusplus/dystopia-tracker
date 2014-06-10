@@ -39,3 +39,7 @@ div.timeline svg g line {
     shape-rendering: crispEdges;
     visibility: hidden;
 }
+
+div.timeline svg g.faded rect, div.timeline svg g.faded circle {
+    opacity: .3;
+}

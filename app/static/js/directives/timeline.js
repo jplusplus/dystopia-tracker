@@ -103,7 +103,7 @@ angular.module('dystopia-tracker').directive('timeline', function() {
 
             this.placeLine = function(prediction, line) {
                 var d3_line_container = this.d3_svg.append("svg:g");
-                d3_line_container.attr({class : 'color-' + prediction.category.color});
+                d3_line_container.attr({class : 'line color-' + prediction.category.color});
                 var xs = [];
                 xs.push(this.placePoint(prediction, line, d3_line_container));
                 xs.push(this.placePoint(prediction.source, line, d3_line_container));
@@ -153,14 +153,34 @@ angular.module('dystopia-tracker').directive('timeline', function() {
                     });
                 }
 
-                point.on('click', function() {
-                    var line = d3_container.select('line');
-                    if (line.length > 0) {
-                        line.attr('class', (line.attr('class') == null) ? 'visible' : null);
-                    }
-                });
+                point.on('click', function(that) {
+                    return function() {
+                        that.select(this);
+                    };
+                    // var line = d3_container.select('line');
+                    // if (line.length > 0) {
+                    //     line.attr('class', (line.attr('class') == null) ? 'visible' : null);
+                    // }
+                }(this));
 
                 return x;
+            };
+
+            this.select = function(target) {
+                var target_g = d3.select(target.parentNode);
+                var target_line = target_g.select('line');
+                var gs = this.d3_svg.selectAll('g.line');
+                var lines = this.d3_svg.selectAll('line');
+
+                if (target_line.classed('visible')) {
+                    gs.classed('faded', false);
+                    target_line.classed('visible', false);
+                } else {
+                    gs.classed('faded', true);
+                    target_g.classed('faded', false);
+                    lines.classed('visible', false);
+                    target_line.classed('visible', true);
+                }
             };
 
             $scope.$watch(function() { return $scope.predictions }, angular.bind(this, function(new_value, old_value) {
