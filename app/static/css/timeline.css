@@ -24,3 +24,10 @@ div.timeline svg g.color-5 circle, div.timeline svg g.color-5 rect { fill: rgba(
 div.timeline svg g.color-6 circle, div.timeline svg g.color-6 rect { fill: rgba( 85, 207, 165, 0.6); }
 div.timeline svg g.color-7 circle, div.timeline svg g.color-7 rect { fill: rgba(154, 227, 129, 0.6); }
 div.timeline svg g.color-8 circle, div.timeline svg g.color-8 rect { fill: rgba(240, 240, 106, 0.6); }
+
+div.timeline svg g line {
+    stroke: gray;
+    stroke-width: 2;
+    stroke-dasharray: 1 2;
+    shape-rendering: crispEdges;
+}

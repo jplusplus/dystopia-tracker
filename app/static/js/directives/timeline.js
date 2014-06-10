@@ -104,11 +104,21 @@ angular.module('dystopia-tracker').directive('timeline', function() {
             this.placeLine = function(prediction, line) {
                 var d3_line_container = this.d3_svg.append("svg:g");
                 d3_line_container.attr({class : 'color-' + prediction.category.color});
-                this.placePoint(prediction, line, d3_line_container);
-                this.placePoint(prediction.source, line, d3_line_container);
+                var xs = [];
+                xs.push(this.placePoint(prediction, line, d3_line_container));
+                xs.push(this.placePoint(prediction.source, line, d3_line_container));
                 for (var i in prediction.realisations) if (prediction.realisations.hasOwnProperty(i)) {
-                    this.placePoint(prediction.realisations[i], line, d3_line_container);
+                    xs.push(this.placePoint(prediction.realisations[i], line, d3_line_container));
                 }
+                var x1 = _.min(xs);
+                var x2 = _.max(xs);
+                var y = this.d3_svg_padding.top + 40 + line * this.d3_line_height;
+                d3_line_container.append('svg:line').attr({
+                    x1 : x1,
+                    x2 : x2,
+                    y1 : y,
+                    y2 : y
+                });
             };
 
             this.placePoint = function(datum, line, d3_container) {
@@ -136,12 +146,13 @@ angular.module('dystopia-tracker').directive('timeline', function() {
                     });
                 } else {
                     d3_container.append('svg:rect').attr({
-                        x : x - (this.d3_node_size / 2),
+                        x : x - this.d3_node_size / 2,
                         y : y - (this.d3_node_size / 2),
                         width : this.d3_node_size,
                         height : this.d3_node_size
                     });
                 }
+                return x;
             };
 
             $scope.$watch(function() { return $scope.predictions }, angular.bind(this, function(new_value, old_value) {
