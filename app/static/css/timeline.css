@@ -3,6 +3,8 @@ div.timeline {
     height: 400px;
 }
 
-div.timeline svg {
-    border: 1px solid blue;
+div.timeline svg g.axis path, div.timeline svg g.axis .tick line {
+    fill: none;
+    stroke: black;
+    shape-rendering: crispEdges;
 }
