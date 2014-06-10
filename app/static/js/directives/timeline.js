@@ -11,6 +11,9 @@ angular.module('dystopia-tracker').directive('timeline', function() {
                 bottom : 10
             };
 
+            this.d3_line_height = 20;
+            this.d3_node_size = 10;
+
             this.init = function(editorspicks, predictions) {
                 this.d3_size = {
                     width : element.width(),
@@ -73,7 +76,60 @@ angular.module('dystopia-tracker').directive('timeline', function() {
                     d3_axis_container.call(axis);
                     this.d3_axis[i] = axis;
                 }
-            }
+
+                // Create all the nodes
+                this.createAllNodes(editorspicks, predictions);
+            };
+
+            this.createAllNodes = function(editorspicks, predictions) {
+                var line = 0;
+
+                for (var i in editorspicks) if (editorspicks.hasOwnProperty(i)) {
+                    var editorspick = editorspicks[i];
+                    this.placeLine(editorspick, line);
+                    ++line;
+                }
+
+                for (var i in predictions) if (predictions.hasOwnProperty(i)) {
+                    var prediction = predictions[i];
+                    this.placeLine(prediction, line);
+                    ++line;
+                }
+            };
+
+            this.placeLine = function(prediction, line) {
+                var d3_line_container = this.d3_svg.append("svg:g");
+                d3_line_container.attr({class : 'color-' + prediction.category.color});
+                this.placePoint(prediction, line, d3_line_container);
+                this.placePoint(prediction.source, line, d3_line_container);
+                for (var i in prediction.realisations) if (prediction.realisations.hasOwnProperty(i)) {
+                    this.placePoint(prediction.realisations[i], line, d3_line_container);
+                }
+            };
+
+            this.placePoint = function(datum, line, d3_container) {
+                var x, y, year;
+                var base_y = this.d3_svg_padding.top + 40;
+
+                d3_container = d3_container || this.d3_svg;
+
+                year = datum.year_predicted || datum.year_published || datum.year_introduced;
+                if (year == null) return;
+
+                if (year < 1900) {
+                    x = this.d3_scales[0](year);
+                } else if (year > 2100) {
+                    x = this.d3_scales[2](year);
+                } else {
+                    x = this.d3_scales[1](year);
+                }
+
+                d3_container.append('svg:circle').attr({
+                    cx : x,
+                    cy : base_y + line * this.d3_line_height,
+                    r : this.d3_node_size / 2
+                });
+            };
 
             $scope.$watch(function() { return $scope.predictions }, angular.bind(this, function(new_value, old_value) {
                 var editorspicks = $scope.editorspicks || [];
