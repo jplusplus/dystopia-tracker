@@ -1,6 +1,5 @@
 div.timeline {
     width: 100%;
-    height: 400px;
 }
 
 div.timeline svg .visible {
@@ -13,6 +12,7 @@ div.timeline svg g.axis path, div.timeline svg g.axis .tick line {
     shape-rendering: crispEdges;
     stroke-dasharray: none;
     stroke-width: 1;
+    visibility: visible
 }
 
 div.timeline svg g rect, div.timeline svg g circle {
