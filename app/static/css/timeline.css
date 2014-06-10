@@ -12,7 +12,8 @@ div.timeline svg g.axis path, div.timeline svg g.axis .tick line {
     shape-rendering: crispEdges;
 }
 
-div.timeline svg g circle, div.timeline svg g rect {
+div.timeline svg g rect {
+    shape-rendering: crispEdges;
 }
 
 div.timeline svg g.color-1 circle, div.timeline svg g.color-1 rect { fill: rgba(125,  63,  66, 0.6); }

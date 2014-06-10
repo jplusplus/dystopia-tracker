@@ -110,12 +110,11 @@ angular.module('dystopia-tracker').directive('timeline', function() {
             this.placePoint = function(datum, line, d3_container) {
                 var x, y, year;
                 var base_y = this.d3_svg_padding.top + 40;
-
+                var circle = (datum.year_introduced != null) ? true : false;
                 d3_container = d3_container || this.d3_svg;
 
                 year = datum.year_predicted || datum.year_published || datum.year_introduced;
                 if (year == null) return;
-
                 if (year < 1900) {
                     x = this.d3_scales[0](year);
                 } else if (year > 2100) {
@@ -123,12 +122,22 @@ angular.module('dystopia-tracker').directive('timeline', function() {
                 } else {
                     x = this.d3_scales[1](year);
                 }
+                y = base_y + line * this.d3_line_height;
 
-                d3_container.append('svg:circle').attr({
-                    cx : x,
-                    cy : base_y + line * this.d3_line_height,
-                    r : this.d3_node_size / 2
-                });
+                if (circle) {
+                    d3_container.append('svg:circle').attr({
+                        cx : x,
+                        cy : y,
+                        r : this.d3_node_size / 2
+                    });
+                } else {
+                    d3_container.append('svg:rect').attr({
+                        x : x - (this.d3_node_size / 2),
+                        y : y - (this.d3_node_size / 2),
+                        width : this.d3_node_size,
+                        height : this.d3_node_size
+                    });
+                }
             };
 
             $scope.$watch(function() { return $scope.predictions }, angular.bind(this, function(new_value, old_value) {
