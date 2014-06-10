@@ -1,5 +1,4 @@
-angular.module('dystopia-tracker').controller('HomeCtrl', ['$scope', 'Prediction', 'Categories', 'Sources', '$rootScope', '$location', '$filter', '$cookies', '$timeout', 'Filters',
-                                                           function($scope, Prediction, Categories, Sources, $rootScope, $location, $filter, $cookies, $timeout, FiltersReset) {
+var HomeCtrl = function($scope, Prediction, Categories, Sources, $rootScope, $location, $filter, $cookies, $timeout, FiltersReset) {
 
     // check if user has visited the site before
     if ($cookies.alreadyVisited) {
@@ -227,4 +226,8 @@ angular.module('dystopia-tracker').controller('HomeCtrl', ['$scope', 'Prediction
      $scope.getCategory = function(id) {
         return _.findWhere($scope.categories, {id:id});
      };
-}]); // it's the end of the code as we know it
+};
+
+angular.module('dystopia-tracker').controller('HomeCtrl', ['$scope', 'Prediction', 'Categories', 'Sources', '$rootScope', '$location', '$filter', '$cookies', '$timeout', 'Filters', HomeCtrl]);
+
+// it's the end of the code as we know it
