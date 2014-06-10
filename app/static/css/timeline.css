@@ -1,0 +1,8 @@
+div.timeline {
+    width: 100%;
+    height: 400px;
+}
+
+div.timeline svg {
+    border: 1px solid blue;
+}

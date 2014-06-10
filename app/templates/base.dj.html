@@ -17,7 +17,8 @@
 
         {% compress css %}
             <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/base.css">
-            <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/animations.css">        
+            <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/animations.css">
+            <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/timeline.css">
         {% endcompress %}
         <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}vendor/bootswatch/yeti/bootstrap.css">
         {% block extracss %}{% endblock %}
@@ -45,7 +46,8 @@
         <script type="text/javascript" src="{{ STATIC_URL }}vendor/angular-ui-bootstrap-bower/ui-bootstrap-tpls.min.js"></script>
         <script type="text/javascript" src="{{ STATIC_URL }}vendor/angular-slugify/angular-slugify.js"></script>
         <script type="text/javascript" src="{{ STATIC_URL }}vendor/angularjs-bower/angular-animate.js"></script>
-        
+        <script type="text/javascript" src="{{ STATIC_URL }}vendor/d3/d3.js"></script>
+
         <!-- Facebook -->
 		<meta property="og:image" content="{{image}}"/>
 		<meta property="og:type" content="{{pagetype}}"/>
