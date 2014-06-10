@@ -15,6 +15,10 @@ div.timeline svg g.axis path, div.timeline svg g.axis .tick line {
     visibility: visible
 }
 
+div.timeline svg g.axis-0 path, div.timeline svg g.axis-2 path {
+    stroke-dasharray: 3 4;
+}
+
 div.timeline svg g rect, div.timeline svg g circle {
     cursor: pointer;
 }

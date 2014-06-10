@@ -70,7 +70,7 @@ angular.module('dystopia-tracker').directive('timeline', ['$window', '$timeout',
                 for (var i in this.d3_scales) if (this.d3_scales.hasOwnProperty(i) && this.d3_scales[i] != null) {
                     var d3_axis_container = this.d3_svg.append('svg:g')
                     d3_axis_container.attr({
-                        class : 'axis',
+                        class : 'axis axis-' + i,
                         transform: 'translate(0, 1)'
                     });
 
