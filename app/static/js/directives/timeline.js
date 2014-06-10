@@ -3,10 +3,7 @@ angular.module('dystopia-tracker').directive('timeline', function() {
         restrict: 'E',
         replace: true,
         template: '<div class=\'timeline\'></div>',
-        scope: {
-            predictions : '='
-        },
-        link: angular.bind({}, function(scope, element, attrs) {
+        link: angular.bind({}, function($scope, element, attrs) {
             this.d3_svg_padding = {
                 left : 50,
                 top : 10,
@@ -14,8 +11,7 @@ angular.module('dystopia-tracker').directive('timeline', function() {
                 bottom : 10
             };
 
-            this.init = function(predictions) {
-                console.debug('INIT');
+            this.init = function(editorspicks, predictions) {
                 this.d3_size = {
                     width : element.width(),
                     height : element.height()
@@ -34,7 +30,6 @@ angular.module('dystopia-tracker').directive('timeline', function() {
                     min = _.min([min, prediction.source.year_published, prediction.year_predicted].concat(realisation_years));
                     max = _.max([max, prediction.source.year_published, prediction.year_predicted].concat(realisation_years));
                 }
-                console.debug(min, max);
 
                 this.d3_scales = [undefined, undefined, undefined];
                 var linear_range = [this.d3_svg_padding.left, this.d3_size.width - this.d3_svg_padding.right];
@@ -80,13 +75,14 @@ angular.module('dystopia-tracker').directive('timeline', function() {
                 }
             }
 
-            scope.$watch('predictions', angular.bind(this, function(old_value, new_value) {
-                if (new_value.length > 0) {
-                    // Must flatten the array
-                    var predictions = _.flatten(new_value);
-                    this.init(predictions);
+            $scope.$watch(function() { return $scope.predictions }, angular.bind(this, function(new_value, old_value) {
+                var editorspicks = $scope.editorspicks || [];
+                var predictions = $scope.predictions || [];
+                if (predictions.length > 0 || editorspicks.length > 0) {
+                    // Must flatten the predictions
+                    this.init(editorspicks, _.flatten(predictions));
                 }
-            }));
+            }), true);
         })
     }
 });
