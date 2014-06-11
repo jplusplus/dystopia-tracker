@@ -132,7 +132,7 @@ angular.module('dystopia-tracker').directive('timeline', ['$window', '$timeout',
             this.placePoint = function(datum, line, d3_container) {
                 var x, y, year, point;
                 var circle = (datum.year_introduced != null) ? true : false;
-                var text = datum['description_E'];
+                var text = datum['description_' + $scope.language];
                 d3_container = d3_container || this.d3_svg;
 
                 year = datum.year_predicted || datum.year_published || datum.year_introduced;
@@ -159,7 +159,7 @@ angular.module('dystopia-tracker').directive('timeline', ['$window', '$timeout',
                         width : this.d3_node_size,
                         height : this.d3_node_size
                     }).classed('node-' + this._i, true);
-                    if (datum.year_predicted != null) text = datum['headline_E'] || datum['description_E'];
+                    if (datum.year_predicted != null) text = datum['headline_' + $scope.language] || datum['description_' + $scope.language];
                 }
 
                 if (text != null && text.length > 0) {
@@ -180,6 +180,7 @@ angular.module('dystopia-tracker').directive('timeline', ['$window', '$timeout',
             this.appendTooltip = function(text, x, y) {
                 var actual_x = (x > (this.d3_size.width / 3) * 2) ? x - 200 : x;
                 // Insert text
+                // We set the foreignobject height to 100% and will change its size to the actual content size afterward
                 d3_foreign_body = this.d3_tooltip_body_container.append('svg:foreignObject').attr({
                     width : '200px',
                     height : '100%',
