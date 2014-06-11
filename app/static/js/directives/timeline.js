@@ -224,20 +224,20 @@ angular.module('dystopia-tracker').directive('timeline', ['$window', '$timeout',
                 target = d3.select(target);
                 var target_line = target_g.select('line');
                 var gs = this.d3_svg.selectAll('g.line');
-                var lines = this.d3_svg.selectAll('line');
 
                 this.d3_tooltip_path_container.selectAll('*').classed('visible', false);
                 this.d3_tooltip_body_container.selectAll('*').classed('visible', false);
 
-                if (target.classed('visible')) {
-                    gs.classed('faded', false);
-                    target_line.classed('visible', false);
-                    target.classed('visible', false);
-                } else {
+                var was_visible = target.classed('visible');
+
+                // Hide eveything
+                this.d3_svg.selectAll('.visible').classed('visible', false);
+                gs.classed('faded', false);
+
+                if (!was_visible) {
                     target.classed('visible', true);
                     gs.classed('faded', true);
                     target_g.classed('faded', false);
-                    lines.classed('visible', false);
                     target_line.classed('visible', true);
                     var classes = target.attr('class').split(' ');
                     for (var i in classes) if (classes.hasOwnProperty(i)) {
