@@ -191,8 +191,8 @@ angular.module('dystopia-tracker').directive('timeline', ['$window', '$timeout',
                 var d;
                 if (x === actual_x) {
                     d = 'M' + (x - 5) + ',' + (y + 10) +
-                        'l 5, -10' +
-                        'l 5, 10' +
+                        'l 5, -8' +
+                        'l 5, 8' +
                         'l 205, 0 ' +
                         'l 0, '+ h +' ' +
                         'l -220, 0 ' +
@@ -200,8 +200,8 @@ angular.module('dystopia-tracker').directive('timeline', ['$window', '$timeout',
                         'l 5, 0';
                 } else {
                     d = 'M' + (x + 5) + ',' + (y + 10) +
-                        'l -5, -10' +
-                        'l -5, 10' +
+                        'l -5, -8' +
+                        'l -5, 8' +
                         'l -205, 0 ' +
                         'l 0, '+ h +' ' +
                         'l 220, 0 ' +
@@ -218,18 +218,32 @@ angular.module('dystopia-tracker').directive('timeline', ['$window', '$timeout',
 
             this.select = function(target) {
                 var target_g = d3.select(target.parentNode);
+                target = d3.select(target);
                 var target_line = target_g.select('line');
                 var gs = this.d3_svg.selectAll('g.line');
                 var lines = this.d3_svg.selectAll('line');
 
-                if (target_line.classed('visible')) {
+                this.d3_tooltip_path_container.selectAll('*').classed('visible', false);
+                this.d3_tooltip_body_container.selectAll('*').classed('visible', false);
+
+                if (target.classed('visible')) {
                     gs.classed('faded', false);
                     target_line.classed('visible', false);
+                    target.classed('visible', false);
                 } else {
+                    target.classed('visible', true);
                     gs.classed('faded', true);
                     target_g.classed('faded', false);
                     lines.classed('visible', false);
                     target_line.classed('visible', true);
+                    var classes = target.attr('class').split(' ');
+                    for (var i in classes) if (classes.hasOwnProperty(i)) {
+                        if (classes[i].indexOf('node-') === 0) {
+                            this.d3_tooltip_path_container.select('.' + classes[i]).classed('visible', true);
+                            this.d3_tooltip_body_container.select('.' + classes[i]).classed('visible', true);
+                            break;
+                        }
+                    }
                 }
             };
 
