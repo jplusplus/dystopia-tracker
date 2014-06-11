@@ -25,9 +25,6 @@ angular.module('dystopia-tracker').directive('timeline', ['$window', '$timeout',
                     height : height
                 };
 
-                // Reorder both arrays by Category
-                predictions = _.sortBy(predictions, function(o) { return o.category.id; });
-
                 // Creating the <svg> tag
                 this.d3_svg = d3.select(element[0]).append('svg')
                 this.d3_svg.attr(this.d3_size);
