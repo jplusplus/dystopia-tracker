@@ -16,7 +16,9 @@ angular.module('dystopia-tracker').directive('timeline', ['$window', '$timeout',
             this.d3_node_size = 10;
 
             this.init = function(editorspicks, predictions) {
-                var height = this.d3_base_y + this.d3_svg_padding.bottom + this.d3_line_height * (editorspicks.length + predictions.length);
+                this._i = 0;
+
+                var height = this.d3_base_y + this.d3_svg_padding.bottom + this.d3_line_height * (editorspicks.length + predictions.length) + 200;
 
                 this.d3_size = {
                     width : element.width(),
@@ -84,6 +86,9 @@ angular.module('dystopia-tracker').directive('timeline', ['$window', '$timeout',
                     this.d3_axis[i] = axis;
                 }
 
+                this.d3_tooltip_path_container = this.d3_svg.append('svg:g').classed({'last' : true, 'tooltips_path' : true});
+                this.d3_tooltip_body_container = this.d3_svg.append('svg:g').classed({'last' : true, 'tooltips_body' : true});
+
                 // Create all the nodes
                 this.createAllNodes(editorspicks, predictions);
             };
@@ -105,7 +110,7 @@ angular.module('dystopia-tracker').directive('timeline', ['$window', '$timeout',
             };
 
             this.placeLine = function(prediction, line) {
-                var d3_line_container = this.d3_svg.append("svg:g");
+                var d3_line_container = this.d3_svg.insert("svg:g", 'g.last');
                 d3_line_container.attr({class : 'line color-' + prediction.category.color});
                 var xs = [];
                 xs.push(this.placePoint(prediction, line, d3_line_container));
@@ -145,14 +150,14 @@ angular.module('dystopia-tracker').directive('timeline', ['$window', '$timeout',
                         cx : x,
                         cy : y,
                         r : this.d3_node_size / 2
-                    });
+                    }).classed('node-' + this._i, true);
                 } else {
                     point = d3_container.append('svg:rect').attr({
                         x : x - this.d3_node_size / 2,
                         y : y - this.d3_node_size / 2,
                         width : this.d3_node_size,
                         height : this.d3_node_size
-                    });
+                    }).classed('node-' + this._i, true);
                 }
 
                 point.on('click', function(that) {
@@ -160,6 +165,8 @@ angular.module('dystopia-tracker').directive('timeline', ['$window', '$timeout',
                         that.select(this);
                     };
                 }(this));
+
+                ++this._i;
 
                 return x;
             };
