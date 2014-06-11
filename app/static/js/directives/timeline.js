@@ -186,8 +186,10 @@ angular.module('dystopia-tracker').directive('timeline', ['$window', '$timeout',
                     x : actual_x,
                     y : y + 15
                 }).classed('node-' + this._i, true).append('xhtml:body').html("<p>" + text + "</p>");
+                this.d3_tooltip_body_container.select('.node-' + this._i).attr('height', d3_foreign_body[0][0].scrollHeight);
 
                 var h = d3_foreign_body[0][0].scrollHeight + 15;
+
                 var d;
                 if (x === actual_x) {
                     d = 'M' + (x - 5) + ',' + (y + 10) +
@@ -208,6 +210,7 @@ angular.module('dystopia-tracker').directive('timeline', ['$window', '$timeout',
                         'l 0, -' + h + '' +
                         'l -5, 0';
                 };
+
                 // Insert the path
                 this.d3_tooltip_path_container.append('svg:path').attr({
                     fill : 'white',
