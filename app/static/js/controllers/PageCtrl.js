@@ -25,7 +25,7 @@ angular.module('dystopia-tracker').controller('PageCtrl', ['$scope', '$location'
     // add active class to view switch
     $rootScope.activeView = function(view) {
         if (view == "cards" && $location.path() == '/' + $rootScope._lang) {
-        return 'active';
+            return 'active';
         }
         if (view == "timeline" && $location.path() == '/' + $rootScope._lang + '/timeline') {
 	        return 'active';
