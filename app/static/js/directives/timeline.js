@@ -214,8 +214,6 @@ angular.module('dystopia-tracker').directive('timeline', ['$window', '$timeout',
 
                 // Insert the path
                 this.d3_tooltip_path_container.append('svg:path').attr({
-                    fill : 'white',
-                    stroke : 'black',
                     d : d,
                 }).classed('node-' + this._i, true);
             };
@@ -262,13 +260,12 @@ angular.module('dystopia-tracker').directive('timeline', ['$window', '$timeout',
             this.on_data_changed = function() {
                 var editorspicks = $scope.editorspicks || [];
                 var predictions = $scope.predictions || [];
-                if (predictions.length > 0 || editorspicks.length > 0) {
-                    if (this.d3_svg != null) {
-                        this.d3_svg.remove();
-                    }
-                    // Must flatten the predictions
-                    this.init(editorspicks, _.flatten(predictions));
+
+                if (this.d3_svg != null) {
+                    this.d3_svg.remove();
                 }
+                // Must flatten the predictions
+                this.init(editorspicks, _.flatten(predictions));
             }
 
             $scope.$watch(function() { return $scope.predictions }, angular.bind(this, this.on_data_changed), true);
