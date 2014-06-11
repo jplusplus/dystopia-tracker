@@ -132,6 +132,7 @@ angular.module('dystopia-tracker').directive('timeline', ['$window', '$timeout',
             this.placePoint = function(datum, line, d3_container) {
                 var x, y, year, point;
                 var circle = (datum.year_introduced != null) ? true : false;
+                var text = datum['description_E'];
                 d3_container = d3_container || this.d3_svg;
 
                 year = datum.year_predicted || datum.year_published || datum.year_introduced;
@@ -158,6 +159,11 @@ angular.module('dystopia-tracker').directive('timeline', ['$window', '$timeout',
                         width : this.d3_node_size,
                         height : this.d3_node_size
                     }).classed('node-' + this._i, true);
+                    if (datum.year_predicted != null) text = datum['headline_E'] || datum['description_E'];
+                }
+
+                if (text != null && text.length > 0) {
+                    this.appendTooltip(text, x, y);
                 }
 
                 point.on('click', function(that) {
@@ -169,6 +175,45 @@ angular.module('dystopia-tracker').directive('timeline', ['$window', '$timeout',
                 ++this._i;
 
                 return x;
+            };
+
+            this.appendTooltip = function(text, x, y) {
+                var actual_x = (x > (this.d3_size.width / 3) * 2) ? x - 200 : x;
+                // Insert text
+                d3_foreign_body = this.d3_tooltip_body_container.append('svg:foreignObject').attr({
+                    width : '200px',
+                    height : '100%',
+                    x : actual_x,
+                    y : y + 15
+                }).classed('node-' + this._i, true).append('xhtml:body').html("<p>" + text + "</p>");
+
+                var h = d3_foreign_body[0][0].scrollHeight + 15;
+                var d;
+                if (x === actual_x) {
+                    d = 'M' + (x - 5) + ',' + (y + 10) +
+                        'l 5, -10' +
+                        'l 5, 10' +
+                        'l 205, 0 ' +
+                        'l 0, '+ h +' ' +
+                        'l -220, 0 ' +
+                        'l 0, -' + h + '' +
+                        'l 5, 0';
+                } else {
+                    d = 'M' + (x + 5) + ',' + (y + 10) +
+                        'l -5, -10' +
+                        'l -5, 10' +
+                        'l -205, 0 ' +
+                        'l 0, '+ h +' ' +
+                        'l 220, 0 ' +
+                        'l 0, -' + h + '' +
+                        'l -5, 0';
+                };
+                // Insert the path
+                this.d3_tooltip_path_container.append('svg:path').attr({
+                    fill : 'white',
+                    stroke : 'black',
+                    d : d,
+                }).classed('node-' + this._i, true);
             };
 
             this.select = function(target) {
