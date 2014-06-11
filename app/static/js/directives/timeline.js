@@ -15,10 +15,10 @@ angular.module('dystopia-tracker').directive('timeline', ['$window', '$timeout',
             this.d3_line_height = 20;
             this.d3_node_size = 10;
 
-            this.init = function(editorspicks, predictions) {
+            this.init = function(predictions) {
                 this._i = 0;
 
-                var height = this.d3_base_y + this.d3_svg_padding.bottom + this.d3_line_height * (editorspicks.length + predictions.length) + 200;
+                var height = this.d3_base_y + this.d3_svg_padding.bottom + this.d3_line_height * predictions.length + 200;
 
                 this.d3_size = {
                     width : element.width(),
@@ -26,7 +26,6 @@ angular.module('dystopia-tracker').directive('timeline', ['$window', '$timeout',
                 };
 
                 // Reorder both arrays by Category
-                editorspicks = _.sortBy(editorspicks, function(o) { return o.category.id; });
                 predictions = _.sortBy(predictions, function(o) { return o.category.id; });
 
                 // Creating the <svg> tag
@@ -90,22 +89,16 @@ angular.module('dystopia-tracker').directive('timeline', ['$window', '$timeout',
                 this.d3_tooltip_body_container = this.d3_svg.append('svg:g').classed({'last' : true, 'tooltips_body' : true});
 
                 // Create all the nodes
-                this.createAllNodes(editorspicks, predictions);
+                this._line = 0;
+                this.createAllNodes(predictions);
             };
 
-            this.createAllNodes = function(editorspicks, predictions) {
-                var line = 0;
-
-                for (var i in editorspicks) if (editorspicks.hasOwnProperty(i)) {
-                    var editorspick = editorspicks[i];
-                    this.placeLine(editorspick, line);
-                    ++line;
-                }
+            this.createAllNodes = function(predictions) {
 
                 for (var i in predictions) if (predictions.hasOwnProperty(i)) {
                     var prediction = predictions[i];
-                    this.placeLine(prediction, line);
-                    ++line;
+                    this.placeLine(prediction, this._line);
+                    ++this._line;
                 }
             };
 
@@ -258,14 +251,13 @@ angular.module('dystopia-tracker').directive('timeline', ['$window', '$timeout',
             }();
 
             this.on_data_changed = function() {
-                var editorspicks = $scope.editorspicks || [];
                 var predictions = $scope.predictions || [];
 
                 if (this.d3_svg != null) {
                     this.d3_svg.remove();
                 }
                 // Must flatten the predictions
-                this.init(editorspicks, _.flatten(predictions));
+                this.init(_.flatten(predictions));
             }
 
             $scope.$watch(function() { return $scope.predictions }, angular.bind(this, this.on_data_changed), true);
