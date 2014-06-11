@@ -72,7 +72,7 @@ angular.module('dystopia-tracker').directive('timeline', ['$window', '$timeout',
                         transform: 'translate(0, 1)'
                     });
 
-                    var axis = new d3.svg.axis();
+                    var axis = new d3.svg.axis().tickFormat(function(d) { return d; });
                     axis.scale(this.d3_scales[i]);
                     if (i != 1) {
                         axis.tickValues(this.d3_scales[i].domain())
