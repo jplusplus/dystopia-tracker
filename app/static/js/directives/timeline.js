@@ -29,6 +29,16 @@ angular.module('dystopia-tracker').directive('timeline', ['$window', '$timeout',
                 this.d3_svg = d3.select(element[0]).append('svg')
                 this.d3_svg.attr(this.d3_size);
 
+                // Create an empty <rect> which will catch clicks outside nodes
+                this.d3_background = this.d3_svg.append('svg:rect').attr({
+                    x : 0,
+                    y : 0,
+                    width : this.d3_size.width,
+                    height : this.d3_size.height,
+                    fill : 'rgba(0,0,0,0)'
+                });
+                this.d3_background.on('click', angular.bind(this, this.hide_all));
+
                 // Create the 3 scales we need
                 var min, max;
                 for (var i in predictions) if (predictions.hasOwnProperty(i)) {
@@ -219,9 +229,7 @@ angular.module('dystopia-tracker').directive('timeline', ['$window', '$timeout',
 
                 var was_visible = target.classed('visible');
 
-                // Hide eveything
-                this.d3_svg.selectAll('.visible').classed('visible', false);
-                gs.classed('faded', false);
+                this.hide_all();
 
                 if (!was_visible) {
                     target.classed('visible', true);
@@ -237,6 +245,13 @@ angular.module('dystopia-tracker').directive('timeline', ['$window', '$timeout',
                         }
                     }
                 }
+            };
+
+            this.hide_all = function() {
+                var gs = this.d3_svg.selectAll('g.line');
+                // Hide eveything
+                this.d3_svg.selectAll('.visible').classed('visible', false);
+                gs.classed('faded', false);
             };
 
             this.on_resize = function() {
