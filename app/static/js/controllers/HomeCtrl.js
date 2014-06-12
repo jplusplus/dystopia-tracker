@@ -1,5 +1,5 @@
-angular.module('dystopia-tracker').controller('HomeCtrl', ['$scope', 'Prediction', 'Categories', 'Sources', '$rootScope', '$location', '$filter', '$cookies', '$timeout',
-                                                           function($scope, Prediction, Categories, Sources, $rootScope, $location, $filter, $cookies, $timeout) {
+angular.module('dystopia-tracker').controller('HomeCtrl', ['$scope', 'Prediction', 'Categories', 'Sources', '$rootScope', '$location', '$filter', '$cookies', '$timeout', 'Filters',
+                                                           function($scope, Prediction, Categories, Sources, $rootScope, $location, $filter, $cookies, $timeout, FiltersReset) {
 
     // check if user has visited the site before
     if ($cookies.alreadyVisited) {
@@ -7,7 +7,7 @@ angular.module('dystopia-tracker').controller('HomeCtrl', ['$scope', 'Prediction
     };
     // set cookie
     $cookies.alreadyVisited = 'true';
-    
+
     // define variables for later
     $scope.categories = [];
     $scope.sources = {
@@ -24,7 +24,7 @@ angular.module('dystopia-tracker').controller('HomeCtrl', ['$scope', 'Prediction
 
     $scope.predictions;
     $scope.editorspicks;
-    $scope.filters = {category:'', source__type:'', title:''};
+    $scope.filters = { category : '', source__type : '', title : '' };
     $scope.filters.page = 0;
     $scope.hideMoreButton = false;
 
@@ -43,7 +43,18 @@ angular.module('dystopia-tracker').controller('HomeCtrl', ['$scope', 'Prediction
 
     readUrlParams();
 
-    $scope.$watch('filters', function() {
+    $scope.$watch(function() { return FiltersReset[0]; }, function(new_value, old_value) {
+        if (new_value && !old_value) {
+            $scope.filters.category = '';
+            $scope.filters.source__type = '';
+            $scope.filters.title = '';
+            $scope.filters.page = 0;
+            $scope.update(true);
+            FiltersReset[0] = false;
+        }
+    }, true);
+
+    $scope.$watch('filters', function(new_value, old_value) {
         if (typeof($scope.filters.title) === 'object') {
             $scope.update(true);
         }
@@ -168,7 +179,7 @@ angular.module('dystopia-tracker').controller('HomeCtrl', ['$scope', 'Prediction
     // add active class to button of active language 
     $scope.isActive = function(lang) {
         if (lang == $scope._lang) {
-        return 'active';
+            return 'active';
         } 
     };
     

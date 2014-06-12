@@ -1,4 +1,5 @@
-angular.module('dystopia-tracker').controller('PageCtrl', ['$scope', '$location', '$rootScope', '$translate', function($scope, $location, $rootScope, $translate) {
+angular.module('dystopia-tracker').controller('PageCtrl', ['$scope', '$location', '$rootScope', '$translate', 'Filters',
+                                                           function($scope, $location, $rootScope, $translate, FiltersReset) {
     var _title = 'Dystopia Tracker';
     var _description = 'Explore and contribute predictions about the future and their realisations.'
     var _image = 'http://www.dystopiatracker.com/static/img/screenshot.png';
@@ -64,6 +65,10 @@ angular.module('dystopia-tracker').controller('PageCtrl', ['$scope', '$location'
             _pagetype = newPagetype;
         }
         return _pagetype;
-    };    
+    };
+
+    $scope.reset = function() {
+        FiltersReset[0] = true;
+    };
 
 }]);

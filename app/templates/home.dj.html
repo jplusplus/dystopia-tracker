@@ -24,7 +24,8 @@
         <script type="text/javascript" src="{{ STATIC_URL }}js/services/Prediction.js"></script>
         <script type="text/javascript" src="{{ STATIC_URL }}js/services/Realisation.js"></script>
         <script type="text/javascript" src="{{ STATIC_URL }}js/services/Sources.js"></script>
-        
+        <script type="text/javascript" src="{{ STATIC_URL }}js/services/Filters.js"></script>
+
         <script type="text/javascript" src="{{ STATIC_URL }}js/animations.js"></script>
     {% endcompress %}
 {% endblock %}
@@ -34,7 +35,7 @@
 
     <div class="row">
         <div id="header" ng-hide="isEmbed">
-            <h1><a ng-href="/[[_lang]]"><strong>Dystopia</strong> Tracker</a></h1>
+            <h1><a ng-click="reset()" ng-href="/[[_lang]]"><strong>Dystopia</strong> Tracker</a></h1>
         </div>
     </div>
 

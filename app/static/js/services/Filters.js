@@ -1,0 +1,1 @@
+angular.module('dystopia-tracker.services').service('Filters', function() { return [false]; });
