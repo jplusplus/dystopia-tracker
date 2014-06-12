@@ -11,7 +11,7 @@ angular.module('dystopia-tracker').directive('timeline', ['$window', '$timeout',
                 bottom : 10
             };
 
-            this.d3_base_y = this.d3_svg_padding.top + 40;
+            this.d3_base_y = this.d3_svg_padding.top;
             this.d3_line_height = 20;
             this.d3_node_size = 10;
 
@@ -25,9 +25,14 @@ angular.module('dystopia-tracker').directive('timeline', ['$window', '$timeout',
                     height : height
                 };
 
-                // Creating the <svg> tag
-                this.d3_svg = d3.select(element[0]).append('svg')
-                this.d3_svg.attr(this.d3_size);
+                // Creating the axis <svg> tag
+                this.d3_axis_svg = d3.select(element[0]).append('svg').attr({
+                    width : this.d3_size.width,
+                    height : 30
+                });
+
+                // Creating the main <svg> tag
+                this.d3_svg = d3.select(element[0]).append('svg').attr(this.d3_size);
 
                 // Create an empty <rect> which will catch clicks outside nodes
                 this.d3_background = this.d3_svg.append('svg:rect').attr({
@@ -76,7 +81,7 @@ angular.module('dystopia-tracker').directive('timeline', ['$window', '$timeout',
                 // Create the axis
                 this.d3_axis = [undefined, undefined, undefined];
                 for (var i in this.d3_scales) if (this.d3_scales.hasOwnProperty(i) && this.d3_scales[i] != null) {
-                    var d3_axis_container = this.d3_svg.append('svg:g')
+                    var d3_axis_container = this.d3_axis_svg.append('svg:g')
                     d3_axis_container.attr({
                         class : 'axis axis-' + i,
                         transform: 'translate(0, 1)'
@@ -262,11 +267,15 @@ angular.module('dystopia-tracker').directive('timeline', ['$window', '$timeout',
                 return ret;
             }();
 
+            this.delete = function() {
+                this.d3_axis_svg.remove();
+                this.d3_svg.remove();
+            };
+
             this.on_data_changed = function() {
                 var predictions = $scope.predictions || [];
-
                 if (this.d3_svg != null) {
-                    this.d3_svg.remove();
+                    this.delete();
                 }
                 // Must flatten the predictions
                 this.init(_.flatten(predictions));
