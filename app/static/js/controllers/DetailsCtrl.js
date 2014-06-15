@@ -89,7 +89,7 @@ angular.module('dystopia-tracker').controller('DetailsCtrl', ['$scope', 'Predict
         else {
             amznType = "all products";
         }
-        $scope.prediction.amzn = "http://www.amazon.de/s/?url=search-alias=aps&field-keywords=" + prediction.source['title_' + $scope.language] + "&category=" + amznType + "&tag=davidbauerch-21&link_code=wql&_encoding=UTF-8";
+        $scope.prediction.amzn = "http://www.amazon.de/s/?url=search-alias=aps&field-keywords=" + prediction.source['title_' + $scope.language] + " " + prediction.source.author + "&category=" + amznType + "&tag=davidbauerch-21&link_code=wql&_encoding=UTF-8";
     };
     
     function findTranslationStatus(object) {
