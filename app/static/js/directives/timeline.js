@@ -102,13 +102,13 @@ angular.module('dystopia-tracker').directive('timeline', ['$window', '$timeout',
                 // Create the axis
                 this.d3_axis = [undefined, undefined, undefined];
                 for (var i in this.d3_scales) if (this.d3_scales.hasOwnProperty(i) && this.d3_scales[i] != null) {
-                    var d3_axis_container = this.d3_axis_svg.append('svg:g')
+                    var d3_axis_container = this.d3_axis_svg.append('svg:g');
                     d3_axis_container.attr({
                         class : 'axis axis-' + i,
-                        transform: 'translate(0, 1)'
+                        transform: 'translate(0, 29)'
                     });
 
-                    var axis = new d3.svg.axis().tickFormat(function(d) { return d; });
+                    var axis = new d3.svg.axis().tickFormat(function(d) { return d; }).orient('top');
                     axis.scale(this.d3_scales[i]);
                     if (i != 1) {
                         axis.tickValues(this.d3_scales[i].domain())
