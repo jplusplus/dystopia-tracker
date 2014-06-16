@@ -44,6 +44,9 @@ angular.module('dystopia-tracker').directive('timeline', ['$window', '$timeout',
                 });
                 this.d3_background.on('click', angular.bind(this, this.hide_all));
 
+                // Reorder both arrays by Category
+                predictions = _.sortBy(predictions, function(o) { return o.category.id; });
+
                 // Create the 3 scales we need
                 var min, max;
                 for (var i in predictions) if (predictions.hasOwnProperty(i)) {
