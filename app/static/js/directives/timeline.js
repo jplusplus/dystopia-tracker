@@ -296,16 +296,14 @@ angular.module('dystopia-tracker').directive('timeline', ['$window', '$timeout',
             }();
 
             this.delete = function() {
-                this.d3_axis_svg.selectAll('*').remove();
-                this.d3_svg.selectAll('*').remove();
+                if (this.d3_axis_svg != null) this.d3_axis_svg.selectAll('*').remove();
+                if (this.d3_svg != null) this.d3_svg.selectAll('*').remove();
             };
 
             this.on_data_changed = function() {
                  if (!$scope.hideMoreButton) return
                 var predictions = $scope.predictions || [];
-                if (this.d3_svg != null) {
-                    this.delete();
-                }
+                this.delete();
                 // Must flatten the predictions
                 this.init(_.flatten(predictions));
             }
