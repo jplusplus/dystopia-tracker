@@ -3,7 +3,7 @@ angular.module('dystopia-tracker').directive('timeline', ['$window', '$timeout',
     return {
         restrict: 'E',
         replace: true,
-        template: '<div class=\'timeline\'></div>',
+        template: '<div class=\'timeline\'><svg class="axis" stickToTop></svg><svg class="content"></svg></div>',
         link: angular.bind({}, function($scope, element, attrs) {
             // Helper to change url
             $scope.go_to = function(url) {
@@ -36,13 +36,13 @@ angular.module('dystopia-tracker').directive('timeline', ['$window', '$timeout',
                 };
 
                 // Creating the axis <svg> tag
-                this.d3_axis_svg = d3.select(element[0]).append('svg').attr({
+                this.d3_axis_svg = d3.select(angular.element(element[0]).find('svg.axis')[0]).attr({
                     width : this.d3_size.width,
                     height : 30
                 });
 
                 // Creating the main <svg> tag
-                this.d3_svg = d3.select(element[0]).append('svg').attr(this.d3_size);
+                this.d3_svg = d3.select(angular.element(element[0]).find('svg.content')[0]).attr(this.d3_size);
 
                 // Create an empty <rect> which will catch clicks outside nodes
                 this.d3_background = this.d3_svg.append('svg:rect').attr({
@@ -296,8 +296,8 @@ angular.module('dystopia-tracker').directive('timeline', ['$window', '$timeout',
             }();
 
             this.delete = function() {
-                this.d3_axis_svg.remove();
-                this.d3_svg.remove();
+                this.d3_axis_svg.selectAll('*').remove();
+                this.d3_svg.selectAll('*').remove();
             };
 
             this.on_data_changed = function() {
