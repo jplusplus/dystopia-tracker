@@ -18,7 +18,7 @@ angular.module('dystopia-tracker').directive('timeline', ['$window', '$timeout',
             this.init = function(predictions) {
                 this._i = 0;
 
-                var height = this.d3_base_y + this.d3_svg_padding.bottom + this.d3_line_height * predictions.length + 200;
+                var height = this.d3_base_y + this.d3_svg_padding.bottom + this.d3_line_height * predictions.length + 75;
 
                 this.d3_size = {
                     width : element.width(),
@@ -48,14 +48,22 @@ angular.module('dystopia-tracker').directive('timeline', ['$window', '$timeout',
                 predictions = _.sortBy(predictions, function(o) { return o.category.id; });
 
                 // Create the 3 scales we need
-                var min, max;
+                var min, max, nodisplay = 0;
                 for (var i in predictions) if (predictions.hasOwnProperty(i)) {
                     var prediction = predictions[i];
+                    if (prediction.year_predicted === 0 && prediction.realisations.length === 0) {
+                        prediction.nodisplay = true;
+                        ++nodisplay;
+                        continue;
+                    }
                     var realisation_years = _.pluck(prediction.realisations, 'year_introduced');
                     // Check if there is the min or the max year
                     min = _.min(_.reject([min, prediction.source.year_published, prediction.year_predicted].concat(realisation_years), _.partial(_.isEqual, 0)));
                     max = _.max(_.reject([max, prediction.source.year_published, prediction.year_predicted].concat(realisation_years), _.partial(_.isEqual, 0)));
                 }
+
+                this.d3_size.height -= nodisplay * this.d3_line_height;
+                this.d3_svg.attr('height', this.d3_size.height);
 
                 this.d3_scales = [undefined, undefined, undefined];
                 var linear_range = [this.d3_svg_padding.left, this.d3_size.width - this.d3_svg_padding.right];
@@ -112,6 +120,7 @@ angular.module('dystopia-tracker').directive('timeline', ['$window', '$timeout',
 
                 for (var i in predictions) if (predictions.hasOwnProperty(i)) {
                     var prediction = predictions[i];
+                    if (prediction.nodisplay) continue;
                     this.placeLine(prediction, this._line);
                     ++this._line;
                 }
