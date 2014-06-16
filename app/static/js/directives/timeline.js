@@ -1,9 +1,19 @@
-angular.module('dystopia-tracker').directive('timeline', ['$window', '$timeout', function($window, $timeout) {
+angular.module('dystopia-tracker').directive('timeline', ['$window', '$timeout', '$filter', '$location',
+                                                          function($window, $timeout, $filter, $location) {
     return {
         restrict: 'E',
         replace: true,
         template: '<div class=\'timeline\'></div>',
         link: angular.bind({}, function($scope, element, attrs) {
+            // Helper to change url
+            $scope.go_to = function(url) {
+                console.debug('go_to');
+                $scope.$apply(function() {
+                    console.debug('Must go to', url);
+                    $location.url(url);
+                });
+            };
+
             this.d3_svg_padding = {
                 left : 50,
                 top : 10,
@@ -130,10 +140,12 @@ angular.module('dystopia-tracker').directive('timeline', ['$window', '$timeout',
                 var d3_line_container = this.d3_svg.insert("svg:g", 'g.last');
                 d3_line_container.attr({class : 'line color-' + prediction.category.color});
                 var xs = [];
-                xs.push(this.placePoint(prediction, line, d3_line_container));
-                xs.push(this.placePoint(prediction.source, line, d3_line_container));
+                var url = '/' + [$scope.language, $filter('slugify')(prediction.source.author),
+                                 $filter('slugify')($filter('getTranslated')(prediction.source, 'title')), prediction.id].join('/');
+                xs.push(this.placePoint(prediction, line, d3_line_container, url));
+                xs.push(this.placePoint(prediction.source, line, d3_line_container, url));
                 for (var i in prediction.realisations) if (prediction.realisations.hasOwnProperty(i)) {
-                    xs.push(this.placePoint(prediction.realisations[i], line, d3_line_container));
+                    xs.push(this.placePoint(prediction.realisations[i], line, d3_line_container, url));
                 }
                 var x1 = _.min(xs);
                 var x2 = _.max(xs);
@@ -146,7 +158,7 @@ angular.module('dystopia-tracker').directive('timeline', ['$window', '$timeout',
                 });
             };
 
-            this.placePoint = function(datum, line, d3_container) {
+            this.placePoint = function(datum, line, d3_container, url) {
                 var x, y, year, point, text;
                 var hex = (datum.year_introduced != null) ? true : false;
                 d3_container = d3_container || this.d3_svg;
@@ -174,7 +186,7 @@ angular.module('dystopia-tracker').directive('timeline', ['$window', '$timeout',
                             'L' + (x + half) + ',' + (y + quarter) +
                             'L' +  x         + ',' + (y + half)    +
                             'L' + (x - half) + ',' + (y + quarter) +
-                            'L' + (x - half) + ',' + (y - quarter)
+                            'Z'
                     }).classed('node-' + this._i, true);
                 } else {
                     if (datum.year_predicted != null) {
