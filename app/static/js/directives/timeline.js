@@ -22,7 +22,7 @@ angular.module('dystopia-tracker').directive('timeline', ['$window', '$timeout',
             };
 
             this.d3_base_y = this.d3_svg_padding.top;
-            this.d3_node_size = 10;
+            this.d3_node_size = 3;
             this.d3_line_height = this.d3_node_size * 1.5;
 
             this.init = function(predictions) {
@@ -160,7 +160,7 @@ angular.module('dystopia-tracker').directive('timeline', ['$window', '$timeout',
 
             this.placePoint = function(datum, line, d3_container, url) {
                 var x, y, year, point, text;
-                var hex = (datum.year_introduced != null) ? true : false;
+                var square = (datum.year_published != null) ? true : false;
                 d3_container = d3_container || this.d3_svg;
 
                 year = datum.year_predicted || datum.year_published || datum.year_introduced;
@@ -174,38 +174,23 @@ angular.module('dystopia-tracker').directive('timeline', ['$window', '$timeout',
                 }
                 y = this.d3_base_y + line * this.d3_line_height;
 
-                if (hex) {
-                    var half = this.d3_node_size / 2;
-                    var quarter = this.d3_node_size / 4;
-                    // Draw an hexagon
-                    point = d3_container.append('svg:path').attr({
-                        d : 'M' + (x - half) + ',' + (y - quarter) +
-                            'L' + (x - half) + ',' + (y - quarter) +
-                            'L' +  x         + ',' + (y - half)    +
-                            'L' + (x + half) + ',' + (y - quarter) +
-                            'L' + (x + half) + ',' + (y + quarter) +
-                            'L' +  x         + ',' + (y + half)    +
-                            'L' + (x - half) + ',' + (y + quarter) +
-                            'Z'
+                if (square) {
+                    point = d3_container.append('svg:rect').attr({
+                        x : x - this.d3_node_size / 2,
+                        y : y - this.d3_node_size / 2,
+                        width : this.d3_node_size,
+                        height : this.d3_node_size
                     }).classed('node-' + this._i, true);
+
+                    text = datum['title_' + $scope.language] + ' - ' + datum['author'];
                 } else {
+                    point = d3_container.append('svg:circle').attr({
+                        cx : x,
+                        cy : y,
+                        r : this.d3_node_size / 2
+                    }).classed('node-' + this._i, true);
                     if (datum.year_predicted != null) {
-                        point = d3_container.append('svg:circle').attr({
-                            cx : x,
-                            cy : y,
-                            r : this.d3_node_size / 2
-                        }).classed('node-' + this._i, true);
-
                         text = datum['headline_' + $scope.language] || datum['description_' + $scope.language];
-                    } else {
-                        point = d3_container.append('svg:rect').attr({
-                            x : x - this.d3_node_size / 2,
-                            y : y - this.d3_node_size / 2,
-                            width : this.d3_node_size,
-                            height : this.d3_node_size
-                        }).classed('node-' + this._i, true);
-
-                        text = datum['title_' + $scope.language] + ' - ' + datum['author'];
                     }
                 }
 
