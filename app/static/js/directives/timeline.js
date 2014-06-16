@@ -53,8 +53,8 @@ angular.module('dystopia-tracker').directive('timeline', ['$window', '$timeout',
                     var prediction = predictions[i];
                     var realisation_years = _.pluck(prediction.realisations, 'year_introduced');
                     // Check if there is the min or the max year
-                    min = _.min([min, prediction.source.year_published, prediction.year_predicted].concat(realisation_years));
-                    max = _.max([max, prediction.source.year_published, prediction.year_predicted].concat(realisation_years));
+                    min = _.min(_.reject([min, prediction.source.year_published, prediction.year_predicted].concat(realisation_years), _.partial(_.isEqual, 0)));
+                    max = _.max(_.reject([max, prediction.source.year_published, prediction.year_predicted].concat(realisation_years), _.partial(_.isEqual, 0)));
                 }
 
                 this.d3_scales = [undefined, undefined, undefined];
