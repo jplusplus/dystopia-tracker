@@ -10,9 +10,14 @@ var TimelineCtrl = function($scope, Prediction, Categories, Sources, $rootScope,
         $scope.update(false);
     };
 
+    $scope.spinner = true;
+
     $scope.$watch(function() { return $scope.predictions }, function() {
         if ($scope.predictions.length && !$scope.hideMoreButton) {
+            $scope.spinner = true;
             $scope.update(false);
+        } else {
+            $scope.spinner = false;
         }
     }, true);
 };
