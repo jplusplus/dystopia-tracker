@@ -147,9 +147,8 @@ angular.module('dystopia-tracker').directive('timeline', ['$window', '$timeout',
             };
 
             this.placePoint = function(datum, line, d3_container) {
-                var x, y, year, point;
+                var x, y, year, point, text;
                 var circle = (datum.year_introduced != null) ? true : false;
-                var text = datum['description_' + $scope.language];
                 d3_container = d3_container || this.d3_svg;
 
                 year = datum.year_predicted || datum.year_published || datum.year_introduced;
@@ -177,8 +176,10 @@ angular.module('dystopia-tracker').directive('timeline', ['$window', '$timeout',
                         height : this.d3_node_size
                     }).classed('node-' + this._i, true);
                     if (datum.year_predicted != null) text = datum['headline_' + $scope.language] || datum['description_' + $scope.language];
+                    else text = datum['title_' + $scope.language] + ' - ' + datum['author'];
                 }
 
+                text = year + "<br />" + ((text != null) ? text : '');
                 if (text != null && text.length > 0) {
                     this.appendTooltip(text, x, y);
                 }
