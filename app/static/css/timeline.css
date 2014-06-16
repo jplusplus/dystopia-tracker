@@ -19,7 +19,7 @@ div.timeline svg g.axis-0 path, div.timeline svg g.axis-2 path {
     stroke-dasharray: 3 4;
 }
 
-div.timeline svg g rect, div.timeline svg g circle {
+div.timeline svg g rect, div.timeline svg g circle, div.timeline svg g path {
     cursor: pointer;
 }
 
@@ -27,14 +27,14 @@ div.timeline svg g rect {
     shape-rendering: crispEdges;
 }
 
-div.timeline svg g.color-1 circle, div.timeline svg g.color-1 rect { fill: rgba(125,  63,  66, 0.6); stroke: rgba(105,  43,  46, 0.8); }
-div.timeline svg g.color-2 circle, div.timeline svg g.color-2 rect { fill: rgba(140,  84, 110, 0.6); stroke: rgba(120,  64,  90, 0.8); }
-div.timeline svg g.color-3 circle, div.timeline svg g.color-3 rect { fill: rgba(133, 115, 153, 0.6); stroke: rgba(113,  95, 133, 0.8); }
-div.timeline svg g.color-4 circle, div.timeline svg g.color-4 rect { fill: rgba(100, 149, 181, 0.6); stroke: rgba( 80, 129, 161, 0.8); }
-div.timeline svg g.color-5 circle, div.timeline svg g.color-5 rect { fill: rgba( 62, 182, 186, 0.6); stroke: rgba( 42, 162, 166, 0.8); }
-div.timeline svg g.color-6 circle, div.timeline svg g.color-6 rect { fill: rgba( 85, 207, 165, 0.6); stroke: rgba( 65, 187, 145, 0.8); }
-div.timeline svg g.color-7 circle, div.timeline svg g.color-7 rect { fill: rgba(154, 227, 129, 0.6); stroke: rgba(134, 207, 109, 0.8); }
-div.timeline svg g.color-8 circle, div.timeline svg g.color-8 rect { fill: rgba(240, 240, 106, 0.6); stroke: rgba(220, 220,  86, 0.8); }
+div.timeline svg g.color-1 circle, div.timeline svg g.color-1 rect, div.timeline svg g.color-1 path { fill: rgba(125,  63,  66, 0.6); stroke: rgba(105,  43,  46, 0.8); }
+div.timeline svg g.color-2 circle, div.timeline svg g.color-2 rect, div.timeline svg g.color-2 path { fill: rgba(140,  84, 110, 0.6); stroke: rgba(120,  64,  90, 0.8); }
+div.timeline svg g.color-3 circle, div.timeline svg g.color-3 rect, div.timeline svg g.color-3 path { fill: rgba(133, 115, 153, 0.6); stroke: rgba(113,  95, 133, 0.8); }
+div.timeline svg g.color-4 circle, div.timeline svg g.color-4 rect, div.timeline svg g.color-4 path { fill: rgba(100, 149, 181, 0.6); stroke: rgba( 80, 129, 161, 0.8); }
+div.timeline svg g.color-5 circle, div.timeline svg g.color-5 rect, div.timeline svg g.color-5 path { fill: rgba( 62, 182, 186, 0.6); stroke: rgba( 42, 162, 166, 0.8); }
+div.timeline svg g.color-6 circle, div.timeline svg g.color-6 rect, div.timeline svg g.color-6 path { fill: rgba( 85, 207, 165, 0.6); stroke: rgba( 65, 187, 145, 0.8); }
+div.timeline svg g.color-7 circle, div.timeline svg g.color-7 rect, div.timeline svg g.color-7 path { fill: rgba(154, 227, 129, 0.6); stroke: rgba(134, 207, 109, 0.8); }
+div.timeline svg g.color-8 circle, div.timeline svg g.color-8 rect, div.timeline svg g.color-8 path { fill: rgba(240, 240, 106, 0.6); stroke: rgba(220, 220,  86, 0.8); }
 
 div.timeline svg g line {
     stroke: black;
@@ -60,6 +60,10 @@ div.timeline svg g.tooltips_body body p {
     color: black;
 }
 
+div.timeline svg g.tooltips_body body p a {
+    cursor: pointer;
+}
+
 div.timeline svg g.tooltips_path path {
     background: none;
     visibility: hidden;
@@ -68,6 +72,6 @@ div.timeline svg g.tooltips_path path {
     shape-rendering: crispEdges;
 }
 
-div.timeline svg g.faded rect, div.timeline svg g.faded circle {
+div.timeline svg g.faded rect, div.timeline svg g.faded circle, div.timeline svg g.faded path {
     opacity: .3;
 }
