@@ -316,6 +316,7 @@ angular.module('dystopia-tracker').directive('timeline', ['$window', '$timeout',
             };
 
             this.on_data_changed = function() {
+                 if (!$scope.hideMoreButton) return
                 var predictions = $scope.predictions || [];
                 if (this.d3_svg != null) {
                     this.delete();
