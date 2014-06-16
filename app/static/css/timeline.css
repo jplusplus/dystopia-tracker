@@ -41,7 +41,11 @@ div.timeline svg g line {
     stroke-width: 2;
     stroke-dasharray: 1 2;
     shape-rendering: crispEdges;
-    visibility: hidden;
+    opacity: .3;
+}
+
+div.timeline svg g line.visible {
+    opacity: 1;
 }
 
 div.timeline svg g.tooltips_body > * {
