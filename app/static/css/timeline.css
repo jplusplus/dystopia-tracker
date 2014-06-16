@@ -38,7 +38,7 @@ div.timeline svg g.color-8 circle, div.timeline svg g.color-8 rect { fill: rgba(
 
 div.timeline svg g line {
     stroke: black;
-    stroke-width: 2;
+    stroke-width: 1;
     stroke-dasharray: 1 2;
     shape-rendering: crispEdges;
     opacity: .3;
