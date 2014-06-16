@@ -23,7 +23,13 @@ var HomeCtrl = function($scope, Prediction, Categories, Sources, $rootScope, $lo
 
     $scope.predictions;
     $scope.editorspicks;
-    $scope.filters = { category : '', source__type : '', title : '' };
+    if ($scope.filters != null) {
+        $scope.filters.category = '';
+        $scope.filters.source__type = '';
+        $scope.filters.title = '';
+    } else {
+        $scope.filters = {category:'', source__type:'', title:''};
+    }
     $scope.filters.page = 0;
     $scope.hideMoreButton = false;
 
@@ -36,7 +42,7 @@ var HomeCtrl = function($scope, Prediction, Categories, Sources, $rootScope, $lo
     $scope.image("http://www.dystopiatracker.com/static/img/screenshot.png");
 
     // define number of predictions to load
-    $scope.filters.page_size = 20;
+    $scope.filters.page_size = $scope.filters.page_size || 20;
     $scope.language = $rootScope._lang;
     var i = 0;
 
@@ -142,7 +148,7 @@ var HomeCtrl = function($scope, Prediction, Categories, Sources, $rootScope, $lo
                     $scope.noContent = true;
                 }
             }, 500);
-        });     
+        });
     };
 
     // load content for the first time
