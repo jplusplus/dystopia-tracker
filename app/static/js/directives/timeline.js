@@ -12,8 +12,8 @@ angular.module('dystopia-tracker').directive('timeline', ['$window', '$timeout',
             };
 
             this.d3_base_y = this.d3_svg_padding.top;
-            this.d3_line_height = 20;
-            this.d3_node_size = 10;
+            this.d3_node_size = 8;
+            this.d3_line_height = this.d3_node_size * 1.5;
 
             this.init = function(predictions) {
                 this._i = 0;
