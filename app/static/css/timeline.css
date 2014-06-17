@@ -56,7 +56,7 @@ div.timeline svg g.tooltips_body body p {
     color: black;
 }
 
-div.timeline svg g.tooltips_body body p a {
+div.timeline svg g.tooltips_body body a {
     cursor: pointer;
 }
 

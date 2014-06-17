@@ -7,9 +7,7 @@ angular.module('dystopia-tracker').directive('timeline', ['$window', '$timeout',
         link: angular.bind({}, function($scope, element, attrs) {
             // Helper to change url
             $scope.go_to = function(url) {
-                console.debug('go_to');
                 $scope.$apply(function() {
-                    console.debug('Must go to', url);
                     $location.url(url);
                 });
             };
@@ -140,7 +138,7 @@ angular.module('dystopia-tracker').directive('timeline', ['$window', '$timeout',
                 var d3_line_container = this.d3_svg.insert("svg:g", 'g.last');
                 d3_line_container.attr({class : 'line color-' + prediction.category.color});
                 var xs = [];
-                var url = '/' + [$scope.language, $filter('slugify')(prediction.source.author),
+                var url = '/' + [$scope.language, 'p', $filter('slugify')(prediction.source.author),
                                  $filter('slugify')($filter('getTranslated')(prediction.source, 'title')), prediction.id].join('/');
                 xs.push(this.placePoint(prediction, line, d3_line_container, url));
                 xs.push(this.placePoint(prediction.source, line, d3_line_container, url));
@@ -194,9 +192,9 @@ angular.module('dystopia-tracker').directive('timeline', ['$window', '$timeout',
                     }
                 }
 
-                text = year + " - <a ng-click=\"go_to('" + url + "')\">Read more</a>" + "<br />" + ((text != null) ? text : '');
+                text = year + "<br />" + ((text != null) ? text : '');
                 if (text != null && text.length > 0) {
-                    this.appendTooltip(text, x, y);
+                    this.appendTooltip(text, x, y, url);
                 }
 
                 point.on('click', function(that) {
@@ -210,7 +208,7 @@ angular.module('dystopia-tracker').directive('timeline', ['$window', '$timeout',
                 return x;
             };
 
-            this.appendTooltip = function(text, x, y) {
+            this.appendTooltip = function(text, x, y, url) {
                 var actual_x = (x > (this.d3_size.width / 3) * 2) ? x - 200 : x;
                 // Insert text
                 // We set the foreignobject height to 100% and will change its size to the actual content size afterward
@@ -220,6 +218,12 @@ angular.module('dystopia-tracker').directive('timeline', ['$window', '$timeout',
                     x : actual_x,
                     y : y + 15
                 }).classed('node-' + this._i, true).append('xhtml:body').html("<p>" + text + "</p>");
+
+                var a = d3_foreign_body.append('xhtml:a').text('Read more');
+                a.on('click', function() {
+                    $scope.go_to(url);
+                });
+
                 this.d3_tooltip_body_container.select('.node-' + this._i).attr('height', d3_foreign_body[0][0].scrollHeight);
 
                 var h = d3_foreign_body[0][0].scrollHeight + 15;
