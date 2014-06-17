@@ -52,7 +52,8 @@ angular.module('dystopia-tracker').directive('timeline', ['$window', '$timeout',
                 });
                 this.d3_background.on('click', angular.bind(this, this.hide_all));
 
-                // Reorder both arrays by Category
+                // Reorder array by category, editor's picks first in each category
+                predictions = _.sortBy(predictions, function(o) { return (o.editors_pick) ? 0 : 1; });
                 predictions = _.sortBy(predictions, function(o) { return o.category.id; });
 
                 // Create the 3 scales we need
