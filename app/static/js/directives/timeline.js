@@ -156,7 +156,7 @@ angular.module('dystopia-tracker').directive('timeline', ['$window', '$timeout',
                 var x1 = _.min(xs);
                 var x2 = _.max(xs);
                 var y = this.d3_base_y + line * this.d3_line_height;
-                d3_line_container.append('svg:line').attr({
+                d3_line_container.insert('svg:line', ':first-child').attr({
                     x1 : x1,
                     x2 : x2,
                     y1 : y,
