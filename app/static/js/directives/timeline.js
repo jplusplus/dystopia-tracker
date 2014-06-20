@@ -58,8 +58,14 @@ angular.module('dystopia-tracker').directive('timeline', ['$window', '$timeout',
 
                 // Create the 3 scales we need
                 var min, max, nodisplay = 0;
+                var all_categories = [];
                 for (var i in predictions) if (predictions.hasOwnProperty(i)) {
                     var prediction = predictions[i];
+
+                    if (prediction.category['title_' + $scope.language] !== all_categories[all_categories.length - 1]) {
+                        all_categories.push(prediction.category['title_' + $scope.language]);
+                    }
+
                     if (prediction.year_predicted === 0 && prediction.realisations.length === 0) {
                         prediction.nodisplay = true;
                         ++nodisplay;
@@ -126,7 +132,7 @@ angular.module('dystopia-tracker').directive('timeline', ['$window', '$timeout',
             };
 
             this.createAllNodes = function(predictions) {
-
+                var last_category = '';
                 for (var i in predictions) if (predictions.hasOwnProperty(i)) {
                     var prediction = predictions[i];
                     if (prediction.nodisplay) continue;
@@ -141,10 +147,11 @@ angular.module('dystopia-tracker').directive('timeline', ['$window', '$timeout',
                 var xs = [];
                 var url = '/' + [$scope.language, 'p', $filter('slugify')(prediction.source.author),
                                  $filter('slugify')($filter('getTranslated')(prediction.source, 'title')), prediction.id].join('/');
-                xs.push(this.placePoint(prediction, line, d3_line_container, url));
-                xs.push(this.placePoint(prediction.source, line, d3_line_container, url));
+                xs.push(this.placePoint(prediction, line, d3_line_container, this.create_prediction_tooltip_content(prediction)));
+                xs.push(this.placePoint(prediction.source, line, d3_line_container, this.create_source_tooltip_content(prediction, url)));
                 for (var i in prediction.realisations) if (prediction.realisations.hasOwnProperty(i)) {
-                    xs.push(this.placePoint(prediction.realisations[i], line, d3_line_container, url));
+                    var realisation = prediction.realisations[i]
+                    xs.push(this.placePoint(realisation, line, d3_line_container, this.create_realisation_tooltip_content(realisation, url)));
                 }
                 var x1 = _.min(xs);
                 var x2 = _.max(xs);
@@ -157,7 +164,7 @@ angular.module('dystopia-tracker').directive('timeline', ['$window', '$timeout',
                 });
             };
 
-            this.placePoint = function(datum, line, d3_container, url) {
+            this.placePoint = function(datum, line, d3_container, tooltip_content) {
                 var x, y, year, point, text;
                 var square = (datum.year_published != null) ? true : false;
                 d3_container = d3_container || this.d3_svg;
@@ -188,14 +195,10 @@ angular.module('dystopia-tracker').directive('timeline', ['$window', '$timeout',
                         cy : y,
                         r : this.d3_node_size / 2
                     }).classed('node-' + this._i, true);
-                    if (datum.year_predicted != null) {
-                        text = datum['headline_' + $scope.language] || datum['description_' + $scope.language];
-                    }
                 }
 
-                text = year + "<br />" + ((text != null) ? text : '');
-                if (text != null && text.length > 0) {
-                    this.appendTooltip(text, x, y, url);
+                if (tooltip_content != null) {
+                    this.appendTooltip(tooltip_content, x, y);
                 }
 
                 point.on('click', function(that) {
@@ -209,7 +212,7 @@ angular.module('dystopia-tracker').directive('timeline', ['$window', '$timeout',
                 return x;
             };
 
-            this.appendTooltip = function(text, x, y, url) {
+            this.appendTooltip = function(tooltip_content, x, y) {
                 var actual_x = (x > (this.d3_size.width / 3) * 2) ? x - 200 : x;
                 // Insert text
                 // We set the foreignobject height to 100% and will change its size to the actual content size afterward
@@ -218,12 +221,14 @@ angular.module('dystopia-tracker').directive('timeline', ['$window', '$timeout',
                     height : '100%',
                     x : actual_x,
                     y : y + 15
-                }).classed('node-' + this._i, true).append('xhtml:body').html("<p>" + text + "</p>");
+                }).classed('node-' + this._i, true).append('xhtml:body').html("<p>" + tooltip_content.text + "</p>");
 
-                var a = d3_foreign_body.append('xhtml:a').text('Read more');
-                a.on('click', function() {
-                    $scope.go_to(url);
-                });
+                if (tooltip_content.url != null) {
+                    var a = d3_foreign_body.append('xhtml:a').text('Read more');
+                    a.on('click', function() {
+                        $scope.go_to(tooltip_content.url);
+                    });
+                }
 
                 this.d3_tooltip_body_container.select('.node-' + this._i).attr('height', d3_foreign_body[0][0].scrollHeight);
 
@@ -254,6 +259,46 @@ angular.module('dystopia-tracker').directive('timeline', ['$window', '$timeout',
                 this.d3_tooltip_path_container.append('svg:path').attr({
                     d : d,
                 }).classed('node-' + this._i, true);
+            };
+
+            this.create_tooltip_content = function(text, url) {
+                return { text : text, url : url };
+            };
+
+            this.create_source_tooltip_content = function(datum, url) {
+                var text = '';
+                if (datum['headline_' + $scope.language].length > 0) {
+                    text = datum['headline_' + $scope.language];
+                } else {
+                    if (datum['description_' + $scope.language].length > 100) {
+                        text = $filter('limitTo')(datum['description_' + $scope.language], 100) + '...';
+                    } else {
+                        text = datum['description_' + $scope.language];
+                    }
+                }
+                text += '<br /><br />' + datum.source['title_' + $scope.language] + ' ' + $filter('translate')('by') +
+                        ' ' + datum.source.author + ' (' + datum.source.year_published + ')'
+                return this.create_tooltip_content(text, url);
+            };
+
+            this.create_prediction_tooltip_content = function(datum) {
+                text = $filter('translate')('Story in') + ' ' + datum.source['title_' + $scope.language] + ' ' +
+                       $filter('translate')('is set in') + ' ' + datum.year_predicted;
+                return this.create_tooltip_content(text);
+            };
+
+            this.create_realisation_tooltip_content = function(datum, url) {
+                var text = '';
+                if (datum['description_' + $scope.language].length > 0) {
+                    if (datum['description_' + $scope.language].length > 100) {
+                        text = $filter('limitTo')(datum['description_' + $scope.language], 100) + '...';
+                    } else {
+                        text = datum['description_' + $scope.language];
+                    }
+                    text += '<br />';
+                }
+                text += datum.year_introduced;
+                return this.create_tooltip_content(text, url);
             };
 
             this.select = function(target) {
