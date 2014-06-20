@@ -133,16 +133,49 @@ angular.module('dystopia-tracker').directive('timeline', ['$window', '$timeout',
                 // Create all the nodes
                 this._line = 0;
                 this.createAllNodes(predictions);
+
+                // Create all the category icons
+                this.createAllIcons();
             };
 
             this.createAllNodes = function(predictions) {
-                var last_category = '';
                 for (var i in predictions) if (predictions.hasOwnProperty(i)) {
                     var prediction = predictions[i];
                     if (prediction.nodisplay) continue;
                     this.placeLine(prediction, this._line);
                     ++this._line;
                 }
+            };
+
+            this.createAllIcons = function() {
+                var icon_size = 30;
+                _.each(_.range(1, 9), angular.bind(this, function(category_id) {
+                    var category_classname = 'color-' + category_id
+                    var category_lines = this.d3_svg.selectAll('g.line.' + category_classname)[0];
+                    if (category_lines.length > 0) {
+                        var first_y = d3.select(_.first(category_lines)).select('line').attr('y1');
+                        var last_y = d3.select(_.last(category_lines)).select('line').attr('y1');
+                        var center_y = last_y - ((last_y - first_y) / 2);
+                        var group = this.d3_svg.insert('svg:g', 'g.line').classed('category-icon', true);
+                        var x = parseInt((this.d3_svg_padding.left / 2) - (icon_size / 2));
+                        var y = parseInt(center_y - (icon_size / 2));
+                        group.append('svg:rect').attr({
+                            width : icon_size,
+                            height : icon_size,
+                            x : x,
+                            y : y,
+                            'class' : category_classname + ' category-icon'
+                        });
+                        var ratio = 20;
+                        group.append('svg:image').attr({
+                            width : icon_size - (icon_size / ratio),
+                            height : icon_size - (icon_size / ratio),
+                            x : x + (icon_size / ratio) / 2,
+                            y : y + (icon_size / ratio) / 2,
+                            'xlink:href' : window.STATIC_URL + 'img/category-icon-' + category_id + '.svg'
+                        });
+                    }
+                }));
             };
 
             this.placeLine = function(prediction, line) {

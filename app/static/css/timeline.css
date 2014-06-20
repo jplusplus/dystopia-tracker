@@ -41,6 +41,17 @@ div.timeline svg g.color-6 circle.hover, div.timeline svg g.color-6 rect.hover, 
 div.timeline svg g.color-7 circle.hover, div.timeline svg g.color-7 rect.hover, div.timeline svg g.color-7 path.hover { fill: rgba(154, 227, 129, 1); }
 div.timeline svg g.color-8 circle.hover, div.timeline svg g.color-8 rect.hover, div.timeline svg g.color-8 path.hover { fill: rgba(240, 240, 106, 1); }
 
+div.timeline svg g.category-icon image { cursor: pointer; }
+div.timeline svg rect.category-icon.color-1 { fill: rgba(125,  63,  66, 0.6); }
+div.timeline svg rect.category-icon.color-2 { fill: rgba(140,  84, 110, 0.6); }
+div.timeline svg rect.category-icon.color-3 { fill: rgba(133, 115, 153, 0.6); }
+div.timeline svg rect.category-icon.color-4 { fill: rgba(100, 149, 181, 0.6); }
+div.timeline svg rect.category-icon.color-5 { fill: rgba( 62, 182, 186, 0.6); }
+div.timeline svg rect.category-icon.color-6 { fill: rgba( 85, 207, 165, 0.6); }
+div.timeline svg rect.category-icon.color-7 { fill: rgba(154, 227, 129, 0.6); }
+div.timeline svg rect.category-icon.color-8 { fill: rgba(240, 240, 106, 0.6); }
+
+
 div.timeline svg g line {
     stroke: black;
     stroke-width: 1;
