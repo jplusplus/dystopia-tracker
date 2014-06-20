@@ -3,7 +3,7 @@ html, body {
   font-family: 'Raleway', Helvetica, Arial, sans-serif !important;
 }
 
-.container-fluid {
+html, .container-fluid {
     background: #E8E8DE !important;
 }
 
