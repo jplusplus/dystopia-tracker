@@ -44,10 +44,10 @@
     </div>
 
     <div class="viewswitch hidden-xs" ng-hide="isEmbed">
-        <a ng-href="/[[_lang]]" ng-class="activeView('cards')">
+        <a ng-click="reset()" ng-href="/[[_lang]]" ng-class="activeView('cards')">
             Cards
         </a>/
-        <a ng-href="[[_lang]]/timeline" ng-class="activeView('timeline')">
+        <a ng-click="reset()" ng-href="[[_lang]]/timeline" ng-class="activeView('timeline')">
             Timeline
         </a>
     </div>        
