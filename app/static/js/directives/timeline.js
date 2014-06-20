@@ -135,7 +135,11 @@ angular.module('dystopia-tracker').directive('timeline', ['$window', '$timeout',
                 this.createAllNodes(predictions);
 
                 // Create all the category icons
-                this.createAllIcons();
+                // (Remove the if to always show the icons)
+                if ($scope.filters.category === '' && $scope.filters.source__type === '' &&
+                    $scope.filters.title === '') {
+                    this.createAllIcons();
+                }
             };
 
             this.createAllNodes = function(predictions) {
