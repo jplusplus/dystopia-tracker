@@ -211,6 +211,14 @@ angular.module('dystopia-tracker').directive('timeline', ['$window', '$timeout',
                     };
                 }(this));
 
+                point.on('mouseenter', function() {
+                    d3.select(this).classed('hover', true);
+                });
+
+                point.on('mouseleave', function() {
+                    d3.select(this).classed('hover', false);
+                });
+
                 ++this._i;
 
                 return x;
