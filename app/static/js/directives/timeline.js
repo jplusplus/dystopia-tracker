@@ -44,7 +44,7 @@ angular.module('dystopia-tracker').directive('timeline', ['$window', '$timeout',
                 });
 
                 // Creating the main <svg> tag
-                this.d3_svg = d3.select(angular.element(element[0]).find('svg.content')[0]).attr(this.d3_size);
+                this.d3_svg = d3.select(angular.element(element[0]).find('svg.content')[0]).attr(this.d3_size).style('margin-top', '-6px');
 
                 // Create an empty <rect> which will catch clicks outside nodes
                 this.d3_background = this.d3_svg.append('svg:rect').attr({
@@ -138,6 +138,14 @@ angular.module('dystopia-tracker').directive('timeline', ['$window', '$timeout',
                     $scope.filters.title === '') {
                     this.createAllIcons(all_categories);
                 }
+
+                // Create something highlighting the current year
+                this.d3_svg.insert('svg:rect', ':first-child').attr({
+                    width: 6,
+                    height: '100%',
+                    y: -6,
+                    x: this.d3_scales[1](new Date().getFullYear()) - 3
+                }).classed('current-year', true);
             };
 
             this.createAllNodes = function(predictions) {
@@ -158,7 +166,7 @@ angular.module('dystopia-tracker').directive('timeline', ['$window', '$timeout',
                         var first_y = d3.select(_.first(category_lines)).select('line').attr('y1');
                         var last_y = d3.select(_.last(category_lines)).select('line').attr('y1');
                         var center_y = last_y - ((last_y - first_y) / 2);
-                        var group = this.d3_svg.insert('svg:g', 'g.line').classed('category-icon', true);
+                        var group = this.d3_svg.append('svg:g').classed('category-icon', true);
                         var x = parseInt((this.d3_svg_padding.left / 2) - (icon_size / 2));
                         var y = parseInt(center_y - (icon_size / 2));
                         group.append('svg:rect').attr({
