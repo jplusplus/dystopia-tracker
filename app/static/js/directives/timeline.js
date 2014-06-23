@@ -304,7 +304,6 @@ angular.module('dystopia-tracker').directive('timeline', ['$window', '$timeout',
                 }
 
                 this.d3_tooltip_body_container.select('.node-' + this._i).attr('height', d3_foreign_body[0][0].clientHeight);
-                console.debug(d3_foreign_body[0]);
 
                 var h = d3_foreign_body[0][0].clientHeight + 15;
 
