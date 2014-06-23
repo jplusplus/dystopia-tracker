@@ -51,6 +51,9 @@ div.timeline svg rect.category-icon.color-6 { fill: rgba( 85, 207, 165, 0.6); }
 div.timeline svg rect.category-icon.color-7 { fill: rgba(154, 227, 129, 0.6); }
 div.timeline svg rect.category-icon.color-8 { fill: rgba(240, 240, 106, 0.6); }
 
+.category-icon-text {
+    visibility: hidden;
+}
 
 div.timeline svg g line {
     stroke: black;

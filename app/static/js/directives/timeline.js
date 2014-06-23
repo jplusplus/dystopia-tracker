@@ -66,9 +66,7 @@ angular.module('dystopia-tracker').directive('timeline', ['$window', '$timeout',
                 for (var i in predictions) if (predictions.hasOwnProperty(i)) {
                     var prediction = predictions[i];
 
-                    if (prediction.category['title_' + $scope.language] !== all_categories[all_categories.length - 1]) {
-                        all_categories.push(prediction.category['title_' + $scope.language]);
-                    }
+                    all_categories[prediction.category.color] = prediction.category['title_' + $scope.language];
 
                     if (prediction.year_predicted === 0 && prediction.realisations.length === 0) {
                         prediction.nodisplay = true;
@@ -138,7 +136,7 @@ angular.module('dystopia-tracker').directive('timeline', ['$window', '$timeout',
                 // (Remove the if to always show the icons)
                 if ($scope.filters.category === '' && $scope.filters.source__type === '' &&
                     $scope.filters.title === '') {
-                    this.createAllIcons();
+                    this.createAllIcons(all_categories);
                 }
             };
 
@@ -151,7 +149,7 @@ angular.module('dystopia-tracker').directive('timeline', ['$window', '$timeout',
                 }
             };
 
-            this.createAllIcons = function() {
+            this.createAllIcons = function(all_categories) {
                 var icon_size = 30;
                 _.each(_.range(1, 9), angular.bind(this, function(category_id) {
                     var category_classname = 'color-' + category_id
@@ -168,7 +166,7 @@ angular.module('dystopia-tracker').directive('timeline', ['$window', '$timeout',
                             height : icon_size,
                             x : x,
                             y : y,
-                            'class' : category_classname + ' category-icon'
+                            'class' : category_classname + ' category-icon category-button'
                         });
                         var ratio = 20;
                         group.append('svg:image').attr({
@@ -177,6 +175,24 @@ angular.module('dystopia-tracker').directive('timeline', ['$window', '$timeout',
                             x : x + (icon_size / ratio) / 2,
                             y : y + (icon_size / ratio) / 2,
                             'xlink:href' : window.STATIC_URL + 'img/category-icon-' + category_id + '.svg'
+                        }).on('click', function() {
+                            var visible = d3.select(this.parentNode).select('rect.category-icon-text').classed('visible');
+                            d3.selectAll('.category-icon-text.visible').classed('visible', false);
+                            if (!visible) {
+                                d3.select(this.parentNode).selectAll('.category-icon-text').classed('visible', true);
+                            }
+                        });
+                        var text = group.append('svg:text').attr({
+                            x : x + icon_size + 5,
+                            y : y + (icon_size / 2) + 6,
+                            'class' : 'category-icon-text'
+                        }).text(all_categories[category_id]);
+                        group.insert('svg:rect', 'text').attr({
+                            x : x + icon_size,
+                            y : y,
+                            height : icon_size,
+                            width: 10 + (text[0][0].getBBox().width),
+                            'class': category_classname + ' category-icon category-icon-text'
                         });
                     }
                 }));
