@@ -85,20 +85,21 @@ angular.module('dystopia-tracker').directive('timeline', ['$window', '$timeout',
                 this.d3_scales = [undefined, undefined, undefined];
                 var linear_range = [this.d3_svg_padding.left, this.d3_size.width - this.d3_svg_padding.right];
 
+                var ten_percent = (linear_range[1] - linear_range[0]) * 5 / 100;
                 // If there are dates < 1900, we need a log scale before that
                 if (min < 1900) {
                     this.d3_scales[0] = new d3.scale.sqrt();
                     this.d3_scales[0].domain([min, 1900]);
-                    this.d3_scales[0].range([linear_range[0], linear_range[0] + 100]);
-                    linear_range[0] += 100;
+                    this.d3_scales[0].range([linear_range[0], linear_range[0] + ten_percent]);
+                    linear_range[0] += ten_percent;
                 }
 
                 // If there are dates > 2100, we need a log scale after that
                 if (max > 2100) {
                     this.d3_scales[2] = new d3.scale.pow();
                     this.d3_scales[2].domain([2100, max]);
-                    this.d3_scales[2].range([linear_range[1] - 100, linear_range[1]]);
-                    linear_range[1] -= 100;
+                    this.d3_scales[2].range([linear_range[1] - ten_percent, linear_range[1]]);
+                    linear_range[1] -= ten_percent;
                 }
 
                 // The middle scale is linear from 1900 to 2100
@@ -118,7 +119,11 @@ angular.module('dystopia-tracker').directive('timeline', ['$window', '$timeout',
                     var axis = new d3.svg.axis().tickFormat(function(d) { return d; }).orient('top');
                     axis.scale(this.d3_scales[i]);
                     if (i != 1) {
-                        axis.tickValues(this.d3_scales[i].domain())
+                        axis.tickValues((linear_range[1] - linear_range[0] <= 300) ? [] : this.d3_scales[i].domain());
+                    } else {
+                        if (linear_range[1] - linear_range[0] <= 300) {
+                            axis.ticks(5);
+                        }
                     }
 
                     d3_axis_container.call(axis);
