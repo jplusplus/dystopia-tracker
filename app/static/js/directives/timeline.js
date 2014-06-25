@@ -317,7 +317,7 @@ angular.module('dystopia-tracker').directive('timeline', ['$window', '$timeout',
                 }).classed('node-' + this._i, true).append('xhtml:body').html("<p>" + tooltip_content.text + "</p>");
 
                 if (tooltip_content.url != null) {
-                    var a = d3_foreign_body.append('xhtml:a').text($filter('translate')('Read more'));
+                    var a = d3_foreign_body.append('xhtml:a').text($filter('translate')('more on DT'));
                     a.on('click', function() {
                         $scope.go_to(tooltip_content.url);
                     });
@@ -359,18 +359,17 @@ angular.module('dystopia-tracker').directive('timeline', ['$window', '$timeout',
             };
 
             this.create_source_tooltip_content = function(datum, url) {
-                var text = '';
+                var text = '<small>' + datum.source['title_' + $scope.language] + ' ' + $filter('translate')('by') +
+                           ' ' + datum.source.author + ' (' + datum.source.year_published + ')</small><br />';
                 if (datum['headline_' + $scope.language].length > 0) {
-                    text = datum['headline_' + $scope.language];
+                    text += datum['headline_' + $scope.language];
                 } else {
                     if (datum['description_' + $scope.language].length > 100) {
-                        text = $filter('limitTo')(datum['description_' + $scope.language], 100) + '...';
+                        text += $filter('limitTo')(datum['description_' + $scope.language], 100) + '...';
                     } else {
-                        text = datum['description_' + $scope.language];
+                        text += datum['description_' + $scope.language];
                     }
                 }
-                text += '<br /><br />' + datum.source['title_' + $scope.language] + ' ' + $filter('translate')('by') +
-                        ' ' + datum.source.author + ' (' + datum.source.year_published + ')'
                 return this.create_tooltip_content(text, url);
             };
 
@@ -381,16 +380,15 @@ angular.module('dystopia-tracker').directive('timeline', ['$window', '$timeout',
             };
 
             this.create_realisation_tooltip_content = function(datum, url) {
-                var text = '';
+                var text = '<small>' + datum.year_introduced + '</small>';
                 if (datum['description_' + $scope.language].length > 0) {
-                    if (datum['description_' + $scope.language].length > 100) {
-                        text = $filter('limitTo')(datum['description_' + $scope.language], 100) + '...';
-                    } else {
-                        text = datum['description_' + $scope.language];
-                    }
                     text += '<br />';
+                    if (datum['description_' + $scope.language].length > 100) {
+                        text += $filter('limitTo')(datum['description_' + $scope.language], 100) + '...';
+                    } else {
+                        text += datum['description_' + $scope.language];
+                    }
                 }
-                text += datum.year_introduced;
                 return this.create_tooltip_content(text, url);
             };
 
