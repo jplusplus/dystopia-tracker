@@ -283,7 +283,7 @@ angular.module('dystopia-tracker').directive('timeline', ['$window', '$timeout',
 
                 point.on('click', function(that) {
                     return function() {
-                        that.select(this);
+                        that.select(_point[0][0]);
                     };
                 }(this));
 
@@ -312,7 +312,7 @@ angular.module('dystopia-tracker').directive('timeline', ['$window', '$timeout',
                 }).classed('node-' + this._i, true).append('xhtml:body').html("<p>" + tooltip_content.text + "</p>");
 
                 if (tooltip_content.url != null) {
-                    var a = d3_foreign_body.append('xhtml:a').text('Read more');
+                    var a = d3_foreign_body.append('xhtml:a').text($filter('translate')('Read more'));
                     a.on('click', function() {
                         $scope.go_to(tooltip_content.url);
                     });
