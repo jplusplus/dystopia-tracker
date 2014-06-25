@@ -212,6 +212,7 @@ angular.module('dystopia-tracker').directive('timeline', ['$window', '$timeout',
                 var xs = [];
                 var url = '/' + [$scope.language, 'p', $filter('slugify')(prediction.source.author),
                                  $filter('slugify')($filter('getTranslated')(prediction.source, 'title')), prediction.id].join('/');
+                prediction.source.category = prediction.category;
                 xs.push(this.placePoint(prediction, line, d3_line_container, this.create_prediction_tooltip_content(prediction)));
                 xs.push(this.placePoint(prediction.source, line, d3_line_container, this.create_source_tooltip_content(prediction, url)));
                 for (var i in prediction.realisations) if (prediction.realisations.hasOwnProperty(i)) {
@@ -245,6 +246,7 @@ angular.module('dystopia-tracker').directive('timeline', ['$window', '$timeout',
                 }
                 y = this.d3_base_y + line * this.d3_line_height;
 
+                var _point;
                 if (square) {
                     point = d3_container.append('svg:rect').attr({
                         x : x - this.d3_node_size / 2,
@@ -252,6 +254,17 @@ angular.module('dystopia-tracker').directive('timeline', ['$window', '$timeout',
                         width : this.d3_node_size,
                         height : this.d3_node_size
                     }).classed('node-' + this._i, true);
+
+                    if (this.d3_node_size > 10) {
+                        _point = point;
+                        point = d3_container.append('svg:image').attr({
+                            width : this.d3_node_size,
+                            height : this.d3_node_size,
+                            x : x - this.d3_node_size / 2,
+                            y : y - this.d3_node_size / 2,
+                            'xlink:href' : window.STATIC_URL + 'img/category-icon-' + datum.category.color + '.svg'
+                        });
+                    }
 
                     text = datum['title_' + $scope.language] + ' - ' + datum['author'];
                 } else {
@@ -261,6 +274,8 @@ angular.module('dystopia-tracker').directive('timeline', ['$window', '$timeout',
                         r : this.d3_node_size / 2
                     }).classed('node-' + this._i, true);
                 }
+
+                _point = (_point != null) ? _point : point;
 
                 if (tooltip_content != null) {
                     this.appendTooltip(tooltip_content, x, y);
@@ -273,11 +288,11 @@ angular.module('dystopia-tracker').directive('timeline', ['$window', '$timeout',
                 }(this));
 
                 point.on('mouseenter', function() {
-                    d3.select(this).classed('hover', true);
+                    d3.select(_point[0][0]).classed('hover', true);
                 });
 
                 point.on('mouseleave', function() {
-                    d3.select(this).classed('hover', false);
+                    d3.select(_point[0][0]).classed('hover', false);
                 });
 
                 ++this._i;
