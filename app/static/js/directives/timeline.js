@@ -365,14 +365,17 @@ angular.module('dystopia-tracker').directive('timeline', ['$window', '$timeout',
             };
 
             this.create_source_tooltip_content = function(datum, url) {
+                var other_language = ($scope.language === 'E') ? 'D' : 'E';
                 var text = '<small>' + datum.source.year_published + '</small><br />';
                 if (datum['headline_' + $scope.language].length > 0) {
                     text += datum['headline_' + $scope.language];
                 } else {
-                    if (datum['description_' + $scope.language].length > 100) {
-                        text += $filter('limitTo')(datum['description_' + $scope.language], 100) + '...';
+                    var desc = (datum['description_' + $scope.language] !== '') ? datum['description_' + $scope.language]
+                                                                                : datum['description_' + other_language];
+                    if (desc.length > 100) {
+                        text += $filter('limitTo')(desc, 100) + '...';
                     } else {
-                        text += datum['description_' + $scope.language];
+                        text += desc;
                     }
                 }
                 text += '<br /><small>' + datum.source['title_' + $scope.language] + ' ' + $filter('translate')('by') +
@@ -387,13 +390,16 @@ angular.module('dystopia-tracker').directive('timeline', ['$window', '$timeout',
             };
 
             this.create_realisation_tooltip_content = function(datum, url) {
+                var other_language = ($scope.language === 'E') ? 'D' : 'E';
                 var text = '<small>' + datum.year_introduced + '</small>';
                 if (datum['description_' + $scope.language].length > 0) {
                     text += '<br />';
-                    if (datum['description_' + $scope.language].length > 100) {
-                        text += $filter('limitTo')(datum['description_' + $scope.language], 100) + '...';
+                    var desc = (datum['description_' + $scope.language] !== '') ? datum['description_' + $scope.language]
+                                                                                : datum['description_' + other_language];
+                    if (desc.length > 100) {
+                        text += $filter('limitTo')(desc, 100) + '...';
                     } else {
-                        text += datum['description_' + $scope.language];
+                        text += desc;
                     }
                 }
                 return this.create_tooltip_content(text, url);
