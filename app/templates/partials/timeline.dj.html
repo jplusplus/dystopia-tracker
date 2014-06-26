@@ -76,10 +76,16 @@
     </button>
 </div>
 
-<div id="content" class="row">
+<div id="content" class="row latest">
     <div id="loading" ng-if="spinner">
         <div class="spinner"></div>
         Loading...
     </div>
-   <timeline ng-show="!spinner"></timeline>
+   <timeline ng-show="!spinner && !noContent"></timeline>
+    <div ng-if="noContent" class="col-sm-6 col-md-4 col-sm-offset-3 col-md-offset-4">
+        <p ng-bind-template="[['Bummer, no content' | translate ]]"></p>
+        <a ng-href="[[language]]/submit/prediction" type="button" class="btn btn-primary btn-lg">
+            <span class="glyphicon glyphicon-plus"></span> [['Add a prediction' | translate]]
+        </a>
+    </div>
 </div> <!-- content -->

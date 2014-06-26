@@ -442,8 +442,8 @@ angular.module('dystopia-tracker').directive('timeline', ['$window', '$timeout',
             };
 
             this.on_data_changed = function() {
-                 if (!$scope.hideMoreButton) return
                 var predictions = $scope.predictions || [];
+                if (!$scope.hideMoreButton && predictions.length > 0) return
                 this.delete();
                 // Must flatten the predictions
                 this.init(_.flatten(predictions));
