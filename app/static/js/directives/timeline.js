@@ -82,6 +82,12 @@ angular.module('dystopia-tracker').directive('timeline', ['$window', '$timeout',
                 this.d3_size.height -= nodisplay * this.d3_line_height;
                 this.d3_svg.attr('height', this.d3_size.height);
 
+                if (predictions.length - nodisplay > 0) {
+                    $scope.noContent = false;
+                } else {
+                    $scope.noContent = true;
+                }
+
                 this.d3_scales = [undefined, undefined, undefined];
                 var linear_range = [this.d3_svg_padding.left, this.d3_size.width - this.d3_svg_padding.right];
 
