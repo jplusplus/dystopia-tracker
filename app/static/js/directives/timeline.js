@@ -359,8 +359,7 @@ angular.module('dystopia-tracker').directive('timeline', ['$window', '$timeout',
             };
 
             this.create_source_tooltip_content = function(datum, url) {
-                var text = '<small>' + datum.source['title_' + $scope.language] + ' ' + $filter('translate')('by') +
-                           ' ' + datum.source.author + ' (' + datum.source.year_published + ')</small><br />';
+                var text = '<small>' + datum.source.year_published + '</small><br />';
                 if (datum['headline_' + $scope.language].length > 0) {
                     text += datum['headline_' + $scope.language];
                 } else {
@@ -370,12 +369,14 @@ angular.module('dystopia-tracker').directive('timeline', ['$window', '$timeout',
                         text += datum['description_' + $scope.language];
                     }
                 }
+                text += '<br /><small>' + datum.source['title_' + $scope.language] + ' ' + $filter('translate')('by') +
+                        ' ' + datum.source.author + '</small>';
                 return this.create_tooltip_content(text, url);
             };
 
             this.create_prediction_tooltip_content = function(datum) {
-                text = $filter('translate')('Story in') + ' ' + datum.source['title_' + $scope.language] + ' ' +
-                       $filter('translate')('is set in') + ' ' + datum.year_predicted;
+                text = '<small>' + datum.year_predicted + '</small><br />' +
+                       $filter('translate')("Predicted year of realisation in the story") + '.';
                 return this.create_tooltip_content(text);
             };
 
