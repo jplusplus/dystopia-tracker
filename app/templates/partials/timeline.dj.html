@@ -81,7 +81,7 @@
         <div class="spinner"></div>
         Loading...
     </div>
-   <timeline ng-show="!spinner && !noContent"></timeline>
+   <timeline ng-if="!spinner && !noContent"></timeline>
     <div ng-if="noContent" class="col-sm-6 col-md-4 col-sm-offset-3 col-md-offset-4">
         <p ng-bind-template="[['Bummer, no content' | translate ]]"></p>
         <a ng-href="[[language]]/submit/prediction" type="button" class="btn btn-primary btn-lg">
