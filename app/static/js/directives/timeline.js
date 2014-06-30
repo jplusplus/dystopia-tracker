@@ -392,15 +392,13 @@ angular.module('dystopia-tracker').directive('timeline', ['$window', '$timeout',
             this.create_realisation_tooltip_content = function(datum, url) {
                 var other_language = ($scope.language === 'E') ? 'D' : 'E';
                 var text = '<small>' + datum.year_introduced + '</small>';
-                if (datum['description_' + $scope.language].length > 0) {
-                    text += '<br />';
-                    var desc = (datum['description_' + $scope.language] !== '') ? datum['description_' + $scope.language]
-                                                                                : datum['description_' + other_language];
-                    if (desc.length > 100) {
-                        text += $filter('limitTo')(desc, 100) + '...';
-                    } else {
-                        text += desc;
-                    }
+                text += '<br />';
+                var desc = (datum['description_' + $scope.language] !== '') ? datum['description_' + $scope.language]
+                                                                            : datum['description_' + other_language];
+                if (desc.length > 100) {
+                    text += $filter('limitTo')(desc, 100) + '...';
+                } else {
+                    text += desc;
                 }
                 return this.create_tooltip_content(text, url);
             };
