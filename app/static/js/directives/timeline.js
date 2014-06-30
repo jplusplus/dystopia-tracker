@@ -90,27 +90,32 @@ angular.module('dystopia-tracker').directive('timeline', ['$window', '$timeout',
 
                 this.d3_scales = [undefined, undefined, undefined];
                 var linear_range = [this.d3_svg_padding.left, this.d3_size.width - this.d3_svg_padding.right];
+                var linear_domain = [1900, 2100];
 
                 var ten_percent = (linear_range[1] - linear_range[0]) * 5 / 100;
                 // If there are dates < 1900, we need a log scale before that
-                if (min < 1900) {
+                if (min < linear_domain[0]) {
                     this.d3_scales[0] = new d3.scale.sqrt();
                     this.d3_scales[0].domain([min, 1900]);
                     this.d3_scales[0].range([linear_range[0], linear_range[0] + ten_percent]);
                     linear_range[0] += ten_percent;
+                } else {
+                    linear_domain[0] = min - 10 || linear_domain[0];
                 }
 
                 // If there are dates > 2100, we need a log scale after that
-                if (max > 2100) {
+                if (max > linear_domain[1]) {
                     this.d3_scales[2] = new d3.scale.pow();
                     this.d3_scales[2].domain([2100, max]);
                     this.d3_scales[2].range([linear_range[1] - ten_percent, linear_range[1]]);
                     linear_range[1] -= ten_percent;
+                } else {
+                    linear_domain[1] = max + 10 || linear_domain[1];
                 }
 
                 // The middle scale is linear from 1900 to 2100
                 this.d3_scales[1] = new d3.scale.linear();
-                this.d3_scales[1].domain([1900, 2100]);
+                this.d3_scales[1].domain(linear_domain);
                 this.d3_scales[1].range(linear_range);
 
                 // Create the axis
