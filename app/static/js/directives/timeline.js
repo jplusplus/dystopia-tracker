@@ -162,6 +162,8 @@ angular.module('dystopia-tracker').directive('timeline', ['$window', '$timeout',
                     y: -6,
                     x: this.d3_scales[1](new Date().getFullYear()) - 3
                 }).classed('current-year', true);
+
+                $scope.spinner = false;
             };
 
             this.createAllNodes = function(predictions) {

@@ -119,7 +119,7 @@ var HomeCtrl = function($scope, Prediction, Categories, Sources, $rootScope, $lo
     	    // define number of editors picks to show
     	    editorspick_filters.page_size = 6;
 		    Prediction.get(editorspick_filters).success(function(data) {
-		        $scope.spinner = false;
+		        // $scope.spinner = false;
 		        for (var i=0;i<data.results.length;i++) {
                     var index = i % 3;
                     if ($scope.editorspicks[index] == null) { $scope.editorspicks[index] = []; }
@@ -127,7 +127,7 @@ var HomeCtrl = function($scope, Prediction, Categories, Sources, $rootScope, $lo
 		        }
 			});
 		}
-        
+
         // get all predictions with selected filter applied
 		Prediction.get($scope.filters).success(function(data) {
 		    for (var i=0;i<data.results.length;i++) {
@@ -136,10 +136,10 @@ var HomeCtrl = function($scope, Prediction, Categories, Sources, $rootScope, $lo
                 if ($scope.predictions[index] == null) { $scope.predictions[index] = []; }
                 $scope.predictions[index].push(data.results[i]);
 		    }
-		
+
 		    if (data.next==null) {
-		    $scope.hideMoreButton = true;
-		    }
+    		    $scope.hideMoreButton = true;
+            }
 
             $scope.spinner = false;
 

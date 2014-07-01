@@ -13,11 +13,9 @@ var TimelineCtrl = function($scope, Prediction, Categories, Sources, $rootScope,
     $scope.spinner = true;
 
     $scope.$watch(function() { return $scope.predictions }, function() {
-        if ($scope.predictions.length && !$scope.hideMoreButton) {
+        if ($scope.predictions.length > 0 && !$scope.hideMoreButton) {
             $scope.spinner = true;
             $scope.update(false);
-        } else {
-            $scope.spinner = false;
         }
     }, true);
 };
