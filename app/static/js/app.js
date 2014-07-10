@@ -4,6 +4,7 @@ angular.module('dystopia-tracker.animations', ['ngAnimate']);
 
 var app = angular.module('dystopia-tracker', [
         'ngRoute',
+        'ngTouch',
         'dystopia-tracker.animations',
         'siyfion.sfTypeahead',
         'pascalprecht.translate',
