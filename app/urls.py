@@ -14,7 +14,7 @@ urlpatterns = patterns('',
     url(r'^[A-Z]{1}/submit/realisation', 'app.views.home', name='submit-realisation'),
 
     url(r'^[A-Z]{1}/thankyou', 'app.views.home', name='thankyou'),
-    
+
     url(r'^[A-Z]{1}/p/(?P<author>([a-z0-9_\-/\.]+))/(?P<title>([a-z0-9_\-/\.]+))/(?P<id>([0-9]+))/embed$', 'app.views.home', name='embed'),
 
     url(r'^partial/(?P<partial_name>([a-zA-Z0-9_\-/\.]+))\.html$', 'app.views.partial', name='partial'),
@@ -26,3 +26,8 @@ urlpatterns = patterns('',
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
     url(r'^admin/',     include(admin.site.urls)),
 )
+
+if settings.STAGING:
+    urlpatterns += patterns('',
+        (r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT}),
+    )

@@ -1,5 +1,4 @@
-angular.module('dystopia-tracker').controller('HomeCtrl', ['$scope', 'Prediction', 'Categories', 'Sources', '$rootScope', '$location', '$filter', '$cookies', '$timeout', 'Filters',
-                                                           function($scope, Prediction, Categories, Sources, $rootScope, $location, $filter, $cookies, $timeout, FiltersReset) {
+var HomeCtrl = function($scope, Prediction, Categories, Sources, $rootScope, $location, $filter, $cookies, $timeout, FiltersReset) {
 
     // check if user has visited the site before
     if ($cookies.alreadyVisited) {
@@ -24,7 +23,13 @@ angular.module('dystopia-tracker').controller('HomeCtrl', ['$scope', 'Prediction
 
     $scope.predictions;
     $scope.editorspicks;
-    $scope.filters = { category : '', source__type : '', title : '' };
+    if ($scope.filters != null) {
+        $scope.filters.category = '';
+        $scope.filters.source__type = '';
+        $scope.filters.title = '';
+    } else {
+        $scope.filters = {category:'', source__type:'', title:''};
+    }
     $scope.filters.page = 0;
     $scope.hideMoreButton = false;
 
@@ -37,7 +42,7 @@ angular.module('dystopia-tracker').controller('HomeCtrl', ['$scope', 'Prediction
     $scope.image("http://www.dystopiatracker.com/static/img/screenshot.png");
 
     // define number of predictions to load
-    $scope.filters.page_size = 20;
+    $scope.filters.page_size = $scope.filters.page_size || 20;
     $scope.language = $rootScope._lang;
     var i = 0;
 
@@ -88,7 +93,6 @@ angular.module('dystopia-tracker').controller('HomeCtrl', ['$scope', 'Prediction
     loadTitles(1);
 
     $scope.update = function(reset) {
-        
         $scope.filters.lang = $scope._lang;
         $scope.noContent = false;
         $scope.spinner = true;
@@ -115,7 +119,7 @@ angular.module('dystopia-tracker').controller('HomeCtrl', ['$scope', 'Prediction
     	    // define number of editors picks to show
     	    editorspick_filters.page_size = 6;
 		    Prediction.get(editorspick_filters).success(function(data) {
-		        $scope.spinner = false;
+		        // $scope.spinner = false;
 		        for (var i=0;i<data.results.length;i++) {
                     var index = i % 3;
                     if ($scope.editorspicks[index] == null) { $scope.editorspicks[index] = []; }
@@ -123,7 +127,7 @@ angular.module('dystopia-tracker').controller('HomeCtrl', ['$scope', 'Prediction
 		        }
 			});
 		}
-        
+
         // get all predictions with selected filter applied
 		Prediction.get($scope.filters).success(function(data) {
 		    for (var i=0;i<data.results.length;i++) {
@@ -132,10 +136,10 @@ angular.module('dystopia-tracker').controller('HomeCtrl', ['$scope', 'Prediction
                 if ($scope.predictions[index] == null) { $scope.predictions[index] = []; }
                 $scope.predictions[index].push(data.results[i]);
 		    }
-		
+
 		    if (data.next==null) {
-		    $scope.hideMoreButton = true;
-		    }
+    		    $scope.hideMoreButton = true;
+            }
 
             $scope.spinner = false;
 
@@ -144,7 +148,7 @@ angular.module('dystopia-tracker').controller('HomeCtrl', ['$scope', 'Prediction
                     $scope.noContent = true;
                 }
             }, 500);
-        });     
+        });
     };
 
     // load content for the first time
@@ -154,7 +158,7 @@ angular.module('dystopia-tracker').controller('HomeCtrl', ['$scope', 'Prediction
     $scope.typeahedOptions = {
         highlight: true
     };
-    
+
     // get list of all titles for search field
     function loadTitles(pageNo){
         Sources.get({page: pageNo}).success(function(data) {
@@ -227,4 +231,8 @@ angular.module('dystopia-tracker').controller('HomeCtrl', ['$scope', 'Prediction
      $scope.getCategory = function(id) {
         return _.findWhere($scope.categories, {id:id});
      };
-}]); // it's the end of the code as we know it
+};
+
+angular.module('dystopia-tracker').controller('HomeCtrl', ['$scope', 'Prediction', 'Categories', 'Sources', '$rootScope', '$location', '$filter', '$cookies', '$timeout', 'Filters', HomeCtrl]);
+
+// it's the end of the code as we know it

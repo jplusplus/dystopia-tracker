@@ -1,9 +1,13 @@
 # Makefile
 
+ifndef PORT
+    PORT = 8000
+endif
+
 VIRTUALENV = venv/
 
 run:
-	. $(VIRTUALENV)bin/activate; export PYTHONPATH=`pwd`/app/:$(PYTHONPATH) ; python -W ignore::DeprecationWarning manage.py runserver 0.0.0.0:8000
+	. $(VIRTUALENV)bin/activate; export PYTHONPATH=`pwd`/app/:$(PYTHONPATH) ; python -W ignore::DeprecationWarning manage.py runserver 0.0.0.0:$(PORT)
 
 install: create_virtualenv pip_install setup_db bower_install
 

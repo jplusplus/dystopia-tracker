@@ -1,20 +1,25 @@
-angular.module('dystopia-tracker').controller('TimelineCtrl', ['$scope', 'Prediction', 'Categories', 'Sources', 'Realisation', '$rootScope', '$location', '$routeParams',
-                                                           function($scope, Prediction, Categories, Sources, Realisation, $rootScope, $location, $routeParams) {
-    
+
+var TimelineCtrl = function($scope, Prediction, Categories, Sources, $rootScope, $location, $filter, $cookies, $timeout, FiltersReset) {
+    $scope.filters = { page_size : 200 };
+    angular.extend(this, new HomeCtrl($scope, Prediction, Categories, Sources, $rootScope, $location, $filter, $cookies, $timeout, FiltersReset));
+
     $scope.changeLanguage = function(lang) {
-	    $scope._lang = $scope.language = lang;
-	    $location.path('/' + $scope.language + "/timeline");
-	    $scope.translateTo($scope.language);
+        $scope._lang = $scope.language = lang;
+        $location.path('/' + $scope.language + '/timeline');
+        $scope.translateTo($scope.language);
         $scope.update(false);
     };
-    
-    // add active class to button of active language 
-    $scope.isActive = function(lang) {
-        if (lang == $scope._lang) {
-        return 'active';
-        } 
-    };
-    
-        
-    
-}]); // it's the end of the code as we know it
+
+    $scope.spinner = true;
+
+    $scope.$watch(function() { return $scope.predictions }, function() {
+        if ($scope.predictions.length > 0 && !$scope.hideMoreButton) {
+            $scope.spinner = true;
+            $scope.update(false);
+        }
+    }, true);
+};
+
+angular.module('dystopia-tracker').controller('TimelineCtrl', ['$scope', 'Prediction', 'Categories', 'Sources', '$rootScope', '$location', '$filter', '$cookies', '$timeout', 'Filters', TimelineCtrl]);
+
+// it's the end of the code as we know it
