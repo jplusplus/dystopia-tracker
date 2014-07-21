@@ -18,9 +18,9 @@
         {% compress css %}
             <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/base.css">
             <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/animations.css">
-            <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/timeline.css">
         {% endcompress %}
         <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}vendor/bootswatch/yeti/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/timeline.css">
         {% block extracss %}{% endblock %}
         <base href="{% url 'home' %}" />
 
