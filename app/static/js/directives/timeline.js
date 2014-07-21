@@ -158,7 +158,7 @@ angular.module('dystopia-tracker').directive('timeline', ['$window', '$timeout',
                 // Create something highlighting the current year
                 this.d3_svg.insert('svg:rect', ':first-child').attr({
                     width: 6,
-                    height: '100%',
+                    height: (this.d3_size.height - 193) + 'px',
                     y: -6,
                     x: this.d3_scales[1](new Date().getFullYear()) - 3
                 }).classed('current-year', true);
