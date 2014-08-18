@@ -387,6 +387,7 @@ color:grey;
 .follow a {color:white !important;text-decoration: none !important;}
 .follow:hover {opacity: 1;}
 .follow img {width: 20px;margin-right: 3px;}
+.fork {background-color: grey;}
   
 
 /* typeahead styles */
