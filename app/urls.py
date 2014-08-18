@@ -21,6 +21,8 @@ urlpatterns = patterns('',
 
     url(r'^[A-Z]{1}/timeline/?$', 'app.views.home'),
 
+    url(r'^[A-Z]{1}/timeline/embed$', 'app.views.partial', name='timeline-embed'),
+
     url(r'^api/',       include('app.api.urls')),
 
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),

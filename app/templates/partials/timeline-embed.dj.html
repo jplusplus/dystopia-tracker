@@ -1,0 +1,95 @@
+<div id="filters" ng-class="showFilters ? 'visible-mobile' : '' ">
+        
+    <form id="searchform" ng-submit="update(true)" class="input-group">
+				
+        <div class="input-group-btn">
+            <div class="dropdown">
+                <button type="button" class="btn btn-default dropdown-toggle">
+                    <span class="hidden-xs">
+                        <span ng-if="filters.category != ''">
+                            [[ getCategoryTitle( getCategory(filters.category) ) | translate ]]
+                        </span>
+                        <span ng-if="filters.category == ''">
+                            [[ 'All categories' | translate ]]
+                        </span>      
+                        <span class="caret"></span>
+                    </span>
+                    <span class="visible-xs">
+                        <i class="glyphicon glyphicon-filter"></i>                        
+                    </span>                    
+                </button>
+                <ul class="dropdown-menu categories">
+                    <li ng-class="filters.category == '' ? 'active' : ''">
+                        <a ng-click="filters.category = ''; update(true)">
+                            [['All categories' | translate ]]
+                        </a>
+                    </li>
+                    <li class="color-[[category.color]]" ng-repeat="category in categories" ng-class="filters.category == category.id ? 'active' : ''">
+                        <a ng-click="filters.category = category.id; update(true)">
+                            [[getCategoryTitle(category)]]
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="dropdown hidden-xs">
+                <button type="button" class="btn btn-default dropdown-toggle">
+                    <span ng-if="filters.source__type != ''">
+                        [[ sources[filters.source__type] | translate ]]
+                    </span>
+                    <span ng-if="filters.source__type == ''">
+                            [['All sources' | translate ]]
+                    </span>                    
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li ng-class="filters.source__type == '' ? 'active' : ''">
+                        <a ng-click="filters.source__type = ''; update(true)">
+                            [['All sources' | translate ]]
+                        </a>
+                    </li>
+                    <li ng-repeat="key in sourcesKey" ng-init="source = sources[key]" ng-class="filters.source__type == key ? 'active' : ''">
+                        <a ng-click="filters.source__type = key; update(true)">
+                            [[ source | translate ]]
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <input type="text" class="sfTypeahead" options="typeahedOptions" datasets="typeaheadData" placeholder="[['Search for a title' | translate ]]" autofocus ng-model="filters.title">
+
+    </form>
+        
+</div> 
+
+<div id="toggle-filters" ng-init="showFilters = false">
+    <i class="glyphicon glyphicon-search" ng-click="showFilters = !showFilters"></i>
+</div>
+
+<div class="btn-group langswitch hidden-xs">
+    <button type="button" ng-click="changeLanguage('E')" class="btn btn-default btn-sm" ng-class="isActive('E')">
+        En<span class="hidden-xs">glish</span>
+    </button>
+    <button type="button" ng-click="changeLanguage('D')" class="btn btn-default btn-sm" ng-class="isActive('D')">
+        De<span class="hidden-xs">utsch</span>
+    </button>
+</div>
+
+<div id="content" class="row latest">
+    <div class='visible-xs alert alert-welcome alert-dismissable fade in out' style='margin:0 10px 10px 10px'>
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <p>[['For the best experience of this visualisation, a larger screen is advised.' | translate]]</p>
+    </div>
+    <div id="loading" ng-if="spinner">
+        <div class="spinner"></div>
+        Loading...
+    </div>
+   <timeline ng-if="!spinner && !noContent"></timeline>
+    <div ng-if="noContent" class="col-sm-6 col-md-4 col-sm-offset-3 col-md-offset-4">
+        <p ng-bind-template="[['Bummer, no content' | translate ]]"></p>
+        <a ng-href="[[language]]/submit/prediction" type="button" class="btn btn-primary btn-lg">
+            <span class="glyphicon glyphicon-plus"></span> [['Add a prediction' | translate]]
+        </a>
+    </div>
+</div> <!-- content -->
