@@ -3,7 +3,7 @@
       <div class="prediction">
         <p class="predictiontext">[[prediction|getTranslated:'description']]</p>
         <p class="source">&mdash; [[prediction.source|getTranslated:'title']] <span ng-if="prediction.source.author">[['by' | translate ]] [[prediction.source.author]]</span> <span ng-if="prediction.source.year_published">([[prediction.source.year_published]])</span>
-          <a ng-href="http://www.dystopiatracker.com/[[url]]">
+          <a ng-href="http://www.dystopiatracker.com/[[url]]" target="_blank">
           <span class"realisations" ng-switch on="prediction.realisations.length">
           <span class="badge" ng-switch-when="0"></span>
           <span class="badge" ng-switch-when="1">1 [['realisation' | translate ]]</span>
