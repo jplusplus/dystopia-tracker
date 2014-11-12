@@ -77,6 +77,7 @@ class Prediction(models.Model):
 
     description_E = models.TextField(max_length=300, blank=True)
     description_D = models.TextField(max_length=300, blank=True)
+    description_F = models.TextField(max_length=300, blank=True)
 
     year_predicted = models.PositiveIntegerField(blank=True)
 
@@ -84,6 +85,7 @@ class Prediction(models.Model):
 
     headline_E = models.TextField(max_length=300, blank=True)
     headline_D = models.TextField(max_length=300, blank=True)
+    headline_F = models.TextField(max_length=300, blank=True)
 
     image = models.ImageField(upload_to='predictions', blank=True)
     image_credit = models.CharField(max_length=75, blank=True)

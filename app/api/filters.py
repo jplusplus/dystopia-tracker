@@ -7,7 +7,7 @@ class PredictionFilter(django_filters.FilterSet):
     def _lang(queryset, value):
         if not value:
             return queryset
-        if value in ['E', 'D']:
+        if value in ['E', 'D', 'F']:
             _filter = { 'description_{0}'.format(value) : "" }
             return queryset.filter(~Q(**_filter))
         else:
@@ -31,15 +31,15 @@ class PredictionFilter(django_filters.FilterSet):
     def _source_title(queryset, value):
         if value == '':
             return queryset
-        return queryset.filter(Q(source__title_E=value) | Q(source__title_D=value))
+        return queryset.filter(Q(source__title_E=value) | Q(source__title_D=value) | Q(source__title_F=value))
 
     def _incomplete(queryset, value):
         if value is None:
             return queryset
-        q = Q(source=None) | Q(category=None) | Q(description_E="") | \
-            Q(description_D="") | Q(year_predicted=0) | Q(more_info="") | \
-            Q(headline_E="") | Q(headline_D="") | Q(image="") | \
-            Q(image_credit="") | Q(username="")
+        q = Q(source=None) | Q(category=None) | Q(year_predicted=0) | Q(more_info="") | \
+            Q(description_E="") | Q(description_D="") | Q(description_F="") | \
+            Q(headline_E="") | Q(headline_D="") | Q(headline_F="") | \
+            Q(image="") | Q(image_credit="") | Q(username="")
         if value:
             queryset = queryset.filter(q)
         else:
