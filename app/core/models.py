@@ -113,6 +113,7 @@ class Realisation(models.Model):
 
     description_E = models.TextField(max_length=300, blank=True)
     description_D = models.TextField(max_length=300, blank=True)
+    description_F = models.TextField(max_length=300, blank=True)
 
     year_introduced = models.PositiveIntegerField()
 

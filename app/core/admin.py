@@ -26,7 +26,8 @@ admin.site.register(Prediction, PredictionAdmin)
 
 class RealisationAdmin(ImportExportModelAdmin):
     resource_class = RealisationResource
-    search_fields = ('description_E', 'description_D', 'year_introduced', 'prediction__year_predicted', 'prediction__source__title', 'prediction__source__author', 'username')
+    search_fields = ('description_E', 'description_D', 'description_F', 'year_introduced', 'prediction__year_predicted',
+                     '0prediction__source__title', 'prediction__source__author', 'username')
     list_display = ('id', 'description_E', 'prediction', 'username', 'creation_date')
     list_filter = ('published',)
 admin.site.register(Realisation, RealisationAdmin)
