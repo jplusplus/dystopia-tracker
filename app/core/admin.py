@@ -5,8 +5,8 @@ from app.core.resources import SourceResource, PredictionResource, RealisationRe
 
 class CategoryAdmin(ImportExportModelAdmin):
     resource_class = CategoryResource
-    search_fields = ('title_D', 'title_E')
-    list_display = ('id', 'title_E', 'title_E','color')
+    search_fields = ('title_D', 'title_E', 'title_F')
+    list_display = ('id', 'title_E', 'title_E', 'title_F', 'color')
 admin.site.register(Category, CategoryAdmin)
 
 class SourceAdmin(ImportExportModelAdmin):

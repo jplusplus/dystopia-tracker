@@ -15,6 +15,7 @@ COLOR_ID = (
 class Category(models.Model):
     title_E = models.CharField(max_length=75)
     title_D = models.CharField(max_length=75)
+    title_F = models.CharField(max_length=75)
     color = models.CharField(max_length=20, choices=COLOR_ID, default='1')
 
     def __unicode__(self):
