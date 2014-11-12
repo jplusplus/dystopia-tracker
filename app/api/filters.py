@@ -64,7 +64,7 @@ class SourceFilter(django_filters.FilterSet):
     def _title(queryset, value):
         if value == '':
             return queryset
-        return queryset.filter(Q(title_E=value) | Q(title_D=value))
+        return queryset.filter(Q(title_E=value) | Q(title_D=value) | Q(title_F=value))
 
     title = django_filters.CharFilter(action=_title)
 

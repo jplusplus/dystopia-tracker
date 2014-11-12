@@ -34,6 +34,7 @@ class Source(models.Model):
 
     title_E = models.CharField(max_length=75, blank=True)
     title_D = models.CharField(max_length=75, blank=True)
+    title_F = models.CharField(max_length=75, blank=True)
 
     author = models.CharField(max_length=75, blank=True)
 
@@ -46,6 +47,7 @@ class Source(models.Model):
 
     description_E = models.TextField(max_length=300, blank=True)
     description_D = models.TextField(max_length=300, blank=True)
+    description_F = models.TextField(max_length=300, blank=True)
 
     image = models.ImageField(upload_to='sources', blank=True)
     image_credit = models.CharField(max_length=75, blank=True)
@@ -122,6 +124,6 @@ class Realisation(models.Model):
     creation_date = models.DateTimeField(auto_now_add=True)
     edition_date = models.DateTimeField(auto_now=True)
     published = models.BooleanField(default=False)
-    
+
     def __unicode__(self):
         return '%d: %s' % (self.year_introduced, self.description_E)

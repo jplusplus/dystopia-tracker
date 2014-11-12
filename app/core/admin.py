@@ -11,7 +11,7 @@ admin.site.register(Category, CategoryAdmin)
 
 class SourceAdmin(ImportExportModelAdmin):
     resource_class = SourceResource
-    search_fields = ('title_E', 'title_D', 'author', 'year_published', 'description_E', 'description_D')
+    search_fields = ('title_E', 'title_D', 'title_F', 'author', 'year_published', 'description_E', 'description_D', 'description_F')
     list_display = ('id', 'title_E', 'author', 'year_published', 'type', 'image')
     list_filter = ('featured', 'type')
 admin.site.register(Source, SourceAdmin)
