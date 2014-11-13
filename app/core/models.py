@@ -58,12 +58,23 @@ class Source(models.Model):
         if not self.year_published:
             self.year_published = 0
 
-        if self.title_E != '':
-            if self.title_D == '':
-                self.title_D = self.title_E
-        elif self.title_D != '':
-            if self.title_E == '':
+        if self.title_E == '':
+            if self.title_D != '':
                 self.title_E = self.title_D
+            elif self.title_F != '':
+                self.title_E = self.title_F
+
+        if self.title_D == '':
+            if self.title_E != '':
+                self.title_D = self.title_E
+            elif self.title_F != '':
+                self.title_D = self.title_F
+
+        if self.title_F == '':
+            if self.title_E != '':
+                self.title_F = self.title_F
+            elif self.title_D != '':
+                self.title_F = self.title_D
 
         super(Source, self).save(*args, **kwargs)
 
