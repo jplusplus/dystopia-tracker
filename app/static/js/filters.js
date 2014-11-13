@@ -4,20 +4,20 @@ angular.module('dystopia-tracker.filters')
             if (item == null) {
                 return '';
             }
-            var oppositeLang = {'E':'D', 'D':'E'};
+
             // check if translation is available
             if (item[fieldname + '_' + $rootScope._lang] != null && item[fieldname + '_' + $rootScope._lang] != "") {
                 return item[fieldname + '_' + $rootScope._lang];
             }
             else {
-                 // check if text is available in the other language
-                 if (item[fieldname + '_' + oppositeLang[$rootScope._lang]] != null && item[fieldname + '_' + oppositeLang[$rootScope._lang]] != "") {
-                     return item[fieldname + '_' + oppositeLang[$rootScope._lang]];
-                 }
-                 // if all fails, leave empty
-                 else {
-                     return "";
-                 }
+                // check if text is available in English
+                if (item[fieldname + '_E'] != null && item[fieldname + '_E']  != "") {
+                    return item[fieldname + '_E'];
+                }
+                // if all fails, leave empty
+                else {
+                    return "";
+                }
             }
         }
 }])
