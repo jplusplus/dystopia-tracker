@@ -37,7 +37,7 @@ angular.module('dystopia-tracker').controller('DetailsCtrl', ['$scope', 'Predict
     // add active class to button of active language
     $scope.isActive = function(lang) {
         if (lang == $scope._lang) {
-        return 'active';
+            return 'active';
         }
     };
 
@@ -70,7 +70,7 @@ angular.module('dystopia-tracker').controller('DetailsCtrl', ['$scope', 'Predict
             $scope.image($scope.prediction.image);
         }
         else {
-            if ($scope.predicton.source.image) {
+            if ($scope.prediction.source.image) {
                 $scope.image($scope.prediction.source.image);
             }
         };
@@ -113,7 +113,7 @@ angular.module('dystopia-tracker').controller('DetailsCtrl', ['$scope', 'Predict
 
     function getCategoryDetails(id) {
         Categories.get({id:id}, function(data) {
-        $scope.category = data;
+            $scope.category = data;
         });
     };
 
