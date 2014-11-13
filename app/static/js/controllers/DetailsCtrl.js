@@ -1,14 +1,14 @@
 angular.module('dystopia-tracker').controller('DetailsCtrl', ['$scope', 'Prediction', 'Categories', 'Sources', 'Realisation', '$rootScope', '$location', '$routeParams', '$cookies', '$filter', '$timeout',
                                                            function($scope, Prediction, Categories, Sources, Realisation, $rootScope, $location, $routeParams, $cookies, $filter,$timeout) {
-    
-    
+
+
     // check if user has visited the site before
     if ($cookies.alreadyVisited) {
         $scope.returningVisitor = true;
     };
     // set cookie
     $cookies.alreadyVisited = 'true';
-    
+
     // define variables for later
     $scope.prediction = [];
     $scope.realisations = [];
@@ -26,26 +26,26 @@ angular.module('dystopia-tracker').controller('DetailsCtrl', ['$scope', 'Predict
     };
     $scope.filters = {exclude : $routeParams.id, title : '', author : '', category : ''};
     $scope.language = $rootScope._lang;
-    
+
     $scope.changeLanguage = function(lang) {
 	    $scope._lang = $scope.language = lang;
 	    $location.path('/' + $scope.language + "/p/" + $filter('slugify')($scope.prediction.source.author) + "/" + $filter('slugify')($scope.prediction.source['title_' + $rootScope._lang]) + "/" + $scope.prediction.id);
 	    $scope.translateTo($scope.language);
 	    $scope.update(false);
     };
-    
-    // add active class to button of active language 
+
+    // add active class to button of active language
     $scope.isActive = function(lang) {
         if (lang == $scope._lang) {
         return 'active';
-        } 
+        }
     };
-    
+
     /* create array to store year_published of source, year_predicted of prediction, and year_introduced of all realisations
     including the corresponding descriptions */
     $scope.alldates = [];
     $scope.sorting = 'year';
-    
+
     // get prediction data via API
     Prediction.get({id:$routeParams.id}).success(function(data) {
 		$scope.prediction = data;
@@ -67,14 +67,14 @@ angular.module('dystopia-tracker').controller('DetailsCtrl', ['$scope', 'Predict
         $scope.title($scope.prediction.source['title_' + $scope.language] + " | Dystopia Tracker");
         $scope.description("A prediction from the Dystopia Tracker: " + $scope.prediction['description_' + $scope.language]);
         if ($scope.prediction.image) {
-            $scope.image($scope.prediction.image);    
+            $scope.image($scope.prediction.image);
         }
         else {
             if ($scope.predicton.source.image) {
                 $scope.image($scope.prediction.source.image);
             }
         };
-    });	
+    });
 
     function createAmznLink(prediction) {
         if (prediction.source.type == "literature") {
@@ -91,12 +91,12 @@ angular.module('dystopia-tracker').controller('DetailsCtrl', ['$scope', 'Predict
         }
         $scope.prediction.amzn = "http://www.amazon.de/s/?url=search-alias=aps&field-keywords=" + prediction.source['title_' + $scope.language] + " " + prediction.source.author + "&category=" + amznType + "&tag=davidbauerch-21&link_code=wql&_encoding=UTF-8";
     };
-    
+
     function findTranslationStatus(object) {
 	    if (!object.description_E && !object.description_D) {
-		    object.isEmpty = true;    
+		    object.isEmpty = true;
 	    };
-	    
+
 	    if (object.description_E && object.description_D) {
                 object.isTranslated = true;
             }
@@ -110,44 +110,71 @@ angular.module('dystopia-tracker').controller('DetailsCtrl', ['$scope', 'Predict
                 }
             }
     };
-    
+
     function getCategoryDetails(id) {
         Categories.get({id:id}, function(data) {
         $scope.category = data;
         });
     };
-   
-    // create an array for the timeline so we can order by year   
+
+    // create an array for the timeline so we can order by year
     function createYearsArray(prediction,realisations) {
-        
+
         // push the publish year
         findTranslationStatus(prediction.source);
-        $scope.alldates.push({"year":prediction.source.year_published, "img":prediction.source.image, "img_credit": prediction.source.image_credit, "type": "published", "link": prediction.source.more_info, "amzn": prediction.amzn,"isTranslated" : prediction.source.isTranslated, "translateToE":prediction.source.translateToE, "isEmpty":prediction.source.isEmpty});
-        
+        $scope.alldates.push({
+            "year" : prediction.source.year_published,
+            "img" : prediction.source.image,
+            "img_credit" : prediction.source.image_credit,
+            "type" : "published",
+            "link" : prediction.source.more_info,
+            "amzn" : prediction.amzn,
+            "isTranslated" : prediction.source.isTranslated,
+            "translateToE" : prediction.source.translateToE,
+            "isEmpty" : prediction.source.isEmpty
+        });
+
         // push the predicted year
         if (prediction.year_predicted != 0) {
-            $scope.alldates.push({"year":prediction.year_predicted, "type":"predicted","link": prediction.more_info});
+            $scope.alldates.push({
+                "year" : prediction.year_predicted,
+                "type" : "predicted",
+                "link" : prediction.more_info
+            });
         }
-        
+
         // push all realisations and save info for translations
         for (var i=0;i<realisations.length;i++) {
             findTranslationStatus(realisations[i]);
-    	    $scope.alldates.push({"id": realisations[i].id, "year":realisations[i].year_introduced, "text_E": realisations[i].description_E, "text_D": realisations[i].description_D, "img":realisations[i].image, "img_credit": realisations[i].image_credit, "credit": realisations[i].username, "type":"introduced", "link": realisations[i].more_info, "isTranslated" : realisations[i].isTranslated, "translateToE":realisations[i].translateToE});    
+    	    $scope.alldates.push({
+                "id" : realisations[i].id,
+                "year" :realisations[i].year_introduced,
+                "text_E" : realisations[i].description_E,
+                "text_D" : realisations[i].description_D,
+                "text_F" : realisations[i].description_F,
+                "img" : realisations[i].image,
+                "img_credit" : realisations[i].image_credit,
+                "credit" : realisations[i].username,
+                "type" : "introduced",
+                "link" : realisations[i].more_info,
+                "isTranslated" : realisations[i].isTranslated,
+                "translateToE" : realisations[i].translateToE
+            });
         };
     };
-    
-      
+
+
     function getMore(param,value) {
-        filters = {exclude : $routeParams.id} 
+        filters = {exclude : $routeParams.id}
         filters[param] = value;
 	    Prediction.get(filters).success(function(data) {
             $scope.more[param] = data.results;
 		    $scope.more[param] = _.filter($scope.more[param], function(elem) {
-            return elem['description_' + $scope._lang];
+                return elem['description_' + $scope._lang];
             });
-	    });    
+	    });
     }
-    
+
     // add image to optimise sharing
     function createShareUrls (prediction) {
         if ($rootScope._lang == "D") {
@@ -160,7 +187,7 @@ angular.module('dystopia-tracker').controller('DetailsCtrl', ['$scope', 'Predict
 
         $scope.shareurls.picture = "http://www.dystopiatracker.com/static/img/screenshot.png";
         $scope.shareurls.fb = "https://www.facebook.com/dialog/feed?app_id=624040751022885&redirect_uri=" + $location.absUrl() + "&display=page&link=" + $location.absUrl() + "&name=Dystopia%20Tracker&description=" + $scope.shareurls.desc + "&picture=" + $scope.shareurls.picture;
-        $scope.shareurls.twi = "https://twitter.com/intent/tweet?text=" + $scope.shareurls.shortdesc + "&url=" + $location.absUrl();    
+        $scope.shareurls.twi = "https://twitter.com/intent/tweet?text=" + $scope.shareurls.shortdesc + "&url=" + $location.absUrl();
         $scope.shareurls.mail = "mailto:?Subject=Dystopia Tracker&Body=" + $scope.shareurls.desc + " " + $location.absUrl();
     }
 
@@ -173,8 +200,8 @@ angular.module('dystopia-tracker').controller('DetailsCtrl', ['$scope', 'Predict
             }
             $scope.embedurl = "<iframe src='" + $location.absUrl() + "/embed' width='100%' height='" + frameheight + "' frameborder='0'></iframe>";
     }
-    
-    
+
+
     // save translation
     $scope.translate = function(item, type) {
         // find the realisation object with the given id
@@ -185,10 +212,10 @@ angular.module('dystopia-tracker').controller('DetailsCtrl', ['$scope', 'Predict
     	        }
             }
         };
-        
+
         var fieldToUpdate = "";
-        
-        if (type === "realisation") {  
+
+        if (type === "realisation") {
             if (realisation.description_E === '') {
                 fieldToUpdate = 'description_E';
             } else {
@@ -196,8 +223,8 @@ angular.module('dystopia-tracker').controller('DetailsCtrl', ['$scope', 'Predict
             }
             var updatedata = { id : item.id };
         }
-        
-        else if (type === "prediction") {  
+
+        else if (type === "prediction") {
             if ($scope.prediction.description_E === '') {
                 fieldToUpdate = 'description_E';
             } else {
@@ -205,22 +232,22 @@ angular.module('dystopia-tracker').controller('DetailsCtrl', ['$scope', 'Predict
             }
             var updatedata = { id : $scope.prediction.id };
         }
-        
-        else if (type === "source") {  
+
+        else if (type === "source") {
             if ($scope.prediction.source.description_E === '') {
                 fieldToUpdate = 'description_E';
             } else {
                 fieldToUpdate = 'description_D';
             }
-        
+
             var updatedata = { id : $scope.prediction.source.id };
         }
-        
-        
+
+
         updatedata[fieldToUpdate] = $scope.translationArray[type][item.id];
-        
+
 	    if (type === "realisation") {
-	      
+
 	    Realisation.patch(updatedata).success(function(data) {
 	        // update scope with the translation
 	        for (i=0;i<$scope.realisations.length;i++) {
@@ -237,39 +264,39 @@ angular.module('dystopia-tracker').controller('DetailsCtrl', ['$scope', 'Predict
             wrapupTranslation(item);
 		})
 		}
-		
+
 		else if (type === "prediction") {
 	    Prediction.patch(updatedata).success(function(data) {
-	       
+
 	       // update scope with the translation
            $scope.prediction = data;
     		if (item['text_' + $scope.language] == "") {
     		    item['text_' + $scope.language] = data[fieldToUpdate];
     			}
-            
+
             // close form and show thankyou message
             wrapupTranslation($scope.prediction);
 		})
 
         }
-        
+
         else if (type === "source") {
 	    Sources.patch(updatedata).success(function(data) {
-	       
+
 	       // update scope with the translation
            $scope.prediction.source = data;
     		if (item['text_' + $scope.language] == "") {
     		    item['text_' + $scope.language] = data[fieldToUpdate];
     			}
-            
+
             // close form and show thankyou message
             wrapupTranslation(item);
 		})
 
         };
-    
+
     };
-    
+
     function wrapupTranslation(item) {
             item.isTranslating = false;
             item.isTranslated = true;
@@ -278,7 +305,7 @@ angular.module('dystopia-tracker').controller('DetailsCtrl', ['$scope', 'Predict
                 item.translatethanks = false;
                 }, 3000);
 		    };
-    
+
     // save edits
     $scope.edit = function(item, type) {
         // find the realisation object with the given id
@@ -289,35 +316,35 @@ angular.module('dystopia-tracker').controller('DetailsCtrl', ['$scope', 'Predict
                 }
             }
         };
-        
+
         var fieldToUpdate = "";
-        
-        if (type === "realisation") {  
+
+        if (type === "realisation") {
             fieldToUpdate = 'description_' + $scope.language;
             var updatedata = { id : item.id };
         }
-        
-        else if (type === "prediction") {  
+
+        else if (type === "prediction") {
             fieldToUpdate = 'description_' + $scope.language;
             var updatedata = { id : $scope.prediction.id };
         }
-        
-        else if (type === "source") {  
+
+        else if (type === "source") {
             if ($scope.prediction.source.description_E === '') {
                 fieldToUpdate = 'description_E';
             } else {
                 fieldToUpdate = 'description_D';
             }
-        
+
             var updatedata = { id : $scope.prediction.source.id };
         }
-        
-        
+
+
         updatedata[fieldToUpdate] = $scope.editingArray[type][item.id];
         console.debug(updatedata);
-        
+
         if (type === "realisation") {
-          
+
         Realisation.patch(updatedata).success(function(data) {
             // update scope with the translation
             for (i=0;i<$scope.realisations.length;i++) {
@@ -330,34 +357,34 @@ angular.module('dystopia-tracker').controller('DetailsCtrl', ['$scope', 'Predict
             wrapupEditing(item);
         })
         }
-        
+
         else if (type === "prediction") {
         Prediction.patch(updatedata).success(function(data) {
-           
+
            // update scope with the translation
            $scope.prediction = data;
-            
+
             // close form and show thankyou message
             wrapupEditing($scope.prediction);
         })
 
         }
-        
+
         else if (type === "source") {
         Sources.patch(updatedata).success(function(data) {
-           
+
            // update scope with the translation
            $scope.prediction.source = data;
             if (item['text_' + $scope.language] == "") {
                 item['text_' + $scope.language] = data[fieldToUpdate];
                 }
-            
+
             // close form and show thankyou message
             wrapupTranslation(item);
         })
 
         };
-    
+
     };
 
     function wrapupEditing(item) {
