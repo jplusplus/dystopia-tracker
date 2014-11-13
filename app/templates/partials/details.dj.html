@@ -70,16 +70,33 @@
 
 	                   <div ng-switch-when="published">
 	                      <p>[['Prediction is published in' | translate]] «[[prediction.source | getTranslated:'title']]» [['by' | translate]] [[prediction.source.author]].</p>
-	                      <p class="source" ng-if="prediction.source | getTranslated:'description'">[[prediction.source | getTranslated:'description' | limitTo:300]]<span ng-if="prediction.source.longdesc">...</span>&nbsp;&nbsp;&nbsp;<span class="credit"><a ng-href="[[prediction.source.more_info]]">Wikipedia</a></span> <span><a href="" ng-if="!alldates.isTranslated && !alldates.isEmpty" ng-click="alldates.isTranslating = !alldates.isTranslating"> ([['Translate' | translate]])</a></span></p>
+	                      <p class="source" ng-if="prediction.source | getTranslated:'description'">
+                          [[prediction.source | getTranslated:'description' | limitTo:300]]
+                          <span ng-if="prediction.source.longdesc">...</span>
+                          <br />
+                          <span class="credit" ng-if="prediction.source.more_info">
+                            <a ng-href="[[prediction.source.more_info]]">Wikipedia</a>&nbsp;
+                          </span>
+                          <span>
+                            <a href="" ng-if="!alldates.isTranslated && !alldates.isEmpty" ng-click="alldates.isTranslating = !alldates.isTranslating"> ([['Translate' | translate]])</a>
+                          </span>
+                        </p>
+                       <form role="form" ng-show="alldates.isTranslating" ng-submit="translate(alldates,'source')">
+                           <div class="form-group" ng-if="alldates.translateToE">
+                               <label for="realisation" >[['Translate to English' | translate]]</label>
+                               <textarea class="form-control" rows="5" maxlength="300" ng-model="translationArray.source[alldates.id].E" autofocus></textarea>
+                           </div>
+                           <div class="form-group" ng-if="alldates.translateToD">
+                               <label for="realisation" >[['Translate to German' | translate]]</label>
+                               <textarea class="form-control" rows="5" maxlength="300" ng-model="translationArray.source[alldates.id].D" autofocus></textarea>
+                           </div>
+                           <div class="form-group" ng-if="alldates.translateToF">
+                               <label for="realisation" >[['Translate to French' | translate]]</label>
+                               <textarea class="form-control" rows="5" maxlength="300" ng-model="translationArray.source[alldates.id].F" autofocus></textarea>
+                           </div>
+                           <button type="submit" class="btn btn-default btn-block">[['Submit translation' | translate]]</button>
+                       </form>
 
-	                      <form role="form" ng-show="alldates.isTranslating" ng-submit="translate(alldates,'source')">
-		                      <div class="form-group">
-                              <label for="sourcedescription" ng-if="alldates.translateToE">[['Translate to English' | translate]]</label>
-                              <label for="sourcedescription" ng-if="!alldates.translateToE">[['Translate to German' | translate]]</label>
-                              <textarea class="form-control" id="sourcedescription" rows="5" maxlength="300" ng-model="translationArray.source[alldates.id]" required autofocus></textarea>
-                              </div>
-                              <button type="submit" class="btn btn-default btn-block">[['Submit translation' | translate]]</button>
-		                  </form>
 		                  <div class="help-block alert alert-success alert-dismissable" ng-show="alldates.translatethanks">
 		                      <p>[['Thank you for your translation. The internet thanks you.' | translate]]</p>
                           </div>
@@ -121,15 +138,15 @@
 		                   <form role="form" ng-show="alldates.isTranslating" ng-submit="translate(alldates,'realisation')">
                            <div class="form-group" ng-if="alldates.translateToE">
                                <label for="realisation" >[['Translate to English' | translate]]</label>
-                               <textarea class="form-control" id="realisation" rows="5" maxlength="300" ng-model="translationArray.realisation[alldates.id].E" autofocus></textarea>
+                               <textarea class="form-control" rows="5" maxlength="300" ng-model="translationArray.realisation[alldates.id].E" autofocus></textarea>
                            </div>
                            <div class="form-group" ng-if="alldates.translateToD">
                                <label for="realisation" >[['Translate to German' | translate]]</label>
-                               <textarea class="form-control" id="realisation" rows="5" maxlength="300" ng-model="translationArray.realisation[alldates.id].D" autofocus></textarea>
+                               <textarea class="form-control" rows="5" maxlength="300" ng-model="translationArray.realisation[alldates.id].D" autofocus></textarea>
                            </div>
                            <div class="form-group" ng-if="alldates.translateToF">
                                <label for="realisation" >[['Translate to French' | translate]]</label>
-                               <textarea class="form-control" id="realisation" rows="5" maxlength="300" ng-model="translationArray.realisation[alldates.id].F" autofocus></textarea>
+                               <textarea class="form-control" rows="5" maxlength="300" ng-model="translationArray.realisation[alldates.id].F" autofocus></textarea>
                            </div>
                            <button type="submit" class="btn btn-default btn-block">[['Submit translation' | translate]]</button>
 		                   </form>
