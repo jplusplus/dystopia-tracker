@@ -145,6 +145,8 @@ angular.module('dystopia-tracker').controller('DetailsCtrl', ['$scope', 'Predict
 
         // push all realisations and save info for translations
         for (var i=0;i<realisations.length;i++) {
+            $scope.editingArray.realisation[realisations[i].id] = realisations[i]['description_' + $rootScope._lang];
+
             findTranslationStatus(realisations[i]);
     	    $scope.alldates.push({
                 "id" : realisations[i].id,
