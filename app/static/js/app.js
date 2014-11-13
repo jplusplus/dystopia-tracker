@@ -32,10 +32,11 @@ var app = angular.module('dystopia-tracker', [
                 var defaultLang;
                 if (navigator.language.indexOf("de") == 0) {
                     defaultLang = "D";
-                }
-                else {
+                } else if (navigator.language.indexOf("fr") === 0) {
+                    defaultLang = "F";
+                } else {
                     defaultLang = "E";
-                }; 
+                };
                 $translateProvider.preferredLanguage(defaultLang);
 
                 $routeProvider.when('/:lang', {
