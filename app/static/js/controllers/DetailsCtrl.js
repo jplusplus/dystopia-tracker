@@ -97,6 +97,8 @@ angular.module('dystopia-tracker').controller('DetailsCtrl', ['$scope', 'Predict
     };
 
     function findTranslationStatus(object) {
+        object.isTranslating = false;
+
 	    if (object.description_E == ""
          && object.description_D == ""
          && object.description_F == "") {
@@ -153,6 +155,11 @@ angular.module('dystopia-tracker').controller('DetailsCtrl', ['$scope', 'Predict
         // push all realisations and save info for translations
         for (var i=0;i<realisations.length;i++) {
             $scope.editingArray.realisation[realisations[i].id] = realisations[i]['description_' + $rootScope._lang];
+            $scope.translationArray.realisation[realisations[i].id] = {
+                E : realisations[i]['description_E'],
+                D : realisations[i]['description_D'],
+                F : realisations[i]['description_F'],
+            };
 
             findTranslationStatus(realisations[i]);
     	    $scope.alldates.push({
@@ -217,7 +224,7 @@ angular.module('dystopia-tracker').controller('DetailsCtrl', ['$scope', 'Predict
     $scope.translate = function(item, type) {
         // find the realisation object with the given id
         if (type === "realisation") {
-            for (i=0;i<$scope.realisations.length;i++) {
+            for (var i = 0; i < $scope.realisations.length; ++i) {
     	        if ($scope.realisations[i].id == item.id) {
     		        var realisation = $scope.realisations[i];
     	        }
@@ -226,16 +233,12 @@ angular.module('dystopia-tracker').controller('DetailsCtrl', ['$scope', 'Predict
 
         var fieldToUpdate = "";
 
-        if (type === "realisation") {
-            if (realisation.description_E === '') {
-                fieldToUpdate = 'description_E';
+        if (["realisation", "prediction"].indexOf(type) >= 0) {
+            if (type === 'prediction') {
+                var updatedata = { id : $scope.prediction.id };
             } else {
-                fieldToUpdate = 'description_D';
+                var updatedata = { id : realisation.id };
             }
-
-            var updatedata = { id : item.id };
-        } else if (type === "prediction") {
-            var updatedata = { id : $scope.prediction.id };
 
             if ($scope.translationArray[type][item.id].E != "") {
                 updatedata.description_E = $scope.translationArray[type][item.id].E;
@@ -259,26 +262,31 @@ angular.module('dystopia-tracker').controller('DetailsCtrl', ['$scope', 'Predict
 	    if (type === "realisation") {
     	    Realisation.patch(updatedata).success(function(data) {
     	        // update scope with the translation
-    	        for (i=0;i<$scope.realisations.length;i++) {
-        	            if ($scope.realisations[i].id == data.id) {
-        	            console.log("helo");
+                realisation = data;
+    	        for (var i = 0; i < $scope.realisations.length; ++i) {
+        	        if ($scope.realisations[i].id == data.id) {
         		        $scope.realisations[i] = data;
-        		        console.log($scope.realisations[i]);
-           				if (item['text_' + $scope.language] == "") {
-        				    item['text_' + $scope.language] = data[fieldToUpdate];
-        				}
-    	                }
-                };
-                // close form and show thankyou message
-                wrapupTranslation(item);
-    		})
+                        // close form and show thankyou message
+                        wrapupTranslation($scope.realisations[i]);
+                        break;
+                    }
+                }
+                for (var j = 0; j < $scope.alldates.length; ++j) {
+                    if ($scope.alldates[j].type === "introduced" && $scope.alldates[j].id === data.id) {
+                        $scope.alldates[j].isTranslated = $scope.realisations[i].isTranslated;
+                        $scope.alldates[j].translateToE = $scope.realisations[i].translateToE;
+                        $scope.alldates[j].translateToD = $scope.realisations[i].translateToD;
+                        $scope.alldates[j].translateToF = $scope.realisations[i].translateToF;
+                        $scope.alldates[j].isTranslating = $scope.realisations[i].isTranslating;
+                        wrapupTranslation($scope.alldates[j], false);
+                        break;
+                    }
+                }
+    		});
 		} else if (type === "prediction") {
     	    Prediction.patch(updatedata).success(function(data) {
     	       // update scope with the translation
                $scope.prediction = data;
-        		if (item['text_' + $scope.language] == "") {
-        		    item['text_' + $scope.language] = data[fieldToUpdate];
-    			}
 
                 // close form and show thankyou message
                 wrapupTranslation($scope.prediction);
@@ -299,8 +307,10 @@ angular.module('dystopia-tracker').controller('DetailsCtrl', ['$scope', 'Predict
 
     };
 
-    function wrapupTranslation(item) {
-        findTranslationStatus(item);
+    function wrapupTranslation(item, up) {
+        if (up || up == null) {
+            findTranslationStatus(item);
+        }
         item.translatethanks = true;
         $timeout(function(){
             item.translatethanks = false;
