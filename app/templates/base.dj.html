@@ -56,8 +56,8 @@
 		<meta name="og:title" content="{{title}}">
 		<meta property="og:site_name" content="Dystopia Tracker"/>
 		<meta property="article:author" content="https://www.facebook.com/davidbauer" />
-		<meta property="og:app_id" content="624040751022885"/> 
-		
+		<meta property="og:app_id" content="624040751022885"/>
+
 		<!-- Twitter -->
 		<meta name="twitter:card" content="summary">
 		<meta name="twitter:creator" content="@dystopiatracker">
@@ -65,25 +65,25 @@
 		<meta name="twitter:description" content="{{description}}">
 		<meta name="twitter:image" content="{{image}}">
 		<meta property="twitter:domain" content="dystopiatracker.com" />
-        		       
+
     </head>
     <body ng-cloak>
         {% block extrajs %}{% endblock %}
         {% block content %}{% endblock %}
     </body>
-    
+
     <!-- Google Analytics -->
         <script type="text/javascript">
 
 		  var _gaq = _gaq || [];
 		  _gaq.push(['_setAccount', 'UA-18717219-9']);
 		  _gaq.push(['_trackPageview']);
-		
+
 		  (function() {
 		    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
 		    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
 		    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
 		  })();
 		</script>
-		
+
 </html>

@@ -8,10 +8,11 @@ angular.module('dystopia-tracker').controller('PageCtrl', ['$scope', '$location'
     var defaultLang;
     if (navigator.language.indexOf("de") == 0) {
         defaultLang = "D";
-    }
-    else {
+    } else if (navigator.language.indexOf("fr") === 0) {
+        defaultLang = "F";
+    } else {
         defaultLang = "E";
-    };
+    }
 
     $rootScope._lang = defaultLang;
 
@@ -19,9 +20,9 @@ angular.module('dystopia-tracker').controller('PageCtrl', ['$scope', '$location'
         $rootScope._lang = lang;
         $translate.use($rootScope._lang);
     };
-    
+
     $scope.spinner = false;
-    
+
     // add active class to view switch
     $rootScope.activeView = function(view) {
         if (view == "cards" && $location.path() == '/' + $rootScope._lang) {
@@ -29,7 +30,7 @@ angular.module('dystopia-tracker').controller('PageCtrl', ['$scope', '$location'
         }
         if (view == "timeline" && $location.path() == '/' + $rootScope._lang + '/timeline') {
 	        return 'active';
-        } 
+        }
     };
 
     // Handle languages
@@ -58,7 +59,7 @@ angular.module('dystopia-tracker').controller('PageCtrl', ['$scope', '$location'
             _image = newImage;
         }
         return _image;
-    }; 
+    };
 
     $scope.pagetype = function(newPagetype) {
         if (newPagetype != null) {

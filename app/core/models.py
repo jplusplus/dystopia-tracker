@@ -15,6 +15,7 @@ COLOR_ID = (
 class Category(models.Model):
     title_E = models.CharField(max_length=75)
     title_D = models.CharField(max_length=75)
+    title_F = models.CharField(max_length=75)
     color = models.CharField(max_length=20, choices=COLOR_ID, default='1')
 
     def __unicode__(self):
@@ -33,6 +34,7 @@ class Source(models.Model):
 
     title_E = models.CharField(max_length=75, blank=True)
     title_D = models.CharField(max_length=75, blank=True)
+    title_F = models.CharField(max_length=75, blank=True)
 
     author = models.CharField(max_length=75, blank=True)
 
@@ -45,6 +47,7 @@ class Source(models.Model):
 
     description_E = models.TextField(max_length=300, blank=True)
     description_D = models.TextField(max_length=300, blank=True)
+    description_F = models.TextField(max_length=300, blank=True)
 
     image = models.ImageField(upload_to='sources', blank=True)
     image_credit = models.CharField(max_length=75, blank=True)
@@ -55,12 +58,23 @@ class Source(models.Model):
         if not self.year_published:
             self.year_published = 0
 
-        if self.title_E != '':
-            if self.title_D == '':
-                self.title_D = self.title_E
-        elif self.title_D != '':
-            if self.title_E == '':
+        if self.title_E == '':
+            if self.title_D != '':
                 self.title_E = self.title_D
+            elif self.title_F != '':
+                self.title_E = self.title_F
+
+        if self.title_D == '':
+            if self.title_E != '':
+                self.title_D = self.title_E
+            elif self.title_F != '':
+                self.title_D = self.title_F
+
+        if self.title_F == '':
+            if self.title_E != '':
+                self.title_F = self.title_F
+            elif self.title_D != '':
+                self.title_F = self.title_D
 
         super(Source, self).save(*args, **kwargs)
 
@@ -74,6 +88,7 @@ class Prediction(models.Model):
 
     description_E = models.TextField(max_length=300, blank=True)
     description_D = models.TextField(max_length=300, blank=True)
+    description_F = models.TextField(max_length=300, blank=True)
 
     year_predicted = models.PositiveIntegerField(blank=True)
 
@@ -81,6 +96,7 @@ class Prediction(models.Model):
 
     headline_E = models.TextField(max_length=300, blank=True)
     headline_D = models.TextField(max_length=300, blank=True)
+    headline_F = models.TextField(max_length=300, blank=True)
 
     image = models.ImageField(upload_to='predictions', blank=True)
     image_credit = models.CharField(max_length=75, blank=True)
@@ -108,6 +124,7 @@ class Realisation(models.Model):
 
     description_E = models.TextField(max_length=300, blank=True)
     description_D = models.TextField(max_length=300, blank=True)
+    description_F = models.TextField(max_length=300, blank=True)
 
     year_introduced = models.PositiveIntegerField()
 
@@ -121,6 +138,6 @@ class Realisation(models.Model):
     creation_date = models.DateTimeField(auto_now_add=True)
     edition_date = models.DateTimeField(auto_now=True)
     published = models.BooleanField(default=False)
-    
+
     def __unicode__(self):
         return '%d: %s' % (self.year_introduced, self.description_E)

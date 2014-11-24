@@ -24,7 +24,7 @@ def details(request, *kargs, **kwargs):
         # title should be prediction headline (or source title if not defined)
         headline = getattr(prediction, "headline_{0}".format(kwargs['lang'])).encode('utf-8')
         if (headline):
-            meta['title'] = "{0} | {1}".format(headline, meta['title']).encode('utf-8')
+            meta['title'] = "{0} | {1}".format(headline, meta['title']).decode('utf-8')
         else:
             meta['title'] = "{0} | {1}".format(getattr(source, "title_{0}".format(kwargs['lang']).encode('utf-8')), meta['title'])
 

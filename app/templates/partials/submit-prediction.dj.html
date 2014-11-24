@@ -1,13 +1,14 @@
 <div class="btn-group langswitch">
   <button type="button" ng-click="changeLanguage('E')" class="btn btn-default btn-xs" ng-class="isActive('E')">En<span class="hidden-xs">glish</span></button>
   <button type="button" ng-click="changeLanguage('D')" class="btn btn-default btn-xs" ng-class="isActive('D')">De<span class="hidden-xs">utsch</span></button>
+  <button type="button" ng-click="changeLanguage('F')" class="btn btn-default btn-xs" ng-class="isActive('F')">Fr<span class="hidden-xs">ench</span></button>
 </div>
 
 <div id="content" class="row">
-   
+
    <form role="form" class="col-sm-6 col-md-4 col-sm-offset-3 col-md-offset-4" ng-submit="submit()">
        <h2>[['Submit prediction' | translate ]]</h2>
-       
+
       <div class="panel panel-info" ng-hide="returningContributor">
         <div class="panel-heading">
           <h3 class="panel-title">[['form_infotext' | translate ]]</h3>
@@ -19,7 +20,7 @@
           <p>[['form_hint_4' | translate ]]</p>
         </div>
       </div>
-       
+
        <div class="form-group">
          <select id="sourcetype" class="form-control" ng-change="updateTitles()" ng-model="prediction.source.type" required>
                  <option value='literature' selected>[['Literature' | translate ]]</option>
@@ -29,14 +30,14 @@
                  <option value='other'>[['Others' | translate ]]</option>
          </select>
        </div>
-       
+
        <div class="form-group">
          <label for="sourcetitle">[['Title' | translate ]]</label>
          <input type="text" ng-blur="updateSourceDetailsShow()" class="form-control sfTypeahead" options="typeahedOptions" datasets="typeaheadData" id="sourcetitle" placeholder="" ng-model="prediction.source.title" required>
        </div>
-       
+
        <div class="form-group animate-show" ng-show="showSourceDetails">
-         <div class="help-block alert alert-warning alert-dismissable fade in"><p>[['form_source-infotext' | translate ]]</p><br/>        
+         <div class="help-block alert alert-warning alert-dismissable fade in"><p>[['form_source-infotext' | translate ]]</p><br/>
          <div ng-switch on="prediction.source.type">
              <label for="author" ng-switch-when="literature">[['Author' | translate]]</label>
              <label for="author" ng-switch-when="games">[['Game Studio' | translate]]</label>
@@ -48,22 +49,22 @@
          <input type="number" class="form-control" id="year_published" ng-model="prediction.source.year_published" placeholder="">
          </div>
        </div>
-         
+
        <div class="form-group">
          <label for="prediction">[['Enter the prediction. Try to be specific.' | translate]] <span class="charstats">[[300-prediction['description_' + language].length]] [['characters left' | translate]].</span></label>
          <textarea class="form-control" id="prediction" rows="5" maxlength="300" ng-model="prediction['description_' + language]" required></textarea>
        </div>
-       
+
        <div class="form-group">
          <label for="year_predicted">[['What year' | translate]]</label>
          <input type="number" class="form-control" id="year_predicted" placeholder="" ng-model="prediction.year_predicted">
        </div>
-       
+
        <div class="form-group">
          <label for="url">[['more info where' | translate ]]</p>
          <input type="url" class="form-control" id="url"  ng-model="prediction.more_info" placeholder="http://">
        </div>
-       
+
        <div class="form-group">
          <label for="category">[['Pick a category for your prediction' | translate ]]</p>
          <select required id="category" ng-model="prediction.category" class="form-control" ng-options="category.id as getCategoryTitle(category) for category in categories">
@@ -71,16 +72,16 @@
                  <option ng-repeat="category in categories" value="[[category.id]]">[[category.title_E]]</option>
             </select>
        </div>
-       
+
        <div class="form-group">
          <label for="username">[['Your name or initials (so we can send all the fame your way)' | translate]]</label>
          <input type="text" class="form-control" id="username" ng-model="prediction.username" placeholder="">
        </div>
- 
+
        <div class="help-block alert alert-warning alert-dismissable fade in" ng-show="fieldsMissing">
 	       <p>Please fill in all required fields.</p>
        </div>
-       
+
        <button type="submit" class="btn btn-primary btn-block">[['Submit' | translate]]</button>
        <div class="back"><a ng-click="back()">[['Changed my mind, go back without submitting' | translate]]</a></div>
     </form>

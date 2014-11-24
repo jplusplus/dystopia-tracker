@@ -1,5 +1,5 @@
 <div id="filters" ng-class="showFilters ? 'visible-mobile' : '' ">
-        
+
     <form id="searchform" ng-submit="update(true)" class="input-group">
 
         <div class="input-group-btn">
@@ -11,12 +11,12 @@
                         </span>
                         <span ng-if="filters.category == ''">
                             [[ 'All categories' | translate ]]
-                        </span>      
+                        </span>
                         <span class="caret"></span>
                     </span>
                     <span class="visible-xs">
-                        <i class="glyphicon glyphicon-filter"></i>                        
-                    </span>                    
+                        <i class="glyphicon glyphicon-filter"></i>
+                    </span>
                 </button>
                 <ul class="dropdown-menu categories">
                     <li ng-class="filters.category == '' ? 'active' : ''">
@@ -39,7 +39,7 @@
                     </span>
                     <span ng-if="filters.source__type == ''">
                             [['All sources' | translate ]]
-                    </span>                    
+                    </span>
                     <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu">
@@ -60,8 +60,8 @@
         <input type="text" class="sfTypeahead" options="typeahedOptions" datasets="typeaheadData" placeholder="[['Search for a title' | translate ]]" autofocus ng-model="filters.title">
 
     </form>
-        
-</div> 
+
+</div>
 
 <div id="toggle-filters" ng-init="showFilters = false">
     <i class="glyphicon glyphicon-search" ng-click="showFilters = !showFilters"></i>
@@ -74,6 +74,9 @@
     <button type="button" ng-click="changeLanguage('D')" class="btn btn-default btn-sm" ng-class="isActive('D')">
         De<span class="hidden-xs">utsch</span>
     </button>
+    <button type="button" ng-click="changeLanguage('F')" class="btn btn-default btn-sm" ng-class="isActive('F')">
+        Fr<span class="hidden-xs">ench</span>
+    </button>
 </div>
 
 <div class="alert alert-welcome alert-dismissable fade in" ng-hide="returningVisitor">
@@ -83,9 +86,9 @@
 
 
 <div id="content">
-        
+
     <div class="cardview editorspicks row" ng-hide="editorspicks.length==0">
-        <div class="sectionhead">[['Editors Picks' | translate]]</div>    
+        <div class="sectionhead">[['Editors Picks' | translate]]</div>
         <div id="loading" ng-if="spinner">
             <div class="spinner"></div>
             Loading...
@@ -106,7 +109,7 @@
     </div><!-- editorspicks -->
 
     <div class="buffer"></div>
-    
+
     <div class="cardview latest row clearfix">
         <div class="sectionhead">[['Latest' | translate]]</div>
         <div id="loading" ng-if="spinner">
@@ -138,9 +141,9 @@
                 </a>
             </div>
         </div>
-				
+
     </div> <!-- latest -->
-    
+
     <a ng-href="[[language]]/submit/prediction" class="btn btn-primary btn-xs visible-xs addnew">
         <span class="glyphicon glyphicon-plus"></span>
     </a>
