@@ -51,8 +51,8 @@
         <a ng-click="reset()" ng-href="[[_lang]]/timeline" ng-class="activeView('timeline')">
             Timeline
         </a>
-    </div>        
-        
+    </div>
+
     <!-- get content from partials -->
     <div ng-view autoscroll="true"></div>
 
@@ -60,9 +60,10 @@
     	<div class="row">
     		<div class="col col-lg-2 logos hidden-xs">
 	    		<a href="http://www.jplusplus.org" target="_blank" title="Journalism++"><img class="jplusplus" src="{{ STATIC_URL }}img/logo_jpp.png"></a>
-	    		<a href="http://www.tageswoche.ch" target="_blank" title="TagesWoche"><img class="tageswoche" src="{{ STATIC_URL }}img/logo_tw.png"></a>
+                <a href="http://www.tageswoche.ch" target="_blank" title="TagesWoche"><img class="tageswoche" src="{{ STATIC_URL }}img/logo_tw.png"></a>
+                <a href="http://future.arte.tv/fr/play" target="_blank" title="Arte Future"><img class="tageswoche" src="{{ STATIC_URL }}img/logo_arte_future.png"></a>
     		</div>
-    		
+
     		<div class="col col-sm-6 col-lg-4">
     			<p><strong>[['The Dystopia Tracker' | translate ]]</strong> [['infotext' | translate ]] <a href="https://medium.com/@davidbauer/18abfccded96" target="_blank">[['more on DT' | translate]]</a></p>
     		</div>
@@ -70,7 +71,7 @@
                 <p>[['iconstext_1' | translate]] <a target="_blank" href="http://thenounproject.com/">The Noun Project</a> [['iconstext_2' | translate]] <a target="_blank" href="http://creativecommons.org/licenses/by/3.0/us/">BY 3.0 US Creative Commons</a> [['iconstext_3' | translate]]</p>
     		    <p><strong>[['license_bold' | translate ]]</strong>[['license_rest1' | translate ]] <a href="http://creativecommons.org/licenses/by-sa/3.0/">BY-SA Creative Commons</a> [['license_rest2' | translate ]] <a href="https://github.com/jplusplus/dystopia-tracker/wiki/API-Methods">Dystopia Tracker API</a> [['license_rest3' | translate ]].</p>
     		</div>
-    		
+
     		<div class="col col-lg-2 col-md-3 col-sm-4">
     			<li class="follow"><a href="http://www.twitter.com/dystopiatracker" target="_blank"><img src="https://dystopia-tracker.s3.amazonaws.com/img/twitter.png" alt="Twitter">Follow @dystopiatracker</a></li>
 
@@ -79,6 +80,6 @@
                 <!--<iframe src="http://ghbtns.com/github-btn.html?user=jplusplus&repo=dystopia-tracker&type=fork" allowtransparency="true" frameborder="0" scrolling="0" width="53" height="20"></iframe>-->
     		</div>
         </div>
-    </div>  
-    
+    </div>
+
 {% endblock %}
