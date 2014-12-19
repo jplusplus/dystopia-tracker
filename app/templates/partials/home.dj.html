@@ -110,6 +110,11 @@
 
     <div class="buffer"></div>
 
+    <div class="alert alert-welcome alert-dismissable fade in" ng-if="[[language]] == 'F'">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <p><strong>Juste lancé en Français.</strong> Aidez de faire mieux le Dystopia Tracker en ajoutant des prédictions ou en traduisant de <a href="/E">l'Anglais</a> ou de <a href="/D">l'Allmand</a>.</p>
+    </div>
+
     <div class="cardview latest row clearfix">
         <div class="sectionhead">[['Latest' | translate]]</div>
         <div id="loading" ng-if="spinner">
