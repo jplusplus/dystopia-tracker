@@ -16,7 +16,6 @@
     "angular-touch": "~1.2.19"
   },
   "resolutions": {
-    "angular": "1.2.16",
-    "angular-touch": "1.2.16"
+    "angular": "1.2.28"
   }
 }
