@@ -1,4 +1,6 @@
-var HomeCtrl = function($scope, Prediction, Categories, Sources, $rootScope, $location, $filter, $cookies, $timeout, FiltersReset) {
+var HomeCtrl = function($scope, Prediction, Categories, Sources, $rootScope, $location, $filter, $cookies, $timeout, FiltersReset, Xiti) {
+    // We may call this controller without this dependancy
+    if(Xiti) Xiti.loadPage("home");
 
     // check if user has visited the site before
     if ($cookies.alreadyVisited) {
@@ -96,24 +98,24 @@ var HomeCtrl = function($scope, Prediction, Categories, Sources, $rootScope, $lo
         $scope.filters.lang = $scope._lang;
         $scope.noContent = false;
         $scope.spinner = true;
-        
+
         // increment to the next page of the API
         $scope.filters.page++;
-        
+
         if (typeof($scope.filters.title) === 'object') {
             $scope.filters.title = $scope.filters.title['title_' + $scope.language];
         }
-        
+
         updateUrl($scope.filters);
-		
+
 		if(reset==true) {
 			$scope.filters.page = 1;
 			$scope.predictions = [];
             $scope.editorspicks = [];
             $scope.hideMoreButton = false;
-            
-            
-            // get all editors picks with selected filter applied 
+
+
+            // get all editors picks with selected filter applied
 		    editorspick_filters = angular.copy($scope.filters);
     	    editorspick_filters.editors_pick = 'True';
     	    // define number of editors picks to show
@@ -164,7 +166,7 @@ var HomeCtrl = function($scope, Prediction, Categories, Sources, $rootScope, $lo
         Sources.get({page: pageNo}).success(function(data) {
             var results = _.groupBy(data.results, 'type');
             for (var type in results) if (results.hasOwnProperty(type)) {
-                titles[type].add(results[type]);
+                if( titles[type] ) titles[type].add(results[type]);
             }
             if(data.next!=null) {
                 pageNo++;
@@ -172,21 +174,21 @@ var HomeCtrl = function($scope, Prediction, Categories, Sources, $rootScope, $lo
             }
         });
     }
-    
+
     $scope.changeLanguage = function(lang) {
 	    $scope._lang = $scope.language = lang;
 	    $location.path('/' + $scope.language);
 	    $scope.translateTo($scope.language);
         $scope.update(false);
     };
-    
-    // add active class to button of active language 
+
+    // add active class to button of active language
     $scope.isActive = function(lang) {
         if (lang == $scope._lang) {
             return 'active';
-        } 
+        }
     };
-    
+
     function updateUrl(filter) {
 	    if (filter.category && filter.category !== "") {
 		    $location.search('c', filter.category);
@@ -204,7 +206,7 @@ var HomeCtrl = function($scope, Prediction, Categories, Sources, $rootScope, $lo
             $location.search('t', null);
 	    }
 	 };
-	 
+
 	 function readUrlParams() {
 		urlparams = $location.search();
         if (urlparams.c) {
@@ -233,6 +235,6 @@ var HomeCtrl = function($scope, Prediction, Categories, Sources, $rootScope, $lo
      };
 };
 
-angular.module('dystopia-tracker').controller('HomeCtrl', ['$scope', 'Prediction', 'Categories', 'Sources', '$rootScope', '$location', '$filter', '$cookies', '$timeout', 'Filters', HomeCtrl]);
+angular.module('dystopia-tracker').controller('HomeCtrl', ['$scope', 'Prediction', 'Categories', 'Sources', '$rootScope', '$location', '$filter', '$cookies', '$timeout', 'Filters', 'Xiti', HomeCtrl]);
 
 // it's the end of the code as we know it
