@@ -85,7 +85,7 @@ STATICFILES_FINDERS = (
 )
 
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = os.getenv('SECRET_KEY', '')
+SECRET_KEY = os.getenv('SECRET_KEY', 'TTQOKUAJPuetZ0azPlN1uo9uCb95lTsEi5Rejap2')
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
@@ -121,7 +121,7 @@ COMPRESS_PRECOMPILERS = (
 )
 
 COMPRESS_CSS_FILTERS = (
-    # Custom filter to avoid absolute URL issue: 
+    # Custom filter to avoid absolute URL issue:
     # http://stackoverflow.com/a/17033883/885541
     "compressor.filters.template.TemplateFilter",
 )
