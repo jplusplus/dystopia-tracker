@@ -21,7 +21,7 @@ pip_install:
 
 npm_install:
 	# Install npm packages
-	if [ -s npm_requirements.txt ]; then xargs -a npm_requirements.txt npm install -g; fi
+	npm install
 
 bower_install:
 	bower install
