@@ -3,6 +3,6 @@
   "version": "0.1.0",
   "dependencies": {
     "coffee-script":"~1.7.1",
-    "less":"~1.6.1",
+    "less":"~1.6.1"
   }
 }
